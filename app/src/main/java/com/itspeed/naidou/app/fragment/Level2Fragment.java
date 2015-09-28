@@ -7,11 +7,12 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.adapter.ChideAdapter;
+import com.itspeed.naidou.app.view.PullToRefreshBase;
+import com.itspeed.naidou.app.view.PullToRefreshList;
 import com.itspeed.naidou.model.bean.CookBook;
 
 import org.kymjs.kjframe.ui.BindView;
@@ -23,14 +24,15 @@ import java.util.ArrayList;
 /**
  * Created by jafir on 15/9/21.
  */
-public class Level2Fragment extends SupportFragment implements PullToRefreshBase.OnRefreshListener2{
+public class Level2Fragment extends SupportFragment implements PullToRefreshBase.OnRefreshListener {
 
     private Context aty;
     private View layout;
     private ArrayList<CookBook> data;
     private ChideAdapter adapter;
     @BindView(id = R.id.level2_list)
-    private PullToRefreshListView mListView;
+    private PullToRefreshList mPullLayout;
+    private ListView mListView;
 
 
 
@@ -50,11 +52,18 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     @Override
     protected void initData() {
         super.initData();
-        mListView = (PullToRefreshListView) layout.findViewById(R.id.level2_list);
-        mListView.setOnRefreshListener(this);
+        initPull();
         adapter = new ChideAdapter();
         adapter.setData(data);
         mListView.setAdapter(adapter);
+    }
+
+    private void initPull() {
+        mPullLayout = (PullToRefreshList) layout.findViewById(R.id.level2_list);
+        mPullLayout.setOnRefreshListener(this);
+        mPullLayout.setPullLoadEnabled(true);
+        mListView = mPullLayout.getRefreshView();
+        mListView.setOverScrollMode(View.OVER_SCROLL_NEVER);
     }
 
     private Handler handler = new Handler(){
@@ -62,9 +71,9 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if(msg.what == 1){
-                mListView.onRefreshComplete();
+                mPullLayout.onPullDownRefreshComplete();
             }else if(msg.what == 2){
-                mListView.onRefreshComplete();
+                mPullLayout.onPullUpRefreshComplete();
             }
         }
     };

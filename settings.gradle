@@ -1,2 +1,2 @@
-include ':app', ':mylibrary', ':SegmentControl', ':imgChoser', ':Android-PullToRefresh-forGradle'
+include ':app', ':mylibrary', ':SegmentControl', ':imgChoser'
 

@@ -34,6 +34,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
     compile project(':imgChoser')
-    compile project(':Android-PullToRefresh-forGradle')
 }
 

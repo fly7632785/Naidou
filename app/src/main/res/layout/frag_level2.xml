@@ -4,17 +4,11 @@
     android:layout_height="match_parent">
 
 
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"
-        ptr:ptrDrawable="@drawable/default_ptr_flip"
+    <com.itspeed.naidou.app.view.PullToRefreshList
         android:id="@+id/level2_list"
-        ptr:ptrAnimationStyle="flip"
-        ptr:ptrMode = "both"
-        ptr:ptrHeaderBackground1="#383838"
-        ptr:ptrHeaderTextColor="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+    </com.itspeed.naidou.app.view.PullToRefreshList>
 </LinearLayout>

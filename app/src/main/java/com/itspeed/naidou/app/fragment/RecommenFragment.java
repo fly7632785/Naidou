@@ -8,11 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.adapter.RecommendAdapter;
+import com.itspeed.naidou.app.view.PullToRefreshList;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.Topic;
 
@@ -30,7 +30,7 @@ public class RecommenFragment extends TitleBarSupportFragment {
     private ArrayList<Object> topics = new ArrayList<>();
     private ArrayList<Object> cookBooks = new ArrayList<>();
 
-    private PullToRefreshListView mPullToRefresh;
+    private PullToRefreshList mPullToRefresh;
 
     private ArrayList<Object> as = new ArrayList<>();
     private ArrayList<Object> bs = new ArrayList<>();
@@ -51,14 +51,16 @@ public class RecommenFragment extends TitleBarSupportFragment {
         aty = (MainActivity) getActivity();
         onChange();
         View view = View.inflate(aty, R.layout.frag_recommend, null);
-        mPullToRefresh = (PullToRefreshListView) view.findViewById(R.id.pull_to_refresh);
-        listView = mPullToRefresh.getRefreshableView();
+        mPullToRefresh = (PullToRefreshList) view.findViewById(R.id.pull_to_refresh);
+        mPullToRefresh.setPullLoadEnabled(true);
+        listView = mPullToRefresh.getRefreshView();
 //        setDate();
 //        mAdapter = new RecommendAdapter(aty,cookBooks,topics);
 //        listView  = (ListView) view.findViewById(R.id.list_recommend);
 //        setData();
 //        abAdapter = new ABAdapter(aty, as, bs);
         listView.setDividerHeight(0);
+        listView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         listView.setAdapter(new MyAdapter());
 
 

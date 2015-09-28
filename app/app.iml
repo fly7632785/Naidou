@@ -96,7 +96,6 @@
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.3" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.0" level="project" />
-    <orderEntry type="module" module-name="Android-PullToRefresh-forGradle" exported="" />
     <orderEntry type="module" module-name="imgChoser" exported="" />
     <orderEntry type="module" module-name="mylibrary" exported="" />
     <orderEntry type="module" module-name="SegmentControl" exported="" />
