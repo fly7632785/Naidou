@@ -94,10 +94,15 @@
         <item name="android:paddingLeft">20dp</item>
         <item name="android:paddingRight">20dp</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 
     <style name="setting_img">
+
         <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
     </style>
 
     <style name="setting_img_goto">

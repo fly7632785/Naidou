@@ -37,6 +37,9 @@
         <activity android:name=".app.activity.SettingActivity"
             >
         </activity>
+        <activity android:name=".app.activity.SimpleBackActivity"
+            >
+        </activity>
     </application>
 
 

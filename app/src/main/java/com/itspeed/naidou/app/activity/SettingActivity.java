@@ -1,13 +1,35 @@
 package com.itspeed.naidou.app.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.app.domain.SimpleBackPage;
+
+import org.kymjs.kjframe.ui.BindView;
 
 /**
  * Created by jafir on 15/9/27.
  */
 public class SettingActivity extends  TitleBarActivity{
+
+    @BindView(id = R.id.setting_editinfo ,click = true)
+    private RelativeLayout mRlEdit;
+    @BindView(id = R.id.setting_modifypassword,click = true)
+    private RelativeLayout mRlPassword;
+    @BindView(id = R.id.setting_feedback,click = true)
+    private RelativeLayout mRlFeedback;
+    @BindView(id = R.id.setting_about,click = true)
+    private RelativeLayout mRlAbout;
+    @BindView(id = R.id.setting_clear,click = true)
+    private RelativeLayout mRlClear;
+
+    @BindView(id = R.id.setting_cache)
+    private TextView mCache;
+
+
 
 
     @Override
@@ -20,7 +42,7 @@ public class SettingActivity extends  TitleBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitleBarType(TitleBarType.Titlebar2);
-        mImgBack.setImageResource(R.drawable.selector_common_back);
+        mImgBack.setImageResource(R.drawable.selector_title_back);
         mTvTitle.setText("设置");
         mImgMenu.setImageBitmap(null);
     }
@@ -31,6 +53,27 @@ public class SettingActivity extends  TitleBarActivity{
 
     }
 
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+
+        switch (v.getId()){
+            case R.id.setting_editinfo:
+                SimpleBackActivity.postShowWith(aty, SimpleBackPage.EDITINFO);
+                break;
+            case R.id.setting_modifypassword:
+
+                break;
+            case R.id.setting_feedback:
+
+                break;
+            case R.id.setting_clear:
+
+                break;
+            case R.id.setting_about:
+                break;
+        }
+    }
 
     @Override
     protected void onBackClick() {
