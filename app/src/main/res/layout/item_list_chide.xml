@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_list_cookbook_img"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/img2" />
+
+    <View
+        android:id="@+id/item_list_cookbook_img1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignBottom="@+id/item_list_cookbook_img"
+        android:background="@drawable/shape_img"
+        android:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/item_list_cookbook_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_list_cookbook_img"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="17sp"
+        android:text="小鸡炖蘑菇"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/item_list_cookbook_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_list_cookbook_title"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/item_list_cookbook_title"
+        android:text="1小时前"
+        android:textColor="#f5f5f5"
+        android:textSize="11sp" />
+
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_alignBottom="@+id/item_list_cookbook_title"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:gravity="right|bottom"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_list_cookbook_islike"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/selector_chide_like"
+            />
+
+        <TextView
+            android:id="@+id/item_list_cookbook_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123"
+            android:textSize="13sp"
+            android:textColor="#ffffff"
+            android:layout_marginRight="15dp"
+            />
+
+        <ImageView
+            android:id="@+id/item_list_cookbook_iscollect"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/selector_chide_collect" />
+
+        <TextView
+            android:id="@+id/item_list_cookbook_collects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123"
+            android:textSize="13sp"
+            android:textColor="#ffffff"
+            />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Naidou</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!-- topic-->
+
+
+    <!-- title-->
+
+    <!-- tab-->
+    <string name="tab_chide">吃的</string>
+    <string name="tab_liaode">聊的</string>
+    <string name="tab_guangde">逛的</string>
+    <string name="tab_wode">我的</string>
+
+
+    <item name="tag_first" type="id"></item>
+    <item name="tag_second" type="id"></item>
+
+</resources>

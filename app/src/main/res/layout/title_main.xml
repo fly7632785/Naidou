@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:segmentcontrol="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/titlebar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height"
+    android:background="@drawable/shape_title"
+    >
+
+    <com.sevenheaven.segmentcontrol.SegmentControl
+        android:id="@+id/segment_control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="13sp"
+        android:layout_centerHorizontal="true"
+        segmentcontrol:texts="父母|孩子"
+        segmentcontrol:colors="@color/topic_red"
+        segmentcontrol:cornerRadius="5dip"
+        segmentcontrol:direction="horizon"
+        segmentcontrol:verticalGap="8dip"
+        segmentcontrol:horizonGap="18dip"/>
+
+    <TextView
+        android:id="@+id/titlebar_text_title"
+        style="@style/titlebar_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="35dp"
+        android:textColor="@color/topic_red"
+        android:layout_marginRight="35dp"
+        android:singleLine="true" />
+
+    <ImageView
+        android:id="@+id/titlebar_img_back"
+        style="@style/titlebar_img"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="8dp"
+        android:contentDescription="@null"
+        android:src="@mipmap/titlebar_back" />
+
+    <ImageView
+        android:id="@+id/titlebar_img_menu"
+        style="@style/titlebar_img"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:contentDescription="@null"
+        android:src="@mipmap/titlebar_add" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="举报"
+        android:id="@+id/titlebar_text_right"
+        android:textColor="#97333333"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginRight="18dp"
+        android:layout_alignParentRight="true"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

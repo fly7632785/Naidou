@@ -1,0 +1,115 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="ChoserTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+
+    <!-- topic-->
+    <style name="line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">#55666666</item>
+    </style>
+
+    <!-- title-->
+
+    <style name="titlebar">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <style name="titlebar_text" parent="titlebar">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="titlebar_img" parent="titlebar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+
+    <!-- tab-->
+    <style name="tab_text_style">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@drawable/selector_tab_text</item>
+
+    </style>
+
+    <style name="tab_text_xiaoxi_bgnum">
+        <item name="android:layout_width">15dp</item>
+        <item name="android:layout_height">15dp</item>
+        <item name="android:background">@mipmap/tab_text_xiaoxi_bg</item>
+        <item name="android:layout_marginLeft">-10dp</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+
+    <!-- editinfo-->
+    <style name="editinfo_text">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="editinfo_edit">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#4d4d4d</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <!-- setting-->
+    <style name="setting_text">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+
+    </style>
+
+    <style name="setting_layout">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="setting_img">
+        <item name="layout_height">20dp</item>
+        <item name="layout_width">20dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="setting_img_goto">
+        <item name="layout_height">20dp</item>
+        <item name="layout_width">20dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+
+</resources>

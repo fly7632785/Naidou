@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@mipmap/edit_bgimg"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="64dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="头像"
+            style="@style/editinfo_text"
+            android:layout_height="wrap_content" />
+
+        <org.kymjs.kjframe.widget.RoundImageView
+            android:layout_width="50dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/portrait"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="昵称"
+            style="@style/editinfo_text"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            style="@style/editinfo_edit"
+            android:text="Jafir"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        style="@style/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="邮箱"
+            style="@style/editinfo_text"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            style="@style/editinfo_edit"
+            android:text="522648467@qq.com"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="个性签名"
+            android:id="@+id/text_motto"
+            style="@style/editinfo_text"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            style="@style/editinfo_edit"
+            android:maxWidth="250dp"
+            android:layout_alignTop="@+id/text_motto"
+            android:text="What can't kill you makes you stronger"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>
