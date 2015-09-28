@@ -142,7 +142,8 @@
     <View
         style="@style/line"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="70dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="20dp"
        />
 
     <LinearLayout
@@ -175,7 +176,8 @@
     <View
         style="@style/line"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="70dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="20dp"
         />
 
     <LinearLayout
@@ -209,6 +211,7 @@
     <View
         style="@style/line"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="70dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="20dp"
         />
 </LinearLayout>

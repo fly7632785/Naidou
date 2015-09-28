@@ -10,15 +10,12 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="tvr_left_tv">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
     <!-- topic-->
     <style name="line">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0.5dp</item>
         <item name="android:background">#55666666</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:layout_width">match_parent</item>
+
     </style>
 
     <!-- title-->
@@ -94,22 +91,16 @@
 
     <style name="setting_layout">
         <item name="android:background">@color/white</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">40dp</item>
         <item name="android:paddingLeft">20dp</item>
         <item name="android:paddingRight">20dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="setting_img">
-        <item name="layout_height">20dp</item>
-        <item name="layout_width">20dp</item>
         <item name="android:layout_centerVertical">true</item>
     </style>
 
     <style name="setting_img_goto">
-        <item name="layout_height">20dp</item>
-        <item name="layout_width">20dp</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_centerVertical">true</item>
     </style>

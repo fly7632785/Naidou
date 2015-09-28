@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
+import com.itspeed.naidou.app.util.UIHelper;
 
 /**
  * Created by jafir on 15/9/1.
@@ -53,7 +54,7 @@ public class WodeFragment extends TitleBarSupportFragment{
         setTitleType(TitleBarActivity.TitleBarType.Titlebar2);
         setTitle("我的");
         setBackImage(null);
-        setMenuImage(R.drawable.selector_titlebar_setting);
+        setMenuImage(R.drawable.selector_title_setting);
     }
 
 
@@ -116,6 +117,6 @@ public class WodeFragment extends TitleBarSupportFragment{
     @Override
     public void onMenuClick() {
         super.onMenuClick();
-
+        UIHelper.showSetting(aty);
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:segmentcontrol="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/titlebar"
+    android:id="@+id/main_title"
     android:layout_width="match_parent"
     android:layout_height="@dimen/title_height"
     android:background="@drawable/shape_title"
@@ -40,7 +40,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="8dp"
         android:contentDescription="@null"
-        android:src="@mipmap/titlebar_back" />
+        android:src="@drawable/selector_common_back" />
 
     <ImageView
         android:id="@+id/titlebar_img_menu"
@@ -50,7 +50,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="8dp"
         android:contentDescription="@null"
-        android:src="@mipmap/titlebar_add" />
+        android:src="@drawable/selector_title_setting" />
 
     <TextView
         android:layout_width="wrap_content"

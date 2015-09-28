@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
+import com.itspeed.naidou.app.util.UIHelper;
 
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
@@ -59,6 +60,7 @@ public class ChideFragment extends TitleBarSupportFragment{
     public void onMenuClick() {
         super.onMenuClick();
         ViewInject.toast("点击了menu");
+        UIHelper.showSetting(aty);
     }
 
 

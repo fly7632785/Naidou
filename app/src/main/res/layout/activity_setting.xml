@@ -5,11 +5,13 @@
     android:background="#40333333"
     android:orientation="vertical">
 
-    <include layout="@layout/title_main" />
+    <include layout="@layout/title_main"
+        />
 
     <RelativeLayout
         android:id="@+id/setting_editinfo"
         style="@style/setting_layout"
+        android:layout_height="45dp"
         android:layout_width="match_parent"
         android:layout_marginTop="20dp">
 
@@ -22,6 +24,8 @@
 
         <TextView
             style="@style/setting_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="编辑资料" />
 
         <ImageView
@@ -42,6 +46,7 @@
     <RelativeLayout
         android:id="@+id/setting_modifypassword"
         style="@style/setting_layout"
+        android:layout_height="45dp"
         android:layout_width="match_parent">
 
         <ImageView
@@ -52,6 +57,8 @@
 
         <TextView
             style="@style/setting_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="修改密码" />
 
         <ImageView
@@ -66,6 +73,7 @@
     <RelativeLayout
         android:id="@+id/setting_clear"
         style="@style/setting_layout"
+        android:layout_height="45dp"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp">
 
@@ -77,11 +85,14 @@
 
         <TextView
             style="@style/setting_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="清理缓存" />
 
         <TextView
             android:id="@+id/setting_cache"
             style="@style/setting_text"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="50dp"
@@ -108,6 +119,7 @@
     <RelativeLayout
         android:id="@+id/setting_feedback"
         style="@style/setting_layout"
+        android:layout_height="45dp"
         android:layout_width="match_parent">
 
         <ImageView
@@ -118,6 +130,8 @@
 
         <TextView
             style="@style/setting_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="意见反馈" />
 
         <ImageView
@@ -127,17 +141,16 @@
             android:background="@mipmap/common_goto" />
 
     </RelativeLayout>
-
     <View
         style="@style/line"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
         android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginRight="20dp"
         />
+
     <RelativeLayout
         android:id="@+id/setting_about"
         style="@style/setting_layout"
+        android:layout_height="45dp"
         android:layout_width="match_parent">
 
         <ImageView
@@ -148,6 +161,8 @@
 
         <TextView
             style="@style/setting_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="关于我们" />
 
         <ImageView
@@ -163,6 +178,7 @@
         android:id="@+id/setting_login_out"
         android:layout_width="match_parent"
         android:layout_height="46dp"
+        android:src="@mipmap/ic_launcher"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp" />

@@ -104,9 +104,11 @@ public abstract class TitleBarActivity extends KJActivity {
      */
     public  void setTitleBarType(TitleBarType type){
         if(type == TitleBarType.Titlebar1){
+            mTvRight.setVisibility(View.GONE);
             segmentControl.setVisibility(View.VISIBLE);
             mTvTitle.setVisibility(View.GONE);
         }else if (type == TitleBarType.Titlebar2){
+            mTvRight.setVisibility(View.GONE);
             mTvTitle.setVisibility(View.VISIBLE);
             segmentControl.setVisibility(View.GONE);
         }else if (type == TitleBarType.Titlebar3){

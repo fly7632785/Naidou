@@ -234,8 +234,9 @@ public class MainActivity extends TitleBarActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
+        super.onSaveInstanceState(outState);
     }
+
 
 
 }
