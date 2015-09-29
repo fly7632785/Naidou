@@ -28,5 +28,11 @@ public class UIHelper {
     public static void  showMyCookbook(Context context){
         SimpleBackActivity.postShowWith(context, SimpleBackPage.MY_COOKBOOK);
     }
-
+    /**
+     * 显示我的收藏
+     * @param context
+     */
+    public static void showMyCollect(Context context) {
+        SimpleBackActivity.postShowWith(context, SimpleBackPage.MY_COLLECT);
+    }
 }

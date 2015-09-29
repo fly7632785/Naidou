@@ -56,7 +56,6 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
             "http://bcs.91.com/pcsuite-dev/img/0/640_960/d46fde33601bff2598cca768a0c13233.jpeg",
             "http://bcs.img.r1.91.com/data/upload/2014/09_21/23/201409212345301684.jpg",
             "http://c.hiphotos.baidu.com/zhidao/pic/item/a686c9177f3e670943c841b539c79f3df9dc55ab.jpg",
-            "http://bcs.img.r1.91.com/data/upload/2014/10_23/11/201410231142295184.jpg",
             "http://bbs.58game.com/data/attachment/forum/201410/16/041444wb1yqr6bzha9a1b6.jpg",
             "http://b.hiphotos.baidu.com/image/pic/item/9f2f070828381f304072d541ad014c086f06f0eb.jpg",
             "http://g.hiphotos.baidu.com/image/pic/item/5366d0160924ab18f937b9df31fae6cd7b890b30.jpg",

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/shape_item_mycollect"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_height="60dp">
+        <org.kymjs.kjframe.widget.RoundImageView
+            android:layout_width="35dp"
+            android:id="@+id/item_list_mycollect_portrait"
+            android:src="@mipmap/portrait"
+            android:layout_height="35dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/item_list_mycollect_name"
+            android:layout_marginLeft="5dp"
+            android:text="Jafir"
+            android:textSize="15sp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/item_list_mycollect_img"
+        android:layout_width="match_parent"
+        android:src="@mipmap/img1"
+        android:layout_height="130dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="14sp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/item_list_mycollect_title"
+        android:text="小鸡炖蘑菇"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="right|bottom"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_list_mycollect_islike"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/selector_common_like"
+            />
+
+        <TextView
+            android:id="@+id/item_list_mycollect_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123"
+            android:textSize="13sp"
+            android:textColor="@color/light_black"
+            android:layout_marginRight="7dp"
+            />
+
+        <ImageView
+            android:id="@+id/item_list_mycollect_iscollect"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/selector_common_collect" />
+
+        <TextView
+            android:id="@+id/item_list_mycollect_collects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123"
+            android:textSize="13sp"
+            android:textColor="@color/light_black"
+            />
+
+    </LinearLayout>
+</LinearLayout>

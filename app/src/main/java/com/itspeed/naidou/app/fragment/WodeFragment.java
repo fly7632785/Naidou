@@ -64,6 +64,8 @@ public class WodeFragment extends TitleBarSupportFragment{
 
                 break;
             case R.id.wode_collect_layout:
+
+                UIHelper.showMyCollect(aty);
                 break;
             case R.id.wode_message_layout:
                 break;

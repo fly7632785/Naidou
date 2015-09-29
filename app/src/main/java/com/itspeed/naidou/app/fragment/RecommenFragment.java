@@ -4,19 +4,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
-import com.itspeed.naidou.app.adapter.RecommendAdapter;
-import com.itspeed.naidou.app.view.PullToRefreshList;
-import com.itspeed.naidou.model.bean.CookBook;
-import com.itspeed.naidou.model.bean.Topic;
+import com.itspeed.naidou.app.adapter.ChideAdapter;
+import com.itspeed.naidou.app.view.switch3d.Image3DSwitchView;
+import com.itspeed.naidou.app.view.switch3d.Image3DView;
 
-import java.util.ArrayList;
+import org.kymjs.kjframe.KJBitmap;
+import org.kymjs.kjframe.ui.ViewInject;
+import org.kymjs.kjframe.utils.KJLoger;
 
 /**
  * Created by jafir on 15/9/1.
@@ -24,16 +22,9 @@ import java.util.ArrayList;
 public class RecommenFragment extends TitleBarSupportFragment {
 
     MainActivity aty;
-    private ListView listView;
-    private RecommendAdapter mAdapter;
-
-    private ArrayList<Object> topics = new ArrayList<>();
-    private ArrayList<Object> cookBooks = new ArrayList<>();
-
-    private PullToRefreshList mPullToRefresh;
-
-    private ArrayList<Object> as = new ArrayList<>();
-    private ArrayList<Object> bs = new ArrayList<>();
+    private View layout;
+    private Image3DSwitchView imageSwitchView;
+    private Image3DView [] image3DViews = new Image3DView[5];
 
     @Override
     public void onChange() {
@@ -45,82 +36,65 @@ public class RecommenFragment extends TitleBarSupportFragment {
     }
 
 
+    @Override
+    protected void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()){
+            case R.id.image1:
+                ViewInject.toast("点击了1");
+                break;
+            case R.id.image2:
+                ViewInject.toast("点击了2");
+                break;
+            case R.id.image3:
+                ViewInject.toast("点击了3");
+                break;
+            case R.id.image4:
+                ViewInject.toast("点击了4");
+                break;
+            case R.id.image5:
+                ViewInject.toast("点击了5");
+                break;
+
+        }
+    }
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         aty = (MainActivity) getActivity();
         onChange();
-        View view = View.inflate(aty, R.layout.frag_recommend, null);
-        mPullToRefresh = (PullToRefreshList) view.findViewById(R.id.pull_to_refresh);
-        mPullToRefresh.setPullLoadEnabled(true);
-        listView = mPullToRefresh.getRefreshView();
-//        setDate();
-//        mAdapter = new RecommendAdapter(aty,cookBooks,topics);
-//        listView  = (ListView) view.findViewById(R.id.list_recommend);
-//        setData();
-//        abAdapter = new ABAdapter(aty, as, bs);
-        listView.setDividerHeight(0);
-        listView.setOverScrollMode(View.OVER_SCROLL_NEVER);
-        listView.setAdapter(new MyAdapter());
+        layout = View.inflate(aty, R.layout.frag_recommend, null);
+        return layout;
+    }
 
+    @Override
+    protected void initData() {
+        super.initData();
 
-        return view;
+        imageSwitchView = (Image3DSwitchView) layout.findViewById(R.id.image_switch_view);
+        image3DViews[0] = (Image3DView) layout.findViewById(R.id.image1);
+        image3DViews[1] = (Image3DView) layout.findViewById(R.id.image2);
+        image3DViews[2] = (Image3DView) layout.findViewById(R.id.image3);
+        image3DViews[3] = (Image3DView) layout.findViewById(R.id.image4);
+        image3DViews[4] = (Image3DView) layout.findViewById(R.id.image5);
+
+        for(int i=0;i<image3DViews.length;i++){
+            image3DViews[i].setOnClickListener(this);
+            new KJBitmap().display(image3DViews[i],ChideAdapter.img[i]);
+        }
+
+        imageSwitchView.setOnImageSwitchListener(new Image3DSwitchView.OnImageSwitchListener() {
+            @Override
+            public void onImageSwitch(int currentImage) {
+                KJLoger.debug("current image is " + currentImage);
+            }
+        });
+        imageSwitchView.setCurrentImage(1);
     }
 
 
-
-
-    private void setDate() {
-        //这里的time是从100开始+2*i
-        for (int i = 0; i < 10; i++) {
-            CookBook cookBook = new CookBook();
-            cookBook.setPortraitUrl("wwww");
-            cookBook.setTime("" + (100 + 2 * i));
-            cookBooks.add(cookBook);
-        }
-        //这里是从95 开始+3*i，
-        //目的是为了 让他们的时间有交叉，然后才能更好的体现排序
-        for (int i = 0; i < 10; i++) {
-            Topic topic = new Topic();
-            topic.setTitle("topic");
-            topic.setTime("" + (95 + 3 * i));
-            topics.add(topic);
-        }
+    @Override
+    public void onDestroy() {
+        imageSwitchView.clear();
     }
-
-
-
-
-
-    private class MyAdapter extends BaseAdapter{
-
-        @Override
-        public int getCount() {
-            return ss.length*4;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return ss[position];
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            View  view = View.inflate(aty,R.layout.test,null);
-            TextView t = (TextView) view.findViewById(R.id.textView);
-            t.setText(ss[position%ss.length]);
-            t.setBackgroundResource(cc[position % 4]);
-            return view;
-        }
-    }
-
-
-    private String[] ss = new String[]{"Community Guidelines","Android Developers","Marlon “Virus” Jones","Marlon “Virus” Jones ","Hello,everybody.I am an Android Developer."};
-    private int[] cc = new int[]{R.color.c1,R.color.c3,R.color.c2,R.color.c4};
 }

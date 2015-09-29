@@ -15,6 +15,7 @@
  */
 package com.itspeed.naidou.app.domain;
 
+import com.itspeed.naidou.app.fragment.MyCollectFragment;
 import com.itspeed.naidou.app.fragment.MyCookbookFragment;
 import com.itspeed.naidou.app.fragment.second.EditInfoFragment;
 
@@ -28,7 +29,8 @@ public enum SimpleBackPage {
 
 
     EDITINFO(1, EditInfoFragment.class),
-    MY_COOKBOOK(2, MyCookbookFragment.class);
+    MY_COOKBOOK(2, MyCookbookFragment.class),
+    MY_COLLECT(3, MyCollectFragment.class);
 
 
     private Class<?> clazz;

@@ -36,7 +36,7 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
     public void onChange() {
         super.onChange();
         setTitleType(TitleBarActivity.TitleBarType.Titlebar2);
-        setBackImage(R.drawable.selector_common_back);
+        setBackImage(R.drawable.selector_title_back);
         setTitle("编辑信息");
         setMenuImage(null);
     }

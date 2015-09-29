@@ -5,14 +5,49 @@
     android:orientation="vertical">
 
 
-    <com.itspeed.naidou.app.view.PullToRefreshList
-        android:id="@+id/pull_to_refresh"
+    <com.itspeed.naidou.app.view.switch3d.Image3DSwitchView
+        android:id="@+id/image_switch_view"
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-      >
+        android:layout_height="300dp" >
 
+        <com.itspeed.naidou.app.view.switch3d.Image3DView
+            android:id="@+id/image1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img1"/>
 
-    </com.itspeed.naidou.app.view.PullToRefreshList>
+        <com.itspeed.naidou.app.view.switch3d.Image3DView
+            android:id="@+id/image2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img2" />
+
+        <com.itspeed.naidou.app.view.switch3d.Image3DView
+            android:id="@+id/image3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img3" />
+
+        <com.itspeed.naidou.app.view.switch3d.Image3DView
+            android:id="@+id/image4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img4" />
+
+        <com.itspeed.naidou.app.view.switch3d.Image3DView
+            android:id="@+id/image5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img3" />
+
+    </com.itspeed.naidou.app.view.switch3d.Image3DSwitchView>
+
 
 
 </LinearLayout>

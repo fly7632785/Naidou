@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <com.itspeed.naidou.app.view.PullToRefreshList
+        android:id="@+id/pull_to_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-        <ListView
-            android:layout_width="match_parent"
-            android:id="@+id/listview"
-            android:layout_height="match_parent">
 
-        </ListView>
+    </com.itspeed.naidou.app.view.PullToRefreshList>
 
 
 </LinearLayout>
