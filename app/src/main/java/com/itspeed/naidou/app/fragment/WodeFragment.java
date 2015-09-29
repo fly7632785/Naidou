@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.util.UIHelper;
+
+import org.kymjs.kjframe.ui.BindView;
 
 /**
  * Created by jafir on 15/9/1.
@@ -18,6 +21,14 @@ public class WodeFragment extends TitleBarSupportFragment{
     private static final int REQUEST_PICK_PHOTO = 111;
     MainActivity aty;
     private View view;
+
+
+    @BindView(id = R.id.wode_cookbook_layout,click = true)
+    private LinearLayout ly_mycookbook;
+    @BindView(id = R.id.wode_message_layout,click = true)
+    private LinearLayout ly_myMessage;
+    @BindView(id = R.id.wode_collect_layout,click = true)
+    private LinearLayout ly_myCollect;
 
 //    @BindView(id = R.id.button,click = true)
 //    private Button toChoose;
@@ -45,6 +56,18 @@ public class WodeFragment extends TitleBarSupportFragment{
 //            intent.putExtra(Constant.EXTRA_PHOTO_LIMIT, 5);
 //            startActivityForResult(intent, REQUEST_PICK_PHOTO);
 //        }
+
+
+        switch (v.getId()){
+            case R.id.wode_cookbook_layout:
+                UIHelper.showMyCookbook(aty);
+
+                break;
+            case R.id.wode_collect_layout:
+                break;
+            case R.id.wode_message_layout:
+                break;
+        }
 
     }
 

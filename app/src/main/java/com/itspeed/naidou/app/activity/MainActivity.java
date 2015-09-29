@@ -17,6 +17,7 @@ import com.itspeed.naidou.app.fragment.WodeFragment;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.utils.DensityUtils;
+import org.kymjs.kjframe.utils.KJLoger;
 
 
 public class MainActivity extends TitleBarActivity {
@@ -129,12 +130,13 @@ public class MainActivity extends TitleBarActivity {
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
-        setSelected();
+
         switch (v.getId()) {
             case R.id.ly_tab_menu_chide:
                 //主动调用相应fragment的change方法，改变不同的titleBar
                 mChide.onChange();
-                //设置为选中
+                //重置所有，并设置为选中
+                setSelected();
                 mTvChide.setSelected(true);
                 //改变内容
                 changeFragment(R.id.main_content, mChide);
@@ -144,6 +146,7 @@ public class MainActivity extends TitleBarActivity {
                 break;
             case R.id.ly_tab_menu_liaode:
                 mLiaode.onChange();
+                setSelected();
                 mTvLiaode.setSelected(true);
                 changeFragment(R.id.main_content, mLiaode);
                 currentFragment = mLiaode;
@@ -151,6 +154,7 @@ public class MainActivity extends TitleBarActivity {
                 break;
             case R.id.ly_tab_menu_guangde:
                 mGuangde.onChange();
+                setSelected();
                 mTvGuangde.setSelected(true);
                 changeFragment(R.id.main_content, mGuangde);
                 currentFragment = mGuangde;
@@ -158,6 +162,7 @@ public class MainActivity extends TitleBarActivity {
                 break;
             case R.id.ly_tab_menu_wode:
                 mWode.onChange();
+                setSelected();
                 mTvWode.setSelected(true);
                 changeFragment(R.id.main_content, mWode);
                 currentFragment = mWode;
@@ -165,6 +170,7 @@ public class MainActivity extends TitleBarActivity {
 
             case R.id.ly_tab_menu_mid:
                 mRecommend.onChange();
+                setSelected();
                 mImgRecommend.setSelected(true);
                 changeFragment(R.id.main_content, mRecommend);
                 currentFragment = mRecommend;
@@ -232,11 +238,32 @@ public class MainActivity extends TitleBarActivity {
     }
 
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+    private  void showState(){
+        KJLoger.debug("__________showState______________");
+
     }
 
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        KJLoger.debug("__________onSaveInstanceState______________");
+    }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        KJLoger.debug("__________onRestoreInstanceState______________");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        KJLoger.debug("___________stop_______________");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }

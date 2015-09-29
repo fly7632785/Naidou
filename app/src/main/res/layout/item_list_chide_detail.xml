@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal"
+        android:layout_height="40dp">
+        <View
+            android:layout_width="8dp"
+            android:background="@color/topic_red"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="第一步"
+            android:textColor="@color/chide_detail_step"
+            android:gravity="center_vertical"
+            android:textSize="20dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="STEP ONE"
+            android:layout_marginLeft="8dp"
+            android:textColor="@color/chide_detail__small_step"
+            android:gravity="bottom"
+            android:paddingBottom="10dp"
+            android:textSize="12dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="140dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:text="1.将诸子古洗干净剁成3.5厘米的段"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

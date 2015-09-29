@@ -18,21 +18,26 @@
     <color name="title_bg_color">#111111</color>
 
     <!-- chide-->
-         <color name="indicator_text">#3a3a3a</color>
-        <!-- chideDetail-->
+    <color name="indicator_text">#3a3a3a</color>
+    <!-- chideDetail-->
+    <color name="chide_detail_step">@color/topic_red</color>
+
+    <color name="chide_detail__small_step">#703a3a3a</color>
 
     <!-- liaode-->
 
-        <!-- liaodeDetail-->
+    <!-- liaodeDetail-->
 
     <!-- guangde-->
 
-        <!-- guangdeDetail-->
+    <!-- guangdeDetail-->
 
     <!-- wode-->
 
-        <!-- wodeDetail-->
-
+    <!-- mycookbook-->
+    <color name="mycookbook_time">#703a3a3a</color>
+    <color name="mycookbook_type">#3a3a3a</color>
+    <!-- wodeDetail-->
 
 
     <!-- recommend-->
@@ -40,8 +45,6 @@
     <color name="c2">#c8c8c8</color>
     <color name="c3">#f88585</color>
     <color name="c4">#d66e93</color>
-
-
 
 
     <!-- login-->

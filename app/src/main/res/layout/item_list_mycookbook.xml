@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:background="#f5f5f5"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:layout_height="180dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:id="@+id/item_list_mycookbook_drip"
+                android:src="@mipmap/common_drip_purple"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="11sp"
+                android:text="1小时前"
+                android:id="@+id/item_list_mycookbook_time"
+                android:textColor="@color/mycookbook_time"
+                android:layout_marginLeft="2dp"
+                android:gravity="bottom"
+                android:layout_marginBottom="5dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@mipmap/common_slash_red"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="right"
+            android:id="@+id/item_list_mycookbook_type"
+            android:text="月子餐"
+            android:textSize="12sp"
+            android:textColor="@color/mycookbook_type"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="180dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="190dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/item_list_mycookbook_img"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/img2"
+                    android:layout_height="160dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_height="80dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/shape_img"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="小鸡炖蘑菇"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:id="@+id/item_list_mycookbook_title"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/item_list_mycookbook_islike"
+                    android:src="@drawable/selector_common_like"
+                    style="@style/mycookbook_like_collect" />
+                <TextView
+                    android:text="234"
+                    style="@style/mycookbook_like_collect_font"
+                    android:id="@+id/item_list_mycookbook_likes"
+                     />
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:src="@drawable/selector_common_collect"
+                        android:id="@+id/item_list_mycookbook_iscollect"
+                        style="@style/mycookbook_like_collect"
+                        />
+                    <TextView
+                        android:text="34"
+                        style="@style/mycookbook_like_collect_font"
+                        android:id="@+id/item_list_mycookbook_collects"
+                         />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

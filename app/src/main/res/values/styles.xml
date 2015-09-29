@@ -110,5 +110,19 @@
         <item name="android:layout_centerVertical">true</item>
     </style>
 
+<!--mycookbook-->
 
+    <style name="mycookbook_like_collect">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        </style>
+    <style name="mycookbook_like_collect_font">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        </style>
 </resources>
