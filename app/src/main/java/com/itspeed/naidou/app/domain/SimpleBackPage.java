@@ -15,9 +15,13 @@
  */
 package com.itspeed.naidou.app.domain;
 
+import com.itspeed.naidou.app.fragment.FollowFragment;
 import com.itspeed.naidou.app.fragment.MyCollectFragment;
 import com.itspeed.naidou.app.fragment.MyCookbookFragment;
+import com.itspeed.naidou.app.fragment.second.AboutFragment;
 import com.itspeed.naidou.app.fragment.second.EditInfoFragment;
+import com.itspeed.naidou.app.fragment.second.FeedBackFragment;
+import com.itspeed.naidou.app.fragment.second.ModifyPwdFragment;
 
 /**
  * 返回页的基本信息注册 (其实就是将原本会在Manifest中注册的Activity转成Fragment在这里注册)
@@ -30,7 +34,11 @@ public enum SimpleBackPage {
 
     EDITINFO(1, EditInfoFragment.class),
     MY_COOKBOOK(2, MyCookbookFragment.class),
-    MY_COLLECT(3, MyCollectFragment.class);
+    MY_COLLECT(3, MyCollectFragment.class),
+    FOLLOW(4, FollowFragment.class),
+    ABOUT(5, AboutFragment.class),
+    FEED_BACK(6, FeedBackFragment.class),
+    MODIFY_PWD(7, ModifyPwdFragment.class);
 
 
     private Class<?> clazz;

@@ -29,6 +29,8 @@ public class WodeFragment extends TitleBarSupportFragment{
     private LinearLayout ly_myMessage;
     @BindView(id = R.id.wode_collect_layout,click = true)
     private LinearLayout ly_myCollect;
+    @BindView(id = R.id.wode_follow_layout,click = true)
+    private LinearLayout ly_follow;
 
 //    @BindView(id = R.id.button,click = true)
 //    private Button toChoose;
@@ -68,6 +70,10 @@ public class WodeFragment extends TitleBarSupportFragment{
                 UIHelper.showMyCollect(aty);
                 break;
             case R.id.wode_message_layout:
+                break;
+
+            case R.id.wode_follow_layout:
+                UIHelper.showFollow(aty);
                 break;
         }
 

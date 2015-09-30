@@ -35,4 +35,44 @@ public class UIHelper {
     public static void showMyCollect(Context context) {
         SimpleBackActivity.postShowWith(context, SimpleBackPage.MY_COLLECT);
     }
+    /**
+     * 显示我的关注
+     * @param context
+     */
+    public static void showFollow(Context context) {
+        SimpleBackActivity.postShowWith(context, SimpleBackPage.FOLLOW);
+    }
+
+    /**
+     * 显示编辑信息
+     * @param context
+     */
+    public static void showEditInfo(Context context) {
+        SimpleBackActivity.postShowWith(context, SimpleBackPage.EDITINFO);
+
+    }
+    /**
+     * 显示意见反馈
+     * @param context
+     */
+    public static void showFeedBack(Context context) {
+        SimpleBackActivity.postShowWith(context, SimpleBackPage.FEED_BACK);
+
+    }
+    /**
+     * 显示修改密码
+     * @param context
+     */
+    public static void showModifyPwd(Context context) {
+        SimpleBackActivity.postShowWith(context, SimpleBackPage.MODIFY_PWD);
+
+    }
+    /**
+     * 显示关于我们
+     * @param context
+     */
+    public static void showAbout(Context context) {
+        SimpleBackActivity.postShowWith(context, SimpleBackPage.ABOUT);
+
+    }
 }

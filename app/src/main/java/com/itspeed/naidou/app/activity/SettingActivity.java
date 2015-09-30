@@ -6,7 +6,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
-import com.itspeed.naidou.app.domain.SimpleBackPage;
+import com.itspeed.naidou.app.util.UIHelper;
 
 import org.kymjs.kjframe.ui.BindView;
 
@@ -59,18 +59,19 @@ public class SettingActivity extends  TitleBarActivity{
 
         switch (v.getId()){
             case R.id.setting_editinfo:
-                SimpleBackActivity.postShowWith(aty, SimpleBackPage.EDITINFO);
+                UIHelper.showEditInfo(aty);
                 break;
             case R.id.setting_modifypassword:
-
+                UIHelper.showModifyPwd(aty);
                 break;
             case R.id.setting_feedback:
-
+                UIHelper.showFeedBack(aty);
                 break;
             case R.id.setting_clear:
 
                 break;
             case R.id.setting_about:
+                UIHelper.showAbout(aty);
                 break;
         }
     }
