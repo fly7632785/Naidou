@@ -28,4 +28,5 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile('com.lsjwzh:recyclerviewpager:1.0.8')
 }

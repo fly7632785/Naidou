@@ -2,48 +2,6 @@
 <items version="2" >
 
     <item
-        jar="/Users/jafir/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.3/a85588bec3e2c4584d593d3f15df1677321bca72/universal-image-loader-1.9.3.jar"
-        jumboMode="false"
-        revision="21.0.0"
-        sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.3-65415108f4a56a14d88077dab19230c757704d07.jar" />
-    </item>
-    <item
-        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/mylibrary/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="21.0.0"
-        sha1="cdefd7b2374e0f503a8a1b4d9c7b52397dd0bc7c">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-ec460b2d9260153abc29384935168883a8dc070a.jar" />
-    </item>
-    <item
-        jar="/Users/jafir/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.systembartint/systembartint/1.0.3/de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287/systembartint-1.0.3.jar"
-        jumboMode="false"
-        revision="21.0.0"
-        sha1="de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/systembartint-1.0.3-2d2028649ecd07836fe78f0706585e97ee286ae1.jar" />
-    </item>
-    <item
-        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/SegmentControl/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="21.0.0"
-        sha1="003248a2acdea7575a33d4d9c112c650e69f2b78">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-103dcbfb8ce5bac4edb14a2a0305f83fc7a10757.jar" />
-    </item>
-    <item
-        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="21.0.0"
-        sha1="40e7757d9b06db670062ddb3cf5b30c129b2fd8c">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-68f86dbf3cc6623292479e0f0e0953793352cac5.jar" />
-    </item>
-    <item
-        jar="/Users/jafir/Applications/ADT/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
-        jumboMode="false"
-        revision="21.0.0"
-        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.0-f45a69acacce640bf7f142f14b23407881ce27d4.jar" />
-    </item>
-    <item
         jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
         jumboMode="false"
         revision="21.0.0"
@@ -51,11 +9,18 @@
         <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-c830ac9336b225c1449dcfe36df0ad706b84cfea.jar" />
     </item>
     <item
-        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/com.astuetz/pagerslidingtabstrip/1.0.1/jars/classes.jar"
         jumboMode="false"
         revision="21.0.0"
-        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-134250b91a314fc2588c9716a8811e096df436cb.jar" />
+        sha1="7912610ed96381c25c36d986eba422731b9641b6">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-31295e2c6a398fb991cce60f3b0b8cbf74447346.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="1ccbc26be2c465c622a48310e8092241b01abe80">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-93f42030913d87e742268dec9a263d5742ae02df.jar" />
     </item>
     <item
         jar="/Users/jafir/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
@@ -65,18 +30,18 @@
         <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-f8dc825d95a58953cc1e14c12d5ce91cf7c00e38.jar" />
     </item>
     <item
-        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/imgChoser/unspecified/jars/classes.jar"
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
         jumboMode="false"
         revision="21.0.0"
-        sha1="accf88dd51dcec01ffedc0f226f43ddabd44d810">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-fd28fc3b2a058228babf785644c259353cb2eb5c.jar" />
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-134250b91a314fc2588c9716a8811e096df436cb.jar" />
     </item>
     <item
-        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/org.kymjs.kjframe/kjframe/2.4.9.3/jars/classes.jar"
+        jar="/Users/jafir/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.3/a85588bec3e2c4584d593d3f15df1677321bca72/universal-image-loader-1.9.3.jar"
         jumboMode="false"
         revision="21.0.0"
-        sha1="a52fe878bb1046fc6d78b6cbc8684f0d6efb78f9">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-a928a1adcf0ffc5e483c6befbfbff020dee14941.jar" />
+        sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.3-65415108f4a56a14d88077dab19230c757704d07.jar" />
     </item>
     <item
         jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/com.oguzdev/CircularFloatingActionMenu/1.0.2/jars/classes.jar"
@@ -93,18 +58,60 @@
         <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-f569382cff13a76c55d2734ad0dd264dd8e6fcf2.jar" />
     </item>
     <item
-        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/com.astuetz/pagerslidingtabstrip/1.0.1/jars/classes.jar"
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.0/jars/classes.jar"
         jumboMode="false"
         revision="21.0.0"
-        sha1="7912610ed96381c25c36d986eba422731b9641b6">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-31295e2c6a398fb991cce60f3b0b8cbf74447346.jar" />
+        sha1="40e7757d9b06db670062ddb3cf5b30c129b2fd8c">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-68f86dbf3cc6623292479e0f0e0953793352cac5.jar" />
     </item>
     <item
-        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.0/jars/classes.jar"
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/SegmentControl/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="21.0.0"
-        sha1="1ccbc26be2c465c622a48310e8092241b01abe80">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-93f42030913d87e742268dec9a263d5742ae02df.jar" />
+        sha1="003248a2acdea7575a33d4d9c112c650e69f2b78">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-103dcbfb8ce5bac4edb14a2a0305f83fc7a10757.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Applications/ADT/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.0-f45a69acacce640bf7f142f14b23407881ce27d4.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/com.lsjwzh/recyclerviewpager/1.0.8/jars/classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="261b41bb82548c9ce70dac8c26064ab46f33dfc8">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-8d21aeb47c9533762888f38e7331e426550a288c.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/org.kymjs.kjframe/kjframe/2.4.9.3/jars/classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="a52fe878bb1046fc6d78b6cbc8684f0d6efb78f9">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-a928a1adcf0ffc5e483c6befbfbff020dee14941.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.systembartint/systembartint/1.0.3/de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287/systembartint-1.0.3.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/systembartint-1.0.3-2d2028649ecd07836fe78f0706585e97ee286ae1.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/mylibrary/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="cdefd7b2374e0f503a8a1b4d9c7b52397dd0bc7c">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-ec460b2d9260153abc29384935168883a8dc070a.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/imgChoser/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="21.0.0"
+        sha1="accf88dd51dcec01ffedc0f226f43ddabd44d810">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/debug/classes-fd28fc3b2a058228babf785644c259353cb2eb5c.jar" />
     </item>
 
 </items>

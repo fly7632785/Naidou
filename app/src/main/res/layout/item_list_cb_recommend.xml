@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent">
+    
+    <ImageView
+        android:layout_width="330dp"
+        android:src="@mipmap/img3"
+        android:id="@+id/item_list_cb_recommend_img"
+        android:scaleType="fitXY"
+        android:layout_height="400dp" />
+    <View
+        android:layout_width="330dp"
+        android:layout_alignBottom="@+id/item_list_cb_recommend_img"
+        android:background="@drawable/shape_img"
+        android:layout_height="200dp"/>
+    <TextView
+        android:layout_width="330dp"
+        android:text="小鸡炖蘑菇"
+        android:id="@+id/item_list_cb_recommend_title"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/white"
+        android:layout_alignBottom="@+id/item_list_cb_recommend_img"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

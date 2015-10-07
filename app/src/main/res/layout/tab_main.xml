@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/tab_height"
     android:layout_alignParentBottom="true"
-    android:background="@color/tab_bg_color"
+    android:background="@drawable/shape_tab"
     android:orientation="horizontal">
 
     <LinearLayout

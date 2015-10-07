@@ -1,53 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
 
-    <com.itspeed.naidou.app.view.switch3d.Image3DSwitchView
-        android:id="@+id/image_switch_view"
-        android:layout_marginTop="100dp"
+    <!--<com.itspeed.naidou.app.view.switch3d.Image3DSwitchView-->
+        <!--android:id="@+id/image_switch_view"-->
+        <!--android:layout_marginTop="100dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="300dp" >-->
+
+        <!--<com.itspeed.naidou.app.view.switch3d.Image3DView-->
+            <!--android:id="@+id/image1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@mipmap/img1"/>-->
+
+        <!--<com.itspeed.naidou.app.view.switch3d.Image3DView-->
+            <!--android:id="@+id/image2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@mipmap/img2" />-->
+
+        <!--<com.itspeed.naidou.app.view.switch3d.Image3DView-->
+            <!--android:id="@+id/image3"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@mipmap/img3" />-->
+
+        <!--<com.itspeed.naidou.app.view.switch3d.Image3DView-->
+            <!--android:id="@+id/image4"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@mipmap/img4" />-->
+
+        <!--<com.itspeed.naidou.app.view.switch3d.Image3DView-->
+            <!--android:id="@+id/image5"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@mipmap/img3" />-->
+
+    <!--</com.itspeed.naidou.app.view.switch3d.Image3DSwitchView>-->
+
+
+    <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
+        android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="300dp" >
+        android:layout_height="400dp"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        app:singlePageFling="true"
+        app:triggerOffset="0.1"/>
 
-        <com.itspeed.naidou.app.view.switch3d.Image3DView
-            android:id="@+id/image1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@mipmap/img1"/>
+    <com.itspeed.naidou.app.view.AdapterIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
 
-        <com.itspeed.naidou.app.view.switch3d.Image3DView
-            android:id="@+id/image2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@mipmap/img2" />
-
-        <com.itspeed.naidou.app.view.switch3d.Image3DView
-            android:id="@+id/image3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@mipmap/img3" />
-
-        <com.itspeed.naidou.app.view.switch3d.Image3DView
-            android:id="@+id/image4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@mipmap/img4" />
-
-        <com.itspeed.naidou.app.view.switch3d.Image3DView
-            android:id="@+id/image5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@mipmap/img3" />
-
-    </com.itspeed.naidou.app.view.switch3d.Image3DSwitchView>
-
-
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:src="@mipmap/liao"
+        android:scaleType="fitXY"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="match_parent" />
 </LinearLayout>
