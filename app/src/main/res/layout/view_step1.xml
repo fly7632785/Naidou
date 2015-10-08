@@ -41,7 +41,8 @@
             android:layout_marginTop="70dp"
             android:gravity="center"
             android:text="选择你的菜谱对象"
-            android:textSize="14sp" />
+            android:textColor="#3d3d3d"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>

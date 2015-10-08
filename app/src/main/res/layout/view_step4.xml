@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="添加步骤吧"
-
+        android:textColor="#3d3d3d"
             android:textSize="18sp" />
 
         <TextView
@@ -48,11 +48,16 @@
             android:textColor="@color/light_black"
             android:textSize="13sp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/step4_list"
+        <GridView
+            android:id="@+id/step4_gridview"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
             android:layout_width="match_parent"
             android:layout_height="400dp"
+            android:overScrollMode="never"
+            android:numColumns="2"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="15dp" />
 
     </LinearLayout>

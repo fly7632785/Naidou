@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,7 +18,7 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.PublishActivity;
 import com.itspeed.naidou.app.adapter.PublishPagerAdapter;
 import com.itspeed.naidou.app.adapter.Step3RecylerAdapter;
-import com.itspeed.naidou.app.adapter.Step4RecylerAdapter;
+import com.itspeed.naidou.app.adapter.Step4GridViewAdapter;
 
 import org.kymjs.kjframe.ui.SupportFragment;
 
@@ -59,7 +59,7 @@ public class PublishCookbookFragment extends SupportFragment {
     private RecyclerView mRecyclerViewStep3;
     //step4
     private RelativeLayout title4;
-    private RecyclerView mRecyclerViewStep4;
+    private GridView mGridView;
     private View step4;
 
 
@@ -100,11 +100,10 @@ public class PublishCookbookFragment extends SupportFragment {
         menu.setOnClickListener(this);
         back.setOnClickListener(this);
 
+        mGridView = (GridView) step4.findViewById(R.id.step4_gridview);
+        Step4GridViewAdapter adapter = new Step4GridViewAdapter();
+        mGridView.setAdapter(adapter);
 
-        mRecyclerViewStep4 = (RecyclerView) step4.findViewById(R.id.step4_list);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerViewStep4.setLayoutManager(layoutManager);
-        mRecyclerViewStep4.setAdapter(new Step4RecylerAdapter());
     }
 
     private void step3() {
@@ -190,12 +189,6 @@ public class PublishCookbookFragment extends SupportFragment {
                 break;
             case R.id.step4_img_back:
                 mViewPager.setCurrentItem(2, true);
-                break;
-            case R.id.step5_img_menu:
-                backToHome();
-                break;
-            case R.id.step5_img_back:
-                mViewPager.setCurrentItem(3, true);
                 break;
 
             //step1

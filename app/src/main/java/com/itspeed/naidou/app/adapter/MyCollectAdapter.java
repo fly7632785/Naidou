@@ -53,22 +53,18 @@ public class MyCollectAdapter extends ListBaseAdapter<CookBook> {
     }
 
     public static  String []img = new String[]{
-            "http://h.hiphotos.baidu.com/image/pic/item/4e4a20a4462309f717d529fa760e0cf3d6cad6a4.jpg",
-            "http://www.jiankangzu.com/pian/08/201108311249403130.jpg",
-            "http://bcs.91.com/pcsuite-dev/img/0/640_960/d46fde33601bff2598cca768a0c13233.jpeg",
-            "http://bcs.img.r1.91.com/data/upload/2014/09_21/23/201409212345301684.jpg",
-            "http://c.hiphotos.baidu.com/zhidao/pic/item/a686c9177f3e670943c841b539c79f3df9dc55ab.jpg",
-            "http://bcs.img.r1.91.com/data/upload/2014/10_23/11/201410231142295184.jpg",
-            "http://bbs.58game.com/data/attachment/forum/201410/16/041444wb1yqr6bzha9a1b6.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/9f2f070828381f304072d541ad014c086f06f0eb.jpg",
-            "http://g.hiphotos.baidu.com/image/pic/item/5366d0160924ab18f937b9df31fae6cd7b890b30.jpg",
-            "http://h.hiphotos.baidu.com/image/pic/item/e4dde71190ef76c6381a26c79916fdfaae516716.jpg",
-            "http://c.hiphotos.baidu.com/image/pic/item/a6efce1b9d16fdfa0d011a02b08f8c5495ee7be9.jpg",
-            "http://g.hiphotos.baidu.com/image/pic/item/14ce36d3d539b6005483d35bed50352ac75cb789.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/4610b912c8fcc3ce72c2e9fb9645d688d53f20f3.jpg",
-            "http://e.hiphotos.baidu.com/image/pic/item/0dd7912397dda14439f38d6db6b7d0a20df48673.jpg",
-            "http://g.hiphotos.baidu.com/image/pic/item/37d12f2eb9389b50b14357858135e5dde6116ead.jpg"
-
+            "http://d.hiphotos.baidu.com/image/pic/item/1e30e924b899a901d79bee3a1f950a7b0208f514.jpg",
+            "http://b.hiphotos.baidu.com/image/pic/item/72f082025aafa40f02b95dd0a964034f78f019bb.jpg",
+            "http://b.hiphotos.baidu.com/image/pic/item/ca1349540923dd54af0b3565d309b3de9c824847.jpg",
+            "http://d.hiphotos.baidu.com/image/pic/item/500fd9f9d72a605966a0dc862d34349b023bbafd.jpg",
+            "http://b.hiphotos.baidu.com/image/pic/item/b3b7d0a20cf431adaa697bf14f36acaf2fdd98ba.jpg",
+            "http://c.hiphotos.baidu.com/image/pic/item/5fdf8db1cb134954db9e1444534e9258d1094a0a.jpg",
+            "http://f.hiphotos.baidu.com/image/pic/item/8d5494eef01f3a29e8a92cee9c25bc315c607ca9.jpg",
+            "http://f.hiphotos.baidu.com/image/pic/item/b64543a98226cffc932cfbbfbb014a90f603eabd.jpg",
+            "http://c.hiphotos.baidu.com/image/pic/item/e824b899a9014c08d47342820f7b02087bf4f449.jpg",
+            "http://b.hiphotos.baidu.com/image/pic/item/8b82b9014a90f603d24af6603c12b31bb051ed1b.jpg",
+            "http://b.hiphotos.baidu.com/image/pic/item/dc54564e9258d109f216c395d458ccbf6c814d1b.jpg",
+            "http://a.hiphotos.baidu.com/image/pic/item/0b7b02087bf40ad1a278adc4522c11dfa9ecce7d.jpg"
     };
 
 

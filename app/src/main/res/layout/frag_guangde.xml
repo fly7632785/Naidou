@@ -5,19 +5,15 @@
     android:orientation="vertical">
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:id="@+id/txt_guangde"
-            android:text="......"
-            android:layout_height="wrap_content" />
-
-
-        <ListView
-            android:id="@+id/list_guangde"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fadingEdgeLength="0dp"
-            android:overScrollMode="never" />
+    <GridView
+        android:id="@+id/guangde_gridview"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:numColumns="2"
+        />
 
 
 

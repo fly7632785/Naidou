@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:background="@drawable/shape_step4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="35dp"
+            android:background="@color/topic_red"
+            android:text="1"
+            android:id="@+id/item_gridview_step4_step"
+            android:textSize="15sp"
+            android:gravity="bottom|center_horizontal"
+            android:paddingBottom="10dp"
+            android:textColor="@color/white"
+            android:layout_height="170dp" />
+        <LinearLayout
+            android:layout_width="130dp"
+            android:orientation="vertical"
+            android:layout_height="170dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_weight="4"
+                android:id="@+id/item_gridview_step4_img"
+                android:scaleType="fitXY"
+                android:src="@mipmap/img2"
+                android:layout_height="0dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="11sp"
+                android:background="#10333333"
+                android:padding="5dp"
+                android:id="@+id/item_gridview_step4_describe"
+                android:text="将鸡腿去骨，注意，皮不要破坏"
+                android:textColor="@color/light_black"
+                android:layout_weight="1.2"
+                android:layout_height="0dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</LinearLayout>

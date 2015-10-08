@@ -95,5 +95,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="120dp"
         android:text="最适合什么时期食用呢？"
-        android:textSize="14sp" />
+        android:textColor="#3d3d3d"
+        android:textSize="18sp" />
 </RelativeLayout>

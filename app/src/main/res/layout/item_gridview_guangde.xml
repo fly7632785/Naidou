@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:paddingBottom="5dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/item_gridview_guangde_img"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/img2" />
+
+    <TextView
+        android:id="@+id/item_gridview_guangde_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="5dp"
+        android:text="zoli吸管"
+        android:textColor="#333333"
+        android:textSize="15sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/topic_red"
+            android:text="￥"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#3d3d3d"
+            android:text="145.00"
+            android:id="@+id/item_gridview_guangde_price"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
