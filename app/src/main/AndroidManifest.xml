@@ -41,6 +41,9 @@
         <activity android:name=".app.activity.SimpleBackActivity"
             >
         </activity>
+        <activity android:name=".app.activity.PublishActivity"
+            >
+        </activity>
     </application>
 
 

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/step3_img_back"
+                style="@style/titlebar_img"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:contentDescription="@null"
+                android:src="@drawable/selector_title_back" />
+
+            <ImageView
+                android:id="@+id/step3_img_menu"
+                style="@style/titlebar_img"
+                android:layout_alignParentRight="true"
+                android:contentDescription="@null"
+                android:src="@drawable/selector_title_cancel" />
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/step3_title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape_publish_bg"
+            android:hint="请输入菜谱名称"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+
+        <EditText
+            android:id="@+id/step3_describe"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_publish_bg2"
+            android:gravity="top"
+            android:hint="写几句简单的描述吧..."
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_black" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="添加所需要的食材哦"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:text="材料" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="用量" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/step3_list"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"></android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/step3_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="55dp"
+            android:textSize="16sp"
+            android:layout_toEndOf="@+id/step3_next"
+            android:layout_toRightOf="@+id/step3_next"
+            android:text="增加一栏"
+            android:textColor="@color/topic_red" />
+
+        <ImageView
+            android:id="@+id/step3_next"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/selector_publish_confirm" />
+    </RelativeLayout>
+
+</RelativeLayout>

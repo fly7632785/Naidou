@@ -82,4 +82,43 @@ public class LayoutUtils {
 
 
     }
+
+    /**
+     * 初始化 状态栏的颜色
+     * @param context 上下文
+     * @param rl    titleBar 或者 紧挨状态栏的布局
+     * @param id 颜色id
+     */
+    public static void init1(Context context ,RelativeLayout rl,int id){
+        Window window = ((Activity)context).getWindow();
+        WindowManager.LayoutParams params = window.getAttributes();
+        final int bits =  WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            params.flags |= bits;
+        }else {
+            params.flags &= ~bits;
+        }
+        window.setAttributes(params);
+        SystemBarTintManager manager = new SystemBarTintManager((Activity)context);
+        manager.setStatusBarTintEnabled(true);
+        manager.setStatusBarTintResource(id);
+
+        SystemBarTintManager.SystemBarConfig config = manager.getConfig();
+
+        Class clz = rl.getParent().getClass();
+
+        if(clz == LinearLayout.class){
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    DensityUtils.dip2px(context, 1));
+            lp.setMargins(0, config.getPixelInsetTop(false), 0, 0);
+            rl.setLayoutParams(lp);
+        }else if(clz == RelativeLayout.class){
+            RelativeLayout.LayoutParams lr = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    DensityUtils.dip2px(context, 1));
+            lr.setMargins(0, config.getPixelInsetTop(false), 0, 0);
+            rl.setLayoutParams(lr);
+        }
+
+
+    }
 }

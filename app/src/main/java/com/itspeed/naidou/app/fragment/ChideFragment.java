@@ -59,8 +59,7 @@ public class ChideFragment extends TitleBarSupportFragment{
     @Override
     public void onMenuClick() {
         super.onMenuClick();
-        ViewInject.toast("点击了menu");
-        UIHelper.showSetting(aty);
+        UIHelper.showPublish(aty);
     }
 
 

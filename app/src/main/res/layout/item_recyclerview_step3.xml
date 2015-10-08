@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/item_recycler_step3_cailiao"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:padding="2dp"
+            android:paddingLeft="5dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:background="@drawable/shape_publish_bg" />
+
+        <EditText
+            android:textColorHint="@color/white"
+            android:padding="2dp"
+            android:id="@+id/item_recycler_step3_yongliang"
+            android:layout_width="100dp"
+            android:textColor="@color/white"
+            android:layout_height="40dp"
+            android:paddingLeft="5dp"
+            android:layout_marginLeft="3dp"
+            android:background="@drawable/shape_publish_bg" />
+
+        <ImageView
+            android:id="@+id/item_recycler_step3_delete"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="4dp"
+            android:padding="2dp"
+            android:src="@drawable/selector_publish_delete" />
+    </LinearLayout>
+</LinearLayout>

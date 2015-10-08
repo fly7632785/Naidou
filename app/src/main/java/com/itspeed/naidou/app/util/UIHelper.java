@@ -3,6 +3,7 @@ package com.itspeed.naidou.app.util;
 import android.content.Context;
 import android.content.Intent;
 
+import com.itspeed.naidou.app.activity.PublishActivity;
 import com.itspeed.naidou.app.activity.SettingActivity;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.domain.SimpleBackPage;
@@ -74,5 +75,14 @@ public class UIHelper {
     public static void showAbout(Context context) {
         SimpleBackActivity.postShowWith(context, SimpleBackPage.ABOUT);
 
+    }
+
+    /**
+     * 显示添加菜谱
+     * @param context
+     */
+    public static void showPublish(Context context) {
+        Intent intent = new Intent(context,PublishActivity.class);
+        context.startActivity(intent);
     }
 }

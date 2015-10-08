@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:segmentcontrol="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:background="@color/white"
     >
 
-    <com.sevenheaven.segmentcontrol.SegmentControl
-
-        android:id="@+id/segment_control"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="13sp"
-        segmentcontrol:texts=" 父母 | 孩子 "
-        segmentcontrol:colors="@color/topic_red"
-        segmentcontrol:cornerRadius="5dip"
-        segmentcontrol:direction="horizon"
-        segmentcontrol:verticalGap="8dip"
-        segmentcontrol:horizonGap="18dip"/>
 
 
     <ImageView
@@ -27,7 +13,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="4dp"
         android:contentDescription="@null"
-        android:src="@mipmap/titlebar_back" />
+        android:src="@drawable/selector_common_back" />
 
     <ImageView
         android:id="@+id/titlebar_img_menu"
@@ -35,6 +21,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="4dp"
         android:contentDescription="@null"
-        android:src="@mipmap/titlebar_add" />
+        android:src="@drawable/selector_common_back"  />
 
 </RelativeLayout>
