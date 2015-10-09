@@ -25,8 +25,8 @@ public class WodeFragment extends TitleBarSupportFragment{
 
     @BindView(id = R.id.wode_cookbook_layout,click = true)
     private LinearLayout ly_mycookbook;
-    @BindView(id = R.id.wode_message_layout,click = true)
-    private LinearLayout ly_myMessage;
+//    @BindView(id = R.id.wode_message_layout,click = true)
+//    private LinearLayout ly_myMessage;
     @BindView(id = R.id.wode_collect_layout,click = true)
     private LinearLayout ly_myCollect;
     @BindView(id = R.id.wode_follow_layout,click = true)
@@ -69,8 +69,8 @@ public class WodeFragment extends TitleBarSupportFragment{
 
                 UIHelper.showMyCollect(aty);
                 break;
-            case R.id.wode_message_layout:
-                break;
+//            case R.id.wode_message_layout:
+//                break;
 
             case R.id.wode_follow_layout:
                 UIHelper.showFollow(aty);

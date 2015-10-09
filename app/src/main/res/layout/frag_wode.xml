@@ -111,43 +111,44 @@
         android:layout_height="wrap_content"
         android:id="@+id/wode_motto" />
 
+    <!--<LinearLayout-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:id="@+id/wode_message_layout"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:layout_height="30dp">-->
+        <!--<ImageView-->
+            <!--android:layout_width="20dp"-->
+            <!--android:background="@mipmap/wode_massage"-->
+            <!--android:layout_height="20dp" />-->
+        <!--<TextView android:layout_width="250dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:text="我的消息"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textColor="#333333"-->
+            <!--/>-->
+        <!--<ImageView-->
+            <!--android:layout_width="17dp"-->
+            <!--android:background="@mipmap/common_goto"-->
+            <!--android:layout_height="17dp" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--<View-->
+        <!--style="@style/line"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginLeft="60dp"-->
+        <!--android:layout_marginRight="20dp"-->
+       <!--/>-->
+
     <LinearLayout
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/wode_message_layout"
-        android:gravity="center_vertical"
-        android:layout_marginRight="20dp"
-        android:layout_height="30dp">
-        <ImageView
-            android:layout_width="20dp"
-            android:background="@mipmap/wode_massage"
-            android:layout_height="20dp" />
-        <TextView android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="20dp"
-            android:text="我的消息"
-            android:textSize="14sp"
-            android:textColor="#333333"
-            />
-        <ImageView
-            android:layout_width="17dp"
-            android:background="@mipmap/common_goto"
-            android:layout_height="17dp" />
 
-    </LinearLayout>
-
-    <View
-        style="@style/line"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="20dp"
-       />
-
-    <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"

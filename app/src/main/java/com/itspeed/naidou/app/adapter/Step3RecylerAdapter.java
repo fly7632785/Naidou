@@ -8,10 +8,27 @@ import android.widget.ImageView;
 
 import com.itspeed.naidou.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by jafir on 15/10/8.
  */
 public class Step3RecylerAdapter extends RecyclerView.Adapter<Step3RecylerAdapter.ViewHolder> {
+
+    private ArrayList list = new ArrayList();
+
+    public Step3RecylerAdapter() {
+        for(int i=0;i< 4;i++){
+            list.add(i);
+        }
+    }
+
+    public void addData() {
+        list.add(1);
+        notifyDataSetChanged();
+    }
+
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,7 +48,7 @@ public class Step3RecylerAdapter extends RecyclerView.Adapter<Step3RecylerAdapte
 
     @Override
     public int getItemCount() {
-        return 4;
+        return list.size();
     }
 
     public static  class ViewHolder extends RecyclerView.ViewHolder {

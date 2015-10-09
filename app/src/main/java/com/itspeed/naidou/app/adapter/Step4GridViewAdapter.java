@@ -7,10 +7,20 @@ import android.widget.TextView;
 
 import com.itspeed.naidou.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by jafir on 15/9/21.
  */
 public class Step4GridViewAdapter extends ListBaseAdapter {
+
+    private  ArrayList list = new ArrayList();
+
+    public Step4GridViewAdapter() {
+        for(int i=0;i < 6;i++){
+            list.add(i);
+        }
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -31,6 +41,11 @@ public class Step4GridViewAdapter extends ListBaseAdapter {
         return convertView;
     }
 
+    public void addDate() {
+        list.add(1);
+        notifyDataSetChanged();
+    }
+
     class  ViewHolder {
         ImageView img;
         TextView desc;
@@ -40,6 +55,6 @@ public class Step4GridViewAdapter extends ListBaseAdapter {
 
     @Override
     public int getCount() {
-        return 6;
+        return list.size();
     }
 }

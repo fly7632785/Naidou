@@ -1,6 +1,7 @@
 package com.itspeed.naidou.app.activity;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
@@ -37,5 +38,14 @@ public class PublishActivity extends KJActivity {
         publishCookbookFragment = new PublishCookbookFragment();
         changeFragment(R.id.publish_frame, publishCookbookFragment);
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            publishCookbookFragment.backToHome();
+            return  true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
