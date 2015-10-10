@@ -18,6 +18,16 @@
 
     </style>
 
+
+    <!-- progress-->
+    <style name="loading">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@mipmap/ic_launcher</item>
+        <item name="android:indeterminateDuration">1000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+
     <!-- title-->
 
     <style name="titlebar">

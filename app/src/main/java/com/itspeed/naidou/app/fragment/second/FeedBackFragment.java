@@ -21,7 +21,7 @@ public class FeedBackFragment extends TitleBarSupportFragment{
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-        layout = View.inflate(aty, R.layout.frag_editinfo,null);
+        layout = View.inflate(aty, R.layout.frag_feedback,null);
         return layout;
     }
 
@@ -36,8 +36,8 @@ public class FeedBackFragment extends TitleBarSupportFragment{
     public void onChange() {
         super.onChange();
         setTitleType(TitleBarActivity.TitleBarType.Titlebar2);
-        setBackImage(R.drawable.selector_common_back);
-        setTitle("编辑信息");
+        setBackImage(R.drawable.selector_title_back);
+        setTitle("意见反馈");
         setMenuImage(null);
     }
 

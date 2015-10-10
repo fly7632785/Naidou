@@ -2,11 +2,15 @@ package com.itspeed.naidou.app.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.app.util.DataCleanManager;
 import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.util.UpdateManager;
 
 import org.kymjs.kjframe.ui.BindView;
 
@@ -25,7 +29,10 @@ public class SettingActivity extends  TitleBarActivity{
     private RelativeLayout mRlAbout;
     @BindView(id = R.id.setting_clear,click = true)
     private RelativeLayout mRlClear;
-
+    @BindView(id =R.id.setting_update,click = true)
+    private RelativeLayout mRlUpdate;
+    @BindView(id = R.id. setting_login_out,click = true)
+    private ImageView logout;
     @BindView(id = R.id.setting_cache)
     private TextView mCache;
 
@@ -45,12 +52,17 @@ public class SettingActivity extends  TitleBarActivity{
         mImgBack.setImageResource(R.drawable.selector_title_back);
         mTvTitle.setText("设置");
         mImgMenu.setImageBitmap(null);
+
     }
 
     @Override
     public void initData() {
         super.initData();
-
+        try {
+            mCache.setText(DataCleanManager.getTotalCacheSize(SettingActivity.this));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -69,9 +81,24 @@ public class SettingActivity extends  TitleBarActivity{
                 break;
             case R.id.setting_clear:
 
+                DataCleanManager.clearAllCache(this);
+                try {
+                    mCache.setText(DataCleanManager.getTotalCacheSize(SettingActivity.this));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(this, "清理成功", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setting_about:
                 UIHelper.showAbout(aty);
+                break;
+
+            case  R.id.setting_update:
+                UpdateManager manager = new UpdateManager(aty);
+                manager.start();
+                break;
+            case R.id.setting_login_out:
+                this.finish();
                 break;
         }
     }
