@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,8 +20,10 @@ import com.itspeed.naidou.app.activity.PublishActivity;
 import com.itspeed.naidou.app.adapter.PublishPagerAdapter;
 import com.itspeed.naidou.app.adapter.Step3RecylerAdapter;
 import com.itspeed.naidou.app.adapter.Step4GridViewAdapter;
+import com.itspeed.naidou.model.bean.FoodMaterial;
 
 import org.kymjs.kjframe.ui.SupportFragment;
+import org.kymjs.kjframe.utils.KJLoger;
 
 import java.util.ArrayList;
 
@@ -59,11 +61,15 @@ public class PublishCookbookFragment extends SupportFragment {
     private RelativeLayout title3;
     private View step3;
     private RecyclerView mRecyclerViewStep3;
+    private LinearLayout step3linear;
     private Step3RecylerAdapter step3RecylerAdapter;
     private ImageView step3next;
     private EditText step3title;
     private EditText step3desc;
     private TextView step3add;
+        //数据
+    private ArrayList<FoodMaterial> step3list = new ArrayList<>();
+
     //step4
     private RelativeLayout title4;
     private GridView mGridView;
@@ -130,18 +136,52 @@ public class PublishCookbookFragment extends SupportFragment {
     private void step3() {
         ImageView back = (ImageView) step3.findViewById(R.id.step3_img_back);
         ImageView menu = (ImageView) step3.findViewById(R.id.step3_img_menu);
-        mRecyclerViewStep3 = (RecyclerView) step3.findViewById(R.id.step3_list);
+
         menu.setOnClickListener(this);
         back.setOnClickListener(this);
-        // 创建一个线性布局管理器
-        LinearLayoutManager layoutManager = new LinearLayoutManager(aty);
-        // 设置布局管理器
-        mRecyclerViewStep3.setLayoutManager(layoutManager);
 
-        // 创建Adapter，并指定数据集
-        step3RecylerAdapter = new Step3RecylerAdapter();
-        // 设置Adapter
-        mRecyclerViewStep3.setAdapter(step3RecylerAdapter);
+//        mRecyclerViewStep3 = (RecyclerView) step3.findViewById(R.id.step3_list);
+//        // 创建一个线性布局管理器
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(aty);
+//        // 设置布局管理器
+//        mRecyclerViewStep3.setLayoutManager(layoutManager);
+//
+//        //模拟数据
+//
+//        for(int i=0;i<6;i++){
+//         step3list.add(new FoodMaterial());
+//        }
+//        // 创建Adapter，并指定数据集
+//        step3RecylerAdapter = new Step3RecylerAdapter(step3list);
+//        // 设置Adapter
+//        mRecyclerViewStep3.setAdapter(step3RecylerAdapter);
+
+        step3linear = (LinearLayout) step3.findViewById(R.id.step3_linear);
+        //初始化4个
+        View view1 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
+        View view2 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
+        View view3 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
+        View view4 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
+        ArrayList<EditText> cailiaoList = new ArrayList<>();
+        ArrayList<EditText> yongliangList = new ArrayList<>();
+        step3linear.addView(view1);
+        step3linear.addView(view2);
+        step3linear.addView(view3);
+        step3linear.addView(view4);
+
+        for(int i=0 ; i < step3linear.getChildCount();i++ ){
+            EditText cailiao = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_cailiao);
+            EditText yongliang = (EditText)step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_yongliang);
+            cailiaoList.add(cailiao);
+            yongliangList.add(yongliang);
+
+            ImageView delete = (ImageView) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_delete);
+            if(i == 0){
+                cailiao.setHint("例如:猪肉");
+                yongliang.setHint("例如:500g");
+            }
+            delete.setOnClickListener(this);
+        }
 
         step3add = (TextView) step3.findViewById(R.id.step3_add);
         step3desc = (EditText) step3.findViewById(R.id.step3_describe);
@@ -264,10 +304,22 @@ public class PublishCookbookFragment extends SupportFragment {
             //step3
             case R.id.step3_next:
                 mViewPager.setCurrentItem(3,true);
+                for(int i=0;i<step3list.size();i++){
+                    FoodMaterial foodMaterial = step3list.get(i);
+                    KJLoger.debug(foodMaterial.getAmount()+":"+foodMaterial.getType());
+
+                }
                 break;
             case R.id.step3_add:
                 //增加一栏
-                step3RecylerAdapter.addData();
+//                step3RecylerAdapter.addData();
+                View view = View.inflate(aty, R.layout.item_recyclerview_step3, null);
+                EditText cailiao = (EditText) view.findViewById(R.id.item_recycler_step3_cailiao);
+                EditText yongliang = (EditText)view.findViewById(R.id.item_recycler_step3_yongliang);
+                ImageView delete = (ImageView) view.findViewById(R.id.item_recycler_step3_delete);
+                delete.setOnClickListener(this);
+                step3linear.addView(view);
+
                 break;
 
             //step4
@@ -279,6 +331,12 @@ public class PublishCookbookFragment extends SupportFragment {
                 step4GridViewAdapter.addDate();
                 break;
 
+
+            case R.id.item_recycler_step3_delete:
+                //删除
+                KJLoger.debug(":"+v.getParent());
+                step3linear.removeView((View) v.getParent().getParent());
+                break;
 
 
         }

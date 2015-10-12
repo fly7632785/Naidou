@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.model.bean.FoodMaterial;
 
 import java.util.ArrayList;
 
@@ -15,16 +16,14 @@ import java.util.ArrayList;
  */
 public class Step3RecylerAdapter extends RecyclerView.Adapter<Step3RecylerAdapter.ViewHolder> {
 
-    private ArrayList list = new ArrayList();
+    private ArrayList<FoodMaterial> list = new ArrayList<FoodMaterial>();
 
-    public Step3RecylerAdapter() {
-        for(int i=0;i< 4;i++){
-            list.add(i);
-        }
+    public Step3RecylerAdapter(ArrayList<FoodMaterial> list) {
+        this.list = list;
     }
 
     public void addData() {
-        list.add(1);
+        list.add(new FoodMaterial());
         notifyDataSetChanged();
     }
 
@@ -43,6 +42,9 @@ public class Step3RecylerAdapter extends RecyclerView.Adapter<Step3RecylerAdapte
             holder.cailiao.setHint("如:猪肉");
             holder.yongliang.setHint("如:500g");
         }
+        FoodMaterial foodMaterial = list.get(position);
+        foodMaterial.setType(holder.cailiao.getText().toString());
+        foodMaterial.setAmount(holder.yongliang.getText().toString());
 
     }
 
@@ -64,4 +66,7 @@ public class Step3RecylerAdapter extends RecyclerView.Adapter<Step3RecylerAdapte
 
         }
     }
+
+
+
 }

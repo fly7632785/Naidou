@@ -96,13 +96,29 @@
                 android:text="用量" />
         </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/step3_list"
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/step3_list"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="210dp"-->
+            <!--android:overScrollMode="never"-->
+            <!--android:layout_marginLeft="35dp"-->
+            <!--android:layout_marginRight="35dp"></android.support.v7.widget.RecyclerView>-->
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:overScrollMode="never"
             android:layout_marginLeft="35dp"
-            android:layout_marginRight="35dp"></android.support.v7.widget.RecyclerView>
+            android:layout_marginRight="35dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/step3_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </ScrollView>
+
+
     </LinearLayout>
 
     <RelativeLayout

@@ -26,8 +26,6 @@ public class RecommenFragment extends TitleBarSupportFragment {
 
     MainActivity aty;
     private View layout;
-//    private Image3DSwitchView imageSwitchView;
-//    private Image3DView [] image3DViews = new Image3DView[5];
 
 
     private ArrayList<CookBook> mData;
@@ -48,21 +46,6 @@ public class RecommenFragment extends TitleBarSupportFragment {
     protected void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-//            case R.id.image1:
-//                ViewInject.toast("点击了1");
-//                break;
-//            case R.id.image2:
-//                ViewInject.toast("点击了2");
-//                break;
-//            case R.id.image3:
-//                ViewInject.toast("点击了3");
-//                break;
-//            case R.id.image4:
-//                ViewInject.toast("点击了4");
-//                break;
-//            case R.id.image5:
-//                ViewInject.toast("点击了5");
-//                break;
 
         }
     }
@@ -90,9 +73,9 @@ public class RecommenFragment extends TitleBarSupportFragment {
         mRecyclerView.setLayoutManager(layout);
 
         mData = new ArrayList<>();
-        for (int i = 0;i< 5;i++){
+        for (int i = 0; i < 5; i++) {
             CookBook cookBook = new CookBook();
-            cookBook.setTitle("小鸡炖蘑菇"+i);
+            cookBook.setTitle("小鸡炖蘑菇" + i);
             mData.add(cookBook);
         }
         RecommendRecyclerAdapter adapter = new RecommendRecyclerAdapter(mData);
@@ -100,13 +83,13 @@ public class RecommenFragment extends TitleBarSupportFragment {
         mIndicator.bindView(mRecyclerView);
 
         mRecyclerView.setAdapter(adapter);
-        mRecyclerView.scrollToPosition(Integer.MAX_VALUE/2-Integer.MAX_VALUE/2%5);
+        mRecyclerView.scrollToPosition(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % 5);
 
         mRecyclerView.setHasFixedSize(true);
         adapter.setOnItemClickListener(new RecommendRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ViewInject.toast("点击："+position);
+                ViewInject.toast("点击：" + position);
             }
         });
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -160,31 +143,6 @@ public class RecommenFragment extends TitleBarSupportFragment {
 
             }
         });
-
-//        imageSwitchView = (Image3DSwitchView) layout.findViewById(R.id.image_switch_view);
-//        image3DViews[0] = (Image3DView) layout.findViewById(R.id.image1);
-//        image3DViews[1] = (Image3DView) layout.findViewById(R.id.image2);
-//        image3DViews[2] = (Image3DView) layout.findViewById(R.id.image3);
-//        image3DViews[3] = (Image3DView) layout.findViewById(R.id.image4);
-//        image3DViews[4] = (Image3DView) layout.findViewById(R.id.image5);
-//
-//        for(int i=0;i<image3DViews.length;i++){
-//            image3DViews[i].setOnClickListener(this);
-//            new KJBitmap().display(image3DViews[i],ChideAdapter.img[i]);
-//        }
-//
-//        imageSwitchView.setOnImageSwitchListener(new Image3DSwitchView.OnImageSwitchListener() {
-//            @Override
-//            public void onImageSwitch(int currentImage) {
-//                KJLoger.debug("current image is " + currentImage);
-//            }
-//        });
-//        imageSwitchView.setCurrentImage(1);
     }
 
-
-    @Override
-    public void onDestroy() {
-//        imageSwitchView.clear();
-    }
 }
