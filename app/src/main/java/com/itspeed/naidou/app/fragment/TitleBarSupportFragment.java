@@ -10,15 +10,15 @@ import org.kymjs.kjframe.ui.SupportFragment;
 
 /**
  * Created by jafir on 15/7/3.
+ * fragment 的titlebarfragment 基类
  */
 public abstract class TitleBarSupportFragment extends SupportFragment {
 
     protected SupportFragment currentSupportFragment;
 
     /**
-     * 封装一下方便一起返回(JAVA没有结构体这么一种东西实在是个遗憾)
+     * 封装一下方便一起返回
      *
-     * @author kymjs (https://github.com/kymjs)
      */
     public class ActionBarRes {
         public CharSequence title;

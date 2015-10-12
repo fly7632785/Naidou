@@ -10,6 +10,7 @@ import com.squareup.picasso.Picasso;
 
 /**
  * Created by jafir on 15/9/21.
+ * 逛得 适配器
  */
 public class GuangdeGridViewAdapter extends ListBaseAdapter {
 

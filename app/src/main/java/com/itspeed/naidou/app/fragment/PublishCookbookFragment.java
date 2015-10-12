@@ -26,6 +26,12 @@ import java.util.ArrayList;
 
 /**
  * Created by jafir on 15/10/8.
+ * 发表菜谱的fragment
+ * 发布菜谱 分为4步
+ * 第一步：选择 父母 还是 孩子
+ * 第二步：选择 父母的二级菜单  或者 孩子的二级菜单
+ * 第三步：菜谱的 标题 描述 食材
+ * 第四步：菜谱的 步骤 （图片 描述）
  */
 public class PublishCookbookFragment extends SupportFragment {
 
@@ -33,7 +39,9 @@ public class PublishCookbookFragment extends SupportFragment {
     private PublishActivity aty;
     private View layout;
 
-    //viewpager
+    /**
+     * 4步 为4个view 装在viewpager里面
+     */
     private ViewPager mViewPager;
     private ArrayList<View> steps = new ArrayList<>();
     private PublishPagerAdapter adapter;
@@ -71,6 +79,7 @@ public class PublishCookbookFragment extends SupportFragment {
     private Step4GridViewAdapter step4GridViewAdapter;
     private ImageView step4issue;
     private TextView step4add;
+    private TextView step4delete;
 
 
 
@@ -94,13 +103,10 @@ public class PublishCookbookFragment extends SupportFragment {
         initSteps();
         adapter = new PublishPagerAdapter(steps);
         mViewPager.setAdapter(adapter);
-        //step1
+        //初始化4步 和 设置监听等
         step1();
-        //step2
         step2();
-        //step3
         step3();
-        //step4
         step4();
     }
 
@@ -120,9 +126,11 @@ public class PublishCookbookFragment extends SupportFragment {
 
         step4add = (TextView) step4.findViewById(R.id.step4_add);
         step4issue = (ImageView) step4.findViewById(R.id.step4_next);
+        step4delete = (TextView) step4.findViewById(R.id.step4_delete);
 
         step4add.setOnClickListener(this);
         step4issue.setOnClickListener(this);
+        step4delete.setOnClickListener(this);
     }
     /**
      * 第三步
@@ -254,7 +262,9 @@ public class PublishCookbookFragment extends SupportFragment {
                 break;
 
 
-
+            /**
+             * 4步的控件的点击事件
+             */
 
             //step1
             case R.id.step1_parent:
@@ -300,6 +310,8 @@ public class PublishCookbookFragment extends SupportFragment {
                 step3add();
                 break;
 
+
+
             //step4
             case R.id.step4_next:
                 //发布
@@ -307,6 +319,10 @@ public class PublishCookbookFragment extends SupportFragment {
             case R.id.step4_add:
                 //增加一栏
                 step4GridViewAdapter.addDate();
+                break;
+
+            case R.id. step4_delete:
+                step4GridViewAdapter.deleteDate();
                 break;
 
 

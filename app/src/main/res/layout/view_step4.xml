@@ -79,7 +79,7 @@
         <TextView
             android:id="@+id/step4_add"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -87,6 +87,19 @@
             android:layout_marginRight="39dp"
             android:gravity="center"
             android:text="再加一步"
+            android:textColor="@color/topic_red"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/step4_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="39dp"
+            android:gravity="center"
+            android:text="删除一步"
             android:textColor="@color/topic_red"
             android:textSize="16sp" />
     </RelativeLayout>

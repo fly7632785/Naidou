@@ -12,6 +12,7 @@ import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 
 /**
  * Created by jafir on 15/9/28.
+ * 设置里面 编辑个人信息  fragment
  */
 public class EditInfoFragment  extends TitleBarSupportFragment{
 

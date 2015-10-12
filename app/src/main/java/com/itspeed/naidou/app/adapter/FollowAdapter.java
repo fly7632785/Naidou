@@ -10,6 +10,7 @@ import com.itspeed.naidou.model.bean.User;
 
 /**
  * Created by jafir on 15/9/29.
+ * 关注的适配器
  */
 public class FollowAdapter extends ListBaseAdapter<User> {
 

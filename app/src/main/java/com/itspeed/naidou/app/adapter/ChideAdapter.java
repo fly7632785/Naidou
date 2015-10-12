@@ -11,6 +11,8 @@ import com.squareup.picasso.Picasso;
 
 /**
  * Created by jafir on 15/9/21.
+ * 吃的 适配器
+ *
  */
 public class ChideAdapter extends ListBaseAdapter<CookBook> {
 

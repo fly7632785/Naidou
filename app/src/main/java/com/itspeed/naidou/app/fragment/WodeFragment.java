@@ -15,6 +15,7 @@ import org.kymjs.kjframe.ui.BindView;
 
 /**
  * Created by jafir on 15/9/1.
+ * 我的 fragment
  */
 public class WodeFragment extends TitleBarSupportFragment{
 

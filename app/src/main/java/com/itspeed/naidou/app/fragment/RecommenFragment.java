@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 /**
  * Created by jafir on 15/9/1.
+ * 推荐 的fragment
  */
 public class RecommenFragment extends TitleBarSupportFragment {
 
@@ -67,8 +68,10 @@ public class RecommenFragment extends TitleBarSupportFragment {
 
         mIndicator.setClickable(false);
 
+        //最大页数5
         mIndicator.setPointCount(5);
 
+        //布局管理器  线性
         LinearLayoutManager layout = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layout);
 
@@ -80,9 +83,11 @@ public class RecommenFragment extends TitleBarSupportFragment {
         }
         RecommendRecyclerAdapter adapter = new RecommendRecyclerAdapter(mData);
 
+        //绑定indicator和recyclerViewpager
         mIndicator.bindView(mRecyclerView);
 
         mRecyclerView.setAdapter(adapter);
+        //设置现在的 卡片position
         mRecyclerView.scrollToPosition(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % 5);
 
         mRecyclerView.setHasFixedSize(true);

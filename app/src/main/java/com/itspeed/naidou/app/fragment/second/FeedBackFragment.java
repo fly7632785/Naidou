@@ -12,6 +12,7 @@ import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 
 /**
  * Created by jafir on 15/9/28.
+ * 设置里面 意见反馈  fragment
  */
 public class FeedBackFragment extends TitleBarSupportFragment{
 

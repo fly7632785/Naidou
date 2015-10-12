@@ -12,6 +12,7 @@ import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 
 /**
  * Created by jafir on 15/9/28.
+ * 设置里面 修改密码  fragment
  */
 public class ModifyPwdFragment extends TitleBarSupportFragment{
 
