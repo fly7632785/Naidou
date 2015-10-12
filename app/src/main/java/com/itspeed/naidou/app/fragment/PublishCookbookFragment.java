@@ -67,6 +67,9 @@ public class PublishCookbookFragment extends SupportFragment {
     private EditText step3title;
     private EditText step3desc;
     private TextView step3add;
+
+    private ArrayList<EditText> cailiaoList = new ArrayList<>();
+    private ArrayList<EditText> yongliangList = new ArrayList<>();
         //数据
     private ArrayList<FoodMaterial> step3list = new ArrayList<>();
 
@@ -162,8 +165,6 @@ public class PublishCookbookFragment extends SupportFragment {
         View view2 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
         View view3 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
         View view4 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
-        ArrayList<EditText> cailiaoList = new ArrayList<>();
-        ArrayList<EditText> yongliangList = new ArrayList<>();
         step3linear.addView(view1);
         step3linear.addView(view2);
         step3linear.addView(view3);
@@ -304,22 +305,21 @@ public class PublishCookbookFragment extends SupportFragment {
             //step3
             case R.id.step3_next:
                 mViewPager.setCurrentItem(3,true);
-                for(int i=0;i<step3list.size();i++){
-                    FoodMaterial foodMaterial = step3list.get(i);
-                    KJLoger.debug(foodMaterial.getAmount()+":"+foodMaterial.getType());
+//                for(int i=0;i<step3list.size();i++){
+//                    FoodMaterial foodMaterial = step3list.get(i);
+//                    KJLoger.debug(foodMaterial.getAmount()+":"+foodMaterial.getType());
+//                }
 
+                //打印   整理出来的数据
+                for (int i=0;i<yongliangList.size();i++){
+                    KJLoger.debug("材料"+cailiaoList.get(i).getText()+":" +yongliangList.get(i).getText());
                 }
                 break;
             case R.id.step3_add:
                 //增加一栏
 //                step3RecylerAdapter.addData();
-                View view = View.inflate(aty, R.layout.item_recyclerview_step3, null);
-                EditText cailiao = (EditText) view.findViewById(R.id.item_recycler_step3_cailiao);
-                EditText yongliang = (EditText)view.findViewById(R.id.item_recycler_step3_yongliang);
-                ImageView delete = (ImageView) view.findViewById(R.id.item_recycler_step3_delete);
-                delete.setOnClickListener(this);
-                step3linear.addView(view);
 
+                step3add();
                 break;
 
             //step4
@@ -336,11 +336,27 @@ public class PublishCookbookFragment extends SupportFragment {
                 //删除
                 KJLoger.debug(":"+v.getParent());
                 step3linear.removeView((View) v.getParent().getParent());
+                yongliangList.remove(((View) v.getParent().getParent()).findViewById(R.id.item_recycler_step3_yongliang));
+                cailiaoList.remove(((View) v.getParent().getParent()).findViewById(R.id.item_recycler_step3_cailiao));
                 break;
 
 
         }
 
+    }
+
+    /**
+     *step3里面增加一栏
+     */
+    private void step3add() {
+        View view = View.inflate(aty, R.layout.item_recyclerview_step3, null);
+        EditText cailiao = (EditText) view.findViewById(R.id.item_recycler_step3_cailiao);
+        EditText yongliang = (EditText)view.findViewById(R.id.item_recycler_step3_yongliang);
+        cailiaoList.add(cailiao);
+        yongliangList.add(yongliang);
+        ImageView delete = (ImageView) view.findViewById(R.id.item_recycler_step3_delete);
+        delete.setOnClickListener(this);
+        step3linear.addView(view);
     }
 
     /**
