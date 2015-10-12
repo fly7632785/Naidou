@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +17,7 @@ import android.widget.TextView;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.PublishActivity;
 import com.itspeed.naidou.app.adapter.PublishPagerAdapter;
-import com.itspeed.naidou.app.adapter.Step3RecylerAdapter;
 import com.itspeed.naidou.app.adapter.Step4GridViewAdapter;
-import com.itspeed.naidou.model.bean.FoodMaterial;
 
 import org.kymjs.kjframe.ui.SupportFragment;
 import org.kymjs.kjframe.utils.KJLoger;
@@ -60,18 +57,12 @@ public class PublishCookbookFragment extends SupportFragment {
     //step3
     private RelativeLayout title3;
     private View step3;
-    private RecyclerView mRecyclerViewStep3;
     private LinearLayout step3linear;
-    private Step3RecylerAdapter step3RecylerAdapter;
     private ImageView step3next;
     private EditText step3title;
     private EditText step3desc;
     private TextView step3add;
 
-    private ArrayList<EditText> cailiaoList = new ArrayList<>();
-    private ArrayList<EditText> yongliangList = new ArrayList<>();
-        //数据
-    private ArrayList<FoodMaterial> step3list = new ArrayList<>();
 
     //step4
     private RelativeLayout title4;
@@ -143,24 +134,9 @@ public class PublishCookbookFragment extends SupportFragment {
         menu.setOnClickListener(this);
         back.setOnClickListener(this);
 
-//        mRecyclerViewStep3 = (RecyclerView) step3.findViewById(R.id.step3_list);
-//        // 创建一个线性布局管理器
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(aty);
-//        // 设置布局管理器
-//        mRecyclerViewStep3.setLayoutManager(layoutManager);
-//
-//        //模拟数据
-//
-//        for(int i=0;i<6;i++){
-//         step3list.add(new FoodMaterial());
-//        }
-//        // 创建Adapter，并指定数据集
-//        step3RecylerAdapter = new Step3RecylerAdapter(step3list);
-//        // 设置Adapter
-//        mRecyclerViewStep3.setAdapter(step3RecylerAdapter);
 
         step3linear = (LinearLayout) step3.findViewById(R.id.step3_linear);
-        //初始化4个
+        //初始化4个 item
         View view1 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
         View view2 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
         View view3 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
@@ -170,13 +146,12 @@ public class PublishCookbookFragment extends SupportFragment {
         step3linear.addView(view3);
         step3linear.addView(view4);
 
+        //为这个4个item的delete设置监听
         for(int i=0 ; i < step3linear.getChildCount();i++ ){
             EditText cailiao = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_cailiao);
             EditText yongliang = (EditText)step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_yongliang);
-            cailiaoList.add(cailiao);
-            yongliangList.add(yongliang);
-
             ImageView delete = (ImageView) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_delete);
+            //第一栏的hint提示
             if(i == 0){
                 cailiao.setHint("例如:猪肉");
                 yongliang.setHint("例如:500g");
@@ -184,11 +159,12 @@ public class PublishCookbookFragment extends SupportFragment {
             delete.setOnClickListener(this);
         }
 
+        //初始化
         step3add = (TextView) step3.findViewById(R.id.step3_add);
         step3desc = (EditText) step3.findViewById(R.id.step3_describe);
         step3title = (EditText) step3.findViewById(R.id.step3_title);
         step3next = (ImageView) step3.findViewById(R.id.step3_next);
-
+        //增加 和 下一步 按钮设置监听
         step3add.setOnClickListener(this);
         step3next.setOnClickListener(this);
 
@@ -251,6 +227,10 @@ public class PublishCookbookFragment extends SupportFragment {
     protected void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+
+            /**
+             * 1-4步的title栏图标点击事件
+             */
             case R.id.step1_img_menu:
                 backToHome();
                 break;
@@ -272,6 +252,9 @@ public class PublishCookbookFragment extends SupportFragment {
             case R.id.step4_img_back:
                 mViewPager.setCurrentItem(2, true);
                 break;
+
+
+
 
             //step1
             case R.id.step1_parent:
@@ -305,20 +288,15 @@ public class PublishCookbookFragment extends SupportFragment {
             //step3
             case R.id.step3_next:
                 mViewPager.setCurrentItem(3,true);
-//                for(int i=0;i<step3list.size();i++){
-//                    FoodMaterial foodMaterial = step3list.get(i);
-//                    KJLoger.debug(foodMaterial.getAmount()+":"+foodMaterial.getType());
-//                }
-
                 //打印   整理出来的数据
-                for (int i=0;i<yongliangList.size();i++){
-                    KJLoger.debug("材料"+cailiaoList.get(i).getText()+":" +yongliangList.get(i).getText());
+                for(int i=0;i< step3linear.getChildCount();i++){
+                    EditText cailiao = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_cailiao);
+                    EditText yongliang = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_yongliang);
+                    KJLoger.debug("第二种111材料"+cailiao.getText()+":" +yongliang.getText());
                 }
                 break;
             case R.id.step3_add:
                 //增加一栏
-//                step3RecylerAdapter.addData();
-
                 step3add();
                 break;
 
@@ -333,11 +311,8 @@ public class PublishCookbookFragment extends SupportFragment {
 
 
             case R.id.item_recycler_step3_delete:
-                //删除
-                KJLoger.debug(":"+v.getParent());
+                //删除 item
                 step3linear.removeView((View) v.getParent().getParent());
-                yongliangList.remove(((View) v.getParent().getParent()).findViewById(R.id.item_recycler_step3_yongliang));
-                cailiaoList.remove(((View) v.getParent().getParent()).findViewById(R.id.item_recycler_step3_cailiao));
                 break;
 
 
@@ -350,10 +325,6 @@ public class PublishCookbookFragment extends SupportFragment {
      */
     private void step3add() {
         View view = View.inflate(aty, R.layout.item_recyclerview_step3, null);
-        EditText cailiao = (EditText) view.findViewById(R.id.item_recycler_step3_cailiao);
-        EditText yongliang = (EditText)view.findViewById(R.id.item_recycler_step3_yongliang);
-        cailiaoList.add(cailiao);
-        yongliangList.add(yongliang);
         ImageView delete = (ImageView) view.findViewById(R.id.item_recycler_step3_delete);
         delete.setOnClickListener(this);
         step3linear.addView(view);
