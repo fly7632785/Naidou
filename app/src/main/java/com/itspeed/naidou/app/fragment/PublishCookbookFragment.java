@@ -20,6 +20,7 @@ import com.itspeed.naidou.app.adapter.PublishPagerAdapter;
 import com.itspeed.naidou.app.adapter.Step4GridViewAdapter;
 
 import org.kymjs.kjframe.ui.SupportFragment;
+import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 
 import java.util.ArrayList;
@@ -76,10 +77,19 @@ public class PublishCookbookFragment extends SupportFragment {
     private RelativeLayout title4;
     private GridView mGridView;
     private View step4;
+    private LinearLayout step4linear;
     private Step4GridViewAdapter step4GridViewAdapter;
     private ImageView step4issue;
     private TextView step4add;
     private TextView step4delete;
+
+    private AlertDialog imgDialog;
+    private AlertDialog descDialog;
+
+    private EditText descEdit;
+    //用来取出点击的view 设置为全局 在dialog click里面调用
+    private View viewDesc;
+    private View viewImg;
 
 
 
@@ -119,9 +129,31 @@ public class PublishCookbookFragment extends SupportFragment {
         menu.setOnClickListener(this);
         back.setOnClickListener(this);
 
-        mGridView = (GridView) step4.findViewById(R.id.step4_gridview);
-        step4GridViewAdapter = new Step4GridViewAdapter();
-        mGridView.setAdapter(step4GridViewAdapter);
+
+        step4linear = (LinearLayout) step4.findViewById(R.id.step4_linear);
+        //初始化4个 item
+        View view1 = View.inflate(aty,R.layout.item_linear_step4,null);
+        View view2 = View.inflate(aty,R.layout.item_linear_step4,null);
+        View view3 = View.inflate(aty,R.layout.item_linear_step4,null);
+        step4linear.addView(view1);
+        step4linear.addView(view2);
+        step4linear.addView(view3);
+
+        //为这个3个item的delete设置监听
+        for(int i=0 ; i < step4linear.getChildCount();i++ ){
+            TextView desc = (TextView) step4linear.getChildAt(i).findViewById(R.id.item_linear_step4_describe);
+            TextView title = (TextView) step4linear.getChildAt(i).findViewById(R.id.item_linear_step4_step);
+            ImageView img = (ImageView) step4linear.getChildAt(i).findViewById(R.id.item_linear_step4_img);
+
+            //第一栏的hint提示
+            title.setText("" + (i + 1));
+            desc.setOnClickListener(this);
+            img.setOnClickListener(this);
+        }
+
+//        mGridView = (GridView) step4.findViewById(R.id.step4_gridview);
+//        step4GridViewAdapter = new Step4GridViewAdapter();
+//        mGridView.setAdapter(step4GridViewAdapter);
 
 
         step4add = (TextView) step4.findViewById(R.id.step4_add);
@@ -131,6 +163,12 @@ public class PublishCookbookFragment extends SupportFragment {
         step4add.setOnClickListener(this);
         step4issue.setOnClickListener(this);
         step4delete.setOnClickListener(this);
+
+
+
+
+
+
     }
     /**
      * 第三步
@@ -310,6 +348,10 @@ public class PublishCookbookFragment extends SupportFragment {
                 step3add();
                 break;
 
+            case R.id.item_recycler_step3_delete:
+                //删除 item
+                step3linear.removeView((View) v.getParent().getParent());
+                break;
 
 
             //step4
@@ -318,22 +360,73 @@ public class PublishCookbookFragment extends SupportFragment {
                 break;
             case R.id.step4_add:
                 //增加一栏
-                step4GridViewAdapter.addDate();
+//                step4GridViewAdapter.addDate();
+                step4add();
+                break;
+            case R.id.step4_delete:
+                if(step4linear.getChildCount() > 0) {
+                    step4linear.removeViewAt(step4linear.getChildCount() - 1);
+                }
+                break;
+            case R.id.item_linear_step4_img:
+                viewImg = v;
+                imgDialog =new  AlertDialog.Builder(aty).setTitle("选择图片")
+                        .setNegativeButton("图库", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ViewInject.toast("调用图库");
+                                ((ImageView)viewImg).setImageResource(R.mipmap.img4);
+                            }
+                        }).setPositiveButton("相机", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ViewInject.toast("调用相机");
+                                ((ImageView)viewImg).setImageResource(R.mipmap.img4);
+
+                            }
+                        }).create();
+                imgDialog.show();
+                break;
+            case R.id.item_linear_step4_describe:
+                viewDesc = v;
+                descEdit = new EditText(aty);
+                descDialog =new  AlertDialog.Builder(aty).setTitle("描述")
+                        .setView(descEdit)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ((TextView)viewDesc).setText(descEdit.getText());
+                            }
+                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).create();
+                descDialog.show();
                 break;
 
-            case R.id. step4_delete:
-                step4GridViewAdapter.deleteDate();
-                break;
 
-
-            case R.id.item_recycler_step3_delete:
-                //删除 item
-                step3linear.removeView((View) v.getParent().getParent());
-                break;
 
 
         }
 
+    }
+
+
+
+    /**
+     *step4里面增加一栏
+     */
+    private void step4add() {
+        View view = View.inflate(aty, R.layout.item_linear_step4, null);
+        TextView step = (TextView) view.findViewById(R.id.item_linear_step4_step);
+        ImageView img = (ImageView) view.findViewById(R.id.item_linear_step4_img);
+        TextView desc = (TextView) view.findViewById(R.id.item_linear_step4_describe);
+        step.setText(""+(step4linear.getChildCount()+1));
+        desc.setOnClickListener(this);
+        img.setOnClickListener(this);
+        step4linear.addView(view);
     }
 
     /**

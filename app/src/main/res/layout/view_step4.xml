@@ -48,17 +48,33 @@
             android:textColor="@color/light_black"
             android:textSize="13sp" />
 
-        <GridView
-            android:id="@+id/step4_gridview"
-            android:horizontalSpacing="10dp"
-            android:verticalSpacing="10dp"
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:overScrollMode="never"
-            android:numColumns="2"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/step4_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </ScrollView>
+        <!--<GridView-->
+            <!--android:id="@+id/step4_gridview"-->
+            <!--android:horizontalSpacing="10dp"-->
+            <!--android:verticalSpacing="10dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="400dp"-->
+            <!--android:overScrollMode="never"-->
+            <!--android:numColumns="2"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginTop="15dp" />-->
 
     </LinearLayout>
 

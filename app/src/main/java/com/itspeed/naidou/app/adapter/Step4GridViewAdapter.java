@@ -21,7 +21,14 @@ public class Step4GridViewAdapter extends BaseAdapter {
     private ArrayList<Step> list = new ArrayList<Step>();
 
     public Step4GridViewAdapter() {
-            list.add(new Step());
+        Step step =new Step();
+        step.setImgId(R.mipmap.img1);
+        step.setDescribe("默认描述");
+        Step step1 =new Step();
+        step1.setImgId(R.mipmap.img1);
+        step1.setDescribe("默认描述");
+            list.add(step);
+            list.add(step1);
     }
 
     @Override
@@ -42,12 +49,21 @@ public class Step4GridViewAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
             KJLoger.debug("22222");
         }
+
+        Step step = list.get(position);
+
         holder.step.setText("" + (position + 1));
+        holder.img.setImageResource(step.getImgId());
+        holder.desc.setText(step.getDescribe());
         return convertView;
     }
 
+
     public void addDate() {
-        list.add(new Step());
+        Step step =new Step();
+        step.setImgId(R.mipmap.img1);
+        step.setDescribe("默认描述");
+        list.add(step);
         notifyDataSetChanged();
     }
 
@@ -100,16 +116,14 @@ public class Step4GridViewAdapter extends BaseAdapter {
             switch (v.getId()) {
                 case R.id.item_gridview_step4_img:
                     //选择图片（拍照 或者 相册）
-                    ImageView img = (ImageView) v;
-                    KJLoger.debug(position+"被点击了：" + img);
-                    img.setImageResource(R.mipmap.img4);
+                    list.get(position).setImgId(R.mipmap.img4);
+                    notifyDataSetChanged();
                     break;
 
                 case R.id.item_gridview_step4_describe:
                     //填描述
-                    TextView textView = (TextView) v;
-                    KJLoger.debug(position+"被点击了tet："+textView);
-                    textView.setText("描述描述");
+                    list.get(position).setDescribe("新的描述");
+                    notifyDataSetChanged();
                     break;
             }
         }

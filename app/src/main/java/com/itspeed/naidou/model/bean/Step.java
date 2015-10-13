@@ -1,29 +1,42 @@
 package com.itspeed.naidou.model.bean;
 
-import java.util.ArrayList;
-
 /**
  * Created by jafir on 15/9/14.
  */
 public class Step {
     //图片
-    private ArrayList<String> imgs;
+    private String img;
+
+    private int imgId;
+
+
     //描述
-    private ArrayList<String> describe;
+    private String describe;
 
-    public ArrayList<String> getImgs() {
-        return imgs;
-    }
 
-    public void setImgs(ArrayList<String> imgs) {
-        this.imgs = imgs;
-    }
-
-    public ArrayList<String> getDescribe() {
+    public String getDescribe() {
         return describe;
     }
 
-    public void setDescribe(ArrayList<String> describe) {
+    public void setDescribe(String describe) {
         this.describe = describe;
     }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public int getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(int imgId) {
+        this.imgId = imgId;
+    }
 }
+
+
