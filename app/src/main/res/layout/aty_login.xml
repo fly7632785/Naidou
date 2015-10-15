@@ -60,6 +60,7 @@
             android:hint="请输入密码"
             android:id="@+id/login_password"
             android:textSize="16sp"
+            android:inputType="textPassword"
             android:textColorHint="@color/login_textcolor"
             android:textColor="@color/login_textcolor"
             android:layout_width="match_parent"
@@ -101,7 +102,8 @@
         android:id="@+id/login_scan"
         android:layout_gravity="center_horizontal"
         android:text="浏览看看"
+        android:gravity="center"
 
-        android:layout_height="wrap_content" />
+        android:layout_height="40dp" />
 
 </LinearLayout>

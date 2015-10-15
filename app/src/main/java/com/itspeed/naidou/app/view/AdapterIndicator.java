@@ -1,6 +1,7 @@
 package com.itspeed.naidou.app.view;
 
 import android.content.Context;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.RadioButton;
@@ -18,6 +19,13 @@ public class AdapterIndicator extends RadioGroup {
 	private Context mContext;
 
 	private int mCount;
+	private int resId = R.drawable.selector_indicator_color;
+	private int size = 10;
+
+
+	public void setSize(int size) {
+		this.size = size;
+	}
 
 	public AdapterIndicator(Context context) {
 		this(context, null);
@@ -34,6 +42,7 @@ public class AdapterIndicator extends RadioGroup {
 		mCount = count;
 		initIndicator();
 	}
+
 
 	private void initIndicator() {
 		removeAllViews();
@@ -71,6 +80,27 @@ public class AdapterIndicator extends RadioGroup {
 //					viewPager.smoothScrollToPosition(checkedId);
 //				}
 //			});
+		}
+	}
+
+	public void bindViewPager(final ViewPager viewPager) {
+		if(viewPager != null) {
+			viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+				@Override
+				public void onPageScrolled(int i, float v, int i1) {
+
+				}
+
+				@Override
+				public void onPageSelected(int position) {
+					select(position % mCount);
+				}
+
+				@Override
+				public void onPageScrollStateChanged(int i) {
+
+				}
+			});
 		}
 	}
 }

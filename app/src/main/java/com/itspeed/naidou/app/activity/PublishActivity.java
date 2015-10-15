@@ -23,7 +23,7 @@ public class PublishActivity extends KJActivity {
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_publish);
+        setContentView(R.layout.aty_publish);
     }
 
 

@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion '21.0.0'
 
     defaultConfig {
@@ -31,7 +31,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':mylibrary')
     compile project(':SegmentControl')
-    compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
     compile project(':imgChoser')
 }

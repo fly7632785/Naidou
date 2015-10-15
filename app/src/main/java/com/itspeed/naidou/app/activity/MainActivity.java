@@ -1,5 +1,7 @@
 package com.itspeed.naidou.app.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +19,6 @@ import com.itspeed.naidou.app.fragment.WodeFragment;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.utils.DensityUtils;
-import org.kymjs.kjframe.utils.KJLoger;
 
 
 public class MainActivity extends TitleBarActivity {
@@ -182,7 +183,7 @@ public class MainActivity extends TitleBarActivity {
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.aty_main);
     }
 
 
@@ -231,6 +232,10 @@ public class MainActivity extends TitleBarActivity {
         currentFragment.onTitleClick();
     }
 
+    /**
+     * 点击标题栏的segment
+     * @param index
+     */
     @Override
     protected void onSegmentClick(int index) {
         super.onSegmentClick(index);
@@ -238,32 +243,28 @@ public class MainActivity extends TitleBarActivity {
     }
 
 
-    private  void showState(){
-        KJLoger.debug("__________showState______________");
-
+    /**
+     * 退出应用
+     */
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(aty).setTitle("您要退出么？")
+                .setNegativeButton("我才不呢", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton("退，必须退", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        aty.finish();
+                    }
+                }).create().show();
     }
-
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);
-        KJLoger.debug("__________onSaveInstanceState______________");
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        KJLoger.debug("__________onRestoreInstanceState______________");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        KJLoger.debug("___________stop_______________");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 }

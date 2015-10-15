@@ -41,7 +41,7 @@ public class SettingActivity extends  TitleBarActivity{
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.aty_setting);
     }
 
 

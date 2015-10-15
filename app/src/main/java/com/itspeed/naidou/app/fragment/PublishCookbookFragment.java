@@ -8,16 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.PublishActivity;
 import com.itspeed.naidou.app.adapter.PublishPagerAdapter;
-import com.itspeed.naidou.app.adapter.Step4GridViewAdapter;
 
 import org.kymjs.kjframe.ui.SupportFragment;
 import org.kymjs.kjframe.ui.ViewInject;
@@ -48,37 +45,38 @@ public class PublishCookbookFragment extends SupportFragment {
     private PublishPagerAdapter adapter;
 
     //step1
-    private RelativeLayout title1;
     private View step1;
     private ImageView parent;
     private ImageView child;
-
+    private boolean isFinishStep1;
+    private int cate1; //用户判断用户是否选择cate1   初始化为0 父母为1 孩子为2；
     //step2
-    private RelativeLayout title2;
     private View step2;
+
     private TextView cate;
     private ImageView beiyun;
     private ImageView yunchu;
     private ImageView yunzhong;
     private ImageView yunwan;
     private ImageView yuezi;
+    private boolean isFinishStep2;
+    private int cate2; //用户判断用户是否选择cate2
+    //注意 这里是 岁 和月      4个月以前都是吃奶粉
+    //  初始化为0 备孕（1-2岁）为1 ；孕初（3-4岁）为2 ；孕中（4-5月）为3；孕晚（6-8月）为4；月子（9-12月）；
 
     //step3
-    private RelativeLayout title3;
     private View step3;
     private LinearLayout step3linear;
     private ImageView step3next;
     private EditText step3title;
     private EditText step3desc;
     private TextView step3add;
+    private boolean isFinishStep3;
 
 
     //step4
-    private RelativeLayout title4;
-    private GridView mGridView;
     private View step4;
     private LinearLayout step4linear;
-    private Step4GridViewAdapter step4GridViewAdapter;
     private ImageView step4issue;
     private TextView step4add;
     private TextView step4delete;
@@ -91,6 +89,7 @@ public class PublishCookbookFragment extends SupportFragment {
     private View viewDesc;
     private View viewImg;
 
+    private boolean isFinishStep4;
 
 
     @Override
@@ -145,15 +144,11 @@ public class PublishCookbookFragment extends SupportFragment {
             TextView title = (TextView) step4linear.getChildAt(i).findViewById(R.id.item_linear_step4_step);
             ImageView img = (ImageView) step4linear.getChildAt(i).findViewById(R.id.item_linear_step4_img);
 
-            //第一栏的hint提示
+            //step提示
             title.setText("" + (i + 1));
             desc.setOnClickListener(this);
             img.setOnClickListener(this);
         }
-
-//        mGridView = (GridView) step4.findViewById(R.id.step4_gridview);
-//        step4GridViewAdapter = new Step4GridViewAdapter();
-//        mGridView.setAdapter(step4GridViewAdapter);
 
 
         step4add = (TextView) step4.findViewById(R.id.step4_add);
@@ -308,34 +303,51 @@ public class PublishCookbookFragment extends SupportFragment {
             case R.id.step1_parent:
                 mViewPager.setCurrentItem(1, true);
                 selectParent();
+                isFinishStep1 = true;
+                cate1 = 1;
                 cate.setText("父母");
                 break;
             case R.id.step1_child:
                 mViewPager.setCurrentItem(1, true);
                 cate.setText("孩子");
                 selectChild();
+                cate1 = 2;
+                isFinishStep1 =true;
                 break;
 
             //step2
             case R.id.step2_yunchu:
                 mViewPager.setCurrentItem(2, true);
+                cate2 = 1;
+                isFinishStep2 = true;
                 break;
             case R.id.step2_yunzhong:
                 mViewPager.setCurrentItem(2, true);
+                cate2 = 2;
+                isFinishStep2 = true;
                 break;
             case R.id.step2_yunwan:
                 mViewPager.setCurrentItem(2, true);
+                cate2 = 3;
+                isFinishStep2 = true;
                 break;
             case R.id.step2_yuezi:
                 mViewPager.setCurrentItem(2, true);
+                cate2 = 4;
+                isFinishStep2 = true;
                 break;
             case R.id.step2_beiyun:
                 mViewPager.setCurrentItem(2, true);
+                cate2 = 5;
+                isFinishStep2 = true;
                 break;
 
             //step3
             case R.id.step3_next:
-                mViewPager.setCurrentItem(3,true);
+                isFinishStep3 = checkStep3Finish();
+                if(isFinishStep3) {
+                    mViewPager.setCurrentItem(3, true);
+                }
                 //打印   整理出来的数据
                 for(int i=0;i< step3linear.getChildCount();i++){
                     EditText cailiao = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_cailiao);
@@ -413,6 +425,22 @@ public class PublishCookbookFragment extends SupportFragment {
 
     }
 
+    /**
+     * 判断第三步是否完成
+     * 条件包括 菜谱标题 菜谱描述 菜谱的材料用量
+     */
+    private boolean checkStep3Finish() {
+        String title = step3title.getText().toString().trim();
+        String desc = step3desc.getText().toString().trim();
+        if(title.equals("") || desc.equals("")){
+            ViewInject.toast("标题或者描述不能为空");
+            return  false;
+        }
+        else {
+            return true;
+        }
+        
+    }
 
 
     /**

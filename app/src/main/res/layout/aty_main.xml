@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <include layout="@layout/title_main"
+        />
+
+    <FrameLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/main_title"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/tab_height">
+
+    </FrameLayout>
+
+    <include
+        android:id="@+id/main_tab"
+        layout="@layout/tab_main" />
+
+
+</RelativeLayout>

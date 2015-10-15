@@ -10,6 +10,6 @@ import org.kymjs.kjframe.KJActivity;
 public class SecActivity extends KJActivity{
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_sec);
+        setContentView(R.layout.aty_sec);
     }
 }

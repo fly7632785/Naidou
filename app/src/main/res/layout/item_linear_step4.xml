@@ -30,7 +30,7 @@
             android:id="@+id/item_linear_step4_img"
             android:layout_width="200dp"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             android:background="#50333333"
             android:src="@drawable/selector_publish_addimg" />
 

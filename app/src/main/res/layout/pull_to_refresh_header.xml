@@ -11,7 +11,7 @@
         android:layout_height="65dp"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@null"
-        android:src="@mipmap/osl_logo" />
+        android:src="@mipmap/logo_96" />
 
     <RelativeLayout
         android:id="@+id/pull_to_refresh_header_content"

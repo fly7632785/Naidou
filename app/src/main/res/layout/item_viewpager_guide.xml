@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:scaleType="fitXY"
+        android:id="@+id/item_viewpager_guide_img"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:layout_width="130dp"
+        android:src="@drawable/selector_login_in"
+        android:id="@+id/item_viewpager_guide_login"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_marginTop="390dp"
+        android:layout_height="50dp" />
+</RelativeLayout>

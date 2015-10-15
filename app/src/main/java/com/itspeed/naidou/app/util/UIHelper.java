@@ -3,7 +3,10 @@ package com.itspeed.naidou.app.util;
 import android.content.Context;
 import android.content.Intent;
 
+import com.itspeed.naidou.app.activity.LoginActivity;
+import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.PublishActivity;
+import com.itspeed.naidou.app.activity.RegisterActivity;
 import com.itspeed.naidou.app.activity.SettingActivity;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.domain.SimpleBackPage;
@@ -12,6 +15,32 @@ import com.itspeed.naidou.app.domain.SimpleBackPage;
  * Created by jafir on 15/9/27.
  */
 public class UIHelper {
+    /**
+     * 显示主界面
+     * @param context
+     */
+    public static void showMain(Context context) {
+        Intent intent = new Intent(context,MainActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 显示登录
+     * @param context
+     */
+    public static void showLogin(Context context) {
+        Intent intent = new Intent(context,LoginActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 显示注册
+     * @param context
+     */
+    public static void showRegister(Context context) {
+        Intent intent = new Intent(context,RegisterActivity.class);
+        context.startActivity(intent);
+    }
 
 
     /**
@@ -85,4 +114,8 @@ public class UIHelper {
         Intent intent = new Intent(context,PublishActivity.class);
         context.startActivity(intent);
     }
+
+
+
+
 }
