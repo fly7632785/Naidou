@@ -13,13 +13,20 @@
 
 
 
-    <com.itspeed.naidou.app.view.AdapterIndicator
+    <com.flyco.pageindicator.indicator.FlycoPageIndicaor
+        android:id="@+id/indicator_guide"
+        xmlns:fpi="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
-        android:id="@+id/indicator_guide"
-        android:layout_height="60dp">
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        fpi:fpi_cornerRadius="5dp"
+        fpi:fpi_gap="12dp"
+        fpi:fpi_height="10dp"
+        fpi:fpi_selectColor="@color/topic_red"
+        fpi:fpi_unselectColor="@color/white"
+        fpi:fpi_width="10dp"/>
 
-    </com.itspeed.naidou.app.view.AdapterIndicator>
 </RelativeLayout>

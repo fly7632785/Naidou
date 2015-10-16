@@ -40,7 +40,7 @@ public class SimpleBackActivity extends TitleBarActivity {
     }
 
     public void changeFragment(TitleBarSupportFragment targetFragment) {
-        super.changeFragment(R.id.main_content, targetFragment);
+        super.changeFragment(R.id.simple_main_content, targetFragment);
     }
 
     @Override

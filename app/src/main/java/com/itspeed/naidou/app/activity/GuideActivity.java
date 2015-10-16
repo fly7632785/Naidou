@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.flyco.pageindicator.indicator.FlycoPageIndicaor;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.util.UIHelper;
-import com.itspeed.naidou.app.view.AdapterIndicator;
 
 import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.ui.BindView;
@@ -23,7 +23,7 @@ public class GuideActivity extends KJActivity {
     @BindView(id = R.id.viewpager_guide)
     private ViewPager viewPager;
     @BindView(id = R.id.indicator_guide)
-    private AdapterIndicator indicator;
+    private FlycoPageIndicaor mIndicator;
     private int[ ]  guides = {R.mipmap.guide1,R.mipmap.guide2,R.mipmap.guide3,R.mipmap.guide4};
 
     @Override
@@ -41,9 +41,7 @@ public class GuideActivity extends KJActivity {
     @Override
     public void initData() {
         super.initData();
-//        indicator.setResId(R.drawable.selector_indicator_appstart);
-        indicator.setPointCount(4);
-        indicator.bindViewPager(viewPager);
+
         viewPager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -57,11 +55,11 @@ public class GuideActivity extends KJActivity {
 
             @Override
             public Object instantiateItem(ViewGroup container, int position) {
-                View view = View.inflate(aty,R.layout.item_viewpager_guide,null);
+                View view = View.inflate(aty, R.layout.item_viewpager_guide, null);
 
                 ImageView imageView = (ImageView) view.findViewById(R.id.item_viewpager_guide_img);
-                imageView.setImageResource(guides[position%guides.length]);
-                if(position == guides.length-1){
+                imageView.setImageResource(guides[position % guides.length]);
+                if (position == guides.length - 1) {
                     ImageView enter = (ImageView) view.findViewById(R.id.item_viewpager_guide_login);
                     enter.setVisibility(View.VISIBLE);
                     enter.setOnClickListener(new View.OnClickListener() {
@@ -81,5 +79,8 @@ public class GuideActivity extends KJActivity {
                 container.removeView((View) object);
             }
         });
+
+        mIndicator.setViewPager(viewPager, guides.length);
     }
+
 }

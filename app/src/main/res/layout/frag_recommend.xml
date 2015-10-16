@@ -65,7 +65,7 @@
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/list"
+        android:layout_above="@+id/recommend_img"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -73,6 +73,7 @@
         android:layout_width="match_parent"
         android:src="@mipmap/liao"
         android:scaleType="fitXY"
+        android:id="@+id/recommend_img"
         android:layout_alignParentBottom="true"
         android:layout_height="40dp" />
 
