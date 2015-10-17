@@ -23,6 +23,12 @@ public class SimpleBackActivity extends TitleBarActivity {
     @Override
     public void setRootView() {
         setContentView(R.layout.aty_simple_back);
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         int value = getIntent().getIntExtra(CONTENT_KEY, -1);
         if (value != -1) {
             try {
@@ -40,8 +46,10 @@ public class SimpleBackActivity extends TitleBarActivity {
     }
 
     public void changeFragment(TitleBarSupportFragment targetFragment) {
-        super.changeFragment(R.id.simple_main_content, targetFragment);
+        changeFragment(R.id.simple_main_content, targetFragment);
     }
+
+
 
     @Override
     protected void onBackClick() {

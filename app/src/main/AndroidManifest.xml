@@ -9,7 +9,7 @@
         android:name=".app.AppContext"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".app.activity.AppStart"
+            android:name=".app.activity.MainActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.activity.MainActivity"
+        <activity android:name=".app.activity.AppStart"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:configChanges="orientation|screenSize"

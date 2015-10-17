@@ -31,6 +31,7 @@ public class MyCollectFragment extends TitleBarSupportFragment{
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
+
         layout = View.inflate(aty, R.layout.frag_mycollect,null);
         return layout;
     }

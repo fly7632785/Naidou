@@ -41,6 +41,8 @@ public abstract class TitleBarSupportFragment extends SupportFragment {
         super.onCreate(savedInstanceState);
     }
 
+
+
     /**
      * 方便Fragment中设置ActionBar资源
      *
