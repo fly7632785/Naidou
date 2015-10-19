@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
+import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.view.PullToRefreshList;
 
 import org.kymjs.kjframe.utils.KJLoger;
@@ -94,6 +95,12 @@ public class LiaodeFragment extends TitleBarSupportFragment {
             TextView t = (TextView) view.findViewById(R.id.textView);
             t.setText(ss[position%ss.length]);
             t.setBackgroundResource(cc[position % 4]);
+            t.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UIHelper.showLiaodeDetail(aty);
+                }
+            });
             return view;
         }
     }

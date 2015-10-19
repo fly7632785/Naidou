@@ -105,6 +105,31 @@ public class UIHelper {
         SimpleBackActivity.postShowWith(context, SimpleBackPage.ABOUT);
 
     }
+    /**
+     * 显示关于聊的详情
+     * @param context
+     */
+    public static void showLiaodeDetail(Context context) {
+        SimpleBackActivity.postShowWith(context, SimpleBackPage.LIAODE_DETAIL);
+
+    }
+
+    /**
+     * 显示关于吃的详情
+     * @param context
+     */
+    public static void showChideDetail(Context context) {
+        SimpleBackActivity.postShowWith(context, SimpleBackPage.CHIDE_DETAIL);
+
+    }
+    /**
+     * 显示关于逛的详情
+     * @param context
+     */
+    public static void showGuangdeDetail(Context context) {
+        SimpleBackActivity.postShowWith(context, SimpleBackPage.GUANGDE_DETAIL);
+
+    }
 
     /**
      * 显示添加菜谱

@@ -12,7 +12,7 @@
 
     <ImageView
         android:layout_width="130dp"
-        android:src="@drawable/selector_login_in"
+        android:src="@drawable/selector_guide_into"
         android:id="@+id/item_viewpager_guide_login"
         android:layout_centerHorizontal="true"
         android:visibility="gone"

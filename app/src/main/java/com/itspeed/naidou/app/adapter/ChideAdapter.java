@@ -12,16 +12,16 @@ import com.squareup.picasso.Picasso;
 /**
  * Created by jafir on 15/9/21.
  * 吃的 适配器
- *
  */
-public class ChideAdapter extends ListBaseAdapter<CookBook> {
+public class ChideAdapter extends ListBaseAdapter<CookBook> implements View.OnClickListener {
+
+    private ViewHolder holder;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null){
+        if (convertView == null) {
             holder = new ViewHolder();
-            convertView = getLayoutInflater(parent.getContext()).inflate(R.layout.item_list_chide,null);
+            convertView = getLayoutInflater(parent.getContext()).inflate(R.layout.item_list_chide, null);
             holder.img = (ImageView) convertView.findViewById(R.id.item_list_cookbook_img);
             holder.isLike = (ImageView) convertView.findViewById(R.id.item_list_cookbook_islike);
             holder.isCollect = (ImageView) convertView.findViewById(R.id.item_list_cookbook_iscollect);
@@ -29,20 +29,42 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
             holder.time = (TextView) convertView.findViewById(R.id.item_list_cookbook_time);
             holder.likes = (TextView) convertView.findViewById(R.id.item_list_cookbook_likes);
             holder.collects = (TextView) convertView.findViewById(R.id.item_list_cookbook_collects);
+            holder.isCollect.setOnClickListener(this);
             convertView.setTag(holder);
-        }else {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
         CookBook cb = mDatas.get(position);
-        Picasso.with(parent.getContext()).load(img[position%img.length]).placeholder(R.mipmap.img1).into(holder.img);
+        Picasso.with(parent.getContext()).load(img[position % img.length]).into(holder.img);
         holder.title.setText("我是小鸡炖蘑菇");
         holder.time.setText("1小时前");
         holder.likes.setText("12");
         holder.collects.setText("234");
+        holder.isCollect.setSelected(isCollect);
+        holder.isCollect.setSelected(isLike);
         return convertView;
     }
 
-    class  ViewHolder {
+
+    private boolean isLike;
+    private boolean isCollect;
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.item_list_cookbook_iscollect:
+                holder.isCollect.setSelected(isCollect);
+                isCollect = !isCollect;
+                break;
+            case R.id.item_list_cookbook_islike:
+                holder.isLike.setSelected(isLike);
+                isLike = !isLike;
+                break;
+
+        }
+    }
+
+    class ViewHolder {
         ImageView img;
         TextView title;
         TextView time;
@@ -52,19 +74,13 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
         ImageView isCollect;
     }
 
-    public static  String []img = new String[]{
-            "http://d.hiphotos.baidu.com/image/pic/item/1e30e924b899a901d79bee3a1f950a7b0208f514.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/72f082025aafa40f02b95dd0a964034f78f019bb.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/ca1349540923dd54af0b3565d309b3de9c824847.jpg",
-            "http://d.hiphotos.baidu.com/image/pic/item/500fd9f9d72a605966a0dc862d34349b023bbafd.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/b3b7d0a20cf431adaa697bf14f36acaf2fdd98ba.jpg",
-            "http://c.hiphotos.baidu.com/image/pic/item/5fdf8db1cb134954db9e1444534e9258d1094a0a.jpg",
-            "http://f.hiphotos.baidu.com/image/pic/item/8d5494eef01f3a29e8a92cee9c25bc315c607ca9.jpg",
-            "http://f.hiphotos.baidu.com/image/pic/item/b64543a98226cffc932cfbbfbb014a90f603eabd.jpg",
-            "http://c.hiphotos.baidu.com/image/pic/item/e824b899a9014c08d47342820f7b02087bf4f449.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/8b82b9014a90f603d24af6603c12b31bb051ed1b.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/dc54564e9258d109f216c395d458ccbf6c814d1b.jpg",
-            "http://a.hiphotos.baidu.com/image/pic/item/0b7b02087bf40ad1a278adc4522c11dfa9ecce7d.jpg"
+    public static String[] img = new String[]{
+            "http://pic31.nipic.com/20130722/11643229_142459548179_2.jpg",
+            "http://file2.zhituad.com/thumb/201201/13/201201130300339473kNpfJ_priv.jpg",
+            "http://pic29.nipic.com/20130522/11024153_152851327158_2.jpg",
+            "http://pic4.nipic.com/20091010/1054952_012941461069_2.jpg",
+            "http://pic1a.nipic.com/2008-10-20/2008102095428911_2.jpg",
+            "http://pica.nipic.com/2008-02-25/200822512913645_2.jpg"
     };
 
 }

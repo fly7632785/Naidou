@@ -11,11 +11,10 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.adapter.RecommendRecyclerAdapter;
+import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.view.AdapterIndicator;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
-
-import org.kymjs.kjframe.ui.ViewInject;
 
 import java.util.ArrayList;
 
@@ -94,7 +93,8 @@ public class RecommenFragment extends TitleBarSupportFragment {
         adapter.setOnItemClickListener(new RecommendRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ViewInject.toast("点击：" + position);
+//                ViewInject.toast("点击：" + position);
+                UIHelper.showChideDetail(aty);
             }
         });
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {

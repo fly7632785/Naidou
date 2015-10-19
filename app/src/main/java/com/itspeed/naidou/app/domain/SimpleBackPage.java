@@ -18,10 +18,13 @@ package com.itspeed.naidou.app.domain;
 import com.itspeed.naidou.app.fragment.FollowFragment;
 import com.itspeed.naidou.app.fragment.MyCollectFragment;
 import com.itspeed.naidou.app.fragment.MyCookbookFragment;
-import com.itspeed.naidou.app.fragment.second.AboutFragment;
-import com.itspeed.naidou.app.fragment.second.EditInfoFragment;
-import com.itspeed.naidou.app.fragment.second.FeedBackFragment;
-import com.itspeed.naidou.app.fragment.second.ModifyPwdFragment;
+import com.itspeed.naidou.app.fragment.detail.ChideDetailFragment;
+import com.itspeed.naidou.app.fragment.detail.GuangdeDetailFragment;
+import com.itspeed.naidou.app.fragment.detail.LiaodeDetailFragment;
+import com.itspeed.naidou.app.fragment.setting.AboutFragment;
+import com.itspeed.naidou.app.fragment.setting.EditInfoFragment;
+import com.itspeed.naidou.app.fragment.setting.FeedBackFragment;
+import com.itspeed.naidou.app.fragment.setting.ModifyPwdFragment;
 
 /**
  * 返回页的基本信息注册 (其实就是将原本会在Manifest中注册的Activity转成Fragment在这里注册)
@@ -38,7 +41,10 @@ public enum SimpleBackPage {
     FOLLOW(4, FollowFragment.class),
     ABOUT(5, AboutFragment.class),
     FEED_BACK(6, FeedBackFragment.class),
-    MODIFY_PWD(7, ModifyPwdFragment.class);
+    MODIFY_PWD(7, ModifyPwdFragment.class),
+    LIAODE_DETAIL(8, LiaodeDetailFragment.class),
+    CHIDE_DETAIL(9,ChideDetailFragment.class),
+    GUANGDE_DETAIL(10,GuangdeDetailFragment.class);
 
 
     private Class<?> clazz;

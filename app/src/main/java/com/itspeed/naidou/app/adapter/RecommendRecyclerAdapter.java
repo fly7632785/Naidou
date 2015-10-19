@@ -79,7 +79,7 @@ public class RecommendRecyclerAdapter extends RecyclerView.Adapter<RecommendRecy
         position = position % mCookbooks.size();
         KJLoger.debug("onBindViewHolder 之后的 position:"+position);
         CookBook cookBook = mCookbooks.get(position);
-        Picasso.with(mContext).load(ChideAdapter.img[position]).into(holder.imageView);
+        Picasso.with(mContext).load(img[position%img.length]).into(holder.imageView);
         holder.textView.setText(cookBook.getTitle());
     }
 
@@ -89,6 +89,7 @@ public class RecommendRecyclerAdapter extends RecyclerView.Adapter<RecommendRecy
 
     public interface OnItemClickListener{
         void onItemClick(View view,int position);
+
     }
 
 
@@ -97,4 +98,13 @@ public class RecommendRecyclerAdapter extends RecyclerView.Adapter<RecommendRecy
     public void setOnItemClickListener(OnItemClickListener listener) {
         mOnItemClickListener = listener;
     }
+
+    public static  String []img = new String[]{
+            "http://img4.duitang.com/uploads/item/201406/09/20140609203417_Ckvwa.jpeg",
+            "http://img5.duitang.com/uploads/item/201407/22/20140722231323_EdYkx.thumb.700_0.jpeg",
+            "http://cdn.duitang.com/uploads/item/201411/22/20141122202609_Va5uk.thumb.700_0.jpeg",
+            "http://picm.photophoto.cn/087/069/122/0691220027.jpg",
+            "http://picm.photophoto.cn/069/041/005/0410050117.jpg"
+    };
+
 }

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="/styles/main.css">
+	<link href="/favicon.ico" rel="icon" type="image/x-icon">
+	<title>个人信息 - Naidour.com</title>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2 col-sm-3">
+			<aside class="well sidebar-nav main-sidebar" role="complementary">
+				<section class="sidebar">
+					<ul class="nav">
+						<li>
+							<a href="/user/my-info.html">
+								<i class="glyphicon glyphicon-sunglasses"></i>
+								<span>个人信息</span>
+								<i class="glyphicon glyphicon-menu-left pull-right"></i>
+							</a>
+						</li>
+						<li>
+							<a href="/user/safe.html">
+								<i class="glyphicon glyphicon-user"></i>
+								<span>账号管理</span>
+								<i class="glyphicon glyphicon-menu-left pull-right"></i>
+							</a>
+						</li>
+						<li>
+							<a href="/user/my-mes.html">
+								<i class="glyphicon glyphicon-envelope"></i>
+								<span>我的消息</span>
+								<i class="glyphicon glyphicon-menu-left pull-right"></i>
+							</a>
+						</li>
+						<li>
+							<a href="/user/my-cbook.html">
+								<i class="glyphicon glyphicon-book"></i>
+								<span>我的食谱</span>
+								<i class="glyphicon glyphicon-menu-left pull-right"></i>
+							</a>
+						</li>
+						<li>
+							<a href="/user/my-collec.html">
+								<i class="glyphicon glyphicon-bookmark"></i>
+								<span>我的收藏</span>
+								<i class="glyphicon glyphicon-menu-left pull-right"></i>
+							</a>
+						</li>
+					</ul>
+				</section>
+			</aside>
+		</div><!-- /.col- -->
+		<div class="col-md-10 col-sm-9">
+			<section class="main-section" role="main">
+				<form action="#" method="post" role="form">
+					<fieldset class="avatar-field">
+						<div class="form-group">
+							<img src="/images/default2.png" alt="nickname">
+							<p class="help-block">上传头像</p>
+							<input type="file" id="editAvatar">
+						</div>
+					</fieldset>
+					<fieldset class="email-field">
+						<label for="ipt-username_email">邮箱：<a href="#">修改邮箱</a></label>
+						<input type="email" name="email" class="form-control" id="ipt-username_email" placeholder="461618105@qq.com" disabled="disabled">
+					</fieldset>
+					<fieldset class="mobile-field">
+						<label for="ipt-username_mobile">手机：<a href="#">修改手机</a></label>
+						<input type="email" name="email" class="form-control" id="ipt-username_mobile" placeholder="13216665424" disabled="disabled">
+					</fieldset>
+						<div class="form-group">
+							<label for="ipt-nickname"><em>*</em>昵称：</label>
+							<input type="text" class="form-control" id="ipt-nickname" name="nickname" placeholder="黄菊长" required="required">
+						</div>
+						<div class="form-group">
+							<label for="ipt-sex">性别：</label>
+							<div class="radio-inline">
+								<label>
+									<input type="radio" id="ipt-sex" name="sex" value="0">
+									男
+								</label>
+							</div>
+							<div class="radio-inline">
+								<label>
+									<input type="radio"  name="sex" value="1">
+									女
+								</label>
+							</div>
+							<div class="radio-inline">
+								<label>
+									<input type="radio"  name="sex" value="2" checked>
+									保密
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="ipt-birthday">生日：</label>
+							<div class="select-inline">
+								<label>
+									<select name="birthday_y" id="ipt-birthday" class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+									年
+								</label>
+							</div>
+							<div class="select-inline">
+								<label>
+									<select name="birthday_m" class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+									月
+								</label>
+							</div>
+							<div class="select-inline">
+								<label>
+									<select name="birthday_d" class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+									日
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="ipt-bbirthday">宝宝生日：</label>
+							<div class="select-inline">
+								<label>
+									<select name="bbirthday_y" id="ipt-bbirthday" class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+									年
+								</label>
+							</div>
+							<div class="select-inline">
+								<label>
+									<select name="bbirthday_m" class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+									月
+								</label>
+							</div>
+							<div class="select-inline">
+								<label>
+									<select name="bbirthday_d" class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+									日
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="ipt-pos">地址：</label>
+							<div class="select-inline">
+								<label>
+									<select name="pos_province" id="ipt-pos" class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+									省
+								</label>
+							</div>
+							<div class="select-inline">
+								<label>
+									<select name="pos_city" class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+									市
+								</label>
+							</div>
+							<div class="select-inline">
+								<label>
+									<select name="pos_district" class="form-control">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+									街道
+								</label>
+							</div>
+						</div>
+					<button type="submit" class="btn btn-default">修改</button>
+				</form>
+			</section>
+		</div>
+	</div><!-- /.row -->
+</div><!-- /.container -->
+</body>
+</html>

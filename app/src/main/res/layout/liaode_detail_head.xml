@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <org.kymjs.kjframe.widget.RoundImageView
+            android:id="@+id/liaode_detail_portrait"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/portrait" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#333333"
+                android:textSize="13sp"
+                android:id="@+id/liaode_detail_author"
+                android:text="Jafir"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#666666"
+                android:textSize="11sp"
+                android:id="@+id/liaode_detail_time"
+                android:text="1小时前"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/common_hot" />
+
+        <TextView
+            android:id="@+id/liaode_detail_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="238"
+            android:textColor="#666666" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="为什么头发这么不容易干呢！！"
+            android:textColor="#333333"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/liaode_detail_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/c1"
+        android:paddingBottom="25dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="25dp"
+        android:text="我今天洗了澡，还洗了头，学霸比我先洗头，但是她的头发很长很长呀，我头发这么短，为什么都4个小时了还是没有干呢！伐开心！"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/liaode_detail_img"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/img2"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/topic_red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="评论"
+            android:textColor="@color/topic_red"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="DISCUSS"
+            android:textColor="#666666"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>

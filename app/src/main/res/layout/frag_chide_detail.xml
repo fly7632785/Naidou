@@ -3,12 +3,19 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/title_main"/>
-    <ListView
-        android:id="@+id/chide_detail_list"
+    <!--<include layout="@layout/title_main"/>-->
+    <!--<ListView-->
+        <!--android:id="@+id/chide_detail_list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+    <!--</ListView>-->
+    <WebView
         android:layout_width="match_parent"
+        android:overScrollMode="never"
+        android:id="@+id/chide_detail_webview"
         android:layout_height="match_parent">
 
-    </ListView>
+    </WebView>
 
 </LinearLayout>

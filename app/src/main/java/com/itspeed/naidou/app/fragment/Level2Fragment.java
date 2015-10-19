@@ -7,10 +7,12 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.adapter.ChideAdapter;
+import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.view.PullToRefreshBase;
 import com.itspeed.naidou.app.view.PullToRefreshList;
 import com.itspeed.naidou.model.bean.CookBook;
@@ -24,7 +26,7 @@ import java.util.ArrayList;
 /**
  * Created by jafir on 15/9/21.
  */
-public class Level2Fragment extends SupportFragment implements PullToRefreshBase.OnRefreshListener {
+public class Level2Fragment extends SupportFragment implements PullToRefreshBase.OnRefreshListener, AdapterView.OnItemClickListener {
 
     private Context aty;
     private View layout;
@@ -64,6 +66,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
         mPullLayout.setPullLoadEnabled(true);
         mListView = mPullLayout.getRefreshView();
         mListView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        mListView.setOnItemClickListener(this);
     }
 
     private Handler handler = new Handler(){
@@ -90,5 +93,10 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
         //加载数据
         ViewInject.toast("加载");
         handler.sendEmptyMessageDelayed(2,3000);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        UIHelper.showChideDetail(aty);
     }
 }

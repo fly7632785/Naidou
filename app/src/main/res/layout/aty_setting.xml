@@ -135,7 +135,7 @@
 
         <ImageView
             style="@style/setting_img"
-            android:background="@mipmap/setting_reply" />
+            android:background="@mipmap/setting_update" />
 
         <TextView
             style="@style/setting_text"

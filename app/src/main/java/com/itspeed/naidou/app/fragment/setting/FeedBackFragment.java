@@ -1,4 +1,4 @@
-package com.itspeed.naidou.app.fragment.second;
+package com.itspeed.naidou.app.fragment.setting;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,9 +12,9 @@ import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 
 /**
  * Created by jafir on 15/9/28.
- * 设置里面 关于我们  fragment
+ * 设置里面 意见反馈  fragment
  */
-public class AboutFragment extends TitleBarSupportFragment{
+public class FeedBackFragment extends TitleBarSupportFragment{
 
     private SimpleBackActivity aty;
     private View layout;
@@ -22,7 +22,7 @@ public class AboutFragment extends TitleBarSupportFragment{
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-        layout = View.inflate(aty, R.layout.frag_about,null);
+        layout = View.inflate(aty, R.layout.frag_feedback,null);
         return layout;
     }
 
@@ -38,7 +38,7 @@ public class AboutFragment extends TitleBarSupportFragment{
         super.onChange();
         setTitleType(TitleBarActivity.TitleBarType.Titlebar2);
         setBackImage(R.drawable.selector_title_back);
-        setTitle("关于我们");
+        setTitle("意见反馈");
         setMenuImage(null);
     }
 

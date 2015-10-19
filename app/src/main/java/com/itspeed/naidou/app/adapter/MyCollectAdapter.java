@@ -33,7 +33,7 @@ public class MyCollectAdapter extends ListBaseAdapter<CookBook> {
             holder = (ViewHolder) convertView.getTag();
         }
         CookBook cb = mDatas.get(position);
-        Picasso.with(parent.getContext()).load(img[position%img.length]).placeholder(R.mipmap.img1).into(holder.img);
+        Picasso.with(parent.getContext()).load(RecommendRecyclerAdapter.img[position%RecommendRecyclerAdapter.img.length]).placeholder(R.mipmap.img1).into(holder.img);
         holder.title.setText("我是小鸡炖蘑菇");
         holder.likes.setText("12");
         holder.isLike.setSelected(true);
@@ -52,20 +52,6 @@ public class MyCollectAdapter extends ListBaseAdapter<CookBook> {
         ImageView isCollect;
     }
 
-    public static  String []img = new String[]{
-            "http://d.hiphotos.baidu.com/image/pic/item/1e30e924b899a901d79bee3a1f950a7b0208f514.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/72f082025aafa40f02b95dd0a964034f78f019bb.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/ca1349540923dd54af0b3565d309b3de9c824847.jpg",
-            "http://d.hiphotos.baidu.com/image/pic/item/500fd9f9d72a605966a0dc862d34349b023bbafd.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/b3b7d0a20cf431adaa697bf14f36acaf2fdd98ba.jpg",
-            "http://c.hiphotos.baidu.com/image/pic/item/5fdf8db1cb134954db9e1444534e9258d1094a0a.jpg",
-            "http://f.hiphotos.baidu.com/image/pic/item/8d5494eef01f3a29e8a92cee9c25bc315c607ca9.jpg",
-            "http://f.hiphotos.baidu.com/image/pic/item/b64543a98226cffc932cfbbfbb014a90f603eabd.jpg",
-            "http://c.hiphotos.baidu.com/image/pic/item/e824b899a9014c08d47342820f7b02087bf4f449.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/8b82b9014a90f603d24af6603c12b31bb051ed1b.jpg",
-            "http://b.hiphotos.baidu.com/image/pic/item/dc54564e9258d109f216c395d458ccbf6c814d1b.jpg",
-            "http://a.hiphotos.baidu.com/image/pic/item/0b7b02087bf40ad1a278adc4522c11dfa9ecce7d.jpg"
-    };
 
 
 

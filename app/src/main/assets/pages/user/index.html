@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <base href="/user/index.html">
+    <link href="/styles/main.css" rel="stylesheet">
+    <link href="/images/favicon.ico" rel="icon">
+    <title>个人中心 - Naidour.com</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/index" class="navbar-brand"><img class="navbar-brand_logo" src="/images/naidour-logo_128.png" alt=""></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <!-- 导航 -->
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/eating">吃的</a></li>
+                    <li class="active"><a href="/user">我的</a></li>
+                </ul>
+                <!-- 功能菜单 -->
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="login.html"><span class="fui-exit"></span> 登陆</a></li>
+                        <li><a href="register.html"><span class="fui-user"></span> 注册</a></li>
+                    </ul>
+                </div><!-- /.navbar-right -->
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <aside class="well sidebar-nav main-sidebar" role="complementary">
+                    <section class="sidebar">
+                        <ul class="nav">
+                            <li>
+                                <a href="/user/my-info.html">
+                                    <i class="glyphicon glyphicon-sunglasses"></i>
+                                    <span>个人信息</span>
+                                    <i class="glyphicon glyphicon-menu-left pull-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/user/safe.html">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <span>账号管理</span>
+                                    <i class="glyphicon glyphicon-menu-left pull-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/user/my-mes.html">
+                                    <i class="glyphicon glyphicon-envelope"></i>
+                                    <span>我的消息</span>
+                                    <i class="glyphicon glyphicon-menu-left pull-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/user/my-cbook.html">
+                                    <i class="glyphicon glyphicon-book"></i>
+                                    <span>我的食谱</span>
+                                    <i class="glyphicon glyphicon-menu-left pull-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/user/my-collec.html">
+                                    <i class="glyphicon glyphicon-bookmark"></i>
+                                    <span>我的收藏</span>
+                                    <i class="glyphicon glyphicon-menu-left pull-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </aside>
+            </div><!-- /.col- -->
+            <div class="col-sm-9 col-md-10">
+                <section role="main" class="">
+                    <img src="/images/default.png" alt="nickname">
+                    <a href="/user/coin.html">奶豆</a>
+                    <a href="/user/following.html">关注</a>
+                    <strong>nickname<small>profile</small></strong>
+                    <p><span>传菜生</span></p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 60%;">
+                            55 exp
+                        </div>
+                        <p>还有<span>45 exp</span>就升级啦！</p>
+                    </div>
+                </section>
+            </div><!-- /.col- -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+    <footer role="contentinfo">
+        <p class="site-info">
+            <a href="/index">首页</a>
+            <a href="/eating">吃的</a>
+        </p>
+        <p><small>COPYRIGHT &copy; 2015 计速科技. ALL RIGHTS RESERVED.</small></p>
+        <p class="contact-us">
+            <a href="#">微博</a>
+            <a href="#">微信</a>
+            <a href="#">企鹅</a>
+        </p>
+    </footer>
+    <!--<script src="../../build/scripts/vendor/jquery/jquery.min.js"></script>-->
+    <!--<script src="/scripts/bootstrap.min.js"></script>-->
+    <script src="/scripts/bundle.min.js"></script>
+</body>
+</html>

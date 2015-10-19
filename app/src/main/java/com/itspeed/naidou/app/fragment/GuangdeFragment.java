@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.adapter.GuangdeGridViewAdapter;
+import com.itspeed.naidou.app.util.UIHelper;
 
 import org.kymjs.kjframe.ui.BindView;
 
@@ -48,5 +50,11 @@ public class GuangdeFragment extends TitleBarSupportFragment {
     protected void initData() {
         super.initData();
         mGridView.setAdapter(new GuangdeGridViewAdapter());
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                UIHelper.showGuangdeDetail(aty);
+            }
+        });
     }
 }
