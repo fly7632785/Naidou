@@ -11,6 +11,9 @@ import java.util.List;
 
 /**
  * Created by jafir on 15/9/24.
+ * adapter的基类，主要用于listAdapter来继承
+ * 包含 增删更新操作
+ * 集成这个adapter 的 需要调用setdata来设置数据
  */
 public class ListBaseAdapter <T> extends BaseAdapter {
 

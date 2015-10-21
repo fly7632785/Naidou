@@ -14,8 +14,6 @@ import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.view.PullToRefreshList;
 
-import org.kymjs.kjframe.utils.KJLoger;
-
 /**
  * Created by jafir on 15/9/1.
  * 聊的fragment
@@ -66,7 +64,6 @@ public class LiaodeFragment extends TitleBarSupportFragment {
     @Override
     public void onStart() {
         super.onStart();
-        KJLoger.debug("LiaodeFragment:——————————onStart");
     }
 
 

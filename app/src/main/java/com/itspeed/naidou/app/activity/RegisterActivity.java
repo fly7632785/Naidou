@@ -16,6 +16,7 @@ import org.kymjs.kjframe.utils.SystemTool;
 
 /**
  * Created by jafir on 10/15/15.
+ * 用户注册界面，需要用手机注册，发送验证码，验证
  */
 public class RegisterActivity extends KJActivity {
 

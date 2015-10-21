@@ -16,7 +16,8 @@ import com.sevenheaven.segmentcontrol.SegmentControl;
 import org.kymjs.kjframe.KJActivity;
 
 /**
- * 应用Activity基类
+ *
+ * 带titlebar的应用Activity基类
  * 
  * @author Jafir
  * @since 2015-9
@@ -70,12 +71,16 @@ public abstract class TitleBarActivity extends KJActivity {
 
             //设置左右按钮的图片大小
             int size = (int)(getResources().getDisplayMetrics().density*IMG_SIZW);
+            //android:adjustViewBounds 是否保持宽高比。
+            //需要与maxWidth、MaxHeight一起使用，否则单独使用没有效果。
             mImgMenu.setAdjustViewBounds(true);
             mImgBack.setAdjustViewBounds(true);
+            //设置最大宽高
             mImgMenu.setMaxWidth(size);
             mImgBack.setMaxWidth(size);
             mImgBack.setMaxHeight(size);
             mImgMenu.setMaxHeight(size);
+            //设置监听
             mImgBack.setOnClickListener(this);
             mImgMenu.setOnClickListener(this);
             mTvTitle.setOnClickListener(this);
@@ -100,7 +105,10 @@ public abstract class TitleBarActivity extends KJActivity {
 
     /**
      * 设置Title的type
-     * @param type 类型  2种
+     * @param type 类型  3种
+     * 第一种：就是左右图标，中间是segment的选择控件
+     * 第二种：左右图标，中间文字
+     * 第三种：只有左边图标，和右边是文字
      */
     public  void setTitleBarType(TitleBarType type){
         if(type == TitleBarType.Titlebar1){
@@ -140,15 +148,30 @@ public abstract class TitleBarActivity extends KJActivity {
         }
     }
 
+    /**
+     * 给子类去实现，右边文字的点击（举报）
+     */
     protected void onRightTextClick(){}
 
-    protected void onBackClick() {}
-
+    /**
+     * 右边图标的点击（菜单键）
+     */
     protected void onMenuClick() {}
 
+    /**
+     * 中间Title的点击（双击中间  跳到顶部）
+     */
     protected void onTitleClick(){}
 
+    /**
+     * 左边图标的点击（返回键）
+     */
     protected void onSegmentClick(int index){}
+
+    /**
+     * 中间segment的选择 （父母孩子）
+     */
+    protected void onBackClick() {}
 
 
 }

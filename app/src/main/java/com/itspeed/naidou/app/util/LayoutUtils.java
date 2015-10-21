@@ -15,6 +15,7 @@ import org.kymjs.kjframe.utils.DensityUtils;
 
 /**
  * Created by jafir on 15/7/12.
+ * 用于状态栏的修改，透明，改色
  */
 public class LayoutUtils {
 

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * Created by jafir on 15/9/28.
+ * 我的收藏fragment
  */
 public class MyCollectFragment extends TitleBarSupportFragment{
 

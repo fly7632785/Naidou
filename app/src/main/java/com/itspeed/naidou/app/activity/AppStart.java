@@ -19,6 +19,7 @@ import org.kymjs.kjframe.utils.PreferenceHelper;
 
 /**
  * Created by jafir on 10/15/15.
+ * 应用程序的开始和入口，有一个动画界面
  */
 public class AppStart extends KJActivity{
 
@@ -68,6 +69,9 @@ public class AppStart extends KJActivity{
         mKjh = new KJHttp(config);
     }
 
+    /**
+     * 判断是不是第一次进入，如果是就到引导页
+     */
     private void jumpTo() {
         boolean isFirst = PreferenceHelper.readBoolean(aty, TAG, "first_open",
                 true);

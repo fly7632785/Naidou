@@ -14,6 +14,8 @@ import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 
 /**
  * Created by jafir on 10/19/15.
+ * 吃的的详情fragment
+ * 里面是用一个webview来展示的网页
  */
 public class ChideDetailFragment extends TitleBarSupportFragment {
 

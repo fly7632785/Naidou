@@ -21,6 +21,8 @@ import java.util.ArrayList;
 /**
  * Created by jafir on 15/9/1.
  * 推荐 的fragment
+ * 里面是用了一个开源框架 recyclerViewpager
+ * 因为有切换的动画，重写了onscroll 和 onlayoutchange
  */
 public class RecommenFragment extends TitleBarSupportFragment {
 
@@ -74,6 +76,7 @@ public class RecommenFragment extends TitleBarSupportFragment {
         LinearLayoutManager layout = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layout);
 
+        //模拟数据
         mData = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             CookBook cookBook = new CookBook();

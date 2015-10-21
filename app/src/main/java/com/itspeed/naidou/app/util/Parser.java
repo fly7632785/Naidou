@@ -24,7 +24,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class Parser {
 
 
-
+    /**
+     * 解析从服务器获取来的xml更新文件
+     * @param inStream
+     * @return
+     * @throws Exception
+     */
     public UpdateInfo parseXmlByDom(InputStream inStream) throws Exception
     {
         UpdateInfo info = new UpdateInfo();//实体

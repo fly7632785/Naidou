@@ -18,6 +18,7 @@ import org.kymjs.kjframe.utils.SystemTool;
 
 /**
  * Created by jafir on 10/15/15.
+ * 登录界面，重写onStart方法，目的在于打开界面的时候 有记住密码的功能
  */
 public class LoginActivity extends KJActivity {
 
@@ -73,7 +74,7 @@ public class LoginActivity extends KJActivity {
                 break;
             case R.id.login_scan:
                 UIHelper.showMain(aty);
-               aty.finish();
+                aty.finish();
                 break;
             case R.id.login_sign:
                 UIHelper.showRegister(aty);
@@ -83,11 +84,14 @@ public class LoginActivity extends KJActivity {
                     UIHelper.showMain(aty);
                    aty.finish();
                 }
-
                 break;
         }
     }
 
+    /**
+     * 检测账号密码是否合适
+     * @return
+     */
     private boolean isRight() {
          name = editName.getText().toString().trim();
          password = editPassword.getText().toString().trim();

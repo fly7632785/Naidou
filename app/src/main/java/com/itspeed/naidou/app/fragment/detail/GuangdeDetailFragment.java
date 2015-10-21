@@ -12,6 +12,7 @@ import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 
 /**
  * Created by jafir on 10/19/15.
+ * 逛的详情fragment
  */
 public class GuangdeDetailFragment extends TitleBarSupportFragment {
 

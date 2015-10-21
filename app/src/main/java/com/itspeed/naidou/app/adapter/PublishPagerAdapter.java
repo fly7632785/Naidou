@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Created by jafir on 15/10/8.
+ * 发布菜谱的 viewpager的适配器   里面包括4步  每部一个view
  */
 public class PublishPagerAdapter extends PagerAdapter {
 

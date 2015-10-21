@@ -12,13 +12,14 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.squareup.picasso.Picasso;
 
-import org.kymjs.kjframe.utils.KJLoger;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by jafir on 15/10/7.
+ * 推荐的adapter
+ * 因为是recycler的adapter 所以自己写了点击的接口
+ * 调用者需要实现这个接口
  */
 public class RecommendRecyclerAdapter extends RecyclerView.Adapter<RecommendRecyclerAdapter.ImageViewHolder> {
 
@@ -44,8 +45,6 @@ public class RecommendRecyclerAdapter extends RecyclerView.Adapter<RecommendRecy
                 @Override
                 public void onClick(View v) {
                     if(mOnItemClickListener != null) {
-                        KJLoger.debug("onitemposi:"+getAdapterPosition());
-                        KJLoger.debug("之后的onitemposi:"+(getAdapterPosition()%mCookbooks.size()));
                         mOnItemClickListener.onItemClick(v, getAdapterPosition()%mCookbooks.size());
                     }
                 }
@@ -75,9 +74,7 @@ public class RecommendRecyclerAdapter extends RecyclerView.Adapter<RecommendRecy
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
-        KJLoger.debug("onBindViewHolder  position:"+position);
         position = position % mCookbooks.size();
-        KJLoger.debug("onBindViewHolder 之后的 position:"+position);
         CookBook cookBook = mCookbooks.get(position);
         Picasso.with(mContext).load(img[position%img.length]).into(holder.imageView);
         holder.textView.setText(cookBook.getTitle());

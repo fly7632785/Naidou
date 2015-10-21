@@ -16,6 +16,9 @@ import org.kymjs.kjframe.ui.BindView;
 
 /**
  * Created by jafir on 15/9/27.
+ * 设置界面的activity
+ * 装载多个fragment进行切换
+ * 包括编辑资料、密码修改、清理缓存、检查更新、意见反馈、关于我们
  */
 public class SettingActivity extends  TitleBarActivity{
 

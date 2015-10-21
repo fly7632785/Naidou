@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 /**
  * Created by jafir on 15/9/21.
+ * 二级菜单的fragment 里面是listView
  */
 public class Level2Fragment extends SupportFragment implements PullToRefreshBase.OnRefreshListener, AdapterView.OnItemClickListener {
 

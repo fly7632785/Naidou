@@ -68,8 +68,8 @@ public class HeaderLoadingLayout extends LoadingLayout {
         mArrowImageView = (ImageView) findViewById(R.id.pull_to_refresh_header_arrow);
         mHintTextView = (TextView) findViewById(R.id.pull_to_refresh_header_hint_textview);
 
-        mArrowImageView.setScaleType(ScaleType.CENTER);
-        mArrowImageView.setImageResource(R.mipmap.ic_launcher);
+        mArrowImageView.setScaleType(ScaleType.FIT_XY);
+        mArrowImageView.setImageResource(R.mipmap.circle);
 
         float pivotValue = 0.5f; // SUPPRESS CHECKSTYLE
         float toDegree = 720.0f; // SUPPRESS CHECKSTYLE

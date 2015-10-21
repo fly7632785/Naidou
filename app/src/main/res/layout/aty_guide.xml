@@ -26,7 +26,7 @@
         fpi:fpi_gap="12dp"
         fpi:fpi_height="10dp"
         fpi:fpi_selectColor="@color/topic_red"
-        fpi:fpi_unselectColor="@color/white"
+        fpi:fpi_unselectColor="#33333333"
         fpi:fpi_width="10dp"/>
 
 </RelativeLayout>

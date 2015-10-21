@@ -36,8 +36,8 @@
         </RelativeLayout>
 
         <FrameLayout
-            android:layout_width="28dip"
-            android:layout_height="28dip"
+            android:layout_width="38dip"
+            android:layout_height="38dip"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
@@ -47,6 +47,7 @@
                 android:id="@+id/pull_to_refresh_header_arrow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="5dp"
                 android:layout_gravity="center"
                 android:contentDescription="@null" />
 

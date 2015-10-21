@@ -14,6 +14,8 @@ import org.kymjs.kjframe.ui.BindView;
 
 /**
  * Created by jafir on 15/10/8.
+ * 发布菜谱的activity，这是一个单独的activity，我们把它独立出来，因为它特别的复杂
+ * 里面装载一个viewpager来进行菜谱步骤的展示和数据修改
  */
 public class PublishActivity extends KJActivity {
 

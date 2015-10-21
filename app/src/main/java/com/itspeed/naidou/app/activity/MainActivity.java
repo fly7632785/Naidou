@@ -20,7 +20,10 @@ import com.itspeed.naidou.app.fragment.WodeFragment;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.utils.DensityUtils;
 
-
+/**
+ * 应用的主界面，包括5个模块  吃的、聊的、推荐、逛的、我的
+ * 一个activity 用hide show 方式保存 5个fragment
+ */
 public class MainActivity extends TitleBarActivity {
     /**
      * tab
@@ -263,6 +266,12 @@ public class MainActivity extends TitleBarActivity {
                 }).create().show();
     }
 
+    /**
+     *这里注释掉了super方法，目的在于防止 跳转到其他activity，因为内存不足的时候，这个mainActivity
+     * 被回收了之后，然后再开启，会出现数据回滚，然后造成fragment的重叠现象，
+     * 注释掉之后，防止它保存数据，就可以避免这种情况
+     * @param outState
+     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);

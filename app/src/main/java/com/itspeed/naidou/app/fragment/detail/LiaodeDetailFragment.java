@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 /**
  * Created by jafir on 10/19/15.
+ * 聊的详情fragment
  */
 public class LiaodeDetailFragment extends TitleBarSupportFragment {
 

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Created by jafir on 15/9/21.
+ * 孩子的fragment 这是一级菜单的fragment
  */
 public class ChildrenFragment extends Level1Fragment {
 

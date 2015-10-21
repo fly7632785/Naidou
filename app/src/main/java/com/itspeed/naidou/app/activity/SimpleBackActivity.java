@@ -12,6 +12,8 @@ import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 
 /**
  * Created by jafir on 15/9/28.
+ * 一个简单的带返回的activity，它可以根据构造不同的fragment来
+ * 加载不同的fragment界面，让fragment自己管理它自己的生命周期
  */
 public class SimpleBackActivity extends TitleBarActivity {
     public static String TAG = SimpleBackActivity.class.getSimpleName();
@@ -29,6 +31,11 @@ public class SimpleBackActivity extends TitleBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //获取intent的参数
+        //然后newInstance，返回fragment
+        //切换界面
+        //注意，这里的构造需要在父类的super.oncreate方法执行完毕之后才能构造
+        //不然会报 activity has  been destroyed的异常
         int value = getIntent().getIntExtra(CONTENT_KEY, -1);
         if (value != -1) {
             try {

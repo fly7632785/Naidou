@@ -33,13 +33,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.activity.SecActivity"
-            android:theme="@style/ChoserTheme">
-        </activity>
         <activity android:name=".app.activity.SettingActivity"/>
         <activity android:name=".app.activity.SimpleBackActivity"/>
         <activity android:name=".app.activity.PublishActivity"/>
-        <activity android:name=".app.activity.LoginActivity"/>
+        <activity android:name=".app.activity.LoginActivity"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".app.activity.RegisterActivity"/>
 
         <activity android:name=".app.activity.GuideActivity"/>

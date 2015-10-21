@@ -17,6 +17,7 @@ import org.kymjs.kjframe.ui.BindView;
 
 /**
  * Created by jafir on 10/15/15.
+ * 用户引导页，第一次打开应用的时候做一个引导
  */
 public class GuideActivity extends KJActivity {
 
@@ -24,7 +25,7 @@ public class GuideActivity extends KJActivity {
     private ViewPager viewPager;
     @BindView(id = R.id.indicator_guide)
     private FlycoPageIndicaor mIndicator;
-    private int[ ]  guides = {R.mipmap.welcome_1,R.mipmap.welcome_2,R.mipmap.welcome_3,R.mipmap.welcome_4};
+    private int[ ]  guides = {R.mipmap.welcome1,R.mipmap.welcome2,R.mipmap.welcome3,R.mipmap.welcome4,R.mipmap.welcome5};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

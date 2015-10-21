@@ -9,6 +9,8 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.squareup.picasso.Picasso;
 
+import java.util.Random;
+
 /**
  * Created by jafir on 15/9/21.
  * 吃的 适配器
@@ -35,7 +37,8 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> implements View.OnCl
             holder = (ViewHolder) convertView.getTag();
         }
         CookBook cb = mDatas.get(position);
-        Picasso.with(parent.getContext()).load(img[position % img.length]).into(holder.img);
+        Random r = new Random();
+        Picasso.with(parent.getContext()).load(img[position* r.nextInt(333) % img.length]).into(holder.img);
         holder.title.setText("我是小鸡炖蘑菇");
         holder.time.setText("1小时前");
         holder.likes.setText("12");
