@@ -18,6 +18,7 @@ import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.app.fragment.WodeFragment;
 
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.ui.SupportFragment;
 import org.kymjs.kjframe.utils.DensityUtils;
 
 /**
@@ -184,6 +185,33 @@ public class MainActivity extends TitleBarActivity {
 
     }
 
+
+    public void changeFragment(int resView, SupportFragment targetFragment) {
+        if (targetFragment.equals(currentSupportFragment)) {
+            return;
+        }
+        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction();
+
+
+
+        if (!targetFragment.isAdded()) {
+            transaction.add(resView, targetFragment, targetFragment.getClass()
+                    .getName());
+        }
+
+        if (targetFragment.isHidden()) {
+            transaction.show(targetFragment);
+            targetFragment.onChange();
+        }
+
+        if (currentSupportFragment != null
+                && currentSupportFragment.isVisible()) {
+            transaction.hide(currentSupportFragment);
+        }
+        currentSupportFragment = targetFragment;
+        transaction.commit();
+    }
     @Override
     public void setRootView() {
         setContentView(R.layout.aty_main);

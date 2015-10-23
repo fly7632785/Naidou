@@ -3,6 +3,7 @@ package com.itspeed.naidou.app.fragment;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 
@@ -144,6 +145,8 @@ public abstract class TitleBarSupportFragment extends SupportFragment {
      */
     public void changeFragment(int resView, SupportFragment targetFragment) {
         if (!targetFragment.equals(this.currentSupportFragment)) {
+
+
             android.support.v4.app.FragmentTransaction transaction = outsideAty.getSupportFragmentManager().beginTransaction();
             if (!targetFragment.isAdded()) {
                 transaction.add(resView, targetFragment, targetFragment.getClass().getName());
