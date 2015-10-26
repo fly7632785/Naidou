@@ -11,10 +11,10 @@ import android.widget.ImageView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
-import com.itspeed.naidou.app.adapter.RecommendRecyclerAdapter;
+import com.itspeed.naidou.app.adapter.RecommendRecyclerAdapterForTopic;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.view.AdapterIndicator;
-import com.itspeed.naidou.model.bean.CookBook;
+import com.itspeed.naidou.model.bean.Topic;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
 import org.kymjs.kjframe.ui.BindView;
@@ -24,9 +24,10 @@ import java.util.ArrayList;
 
 /**
  * Created by jafir on 10/23/15.
+ * 推荐里面的话题推荐
  */
 public class RecommendLiaodeFragment extends SupportFragment{
-    private ArrayList<CookBook> mData;
+    private ArrayList<Topic> mData;
     private  RecyclerViewPager mRecyclerView;
     private  AdapterIndicator mIndicator;
     private View layout;
@@ -81,12 +82,13 @@ public class RecommendLiaodeFragment extends SupportFragment{
         //模拟数据
         mData = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            CookBook cookBook = new CookBook();
-            cookBook.setTitle("小鸡炖蘑菇" + i);
-            mData.add(cookBook);
+            Topic topic = new Topic();
+            topic.setTitle("今天到底是吃饭还是不吃饭呢" + i);
+            topic.setTime("1小时前");
+            topic.setContent("");
+            mData.add(topic);
         }
-        RecommendRecyclerAdapter adapter = new RecommendRecyclerAdapter(mData);
-
+        RecommendRecyclerAdapterForTopic adapter = new RecommendRecyclerAdapterForTopic(mData);
         //绑定indicator和recyclerViewpager
         mIndicator.bindView(mRecyclerView);
 
@@ -95,7 +97,7 @@ public class RecommendLiaodeFragment extends SupportFragment{
         mRecyclerView.scrollToPosition(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % 5);
 
         mRecyclerView.setHasFixedSize(true);
-        adapter.setOnItemClickListener(new RecommendRecyclerAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new RecommendRecyclerAdapterForTopic.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
 //                ViewInject.toast("点击：" + position);

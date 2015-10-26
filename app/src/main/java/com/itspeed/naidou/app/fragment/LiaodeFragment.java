@@ -1,6 +1,8 @@
 package com.itspeed.naidou.app.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +14,30 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.view.EmptyLayout;
+import com.itspeed.naidou.app.view.PullToRefreshBase;
 import com.itspeed.naidou.app.view.PullToRefreshList;
+
+import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.utils.KJLoger;
+
 
 /**
  * Created by jafir on 15/9/1.
  * 聊的fragment
- *
  */
 public class LiaodeFragment extends TitleBarSupportFragment {
 
 
     private MainActivity aty;
     private View view;
+    @BindView(id = R.id.empty_layout)
+    private EmptyLayout mEmptyLayout;
     private PullToRefreshList mPullToRefresh;
     private ListView listView;
+
+    //模拟加载数据
+    private Handler handler;
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -55,10 +67,34 @@ public class LiaodeFragment extends TitleBarSupportFragment {
         super.initData();
         mPullToRefresh = (PullToRefreshList) view.findViewById(R.id.pull_to_refresh);
         mPullToRefresh.setPullLoadEnabled(true);
+        mPullToRefresh.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                mEmptyLayout.setVisibility(View.VISIBLE);
+                mEmptyLayout.setErrorType(2);
+                handler.sendEmptyMessageDelayed(1, 3333);
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshView.onPullUpRefreshComplete();
+            }
+        });
         listView = mPullToRefresh.getRefreshView();
         listView.setDividerHeight(0);
         listView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         listView.setAdapter(new MyAdapter());
+
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                KJLoger.debug("2222222");
+                mEmptyLayout.dismiss();
+                mPullToRefresh.onPullDownRefreshComplete();
+            }
+        };
+        handler.sendEmptyMessageDelayed(1, 3000);
     }
 
     @Override
@@ -67,12 +103,11 @@ public class LiaodeFragment extends TitleBarSupportFragment {
     }
 
 
-
-    private class MyAdapter extends BaseAdapter{
+    private class MyAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return ss.length*4;
+            return ss.length * 4;
         }
 
         @Override
@@ -88,9 +123,9 @@ public class LiaodeFragment extends TitleBarSupportFragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            View  view = View.inflate(aty,R.layout.test,null);
+            View view = View.inflate(aty, R.layout.test, null);
             TextView t = (TextView) view.findViewById(R.id.textView);
-            t.setText(ss[position%ss.length]);
+            t.setText(ss[position % ss.length]);
             t.setBackgroundResource(cc[position % 4]);
             t.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,9 +138,8 @@ public class LiaodeFragment extends TitleBarSupportFragment {
     }
 
 
-    private String[] ss = new String[]{"Community Guidelines","Android Developers","Marlon “Virus” Jones","Marlon “Virus” Jones ","Hello,everybody.I am an Android Developer."};
-    private int[] cc = new int[]{R.color.c1,R.color.c3,R.color.c2,R.color.c4};
-
+    private String[] ss = new String[]{"Community Guidelines", "Android Developers", "Marlon “Virus” Jones", "Marlon “Virus” Jones ", "Hello,everybody.I am an Android Developer."};
+    private int[] cc = new int[]{R.color.c1, R.color.c3, R.color.c2, R.color.c4};
 
 
 }

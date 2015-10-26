@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:paddingRight="13dp"
+    android:paddingLeft="13dp"
+    android:background="@drawable/shape_recommend_topic"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/item_list_topic_recommend_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:gravity="center"
+        android:text="今晚是吃饭呢还是吃面呢？"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/item_list_topic_recommend_img"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="35dp"
+        android:src="@mipmap/img2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/item_list_topic_recommend_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="我不知道今晚是吃面还是吃饭,我本来不想吃饭的，但是我又想要吃面，有个傻逼让我陪她吃饭，真恼火"
+        android:textColor="#4d4d4d"
+        android:textSize="13sp" />
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:orientation="horizontal"
+       android:layout_marginTop="30dp"
+       android:gravity="right|center_vertical"
+       android:layout_height="wrap_content">
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:text="1小时前"
+           android:id="@+id/item_list_topic_recommend_time"
+           android:textSize="11sp"
+
+           android:textColor="#a3a3a3"
+
+           android:layout_height="wrap_content" />
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:id="@+id/item_list_topic_recommend_reply"
+           android:layout_height="35dp"
+           android:layout_marginLeft="15dp"
+           android:layout_gravity="right"
+           android:layout_marginRight="10dp"
+           android:gravity="right|center_vertical"
+           android:orientation="horizontal">
+
+           <ImageView
+               android:layout_width="25dp"
+               android:padding="3dp"
+               android:layout_height="25dp"
+               android:src="@drawable/selector_common_reply" />
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="3dp"
+               android:text="回复"
+               android:textColor="#3d3d3d"
+               android:textSize="14sp" />
+       </LinearLayout>
+   </LinearLayout>
+
+</LinearLayout>

@@ -13,6 +13,17 @@ public class Topic {
     private int countOfScan;
     //图片url
     private String img;
+    //描述
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    private String content;
 
 
     public String getTitle() {

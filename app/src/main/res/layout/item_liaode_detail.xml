@@ -95,6 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="回复"
+                    android:textColor="#3d3d3d"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>

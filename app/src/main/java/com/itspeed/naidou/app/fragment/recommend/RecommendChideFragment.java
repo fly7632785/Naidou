@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
-import com.itspeed.naidou.app.adapter.RecommendRecyclerAdapter;
+import com.itspeed.naidou.app.adapter.RecommendRecyclerAdapterForCb;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.view.AdapterIndicator;
 import com.itspeed.naidou.model.bean.CookBook;
@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 /**
  * Created by jafir on 10/23/15.
+ * 推荐里面的菜谱推荐
  */
 public class RecommendChideFragment extends SupportFragment{
     private ArrayList<CookBook> mData;
@@ -83,7 +84,7 @@ public class RecommendChideFragment extends SupportFragment{
             cookBook.setTitle("小鸡炖蘑菇" + i);
             mData.add(cookBook);
         }
-        RecommendRecyclerAdapter adapter = new RecommendRecyclerAdapter(mData);
+        RecommendRecyclerAdapterForCb adapter = new RecommendRecyclerAdapterForCb(mData);
 
         //绑定indicator和recyclerViewpager
         mIndicator.bindView(mRecyclerView);
@@ -93,7 +94,7 @@ public class RecommendChideFragment extends SupportFragment{
         mRecyclerView.scrollToPosition(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % 5);
 
         mRecyclerView.setHasFixedSize(true);
-        adapter.setOnItemClickListener(new RecommendRecyclerAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new RecommendRecyclerAdapterForCb.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
 //                ViewInject.toast("点击：" + position);

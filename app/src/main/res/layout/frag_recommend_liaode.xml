@@ -12,9 +12,9 @@
         android:layout_height="40dp" />
     <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
         android:id="@+id/recommend_liaode_recyler_pager"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="410dp"
         android:clipToPadding="false"
         android:layout_below="@+id/recommend_liaode_img"
         android:paddingLeft="30dp"

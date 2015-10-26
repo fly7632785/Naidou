@@ -41,7 +41,7 @@
         android:layout_weight="1.5"
         android:id="@+id/item_list_follow_isfollow"
         android:layout_marginRight="10dp"
-        android:src="@drawable/selector_login_in"
+        android:src="@mipmap/myfollow_follow"
         android:layout_height="35dp" />
 
 
