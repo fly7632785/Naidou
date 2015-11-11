@@ -58,7 +58,7 @@
         android:id="@+id/feedback_send"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="45dp"
         android:layout_width="match_parent"
         android:src="@drawable/selector_feedback_send"
         android:layout_height="52dp" />

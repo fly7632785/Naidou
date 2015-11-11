@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
+
+import org.kymjs.kjframe.ui.BindView;
 
 /**
  * Created by jafir on 15/9/28.
@@ -19,6 +22,8 @@ public class ModifyPwdFragment extends TitleBarSupportFragment{
     private SimpleBackActivity aty;
     private View layout;
 
+    @BindView(id = R.id.modifypwd_confirm,click = true)
+    private ImageView confirm;
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -42,6 +47,14 @@ public class ModifyPwdFragment extends TitleBarSupportFragment{
         setMenuImage(null);
     }
 
+    @Override
+    protected void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()){
+            case R.id.modifypwd_confirm:
+                break;
+        }
+    }
 
     @Override
     public void onBackClick() {

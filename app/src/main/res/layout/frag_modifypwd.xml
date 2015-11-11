@@ -139,4 +139,14 @@
         android:layout_marginLeft="110dp"
         android:layout_marginRight="16dp"
         />
+
+
+    <ImageView
+        android:id="@+id/modifypwd_confirm"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="65dp"
+        android:layout_width="match_parent"
+        android:src="@drawable/selector_modify_confirm"
+        android:layout_height="52dp" />
 </LinearLayout>

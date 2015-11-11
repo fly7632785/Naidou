@@ -9,12 +9,10 @@ import android.view.ViewGroup;
 import com.astuetz.PagerSlidingTabStrip;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
-import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.Level2Cate;
 
 import org.kymjs.kjframe.ui.SupportFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +32,6 @@ public class Level1Fragment extends SupportFragment {
 
     protected String [] titles;
     protected List<Level2Fragment> fragments;
-    protected ArrayList<CookBook> data;
 
     /**
      * 2级菜单标题  用于动态加载

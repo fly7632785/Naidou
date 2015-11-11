@@ -5,44 +5,44 @@ package com.itspeed.naidou.model.bean;
  */
 public class User {
     //用户id
-    private String id;
+    private String uId;
     //用户昵称
-    private String name;
+    private String nickname;
     //用户个性签名
-    private String signature;
+    private String motto;
     //用户头像url
-    private String portrait;
+    private String avatar;
 
 
-    public String getId() {
-        return id;
+    public String getuId() {
+        return uId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setuId(String uId) {
+        this.uId = uId;
     }
 
-    public String getName() {
-        return name;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getSignature() {
-        return signature;
+    public String getMotto() {
+        return motto;
     }
 
-    public void setSignature(String signature) {
-        this.signature = signature;
+    public void setMotto(String motto) {
+        this.motto = motto;
     }
 
-    public String getPortrait() {
-        return portrait;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setPortrait(String portrait) {
-        this.portrait = portrait;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

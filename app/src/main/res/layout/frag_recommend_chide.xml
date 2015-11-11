@@ -26,8 +26,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:id="@+id/recommend_chide_img"
-        android:src="@mipmap/logo_256"
-        android:scaleType="fitCenter"
+        android:src="@drawable/selector_recommend_liaode"
+        android:scaleType="fitXY"
         android:layout_alignParentBottom="true"
-        android:layout_height="40dp" />
+        android:layout_height="50dp" />
 </RelativeLayout>

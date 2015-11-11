@@ -5,6 +5,7 @@ package com.itspeed.naidou.model.bean;
  */
 public class Topic {
 
+    private int tId;
     //标题
     private String title;
     //时间
@@ -14,6 +15,15 @@ public class Topic {
     //图片url
     private String img;
     //描述
+
+
+    public int gettId() {
+        return tId;
+    }
+
+    public void settId(int tId) {
+        this.tId = tId;
+    }
 
     public String getContent() {
         return content;

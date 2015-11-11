@@ -17,9 +17,12 @@ import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.view.EmptyLayout;
 import com.itspeed.naidou.app.view.PullToRefreshBase;
 import com.itspeed.naidou.app.view.PullToRefreshList;
+import com.itspeed.naidou.model.bean.Topic;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.utils.KJLoger;
+
+import java.util.ArrayList;
 
 
 /**
@@ -35,6 +38,8 @@ public class LiaodeFragment extends TitleBarSupportFragment {
     private EmptyLayout mEmptyLayout;
     private PullToRefreshList mPullToRefresh;
     private ListView listView;
+
+    private ArrayList<Topic> data;
 
     //模拟加载数据
     private Handler handler;

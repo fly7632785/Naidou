@@ -13,6 +13,7 @@ import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.util.UpdateManager;
 
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.utils.KJLoger;
 
 /**
  * Created by jafir on 15/9/27.
@@ -56,6 +57,8 @@ public class SettingActivity extends  TitleBarActivity{
         mTvTitle.setText("设置");
         mImgMenu.setImageBitmap(null);
 
+        KJLoger.debug("SettingActivity" + "onCreate");
+
     }
 
     @Override
@@ -66,6 +69,7 @@ public class SettingActivity extends  TitleBarActivity{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        KJLoger.debug("SettingActivity" + "onCreate");
     }
 
     @Override
@@ -111,4 +115,8 @@ public class SettingActivity extends  TitleBarActivity{
         super.onBackClick();
         this.finish();
     }
+
+
+
 }
+

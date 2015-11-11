@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
     <ImageView
         android:layout_width="match_parent"
-        android:src="@mipmap/logo_256"
-        android:scaleType="fitCenter"
+        android:src="@drawable/selector_recommend_chide"
+        android:scaleType="fitXY"
         android:id="@+id/recommend_liaode_img"
-        android:layout_height="40dp" />
+        android:layout_height="50dp" />
     <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
         android:id="@+id/recommend_liaode_recyler_pager"
         android:layout_marginTop="20dp"

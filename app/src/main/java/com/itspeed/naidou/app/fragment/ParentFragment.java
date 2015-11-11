@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.itspeed.naidou.R;
-import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.Level2Cate;
 
 import org.kymjs.kjframe.utils.DensityUtils;
@@ -25,7 +24,6 @@ public class ParentFragment extends Level1Fragment {
         super.initData();
         //初始化
         fragments = new ArrayList<>();
-        data = new ArrayList<>();
         level2Cate = new Level2Cate();
 
         //从服务解析标题菜单
@@ -33,16 +31,15 @@ public class ParentFragment extends Level1Fragment {
         titles = new String[]{"备孕","孕前","孕中","孕晚","月子"};
         level2Cate.setNames(titles);
 
-        //模拟添加数据
-        for (int i = 0;i<10;i++){
-            CookBook cookBook = new CookBook();
-            data.add(cookBook);
-        }
+
+
+
+//        getData();
 
         //动态添加二级子fragment
         for (int i=0;i < level2Cate.getCount();i++) {
             //这里的数据要做不同的处理data
-            Level2Fragment fragment = new Level2Fragment(data,aty);
+            Level2Fragment fragment = new Level2Fragment(i,aty);
             fragments.add(fragment);
         }
 
@@ -73,7 +70,6 @@ public class ParentFragment extends Level1Fragment {
 
 
     }
-
 
 
 }

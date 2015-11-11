@@ -1,8 +1,6 @@
 package com.itspeed.naidou.app.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +9,7 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.util.UIHelper;
-import com.itspeed.naidou.app.view.EmptyLayout;
 
-import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 
@@ -33,10 +29,8 @@ public class ChideFragment extends TitleBarSupportFragment{
     private ChildrenFragment childrenFragment;
 
 
-    private Handler handler;
 
-    @BindView(id = R.id.empty_layout)
-    private EmptyLayout mEmptyLayout;
+
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -60,15 +54,7 @@ public class ChideFragment extends TitleBarSupportFragment{
     @Override
     protected void initData() {
         super.initData();
-        handler =  new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                KJLoger.debug("2222222");
-                mEmptyLayout.dismiss();
-            }
-        };
-        handler.sendEmptyMessageDelayed(1, 3000);
+
     }
 
     @Override

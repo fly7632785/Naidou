@@ -3,6 +3,8 @@ package com.itspeed.naidou.app.util;
 import android.content.Context;
 import android.os.Environment;
 
+import org.kymjs.kjframe.utils.KJLoger;
+
 import java.io.File;
 import java.math.BigDecimal;
 
@@ -13,8 +15,12 @@ public class DataCleanManager {
 
     public static String getTotalCacheSize(Context context) throws Exception {
         long cacheSize = getFolderSize(context.getCacheDir());
+        KJLoger.debug(context.getCacheDir().toString());
+        KJLoger.debug(context.getExternalCacheDir().toString());
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             cacheSize += getFolderSize(context.getExternalCacheDir());
+            //SD卡下面 Naidou 文件夹里面缓存
+            cacheSize += getFolderSize(new File(Environment.getExternalStorageDirectory().toString()+"/Naidou"));
         }
         return getFormatSize(cacheSize);
     }
@@ -24,6 +30,7 @@ public class DataCleanManager {
         deleteDir(context.getCacheDir());
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             deleteDir(context.getExternalCacheDir());
+            deleteDir(new File(Environment.getExternalStorageDirectory().toString()+"/Naidou"));
         }
     }
 

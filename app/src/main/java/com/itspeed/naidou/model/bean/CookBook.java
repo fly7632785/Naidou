@@ -7,6 +7,8 @@ import java.util.ArrayList;
  */
 public class CookBook {
 
+    //id
+    private int cId;
     //标题
     private String title;
     //时间
@@ -30,6 +32,42 @@ public class CookBook {
     private String portraitUrl;
     private String userName;
 
+    private String cover720;
+
+    @Override
+    public String toString() {
+        return "CookBook{" +
+                "cId=" + cId +
+                ", title='" + title + '\'' +
+                ", time='" + time + '\'' +
+                ", type1='" + type1 + '\'' +
+                ", type2='" + type2 + '\'' +
+                ", like=" + like +
+                ", isCollect=" + isCollect +
+                ", foodMaterials=" + foodMaterials +
+                ", steps=" + steps +
+                ", productUrl='" + productUrl + '\'' +
+                ", portraitUrl='" + portraitUrl + '\'' +
+                ", userName='" + userName + '\'' +
+                ", cover720='" + cover720 + '\'' +
+                '}';
+    }
+
+    public int getcId() {
+        return cId;
+    }
+
+    public void setcId(int cId) {
+        this.cId = cId;
+    }
+
+    public String getCover720() {
+        return cover720;
+    }
+
+    public void setCover720(String cover720) {
+        this.cover720 = cover720;
+    }
 
     public String getTitle() {
         return title;

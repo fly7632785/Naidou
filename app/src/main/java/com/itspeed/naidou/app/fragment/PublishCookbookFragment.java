@@ -1,7 +1,11 @@
 package com.itspeed.naidou.app.fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -14,6 +18,7 @@ import android.widget.TextView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.PublishActivity;
+import com.itspeed.naidou.app.activity.SelectActivity;
 import com.itspeed.naidou.app.adapter.PublishPagerAdapter;
 
 import org.kymjs.kjframe.ui.SupportFragment;
@@ -34,6 +39,7 @@ import java.util.ArrayList;
 public class PublishCookbookFragment extends SupportFragment {
 
 
+    private static final int TO_SELECT_PHOTO = 1;
     private PublishActivity aty;
     private View layout;
 
@@ -81,13 +87,12 @@ public class PublishCookbookFragment extends SupportFragment {
     private TextView step4add;
     private TextView step4delete;
 
-    private AlertDialog imgDialog;
     private AlertDialog descDialog;
 
     private EditText descEdit;
     //用来取出点击的view 设置为全局 在dialog click里面调用
     private View viewDesc;
-    private View viewImg;
+    private ImageView viewImg;
 
     private boolean isFinishStep4;
 
@@ -147,7 +152,7 @@ public class PublishCookbookFragment extends SupportFragment {
             //step提示
             title.setText("" + (i + 1));
             desc.setOnClickListener(this);
-            img.setOnClickListener(this);
+            img.setOnClickListener(new MyOnClick(i+1));
         }
 
 
@@ -369,6 +374,8 @@ public class PublishCookbookFragment extends SupportFragment {
             //step4
             case R.id.step4_next:
                 //发布
+                finishPublish();
+
                 break;
             case R.id.step4_add:
                 //增加一栏
@@ -380,25 +387,11 @@ public class PublishCookbookFragment extends SupportFragment {
                     step4linear.removeViewAt(step4linear.getChildCount() - 1);
                 }
                 break;
-            case R.id.item_linear_step4_img:
-                viewImg = v;
-                imgDialog =new  AlertDialog.Builder(aty).setTitle("选择图片")
-                        .setNegativeButton("图库", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ViewInject.toast("调用图库");
-                                ((ImageView)viewImg).setImageResource(R.mipmap.img4);
-                            }
-                        }).setPositiveButton("相机", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ViewInject.toast("调用相机");
-                                ((ImageView)viewImg).setImageResource(R.mipmap.img4);
-
-                            }
-                        }).create();
-                imgDialog.show();
-                break;
+            /***这里的专门写了一个类去使用 因为需要position*/
+//            case R.id.item_linear_step4_img:
+//                viewImg = (ImageView) v;
+//                toSelectPhoto();
+//                break;
             case R.id.item_linear_step4_describe:
                 viewDesc = v;
                 descEdit = new EditText(aty);
@@ -418,11 +411,44 @@ public class PublishCookbookFragment extends SupportFragment {
                 descDialog.show();
                 break;
 
-
-
-
         }
 
+    }
+
+    /**
+     * 完成发布
+     * 这里需要检测各个步骤是否完成
+     */
+    private void finishPublish() {
+
+        /**发布需要 4步
+         * 1、选择孩子/父母
+         * 2、选择二级类别
+         * 3、标题、描述  用量和食材
+         * 4、步骤   图片和描述
+         *
+         * 检测4步是否完成
+         *
+         * 上传图片 返回图片url 上传图片是根据步骤的多少n
+         * 去相应路径下 SD卡里（img/step1.jpeg） 选择 step1-n的图片上传
+         *
+         * 所有数据 封装成json
+         * **/
+    }
+
+
+    /**
+     * 这里去跳转到 选择图片的对话框
+     * @param position 传入不同item 的img 的position
+     */
+    private void toSelectPhoto(int position) {
+        Intent intent = new Intent(aty,SelectActivity.class);
+        intent.putExtra(SelectActivity.KEY_PHOTO_PATH,"step"+position+".jpeg");
+        intent.putExtra(SelectActivity.KEY_X_RATE,16);//x比例
+        intent.putExtra(SelectActivity.KEY_Y_RATE,9);//y比例
+        intent.putExtra(SelectActivity.KEY_WIDTH,640);//宽
+        intent.putExtra(SelectActivity.KEY_HEIGHT,360);//高
+        startActivityForResult(intent,TO_SELECT_PHOTO);
     }
 
     /**
@@ -453,7 +479,7 @@ public class PublishCookbookFragment extends SupportFragment {
         TextView desc = (TextView) view.findViewById(R.id.item_linear_step4_describe);
         step.setText(""+(step4linear.getChildCount()+1));
         desc.setOnClickListener(this);
-        img.setOnClickListener(this);
+        img.setOnClickListener(new MyOnClick(step4linear.getChildCount()+1));
         step4linear.addView(view);
     }
 
@@ -503,5 +529,38 @@ public class PublishCookbookFragment extends SupportFragment {
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == TO_SELECT_PHOTO) {
+            String picPath = data.getStringExtra(SelectActivity.KEY_RETURN_PHOTO_PATH);
+            Bitmap bm = BitmapFactory.decodeFile(picPath);
+            if(bm != null && viewImg!=null) {
+                viewImg.setImageBitmap(bm);
+            }
+        }
+    }
 
+
+    /**
+     * 专门针对于步骤4里面的 图片点击
+     * 因为涉及到对于不同item里面图片点击的区分  所以传入position
+     * 在跳转到 选择图片的时候因为要传入 图片名称，故这里把position拼接到名字里面
+     * step+position.jpeg
+     *
+     */
+    private class MyOnClick implements View.OnClickListener {
+        private int position;
+        public MyOnClick(int i) {
+            this.position = i;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(v.getId() == R.id.item_linear_step4_img) {
+                viewImg = (ImageView) v;
+                toSelectPhoto(position);
+            }
+        }
+    }
 }
