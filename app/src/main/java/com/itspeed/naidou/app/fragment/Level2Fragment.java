@@ -79,7 +79,8 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         aty = getActivity();
-        layout = View.inflate(aty,R.layout.frag_level2,null);
+        layout = View.inflate(aty, R.layout.frag_level2, null);
+        KJLoger.debug(this.getClass().getSimpleName() + "inflaterView");
         return layout;
     }
 
@@ -134,7 +135,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
             public void onSuccess(String t) {
                 super.onSuccess(t);
                 Entity entity = Response.getEntity(t);
-                if(entity.isStatus()){
+                if (entity.isStatus()) {
                     ArrayList<CookBook> cbs = Response.getChideList(t);
                     if (mAdapter == null) {
                         data = cbs;
@@ -147,6 +148,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
                     mEmptyLayout.dismiss();
                 }
             }
+
             @Override
             public void onFailure(int errorNo, String strMsg) {
                 super.onFailure(errorNo, strMsg);
@@ -159,6 +161,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
                     mEmptyLayout.setErrorType(EmptyLayout.NODATA);
                 }
             }
+
             @Override
             public void onFinish() {
                 super.onFinish();
@@ -203,5 +206,41 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
         UIHelper.showChideDetail(aty);
     }
 
+
+
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        KJLoger.debug(this.getClass().getSimpleName() + "onCreate");
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        KJLoger.debug(this.getClass().getSimpleName() + "onPause");
+    }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        KJLoger.debug(this.getClass().getSimpleName() + "onStop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        KJLoger.debug(this.getClass().getSimpleName() + "onDestroy");
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        KJLoger.debug(this.getClass().getSimpleName() + "onCreateView");
+        return super.onCreateView(inflater, container, savedInstanceState);
+
+    }
 
 }
