@@ -563,4 +563,47 @@ public class PublishCookbookFragment extends SupportFragment {
             }
         }
     }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        adapter = null;
+        aty = null;
+        layout = null;
+
+        mViewPager = null;
+        steps = null;
+        adapter = null;
+
+        step1 = null;
+        parent = null;
+        child = null;
+
+        step2 = null;
+        cate = null;
+        beiyun = null;
+        yunchu = null;
+        yunzhong = null;
+        yunwan = null;
+        yuezi = null;
+
+        step3 = null;
+        step3add = null;
+        step3desc = null;
+        step3linear = null;
+        step3next = null;
+        step3title = null;
+
+        step4 = null;
+        step4linear = null;
+        step4add = null;
+        step4delete = null;
+        step4issue = null;
+        descDialog = null;
+        descEdit = null;
+
+        viewImg = null;
+        viewDesc = null;
+    }
 }

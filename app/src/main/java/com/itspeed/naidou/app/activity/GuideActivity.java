@@ -80,8 +80,16 @@ public class GuideActivity extends KJActivity {
                 container.removeView((View) object);
             }
         });
-
         mIndicator.setViewPager(viewPager, guides.length);
     }
 
+
+    @Override
+    protected void onDestroy() {
+        setContentView(R.layout.view_null);
+        viewPager = null;
+        mIndicator = null;
+        guides = null;
+        super.onDestroy();
+    }
 }

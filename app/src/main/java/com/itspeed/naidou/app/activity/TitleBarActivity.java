@@ -174,4 +174,15 @@ public abstract class TitleBarActivity extends KJActivity {
     protected void onBackClick() {}
 
 
+    @Override
+    protected void onDestroy() {
+        setContentView(R.layout.view_null);
+        mTvRight = null;
+        mTvTitle = null;
+        mImgMenu = null;
+        mRlTitleBar = null;
+        mImgBack = null;
+        super.onDestroy();
+    }
+
 }

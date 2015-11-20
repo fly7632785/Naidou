@@ -132,4 +132,17 @@ public class SimpleBackActivity extends TitleBarActivity {
                                          SimpleBackPage page) {
         postShowForResult(fragment, code, page, null);
     }
+
+
+    @Override
+    protected void onDestroy() {
+        setContentView(R.layout.view_null);
+        mImgBack = null;
+        mRlTitleBar = null;
+        mImgMenu = null;
+        mTvTitle = null;
+        mTvRight = null;
+        currentFragment = null;
+        super.onDestroy();
+    }
 }

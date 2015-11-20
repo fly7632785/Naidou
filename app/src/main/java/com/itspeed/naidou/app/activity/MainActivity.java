@@ -10,14 +10,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
-import com.itspeed.naidou.app.fragment.ChideFragment;
-import com.itspeed.naidou.app.fragment.GuangdeFragment;
-import com.itspeed.naidou.app.fragment.LiaodeFragment;
-import com.itspeed.naidou.app.fragment.RecommenFragment;
+import com.itspeed.naidou.app.fragment.main.ChideFragment;
+import com.itspeed.naidou.app.fragment.main.GuangdeFragment;
+import com.itspeed.naidou.app.fragment.main.LiaodeFragment;
+import com.itspeed.naidou.app.fragment.main.RecommenFragment;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
-import com.itspeed.naidou.app.fragment.WodeFragment;
+import com.itspeed.naidou.app.fragment.main.WodeFragment;
 
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.ui.KJActivityStack;
 import org.kymjs.kjframe.ui.SupportFragment;
 import org.kymjs.kjframe.utils.DensityUtils;
 
@@ -273,7 +274,6 @@ public class MainActivity extends TitleBarActivity {
         currentFragment.onSegmentClick(index);
     }
 
-
     /**
      * 退出应用
      */
@@ -289,7 +289,7 @@ public class MainActivity extends TitleBarActivity {
                 .setPositiveButton("退，必须退", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        aty.finish();
+                        KJActivityStack.create().appExit(aty);
                     }
                 }).create().show();
     }
@@ -303,5 +303,26 @@ public class MainActivity extends TitleBarActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        setContentView(R.layout.view_null);
+        mChide = null;
+        mGuangde = null;
+        mLiaode = null;
+        mWode = null;
+        mTvTitle = null;
+        mImgBack = null;
+        mImgMenu = null;
+        mRlTitleBar = null;
+        mMenuChide = null;
+        mMenuGuangde = null;
+        mMenuLiaode = null;
+        mRecommend = null;
+        mImgRecommend = null;
+        mMenuWode = null;
+        super.onDestroy();
     }
 }

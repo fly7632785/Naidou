@@ -102,5 +102,14 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
         }
     }
 
-
+    @Override
+    public void onDestroy() {
+        aty = null;
+        layout = null;
+        mPortrait = null;
+        mEmail = null;
+        mMotto = null;
+        mNickname = null;
+        super.onDestroy();
+    }
 }

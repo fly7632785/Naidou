@@ -77,4 +77,13 @@ public class LiaodeDetailFragment extends TitleBarSupportFragment {
         super.onBackClick();
         aty.finish();
     }
+
+    @Override
+    public void onDestroy() {
+        aty = null;
+        layout= null;
+        mListView = null;
+        mAdapter = null;
+        super.onDestroy();
+    }
 }

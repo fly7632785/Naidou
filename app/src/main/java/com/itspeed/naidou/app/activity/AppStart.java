@@ -87,25 +87,12 @@ public class AppStart extends KJActivity{
         finish();
     }
 
-//    private void isOnline() {
-//        HttpParams params = new HttpParams();
-//        KJLoger.debug("cookie" + PreferenceHelper.readString(aty, LoginActivity.TAG, "cookie"));
-//        if(PreferenceHelper.readString(aty,LoginActivity.TAG,"cookie")!=null) {
-//            params.putHeaders("cookie", PreferenceHelper.readString(aty, LoginActivity.TAG, "cookie"));
-//            mKjh.get(HOST_IsLogin, params, new HttpCallBack() {
-//                @Override
-//                public void onSuccess(String t) {
-//                    super.onSuccess(t);
-//                    KJLoger.debug("获取：" + t);
-//                    JSONObject object = JSON.parseObject(t);
-//                    boolean isSuccess = object.getBoolean("status");
-//                    KJLoger.debug("issucces:" + isSuccess);
-//                    if (!isSuccess) {
-//                        skipActivity(aty, Main.class);
-//                        AppStart.this.finish();
-//                    }
-//                }
-//            });
-//        }
-//    }
+
+    @Override
+    protected void onDestroy() {
+        setContentView(R.layout.view_null);
+        image = null;
+        mKjh = null;
+        super.onDestroy();
+    }
 }

@@ -6,9 +6,20 @@ import java.util.ArrayList;
  * Created by jafir on 15/9/14.
  */
 public class CookBook {
+    public CookBook() {
+    }
+
+    public CookBook(boolean isCollect, String title, String time, boolean isLike,int likes,int collects) {
+        this.isCollect = isCollect;
+        this.title = title;
+        this.time = time;
+        this.isLike = isLike;
+        this.likes = likes;
+        this.collects = collects;
+    }
 
     //id
-    private int cId;
+    private int cid;
     //标题
     private String title;
     //时间
@@ -18,10 +29,14 @@ public class CookBook {
     //二级属性  父母--（备孕、孕初、孕中、孕晚、月子）
     //         孩子--（4-6月、7-8月、9-12月、1岁-2岁、3-6岁）
     private String type2;
-    //赞
-    private int like;
-    //收藏
+    //点赞数
+    private int likes;
+    //是否收藏
     private boolean isCollect;
+    //收藏数
+    private int collects;
+    //是否赞
+    private boolean isLike;
     //食材
     private ArrayList<FoodMaterial> foodMaterials;
     //步骤
@@ -37,12 +52,11 @@ public class CookBook {
     @Override
     public String toString() {
         return "CookBook{" +
-                "cId=" + cId +
+                "cid=" + cid +
                 ", title='" + title + '\'' +
                 ", time='" + time + '\'' +
                 ", type1='" + type1 + '\'' +
                 ", type2='" + type2 + '\'' +
-                ", like=" + like +
                 ", isCollect=" + isCollect +
                 ", foodMaterials=" + foodMaterials +
                 ", steps=" + steps +
@@ -53,12 +67,36 @@ public class CookBook {
                 '}';
     }
 
-    public int getcId() {
-        return cId;
+    public int getCid() {
+        return cid;
     }
 
-    public void setcId(int cId) {
-        this.cId = cId;
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getCollects() {
+        return collects;
+    }
+
+    public void setCollects(int collects) {
+        this.collects = collects;
+    }
+
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setIsLike(boolean isLike) {
+        this.isLike = isLike;
     }
 
     public String getCover720() {
@@ -101,13 +139,7 @@ public class CookBook {
         this.type2 = type2;
     }
 
-    public int getLike() {
-        return like;
-    }
 
-    public void setLike(int like) {
-        this.like = like;
-    }
 
     public boolean isCollect() {
         return isCollect;

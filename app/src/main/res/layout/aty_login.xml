@@ -32,7 +32,6 @@
         android:hint="请用手机号登陆"
         android:id="@+id/login_username"
         android:textSize="16sp"
-        android:inputType="phone"
         android:textColorHint="@color/login_textcolor"
         android:textColor="@color/login_textcolor"
         android:layout_width="match_parent"

@@ -116,7 +116,24 @@ public class SettingActivity extends  TitleBarActivity{
         this.finish();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        setContentView(R.layout.view_null);
+        mTvRight = null;
+        mTvTitle = null;
+        mCache = null;
+        mRlAbout = null;
+        mRlClear = null;
+        mRlEdit = null;
+        mRlFeedback = null;
+        mRlAbout = null;
+        mRlUpdate= null;
+        mRlPassword = null;
+        mImgBack  = null;
+        mImgMenu = null;
+        mRlTitleBar = null;
+        super.onDestroy();
+    }
 
 }
 

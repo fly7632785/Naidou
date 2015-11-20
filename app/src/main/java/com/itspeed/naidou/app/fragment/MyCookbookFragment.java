@@ -75,4 +75,14 @@ public class MyCookbookFragment extends TitleBarSupportFragment{
         super.onBackClick();
         aty.finish();
     }
+
+    @Override
+    public void onDestroy() {
+        aty = null;
+        layout= null;
+        data = null;
+        mListView = null;
+        mAdapter = null;
+        super.onDestroy();
+    }
 }

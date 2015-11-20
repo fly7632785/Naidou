@@ -7,11 +7,11 @@ package com.itspeed.naidou.model.bean.JsonBean;
 public class Entity<T> {
 
     //接口操作是否成功 比如点赞是否成功等
-    private boolean isSuccess;
+    private boolean is_success;
     //访问服务器是否成功
     private boolean status;
     //如果访问失败 则返回code  比如404
-    private int errorCode;
+    private int error_code;
     //如果失败 返回的提示消息 比如 密码错误
     private String message;
 
@@ -27,13 +27,7 @@ public class Entity<T> {
     private T data;
 
 
-    public boolean isSuccess() {
-        return isSuccess;
-    }
 
-    public void setIsSuccess(boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
 
     public boolean isStatus() {
         return status;
@@ -43,12 +37,20 @@ public class Entity<T> {
         this.status = status;
     }
 
-    public int getErrorCode() {
-        return errorCode;
+    public boolean is_success() {
+        return is_success;
     }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
+    public void setIs_success(boolean is_success) {
+        this.is_success = is_success;
+    }
+
+    public int getError_code() {
+        return error_code;
+    }
+
+    public void setError_code(int error_code) {
+        this.error_code = error_code;
     }
 
     public String getMessage() {
@@ -63,9 +65,9 @@ public class Entity<T> {
     @Override
     public String toString() {
         return "Entity{" +
-                "isSuccess=" + isSuccess +
+                "is_success=" + is_success() +
                 ", status=" + status +
-                ", errorCode=" + errorCode +
+                ", error_code=" + error_code +
                 ", message='" + message + '\'' +
                 ", data=" + data +
                 '}';

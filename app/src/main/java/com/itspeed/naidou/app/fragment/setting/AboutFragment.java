@@ -48,4 +48,12 @@ public class AboutFragment extends TitleBarSupportFragment{
         super.onBackClick();
         aty.finish();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        layout = null;
+        aty = null;
+    }
+
 }

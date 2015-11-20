@@ -9,7 +9,7 @@
         android:name=".app.AppContext"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".app.activity.MainActivity"
+            android:name=".app.activity.LoginActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.activity.AppStart"
+        <activity android:name=".app.activity.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:configChanges="orientation|screenSize"
@@ -37,7 +37,7 @@
         <activity android:name=".app.activity.SimpleBackActivity"
             />
         <activity android:name=".app.activity.PublishActivity"/>
-        <activity android:name=".app.activity.LoginActivity"
+        <activity android:name=".app.activity.AppStart"
             android:launchMode="singleTask"
             />
         <activity android:name=".app.activity.RegisterActivity"/>

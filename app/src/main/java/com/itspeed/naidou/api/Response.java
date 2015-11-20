@@ -7,6 +7,8 @@ import com.itspeed.naidou.model.bean.JsonBean.Entity;
 import com.itspeed.naidou.model.bean.JsonBean.TopicListData;
 import com.itspeed.naidou.model.bean.Topic;
 
+import org.kymjs.kjframe.utils.KJLoger;
+
 import java.util.ArrayList;
 
 /**
@@ -37,11 +39,11 @@ public class Response {
     }
     //获取返回操作数据的结果
     public static Boolean getSuccess(String string){
-        return JSON.parseObject(string,Entity.class).isSuccess();
+        return JSON.parseObject(string,Entity.class).is_success();
     }
     //获取返回错误码
     public static int getErrorCode(String string){
-        return JSON.parseObject(string,Entity.class).getErrorCode();
+        return JSON.parseObject(string,Entity.class).getError_code();
     }
 
     /**
@@ -52,6 +54,7 @@ public class Response {
     public static ArrayList<CookBook> getChideList(String data){
         Entity cookBookEntity = JSON.parseObject(data, Entity.class);
         CookbookListData listData = JSON.parseObject(cookBookEntity.getData().toString(), CookbookListData.class);
+        KJLoger.debug("CookbookListData："+listData.toString());
         return listData.getList();
     }
 

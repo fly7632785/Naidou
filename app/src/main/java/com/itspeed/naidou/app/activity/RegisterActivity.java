@@ -1,16 +1,23 @@
 package com.itspeed.naidou.app.activity;
 
+import android.app.ProgressDialog;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.api.NaidouApi;
+import com.itspeed.naidou.api.Response;
+import com.itspeed.naidou.app.util.CryptoUtil;
 import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.model.bean.JsonBean.Entity;
 
 import org.kymjs.kjframe.KJActivity;
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
+import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.PreferenceHelper;
 import org.kymjs.kjframe.utils.SystemTool;
 
@@ -40,6 +47,7 @@ public class RegisterActivity extends KJActivity {
     private String password;
     private String confirmPassword;
     private String verify;
+    private ProgressDialog dialog;
 
 
     @Override
@@ -50,6 +58,14 @@ public class RegisterActivity extends KJActivity {
         }
     }
 
+    @Override
+    public void initData() {
+        super.initData();
+        dialog =new ProgressDialog(aty);
+        dialog.setMessage("正在注册...");
+        dialog.setCanceledOnTouchOutside(false);
+
+    }
 
     @Override
     public void widgetClick(View v) {
@@ -69,21 +85,69 @@ public class RegisterActivity extends KJActivity {
 
 
     private void register(){
+
+
         phone = editPhone.getText().toString().trim();
         password = editPassword.getText().toString().trim();
         confirmPassword = editConfirmPassword.getText().toString().trim();
         verify = editVerify.getText().toString().trim();
-
         if(password.equals(confirmPassword)) {
-            PreferenceHelper.clean(aty, LoginActivity.TAG);
-            PreferenceHelper.write(aty, LoginActivity.TAG, "login_account", phone);
-            PreferenceHelper.write(aty, LoginActivity.TAG, "login_password", password);
-            UIHelper.showLogin(aty);
-            aty.finish();
+            NaidouApi.register(phone,password,verify, new HttpCallBack() {
+
+                @Override
+                public void onPreStart() {
+                    super.onPreStart();
+                    dialog.show();
+                }
+
+                @Override
+                public void onSuccess(String t) {
+                    super.onSuccess(t);
+                    KJLoger.debug("注册：" + t);
+                    Entity entity = Response.getEntity(t);
+                    if (entity.is_success()) {
+                        ViewInject.toast("注册成功");
+                        writeToSP();
+                        UIHelper.showLogin(aty);
+                        aty.finish();
+                    }else {
+                        ViewInject.toast("注册失败");
+                    }
+                    dialog.dismiss();
+                }
+            });
         }else {
             ViewInject.toast("密码不一致");
         }
 
     }
 
+    private void writeToSP() {
+        PreferenceHelper.clean(aty, LoginActivity.TAG);
+        PreferenceHelper.write(aty, LoginActivity.TAG, "login_account", phone);
+        //加密密码
+        password = CryptoUtil.encrypto(password);
+        PreferenceHelper.write(aty, LoginActivity.TAG, "login_password", password);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        setContentView(R.layout.view_null);
+        phone = null;
+        password = null;
+        confirmPassword = null;
+        verify =null;
+        dialog = null;
+
+        back = null;
+        getVerify = null;
+        signup = null;
+        editConfirmPassword = null;
+        editPassword = null;
+        editPhone = null;
+        editVerify = null;
+
+        super.onDestroy();
+    }
 }

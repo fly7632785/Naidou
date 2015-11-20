@@ -4,6 +4,7 @@ import org.kymjs.kjframe.KJHttp;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.http.HttpConfig;
 import org.kymjs.kjframe.http.HttpParams;
+import org.kymjs.kjframe.utils.KJLoger;
 
 import java.io.File;
 
@@ -13,7 +14,7 @@ import java.io.File;
  */
 public class NaidouApi {
 
-    private static String baseHost = "";
+    private static String baseHost = "http://139.129.29.84/";
 
     /**
      * 登录接口
@@ -22,12 +23,12 @@ public class NaidouApi {
      * @param callBack
      */
     public static void login(String name,String password,HttpCallBack callBack){
-        String url = "";
+        String url = "api/loginCheck";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.put("_name",name);
+        params.put("_username",name);
         params.put("_password",password);
         kjh.post(baseHost+url,params,callBack);
     }
@@ -56,14 +57,14 @@ public class NaidouApi {
      * @param callBack
      */
     public static void register(String phone,String password,String verify,HttpCallBack callBack){
-        String url = "";
+        String url = "api/doRegister";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.put("_phone",phone);
+        params.put("_username",phone);
         params.put("_password",password);
-        params.put("_verify",verify);
+//        params.put("_verify",verify);
         kjh.post(baseHost+url,params,callBack);
     }
 
@@ -78,8 +79,7 @@ public class NaidouApi {
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.put("_uid",uid);
-        params.putHeaders("cookie", config.getCookieString());
+        params.put("_uid", uid);
         kjh.post(baseHost+url,params,callBack);
     }
 
@@ -104,6 +104,7 @@ public class NaidouApi {
         String url = "";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 60;//缓存1小时
+
         KJHttp kjh = new KJHttp(config);
         kjh.get(baseHost + url, callBack);
     }
@@ -113,15 +114,16 @@ public class NaidouApi {
      * @param callBack
      * @param cate 1:备孕 孕初 孕中 孕晚 月子 5:4-6月 7-8 9-12 2-3 4-6
      */
-    public  static  void getChideList(int cate,int page,HttpCallBack callBack){
-        String url = "";
+    public  static  void getChideList(String cate,int page,HttpCallBack callBack){
+        String url = "api/listCookbook";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 60;//缓存1小时
         KJHttp kjh = new KJHttp(config);
+        KJLoger.debug("cookie:"+HttpConfig.sCookie);
         HttpParams params = new HttpParams();
         params.put("_cate", cate);
         params.put("_page",page);
-        kjh.post(baseHost + url, params, callBack);
+        kjh.get(baseHost + url, params, callBack);
     }
 
     /**
@@ -130,8 +132,7 @@ public class NaidouApi {
     public  static  String  getChideListCache(){
         String url = "";
         KJHttp kjh = new KJHttp();
-        String cache = kjh.getStringCache(url);
-        return cache;
+        return kjh.getStringCache(url);
     }
 
 
@@ -224,7 +225,7 @@ public class NaidouApi {
      * 吃的收藏
      * @param callBack
      */
-    public  static  void doCollectForLiaode(String uid,String cid,HttpCallBack callBack){
+    public  static  void doCollectForChide(String uid,String cid,HttpCallBack callBack){
         String url = "";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;

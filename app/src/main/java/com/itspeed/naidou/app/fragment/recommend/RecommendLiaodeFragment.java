@@ -157,4 +157,17 @@ public class RecommendLiaodeFragment extends SupportFragment{
             }
         });
     }
+
+
+    @Override
+    public void onDestroy() {
+        aty = null;
+        layout= null;
+        mData = null;
+        mHandler = null;
+        mImageView = null;
+        mIndicator = null;
+        mRecyclerView = null;
+        super.onDestroy();
+    }
 }

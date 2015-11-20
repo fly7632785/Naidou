@@ -27,6 +27,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="8dp"
         android:textSize="17sp"
+        android:paddingBottom="3dp"
         android:text="小鸡炖蘑菇"
         android:textColor="#ffffff" />
 
@@ -38,6 +39,7 @@
         android:layout_marginLeft="8dp"
         android:layout_toRightOf="@+id/item_list_cookbook_title"
         android:text="1小时前"
+        android:paddingBottom="4dp"
         android:textColor="#f5f5f5"
         android:textSize="11sp" />
 
@@ -53,8 +55,9 @@
 
         <ImageView
             android:id="@+id/item_list_cookbook_islike"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:padding="6dp"
+            android:layout_height="30dp"
             android:layout_marginRight="4dp"
             android:src="@drawable/selector_chide_like"
             />
@@ -64,6 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="123"
+            android:layout_marginBottom="3dp"
             android:textSize="13sp"
             android:textColor="#ffffff"
             android:layout_marginRight="15dp"
@@ -71,8 +75,9 @@
 
         <ImageView
             android:id="@+id/item_list_cookbook_iscollect"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="6dp"
             android:layout_marginRight="4dp"
             android:src="@drawable/selector_chide_collect" />
 
@@ -80,6 +85,7 @@
             android:id="@+id/item_list_cookbook_collects"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:text="123"
             android:textSize="13sp"
             android:textColor="#ffffff"

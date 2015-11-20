@@ -166,6 +166,11 @@ public abstract class TitleBarSupportFragment extends SupportFragment {
     }
 
 
+    @Override
+    public void onDestroy() {
+        currentSupportFragment  = null;
+        super.onDestroy();
+    }
 
 
 }

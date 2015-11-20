@@ -73,4 +73,15 @@ public class MyCollectFragment extends TitleBarSupportFragment{
         super.onBackClick();
         aty.finish();
     }
+
+
+    @Override
+    public void onDestroy() {
+        aty = null;
+        layout= null;
+        mAdapter = null;
+        mGridView = null;
+        data = null;
+        super.onDestroy();
+    }
 }

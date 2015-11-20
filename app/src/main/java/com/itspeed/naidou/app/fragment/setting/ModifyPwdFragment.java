@@ -61,4 +61,11 @@ public class ModifyPwdFragment extends TitleBarSupportFragment{
         super.onBackClick();
         aty.finish();
     }
+    @Override
+    public void onDestroy() {
+        aty = null;
+        layout= null;
+        confirm = null;
+        super.onDestroy();
+    }
 }

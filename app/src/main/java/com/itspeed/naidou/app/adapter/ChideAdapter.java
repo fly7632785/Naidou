@@ -6,18 +6,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.api.NaidouApi;
+import com.itspeed.naidou.app.AppContext;
+import com.itspeed.naidou.app.util.TimeUtil;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.squareup.picasso.Picasso;
 
-import java.util.Random;
+import org.kymjs.kjframe.http.HttpCallBack;
+import org.kymjs.kjframe.ui.ViewInject;
+import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.StringUtils;
 
 /**
  * Created by jafir on 15/9/21.
  * 吃的 适配器
  */
-public class ChideAdapter extends ListBaseAdapter<CookBook> implements View.OnClickListener {
+public class ChideAdapter extends ListBaseAdapter<CookBook> {
 
     private ViewHolder holder;
+    private boolean isLike;
+    private boolean isCollect;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -31,41 +39,25 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> implements View.OnCl
             holder.time = (TextView) convertView.findViewById(R.id.item_list_cookbook_time);
             holder.likes = (TextView) convertView.findViewById(R.id.item_list_cookbook_likes);
             holder.collects = (TextView) convertView.findViewById(R.id.item_list_cookbook_collects);
-            holder.isCollect.setOnClickListener(this);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        holder.isCollect.setOnClickListener(new MyClick(position));
+        holder.isLike.setOnClickListener(new MyClick(position));
+
         CookBook cb = mDatas.get(position);
-        Random r = new Random();
-        Picasso.with(parent.getContext()).load(img[position* r.nextInt(333) % img.length]).into(holder.img);
-        holder.title.setText("我是小鸡炖蘑菇");
-        holder.time.setText("1小时前");
-        holder.likes.setText("12");
-        holder.collects.setText("234");
-        holder.isCollect.setSelected(isCollect);
-        holder.isCollect.setSelected(isLike);
+        Picasso.with(parent.getContext()).load(img[position % img.length]).into(holder.img);
+        holder.title.setText(cb.getTitle());
+        holder.time.setText(StringUtils.friendlyTime(TimeUtil.msToDate(cb.getTime())));
+        holder.likes.setText(cb.getLikes()+"");
+        holder.collects.setText(cb.getCollects()+"");
+        holder.isCollect.setSelected(cb.isCollect());
+        holder.isLike.setSelected(cb.isLike());
         return convertView;
     }
 
 
-    private boolean isLike;
-    private boolean isCollect;
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.item_list_cookbook_iscollect:
-                holder.isCollect.setSelected(isCollect);
-                isCollect = !isCollect;
-                break;
-            case R.id.item_list_cookbook_islike:
-                holder.isLike.setSelected(isLike);
-                isLike = !isLike;
-                break;
-
-        }
-    }
 
     class ViewHolder {
         ImageView img;
@@ -85,5 +77,110 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> implements View.OnCl
             "http://pic1a.nipic.com/2008-10-20/2008102095428911_2.jpg",
             "http://pica.nipic.com/2008-02-25/200822512913645_2.jpg"
     };
+
+    private class MyClick implements View.OnClickListener{
+        private int position;
+
+        public MyClick(int position) {
+            this.position = position;
+        }
+
+        @Override
+        public void onClick(View v) {
+            ImageView img = (ImageView) v;
+            CookBook cb = mDatas.get(position);
+            isCollect = cb.isCollect();
+            isLike = cb.isLike();
+            String cid =String.valueOf(mDatas.get(position).getCid());
+            switch (v.getId()) {
+                case R.id.item_list_cookbook_iscollect:
+                    isCollect = !isCollect;
+                    //本地改变状态
+                    mDatas.get(position).setIsCollect(isCollect);
+
+                    //网络数据改变状态
+                    //请求点赞或者取消点赞
+                    if(isCollect){
+                        doCollect(cid);
+                        //点赞数改变
+                        mDatas.get(position).setCollects(cb.getCollects() + 1);
+                    }else {
+                        cancelCollect(cid);
+                        mDatas.get(position).setCollects(cb.getCollects() - 1);
+                    }
+                    //点击之后刷新
+                    notifyDataSetChanged();
+                    break;
+                case R.id.item_list_cookbook_islike:
+                    isLike = !isLike;
+                    //本地改变状态
+                    mDatas.get(position).setIsLike(isLike);
+                    //网络数据改变状态
+                    //请求点赞或者取消点赞
+                    if(isLike){
+                        doLike(cid);
+                        //点赞数改变
+                        mDatas.get(position).setLikes(cb.getLikes() + 1);
+                    }else {
+                        cancelLike(cid);
+                        //点赞数改变
+                        mDatas.get(position).setLikes(cb.getLikes() - 1);
+                    }
+                    notifyDataSetChanged();
+                    break;
+            }
+        }
+    }
+
+    private void doCollect(String cid) {
+        NaidouApi.doCollectForChide(String.valueOf(AppContext.UID), cid, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+//                if(Response.getSuccess(t)){
+                    ViewInject.toast("收藏成功");
+//                }
+            }
+        });
+    }
+
+    private void cancelCollect(String cid) {
+        NaidouApi.cancelCollectForChide(String.valueOf(AppContext.UID), cid, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("点赞："+t);
+//                if (Response.getSuccess(t)) {
+                    ViewInject.toast("取消收藏成功");
+//                }
+            }
+        });
+    }
+
+    private void doLike(String cid) {
+        NaidouApi.doLikeForChide(String.valueOf(AppContext.UID), cid, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+//                if (Response.getSuccess(t)) {
+                    ViewInject.toast("点赞成功");
+//                }
+            }
+        });
+
+    }
+
+    private void cancelLike(String cid) {
+        NaidouApi.cancelLikeForChide(String.valueOf(AppContext.UID), cid, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+//                if (Response.getSuccess(t)) {
+                    ViewInject.toast("取消点赞成功");
+//                }
+            }
+        });
+    }
+
 
 }

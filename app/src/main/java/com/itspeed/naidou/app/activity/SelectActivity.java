@@ -493,4 +493,13 @@ public class SelectActivity extends KJActivity {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 
+
+    @Override
+    protected void onDestroy() {
+        setContentView(R.layout.view_null);
+        btn_cancel = null;
+        btn_pick_photo = null;
+        btn_take_photo = null;
+        super.onDestroy();
+    }
 }

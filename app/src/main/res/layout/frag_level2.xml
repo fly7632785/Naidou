@@ -12,11 +12,11 @@
 
     </com.itspeed.naidou.app.view.PullToRefreshList>
 
-    <com.itspeed.naidou.app.view.EmptyLayout
-        android:layout_width="match_parent"
-        android:id="@+id/empty_layout"
-        android:layout_height="match_parent">
+    <!--<com.itspeed.naidou.app.view.EmptyLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:id="@+id/empty_layout"-->
+        <!--android:layout_height="match_parent">-->
 
-    </com.itspeed.naidou.app.view.EmptyLayout>
+    <!--</com.itspeed.naidou.app.view.EmptyLayout>-->
 
 </RelativeLayout>

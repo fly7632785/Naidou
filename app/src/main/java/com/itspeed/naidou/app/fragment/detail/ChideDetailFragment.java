@@ -65,4 +65,12 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         super.onBackClick();
         aty.finish();
     }
+
+    @Override
+    public void onDestroy() {
+        aty = null;
+        layout= null;
+        mWebview = null;
+        super.onDestroy();
+    }
 }

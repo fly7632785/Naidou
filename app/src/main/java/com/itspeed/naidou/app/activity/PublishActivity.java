@@ -50,4 +50,12 @@ public class PublishActivity extends KJActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    protected void onDestroy() {
+        setContentView(R.layout.view_null);
+        publishCookbookFragment = null;
+        mView = null;
+        super.onDestroy();
+    }
 }

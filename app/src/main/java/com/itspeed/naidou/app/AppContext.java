@@ -13,6 +13,8 @@ public class AppContext extends Application {
 
     public static int screenH;
     public static int screenW;
+    public static int UID;
+    public static String CryptoKey="jafir7632785";
 
     @Override
     public void onCreate() {
