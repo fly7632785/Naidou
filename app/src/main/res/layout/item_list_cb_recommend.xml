@@ -6,7 +6,7 @@
     
     <ImageView
         android:layout_width="330dp"
-        android:src="@mipmap/img3"
+        android:src="@mipmap/img1"
         android:id="@+id/item_list_cb_recommend_img"
         android:scaleType="fitXY"
         android:layout_height="400dp" />

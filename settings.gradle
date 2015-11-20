@@ -1,2 +1,2 @@
-include ':app', ':mylibrary', ':SegmentControl', ':imgChoser'
+include ':app', ':mylibrary', ':SegmentControl'
 

@@ -23,16 +23,6 @@
             android:configChanges="orientation|screenSize"
             />
 
-        <activity android:name="com.ns.mutiphotochoser.GalleryActivity"
-            android:theme="@style/ChoserTheme">
-
-            <intent-filter>
-                <!--***改成应用的包名-->
-                <action android:name="com.itspeed.naidou.action.CHOSE_PHOTOS" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".app.activity.SettingActivity"/>
         <activity android:name=".app.activity.SimpleBackActivity"
             />

@@ -31,7 +31,7 @@
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="match_parent"-->
             <!--android:scaleType="fitXY"-->
-            <!--android:src="@mipmap/img3" />-->
+            <!--android:src="@mipmap/img1" />-->
 
         <!--<com.itspeed.naidou.app.view.switch3d.Image3DView-->
             <!--android:id="@+id/image4"-->

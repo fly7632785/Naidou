@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
@@ -43,10 +44,16 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         super.initData();
         mWebview = (WebView) layout.findViewById(R.id.chide_detail_webview);
         WebSettings wSet = mWebview.getSettings();
+        mWebview.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
         wSet.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN); //设置自适应
         wSet.setJavaScriptEnabled(true);
-        mWebview.loadUrl("file:///android_asset/pages/eating/cbook-1.html");
-//        mWebview.loadUrl("http://wap.baidu.com");
+        mWebview.loadUrl("http://www.baidu.com");
 
     }
 

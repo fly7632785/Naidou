@@ -33,7 +33,7 @@ public class MyCollectAdapter extends ListBaseAdapter<CookBook> {
             holder = (ViewHolder) convertView.getTag();
         }
         CookBook cb = mDatas.get(position);
-        Picasso.with(parent.getContext()).load(RecommendRecyclerAdapterForCb.img[position% RecommendRecyclerAdapterForCb.img.length]).placeholder(R.mipmap.img1).into(holder.img);
+        Picasso.with(parent.getContext()).load(RecommendRecyclerAdapterForCb.img[position% RecommendRecyclerAdapterForCb.img.length]).into(holder.img);
         holder.title.setText("我是小鸡炖蘑菇");
         holder.likes.setText("12");
         holder.isLike.setSelected(true);

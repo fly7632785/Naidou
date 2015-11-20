@@ -31,7 +31,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':mylibrary')
     compile project(':SegmentControl')
-    compile 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
-    compile project(':imgChoser')
 }
 

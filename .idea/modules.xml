@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/Naidou.iml" filepath="$PROJECT_DIR$/Naidou.iml" />
       <module fileurl="file://$PROJECT_DIR$/SegmentControl/SegmentControl.iml" filepath="$PROJECT_DIR$/SegmentControl/SegmentControl.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/imgChoser/imgChoser.iml" filepath="$PROJECT_DIR$/imgChoser/imgChoser.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
     </modules>
   </component>

@@ -116,7 +116,7 @@ public class Step4GridViewAdapter extends BaseAdapter {
             switch (v.getId()) {
                 case R.id.item_gridview_step4_img:
                     //选择图片（拍照 或者 相册）
-                    list.get(position).setImgId(R.mipmap.img4);
+                    list.get(position).setImgId(R.mipmap.img1);
                     notifyDataSetChanged();
                     break;
 
