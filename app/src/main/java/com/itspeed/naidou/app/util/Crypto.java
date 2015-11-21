@@ -9,6 +9,9 @@ import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Created by jafir on 15/11/20.
+ *
+ * AES加密算法
+ *
  */
 public class Crypto {
 

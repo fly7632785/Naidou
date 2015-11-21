@@ -7,6 +7,8 @@ import android.widget.ImageView;
 
 /**
  * Created by jafir on 15/7/8.
+ * 释放资源类
+ *
  */
 public class ReleaseResource {
     public static void releaseImageViewResouce(ImageView imageView) {

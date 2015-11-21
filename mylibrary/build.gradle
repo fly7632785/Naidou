@@ -18,7 +18,11 @@ android {
     }
 }
 
-
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -31,4 +35,5 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.flyco.pageindicator:FlycoPageIndicator_Lib:1.0.0@aar'
     compile files('libs/fastjson-1.2.5.jar')
+    compile 'com.github.panwrona:DownloadProgressBar:1.1'
 }

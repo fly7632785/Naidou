@@ -7,13 +7,13 @@ import com.itspeed.naidou.app.activity.LoginActivity;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.PublishActivity;
 import com.itspeed.naidou.app.activity.RegisterActivity;
-import com.itspeed.naidou.app.activity.SelectActivity;
 import com.itspeed.naidou.app.activity.SettingActivity;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.domain.SimpleBackPage;
 
 /**
  * Created by jafir on 15/9/27.
+ * 跳转管理类
  */
 public class UIHelper {
     /**

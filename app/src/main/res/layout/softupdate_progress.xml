@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:dpv="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:id="@+id/update_progress"
-        android:layout_gravity="center_horizontal"
-        android:max="100"
-        android:indeterminate="false"
-        android:progress="0" />
+    <!--<ProgressBar-->
+        <!--style="?android:attr/progressBarStyleHorizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:id="@+id/update_progress"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:max="100"-->
+        <!--android:indeterminate="false"-->
+        <!--android:progress="0" />-->
+
+    <!--<is.arontibo.library.ElasticDownloadView-->
+        <!--android:id="@+id/elastic_download_view"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"/>-->
+
+
+    <com.panwrona.downloadprogressbar.library.DownloadProgressBar
+       android:id="@+id/download_view"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        dpv:circleBackgroundColor="@color/topic"
+        dpv:progressBackgroundColor="@color/topic"
+        dpv:progressColor="@color/topic_red"
+        dpv:drawingColor="@color/topic_red"
+        dpv:progressDuration="2000"
+        dpv:resultDuration="5000"
+        dpv:circleRadius="48dp"
+        dpv:lineWidth="3dp"
+        dpv:strokeWidth="3dp"
+        dpv:overshootValue="2.5"
+         />
+
+
 </LinearLayout>

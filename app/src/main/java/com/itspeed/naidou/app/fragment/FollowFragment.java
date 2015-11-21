@@ -32,6 +32,7 @@ public class FollowFragment extends TitleBarSupportFragment{
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         layout = View.inflate(aty, R.layout.frag_mycookbook,null);
+
         return layout;
     }
 

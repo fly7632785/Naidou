@@ -68,6 +68,7 @@ public class LayoutUtils {
         SystemBarTintManager.SystemBarConfig config = manager.getConfig();
 
         Class clz = rl.getParent().getClass();
+        String i;
 
         if(clz == LinearLayout.class){
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
@@ -109,6 +110,7 @@ public class LayoutUtils {
         Class clz = rl.getParent().getClass();
 
         if(clz == LinearLayout.class){
+            //这里不同 这里是1  是一个间隔
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     DensityUtils.dip2px(context, 1));
             lp.setMargins(0, config.getPixelInsetTop(false), 0, 0);

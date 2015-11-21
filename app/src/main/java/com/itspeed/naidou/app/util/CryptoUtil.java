@@ -4,6 +4,11 @@ import com.itspeed.naidou.app.AppContext;
 
 /**
  * Created by jafir on 15/11/20.
+ *
+ * 加密方法 工具类
+ *
+ * 包含AES加密算法
+ *
  */
 public class CryptoUtil {
 

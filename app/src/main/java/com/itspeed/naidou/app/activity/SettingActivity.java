@@ -102,7 +102,7 @@ public class SettingActivity extends  TitleBarActivity{
 
             case  R.id.setting_update:
                 UpdateManager manager = new UpdateManager(aty);
-                manager.start();
+                manager.checkUpdate();
                 break;
             case R.id.setting_login_out:
                 this.finish();

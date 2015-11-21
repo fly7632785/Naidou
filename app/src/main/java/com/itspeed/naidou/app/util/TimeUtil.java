@@ -5,10 +5,13 @@ import java.util.Date;
 
 /**
  * Created by jafir on 15/11/18.
+ * 时间工具类  毫秒到 date时间
+ * 用时间戳转化为date时间
  */
 public class TimeUtil {
     public static String msToDate(String ms){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //这里要乘以1000
         String hms = formatter.format(new Date(Long.valueOf(ms )* 1000));
         return hms;
     }
