@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
+import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
@@ -98,10 +99,22 @@ public class WodeFragment extends TitleBarSupportFragment {
         setMenuImage(R.drawable.selector_title_setting);
     }
 
-
     @Override
     protected void initData() {
         super.initData();
+
+        //从全局user里面获取 显示信息
+        setData(AppContext.user);
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        requestData();
+    }
+
+    public void requestData(){
         NaidouApi.getMyInfo(new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
@@ -113,6 +126,7 @@ public class WodeFragment extends TitleBarSupportFragment {
                 }
             }
         });
+
 
         NaidouApi.getMyFollow(new HttpCallBack() {
             @Override
@@ -129,16 +143,24 @@ public class WodeFragment extends TitleBarSupportFragment {
                 KJLoger.debug("getUserInfo:" + t);
             }
         });
-
     }
 
+
+    /**
+     * 设置数据显示数据
+     * @param user
+     */
     private void setData(User user) {
-        KJLoger.debug(""+user.getAvatar());
-        Picasso.with(aty).load("http://139.129.29.84/"+user.getAvatar()).into(mAvatar);
-        mCoins.setText(user.getCoins()+"");
-        mFollow.setText("12");
-        mNickname.setText(user.getNickname());
-        mMotto.setText(user.getMotto());
+        if(user != null) {
+            //设置全局user信息
+            AppContext.user = user;
+            //显示数据
+            Picasso.with(aty).load("http://139.129.29.84/" + user.getAvatar()).placeholder(R.mipmap.portrait).into(mAvatar);
+            mCoins.setText(user.getCoins() + "");
+            mFollow.setText(user.getFollows()+"");
+            mNickname.setText(user.getNickname());
+            mMotto.setText(user.getMotto());
+        }
     }
 
 

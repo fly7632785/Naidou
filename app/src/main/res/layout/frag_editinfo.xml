@@ -21,7 +21,6 @@
         <org.kymjs.kjframe.widget.RoundImageView
             android:layout_width="50dp"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/portrait"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:layout_height="50dp"
@@ -42,9 +41,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:layout_width="wrap_content"
             style="@style/editinfo_edit"
-            android:text="Jafir"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
@@ -66,9 +63,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:layout_width="wrap_content"
             style="@style/editinfo_edit"
-            android:text="522648467@qq.com"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
@@ -92,11 +87,9 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:layout_width="wrap_content"
             style="@style/editinfo_edit"
             android:maxWidth="200dp"
             android:layout_alignTop="@+id/text_motto"
-            android:text="What can't kill you makes you stronger"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
             android:layout_height="wrap_content"

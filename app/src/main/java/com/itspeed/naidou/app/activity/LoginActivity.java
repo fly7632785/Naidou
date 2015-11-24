@@ -8,19 +8,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.util.CryptoUtil;
 import com.itspeed.naidou.app.util.UIHelper;
-import com.itspeed.naidou.model.bean.JsonBean.Entity;
 
 import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.http.HttpCallBack;
-import org.kymjs.kjframe.http.HttpConfig;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
@@ -81,7 +77,7 @@ public class LoginActivity extends KJActivity {
         //解密
         password = CryptoUtil.decrypto(password);
 
-        KJLoger.debug("zhanghao:"+name+"mima:"+password);
+        KJLoger.debug("zhanghao:" + name + "mima:" + password);
         if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(password)){
             editName.setText(name);
             editPassword.setText(password);
@@ -120,27 +116,16 @@ public class LoginActivity extends KJActivity {
             return false;
         } else {
             NaidouApi.login(name, password, new HttpCallBack() {
-
                 @Override
                 public void onSuccess(Map<String, String> headers, byte[] t) {
                     super.onSuccess(headers, t);
                     String s = new String(t);
                     KJLoger.debug(s);
-                    Entity entity = Response.getEntity(s);
                     //提示登录情况
-                    ViewInject.toast(entity.getMessage());
-                    if (entity.is_success()) {
-                        //设置cookie session
-                        HttpConfig.sCookie = headers.get("Set-Cookie");
-                        //设置用户ID
-                        //继续解析data 然后获取到USERID 设置到全局变量去 方便以后使用
-                        JSONObject object = JSON.parseObject(entity.getData().toString());
-                        int userID = object.getInteger("userId");
-                        String token = object.getString("apiKey");
-                        //保存token 和 用户ID
-                        AppContext.UID = userID;
-                        AppContext.TOKEN = token;
-                        KJLoger.debug("cookie：" + HttpConfig.sCookie);
+                    ViewInject.toast(Response.getMessage(s));
+                    if (Response.getSuccess(s)) {
+                        //保存token 和 用户信息
+                        writeToApplication(s);
                         //账号密码写入 SP
                         writeToSP();
                         //跳转
@@ -173,6 +158,18 @@ public class LoginActivity extends KJActivity {
                 }
             });
             return false;
+        }
+    }
+
+    /**
+     * 写入Application
+     * @param t
+     */
+    private void writeToApplication(String t) {
+        if(t != null) {
+            AppContext.user = Response.getUserInfo(t);
+            AppContext.TOKEN = AppContext.user.getApiKey();
+            KJLoger.debug("user:"+AppContext.user.toString());
         }
     }
 

@@ -12,10 +12,52 @@ public class User {
     private String motto;
     //用户头像url
     private String avatar;
-
     //奶豆数
     private int coins;
+    //token
+    private String apiKey;
+    //关注数
+    private int follows;
+    //邮箱
+    private String email;
 
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid='" + uid + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", motto='" + motto + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", coins=" + coins +
+                ", apiKey='" + apiKey + '\'' +
+                '}';
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public int getFollows() {
+        return follows;
+    }
+
+    public void setFollows(int follows) {
+        this.follows = follows;
+    }
+
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
 
     public String getUid() {
         return uid;
@@ -56,4 +98,6 @@ public class User {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+
 }
