@@ -4,15 +4,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.api.NaidouApi;
+import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.model.bean.User;
+import com.squareup.picasso.Picasso;
 
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.utils.KJLoger;
 
 /**
  * Created by jafir on 15/9/1.
@@ -34,6 +42,16 @@ public class WodeFragment extends TitleBarSupportFragment {
     @BindView(id = R.id.wode_follow_layout,click = true)
     private LinearLayout ly_follow;
 
+    @BindView(id = R.id.wode_portrait,click = true)
+    private ImageView mAvatar;
+    @BindView(id = R.id.wode_count_of_naidou)
+    private TextView mCoins;
+    @BindView(id = R.id.wode_count_of_follow)
+    private TextView mFollow;
+    @BindView(id = R.id.wode_nickname)
+    private TextView mNickname;
+    @BindView(id = R.id.wode_motto)
+    private TextView mMotto;
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -63,6 +81,10 @@ public class WodeFragment extends TitleBarSupportFragment {
             case R.id.wode_follow_layout:
                 UIHelper.showFollow(aty);
                 break;
+
+            case R.id.wode_portrait:
+                UIHelper.showEditInfo(aty);
+                break;
         }
 
     }
@@ -80,9 +102,43 @@ public class WodeFragment extends TitleBarSupportFragment {
     @Override
     protected void initData() {
         super.initData();
+        NaidouApi.getMyInfo(new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("getmyInfo:" + t);
+                if (Response.getSuccess(t)) {
+                    User user = Response.getUserInfo(t);
+                    setData(user);
+                }
+            }
+        });
 
+        NaidouApi.getMyFollow(new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("getMyFollow:" + t);
+            }
+        });
 
+        NaidouApi.getUserInfo("1", new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("getUserInfo:" + t);
+            }
+        });
 
+    }
+
+    private void setData(User user) {
+        KJLoger.debug(""+user.getAvatar());
+        Picasso.with(aty).load("http://139.129.29.84/"+user.getAvatar()).into(mAvatar);
+        mCoins.setText(user.getCoins()+"");
+        mFollow.setText("12");
+        mNickname.setText(user.getNickname());
+        mMotto.setText(user.getMotto());
     }
 
 

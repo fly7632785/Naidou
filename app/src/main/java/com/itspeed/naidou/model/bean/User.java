@@ -5,7 +5,7 @@ package com.itspeed.naidou.model.bean;
  */
 public class User {
     //用户id
-    private String uId;
+    private String uid;
     //用户昵称
     private String nickname;
     //用户个性签名
@@ -13,13 +13,24 @@ public class User {
     //用户头像url
     private String avatar;
 
+    //奶豆数
+    private int coins;
 
-    public String getuId() {
-        return uId;
+
+    public String getUid() {
+        return uid;
     }
 
-    public void setuId(String uId) {
-        this.uId = uId;
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
     }
 
     public String getNickname() {

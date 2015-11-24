@@ -80,6 +80,8 @@ public class LoginActivity extends KJActivity {
         password = PreferenceHelper.readString(aty, TAG, "login_password");
         //解密
         password = CryptoUtil.decrypto(password);
+
+        KJLoger.debug("zhanghao:"+name+"mima:"+password);
         if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(password)){
             editName.setText(name);
             editPassword.setText(password);
@@ -125,6 +127,7 @@ public class LoginActivity extends KJActivity {
                     String s = new String(t);
                     KJLoger.debug(s);
                     Entity entity = Response.getEntity(s);
+                    //提示登录情况
                     ViewInject.toast(entity.getMessage());
                     if (entity.is_success()) {
                         //设置cookie session
@@ -133,8 +136,11 @@ public class LoginActivity extends KJActivity {
                         //继续解析data 然后获取到USERID 设置到全局变量去 方便以后使用
                         JSONObject object = JSON.parseObject(entity.getData().toString());
                         int userID = object.getInteger("userId");
+                        String token = object.getString("apiKey");
+                        //保存token 和 用户ID
                         AppContext.UID = userID;
-                        KJLoger.debug("" + HttpConfig.sCookie);
+                        AppContext.TOKEN = token;
+                        KJLoger.debug("cookie：" + HttpConfig.sCookie);
                         //账号密码写入 SP
                         writeToSP();
                         //跳转
@@ -155,6 +161,7 @@ public class LoginActivity extends KJActivity {
                 public void onFailure(int errorNo, String strMsg) {
                     super.onFailure(errorNo, strMsg);
                     KJLoger.debug("错误：" + strMsg);
+                    ViewInject.toast("错误："+strMsg);
                     dialog.dismiss();
                 }
 
@@ -170,9 +177,15 @@ public class LoginActivity extends KJActivity {
     }
 
 
+    /**
+     * 写入本地保存
+     */
     private void writeToSP() {
         PreferenceHelper.write(aty, TAG, "login_account", name);
-        PreferenceHelper.write(aty, TAG, "login_password", password);
+        //加密密码
+        password = CryptoUtil.encrypto(password);
+        PreferenceHelper.write(aty, LoginActivity.TAG, "login_password", password);
+        PreferenceHelper.write(aty,TAG,"apiKey",AppContext.TOKEN);
     }
 
 

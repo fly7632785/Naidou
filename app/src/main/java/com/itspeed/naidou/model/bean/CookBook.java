@@ -14,8 +14,8 @@ public class CookBook {
         this.title = title;
         this.time = time;
         this.isLike = isLike;
-        this.likes = likes;
-        this.collects = collects;
+        this.likeCount = likes;
+        this.collectCount = collects;
     }
 
     //id
@@ -30,11 +30,11 @@ public class CookBook {
     //         孩子--（4-6月、7-8月、9-12月、1岁-2岁、3-6岁）
     private String type2;
     //点赞数
-    private int likes;
+    private int likeCount;
     //是否收藏
     private boolean isCollect;
     //收藏数
-    private int collects;
+    private int collectCount;
     //是否赞
     private boolean isLike;
     //食材
@@ -75,20 +75,21 @@ public class CookBook {
         this.cid = cid;
     }
 
-    public int getLikes() {
-        return likes;
+
+    public int getLikeCount() {
+        return likeCount;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
     }
 
-    public int getCollects() {
-        return collects;
+    public int getCollectCount() {
+        return collectCount;
     }
 
-    public void setCollects(int collects) {
-        this.collects = collects;
+    public void setCollectCount(int collectCount) {
+        this.collectCount = collectCount;
     }
 
     public boolean isLike() {

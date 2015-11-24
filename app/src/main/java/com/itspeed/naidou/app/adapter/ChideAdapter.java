@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
-import com.itspeed.naidou.app.AppContext;
+import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.util.TimeUtil;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.squareup.picasso.Picasso;
@@ -50,8 +50,8 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
         Picasso.with(parent.getContext()).load(img[position % img.length]).into(holder.img);
         holder.title.setText(cb.getTitle());
         holder.time.setText(StringUtils.friendlyTime(TimeUtil.msToDate(cb.getTime())));
-        holder.likes.setText(cb.getLikes()+"");
-        holder.collects.setText(cb.getCollects()+"");
+        holder.likes.setText(cb.getLikeCount()+"");
+        holder.collects.setText(cb.getCollectCount()+"");
         holder.isCollect.setSelected(cb.isCollect());
         holder.isLike.setSelected(cb.isLike());
         return convertView;
@@ -102,11 +102,11 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
                     //请求点赞或者取消点赞
                     if(isCollect){
                         doCollect(cid);
-                        //点赞数改变
-                        mDatas.get(position).setCollects(cb.getCollects() + 1);
+                        //收藏数改变
+                        mDatas.get(position).setCollectCount(cb.getCollectCount() + 1);
                     }else {
                         cancelCollect(cid);
-                        mDatas.get(position).setCollects(cb.getCollects() - 1);
+                        mDatas.get(position).setCollectCount(cb.getCollectCount() - 1);
                     }
                     //点击之后刷新
                     notifyDataSetChanged();
@@ -120,11 +120,11 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
                     if(isLike){
                         doLike(cid);
                         //点赞数改变
-                        mDatas.get(position).setLikes(cb.getLikes() + 1);
+                        mDatas.get(position).setLikeCount(cb.getLikeCount() + 1);
                     }else {
                         cancelLike(cid);
                         //点赞数改变
-                        mDatas.get(position).setLikes(cb.getLikes() - 1);
+                        mDatas.get(position).setLikeCount(cb.getLikeCount() - 1);
                     }
                     notifyDataSetChanged();
                     break;
@@ -133,51 +133,51 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
     }
 
     private void doCollect(String cid) {
-        NaidouApi.doCollectForChide(String.valueOf(AppContext.UID), cid, new HttpCallBack() {
+        NaidouApi.doCollectForChide(cid, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-//                if(Response.getSuccess(t)){
-                    ViewInject.toast("收藏成功");
-//                }
+                if(Response.getSuccess(t)){
+                ViewInject.toast("收藏成功");
+                }
             }
         });
     }
 
     private void cancelCollect(String cid) {
-        NaidouApi.cancelCollectForChide(String.valueOf(AppContext.UID), cid, new HttpCallBack() {
+        NaidouApi.cancelCollectForChide(cid, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-                KJLoger.debug("点赞："+t);
-//                if (Response.getSuccess(t)) {
-                    ViewInject.toast("取消收藏成功");
-//                }
+                KJLoger.debug("点赞：" + t);
+                if (Response.getSuccess(t)) {
+                ViewInject.toast("取消收藏成功");
+                }
             }
         });
     }
 
     private void doLike(String cid) {
-        NaidouApi.doLikeForChide(String.valueOf(AppContext.UID), cid, new HttpCallBack() {
+        NaidouApi.doLikeForChide(cid, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-//                if (Response.getSuccess(t)) {
+                if (Response.getSuccess(t)) {
                     ViewInject.toast("点赞成功");
-//                }
+                }
             }
         });
 
     }
 
     private void cancelLike(String cid) {
-        NaidouApi.cancelLikeForChide(String.valueOf(AppContext.UID), cid, new HttpCallBack() {
+        NaidouApi.cancelLikeForChide( cid, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-//                if (Response.getSuccess(t)) {
+                if (Response.getSuccess(t)) {
                     ViewInject.toast("取消点赞成功");
-//                }
+                }
             }
         });
     }

@@ -122,6 +122,9 @@ public class RegisterActivity extends KJActivity {
 
     }
 
+    /**
+     * 注册成功后写入本地数据库
+     */
     private void writeToSP() {
         PreferenceHelper.clean(aty, LoginActivity.TAG);
         PreferenceHelper.write(aty, LoginActivity.TAG, "login_account", phone);

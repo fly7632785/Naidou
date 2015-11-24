@@ -54,9 +54,9 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     //种类标识    0-4 为父母的 备孕 孕初 孕中 孕晚 月子  5-9 为孩子的 4-6月 7-8月 9-12月 1-2岁 3-6岁
     private int cate;
 
-    public String[] category = new String[] {
-      "CATE_PARENT_BEIYUN","CATE_PARENT_YUNQIAN","CATE_PARENT_YUNZHONG","CATE_PARENT_YUNWAN","CATE_PARENT_YUEZI",
-           "CATE_CHILD_PHASE1","CATE_CHILD_PHASE2","CATE_CHILD_PHASE3","CATE_CHILD_PHASE4","CATE_CHILD_PHASE5",
+    public String[] category = new String[]{
+            "CATE_PARENT_BEIYUN", "CATE_PARENT_YUNQIAN", "CATE_PARENT_YUNZHONG", "CATE_PARENT_YUNWAN", "CATE_PARENT_YUEZI",
+            "CATE_CHILD_PHASE1", "CATE_CHILD_PHASE2", "CATE_CHILD_PHASE3", "CATE_CHILD_PHASE4", "CATE_CHILD_PHASE5",
     };
 
 
@@ -95,22 +95,22 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     }
 
 
-
     /**
      * 上拉加载数据
      */
     private void loadData() {
-        double page = (double)data.size() / 10;
+        double page = (double) data.size() / 10;
         page += 1.9; // 因为服务器返回的可能会少于10条，所以采用小数进一法加载下一页
         requestData((int) page);
     }
 
     /**
      * 请求数据
+     *
      * @param page 请求的页数 第几页
      * @return
      */
-    private ArrayList<CookBook> requestData(int page){
+    private ArrayList<CookBook> requestData(int page) {
 
         NaidouApi.getChideList(category[cate], page, new HttpCallBack() {
             @Override
@@ -118,28 +118,29 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
                 super.onSuccess(t);
                 KJLoger.debug("sssss:" + t);
                 Entity entity = Response.getEntity(t);
-//                if (entity.is_success()) {
-                //解析数据
-                ArrayList<CookBook> addData = new ArrayList<CookBook>();
-//                    addData = Response.getChideList(t);
-                //!!!!!!!异步 设置数据 只能在这里
+                if (entity.is_success()) {
+                    //解析数据
+                    ArrayList<CookBook> addData;
+                    addData = Response.getChideList(t);
+                    KJLoger.debug("data:"+addData);
+                    //!!!!!!!异步 设置数据 只能在这里
 
-                for (int i = 0; i < 5; i++) {
-                    addData.add(new CookBook(true, "title" + i, "12312312", true,12,34));
-                }
-                //第一次 加载数据
-                //请求第一页数据 然后装入总的data
-                if(data.isEmpty()) {
-                    data.addAll(addData);
-                    mAdapter.setData(data);
-                    mListView.setAdapter(mAdapter);
-                }else {
-                    mAdapter.addData(addData);
-                }
-                //只要请求到数据就 去掉
+//                for (int i = 0; i < 5; i++) {
+//                    addData.add(new CookBook(true, "title" + i, "12312312", true,12,34));
+//                }
+                    //第一次 加载数据
+                    //请求第一页数据 然后装入总的data
+                    if (data.isEmpty()) {
+                        data.addAll(addData);
+                        mAdapter.setData(data);
+                        mListView.setAdapter(mAdapter);
+                    } else {
+                        mAdapter.addData(addData);
+                    }
+                    //只要请求到数据就 去掉
 //                mEmptyLayout.dismiss();
 
-//                }
+                }
             }
 
             @Override
@@ -196,9 +197,6 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         UIHelper.showChideDetail(aty);
     }
-
-
-
 
 
     @Override

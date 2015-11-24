@@ -1,5 +1,7 @@
 package com.itspeed.naidou.api;
 
+import com.itspeed.naidou.app.AppContext;
+
 import org.kymjs.kjframe.KJHttp;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.http.HttpConfig;
@@ -14,7 +16,7 @@ import java.io.File;
  */
 public class NaidouApi {
 
-    private static String baseHost = "http://139.129.29.84/";
+    private static String baseHost = "http://139.129.29.84/api/";
 
     /**
      * 登录接口
@@ -23,7 +25,7 @@ public class NaidouApi {
      * @param callBack
      */
     public static void login(String name,String password,HttpCallBack callBack){
-        String url = "api/loginCheck";
+        String url = "loginCheck";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
@@ -37,13 +39,13 @@ public class NaidouApi {
      * 注销接口
      * @param callBack
      */
-    public static void logout(String uid,HttpCallBack callBack){
+    public static void logout(HttpCallBack callBack){
         String url = "";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.put("_uId",uid);
+        params.put("ApiKey", AppContext.TOKEN);
         kjh.post(baseHost+url,params,callBack);
     }
 
@@ -57,7 +59,7 @@ public class NaidouApi {
      * @param callBack
      */
     public static void register(String phone,String password,String verify,HttpCallBack callBack){
-        String url = "api/doRegister";
+        String url = "doRegister";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
@@ -74,13 +76,28 @@ public class NaidouApi {
      * @param callBack
      */
     public static void getUserInfo(String uid,HttpCallBack callBack){
-        String url = "";
+        String url = "getUserInfo";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
+        params.put("ApiKey", AppContext.TOKEN);
         params.put("_uid", uid);
-        kjh.post(baseHost+url,params,callBack);
+        kjh.get(baseHost+url,params,callBack);
+    }
+
+    /**
+     * 获取我的信息
+     * @param callBack
+     */
+    public static void getMyInfo(HttpCallBack callBack){
+        String url = "getMyInfo";
+        HttpConfig config = new HttpConfig();
+        config.cacheTime = 0;
+        KJHttp kjh = new KJHttp(config);
+        HttpParams params = new HttpParams();
+        params.put("ApiKey", AppContext.TOKEN);
+        kjh.get(baseHost+url,params,callBack);
     }
 
 
@@ -115,12 +132,13 @@ public class NaidouApi {
      * @param cate 1:备孕 孕初 孕中 孕晚 月子 5:4-6月 7-8 9-12 2-3 4-6
      */
     public  static  void getChideList(String cate,int page,HttpCallBack callBack){
-        String url = "api/listCookbook";
+        String url = "listCookbook";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 60;//缓存1小时
         KJHttp kjh = new KJHttp(config);
-        KJLoger.debug("cookie:"+HttpConfig.sCookie);
         HttpParams params = new HttpParams();
+        params.put("ApiKey", AppContext.TOKEN);
+        KJLoger.debug("ApiKey:" + AppContext.TOKEN);
         params.put("_cate", cate);
         params.put("_page",page);
         kjh.get(baseHost + url, params, callBack);
@@ -191,32 +209,30 @@ public class NaidouApi {
      * 吃的点赞
      * @param callBack
      */
-    public  static  void doLikeForChide(String uid,String cid,HttpCallBack callBack){
-        String url = "";
+    public  static  void doLikeForChide(String cid,HttpCallBack callBack){
+        String url = "doLikeCookbook";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie",config.getCookieString());
-        params.put("_uId",uid);
-        params.put("_cId",cid);
-        kjh.post(baseHost + url, params, callBack);
+        params.put("ApiKey", AppContext.TOKEN);
+        params.put("_cid",cid);
+        kjh.get(baseHost + url, params, callBack);
     }
 
     /**
      * 吃的取消点赞
      * @param callBack
      */
-    public  static  void cancelLikeForChide(String uid,String cid,HttpCallBack callBack){
-        String url = "";
+    public  static  void cancelLikeForChide(String cid,HttpCallBack callBack){
+        String url = "doCancelLikeCookbook";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie",config.getCookieString());
-        params.put("_uId", uid);
-        params.put("_cId",cid);
-        kjh.post(baseHost + url, params, callBack);
+        params.put("ApiKey", AppContext.TOKEN);
+        params.put("_cid",cid);
+        kjh.get(baseHost + url, params, callBack);
     }
 
 
@@ -225,32 +241,30 @@ public class NaidouApi {
      * 吃的收藏
      * @param callBack
      */
-    public  static  void doCollectForChide(String uid,String cid,HttpCallBack callBack){
-        String url = "";
+    public  static  void doCollectForChide(String cid,HttpCallBack callBack){
+        String url = "doCollectCookbook";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie",config.getCookieString());
-        params.put("_uId",uid);
-        params.put("_cId",cid);
-        kjh.post(baseHost+url, params, callBack);
+        params.put("ApiKey", AppContext.TOKEN);
+        params.put("_cid",cid);
+        kjh.get(baseHost + url, params, callBack);
     }
 
     /**
      * 吃的取消收藏
      * @param callBack
      */
-    public  static  void cancelCollectForChide(String uid,String cid,HttpCallBack callBack){
-        String url = "";
+    public  static  void cancelCollectForChide(String cid,HttpCallBack callBack){
+        String url = "doCancelCollectCookbook";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie",config.getCookieString());
-        params.put("_uId", uid);
-        params.put("_cId",cid);
-        kjh.post(baseHost+url, params, callBack);
+        params.put("ApiKey", AppContext.TOKEN);
+        params.put("_cid",cid);
+        kjh.get(baseHost + url, params, callBack);
     }
 
 
@@ -265,10 +279,9 @@ public class NaidouApi {
         config.cacheTime = 60;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie", config.getCookieString());
         params.put("_uId", uid);
         params.put("_page", page);
-        kjh.post(baseHost+url, params, callBack);
+        kjh.get(baseHost+url, params, callBack);
     }
 
     /**
@@ -282,7 +295,6 @@ public class NaidouApi {
         config.cacheTime = 60;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie",config.getCookieString());
         params.put("_uId", uid);
         params.put("_page", page);
         kjh.post(baseHost+url, params, callBack);
@@ -299,7 +311,6 @@ public class NaidouApi {
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie",config.getCookieString());
         params.put("_uId", uid);
         params.put("_nickname", nickname);
         params.put("_email", email);
@@ -321,7 +332,6 @@ public class NaidouApi {
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie", config.getCookieString());
         params.put("_uId", uid);
         params.put("_oldPwd", oldPwd);
         params.put("_newPwd",newPwd);
@@ -351,7 +361,6 @@ public class NaidouApi {
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie", config.getCookieString());
         params.put("_uId", uid);
         params.put("_content",content);
         kjh.post(baseHost+url, params, callBack);
@@ -359,34 +368,30 @@ public class NaidouApi {
 
     /**
      * 关注者
-     * @param uid
      * @param callBack
      */
-    public static  void follow(String uid,int page,HttpCallBack callBack){
-        String url = "";
+    public static  void getMyFollow(HttpCallBack callBack){
+        String url = "getMyFollows";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie", config.getCookieString());
-        params.put("_uId", uid);
-        params.put("_page", page);
-        kjh.post(baseHost + url, params, callBack);
+        params.put("ApiKey", AppContext.TOKEN);
+        kjh.get(baseHost + url, params, callBack);
     }
 
     /**
      * 关注
      * @param callBack
      */
-    public  static  void doFollow(String uid,String oid,HttpCallBack callBack){
-        String url = "";
+    public  static  void doFollow(String uid,HttpCallBack callBack){
+        String url = "followUserById";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie",config.getCookieString());
-        params.put("_uId",uid);
-        params.put("_cId",oid);
+        params.put("ApiKey", AppContext.TOKEN);
+        params.put("_uid",uid);
         kjh.post(baseHost+url, params, callBack);
     }
 
@@ -394,15 +399,13 @@ public class NaidouApi {
      * 取消关注
      * @param callBack
      */
-    public  static  void cancelFollow(String uid,String oid,HttpCallBack callBack){
+    public  static  void cancelFollow(String uid,HttpCallBack callBack){
         String url = "";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("cookie",config.getCookieString());
-        params.put("_uId", uid);
-        params.put("_cId",oid);
+        params.put("_uid", uid);
         kjh.post(baseHost+url, params, callBack);
     }
 
