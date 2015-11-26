@@ -434,6 +434,17 @@ public class PublishCookbookFragment extends SupportFragment {
          *
          * 所有数据 封装成json
          * **/
+
+//        NaidouApi.upload(new File(SelectActivity.IMG_PATH, "avatar.jpeg"), new HttpCallBack() {
+//            @Override
+//            public void onSuccess(String t) {
+//                super.onSuccess(t);
+//                KJLoger.debug("upload:"+t);
+//            }
+//        });
+
+
+
     }
 
 

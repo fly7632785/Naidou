@@ -94,6 +94,7 @@ public class UpdateManager {
                     break;
                 case DOWNLOAD_FINISH:
                     mProgress.setSuccessResultState();
+                    mDownloadDialog.dismiss();
                     installApk();
                     break;
                 default:

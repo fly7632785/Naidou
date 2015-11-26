@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="kjframe-2.5.5.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.kymjs.kjframe/kjframe/2.5.5.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.kymjs.kjframe/kjframe/2.5.5.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.kymjs.kjframe/kjframe/2.5.5.1/5538745ee8d87ae18171b106cb0c304427d1e15/kjframe-2.5.5.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

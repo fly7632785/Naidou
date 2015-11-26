@@ -17,9 +17,11 @@ import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.User;
-import com.squareup.picasso.Picasso;
 
+import org.kymjs.kjframe.KJBitmap;
+import org.kymjs.kjframe.bitmap.BitmapConfig;
 import org.kymjs.kjframe.http.HttpCallBack;
+import org.kymjs.kjframe.http.HttpConfig;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.utils.KJLoger;
 
@@ -126,23 +128,6 @@ public class WodeFragment extends TitleBarSupportFragment {
                 }
             }
         });
-
-
-        NaidouApi.getMyFollow(new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("getMyFollow:" + t);
-            }
-        });
-
-        NaidouApi.getUserInfo("1", new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("getUserInfo:" + t);
-            }
-        });
     }
 
 
@@ -155,9 +140,15 @@ public class WodeFragment extends TitleBarSupportFragment {
             //设置全局user信息
             AppContext.user = user;
             //显示数据
-            Picasso.with(aty).load("http://139.129.29.84/" + user.getAvatar()).placeholder(R.mipmap.portrait).into(mAvatar);
+            //头像     本地的avatar.jpeg
+            //设置 头像缓存时间30天
+            HttpConfig httpConfig = new HttpConfig();
+            httpConfig.cacheTime = 30*3600;
+            new KJBitmap.Builder().imageUrl(AppContext.HOST + user.getAvatar()).view(mAvatar).errorBitmapRes(R.mipmap.portrait).display(new KJBitmap(httpConfig,new BitmapConfig()));
+//            KJLoger.debug("cachepath:" + HttpConfig.CACHEPATH + "");
+//            KJLoger.debug("cachetime:" + httpConfig.cacheTime);
             mCoins.setText(user.getCoins() + "");
-            mFollow.setText(user.getFollows()+"");
+            mFollow.setText(user.getFollowCount()+"");
             mNickname.setText(user.getNickname());
             mMotto.setText(user.getMotto());
         }

@@ -31,5 +31,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':mylibrary')
     compile project(':SegmentControl')
+    compile project(':smssdk')
 }
 

@@ -89,6 +89,7 @@ public class LoginActivity extends KJActivity {
 
         switch (v.getId()) {
             case R.id.login_findback:
+
                 break;
             case R.id.login_scan:
                 UIHelper.showMain(aty);
@@ -168,7 +169,7 @@ public class LoginActivity extends KJActivity {
     private void writeToApplication(String t) {
         if(t != null) {
             AppContext.user = Response.getUserInfo(t);
-            AppContext.TOKEN = AppContext.user.getApiKey();
+            AppContext.TOKEN = Response.getApiKey(t);
             KJLoger.debug("user:"+AppContext.user.toString());
         }
     }

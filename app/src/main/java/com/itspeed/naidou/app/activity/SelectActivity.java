@@ -272,6 +272,7 @@ public class SelectActivity extends KJActivity {
      */
     private void cropPhotoKitKat(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
+//        uri = Uri.parse(getPath(aty,uri));
         intent.setDataAndType(uri, "image/jpeg");
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", xRate);

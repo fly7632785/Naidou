@@ -38,7 +38,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     private View layout;
 
     //总的数据
-    private ArrayList<CookBook> data;
+    private ArrayList<CookBook> mData;
     //每次请求返回的数据
     private ArrayList<CookBook> addData;
     private String cache;
@@ -69,7 +69,6 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         aty = getActivity();
         layout = View.inflate(aty, R.layout.frag_level2, null);
-        KJLoger.debug(this.getClass().getSimpleName() + "inflaterView");
         return layout;
     }
 
@@ -77,7 +76,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     protected void initData() {
         super.initData();
         initPull();
-        data = new ArrayList<>();
+        mData = new ArrayList<>();
         addData = new ArrayList<>();
         mAdapter = new ChideAdapter();
         //第一次进入请求数据
@@ -99,7 +98,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
      * 上拉加载数据
      */
     private void loadData() {
-        double page = (double) data.size() / 10;
+        double page = (double) mData.size() / 10;
         page += 1.9; // 因为服务器返回的可能会少于10条，所以采用小数进一法加载下一页
         requestData((int) page);
     }
@@ -130,9 +129,9 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
 //                }
                     //第一次 加载数据
                     //请求第一页数据 然后装入总的data
-                    if (data.isEmpty()) {
-                        data.addAll(addData);
-                        mAdapter.setData(data);
+                    if (mData.isEmpty()) {
+                        mData.addAll(addData);
+                        mAdapter.setData(mData);
                         mListView.setAdapter(mAdapter);
                     } else {
                         mAdapter.addData(addData);
@@ -181,7 +180,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
         //刷新数据
         ViewInject.toast("刷新");
         //清除原有数据
-        data.clear();
+        mData.clear();
         //请求第一页 然后解析 设置数据
         requestData(1);
     }
@@ -200,36 +199,10 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        KJLoger.debug(this.getClass().getSimpleName() + "onCreate");
-    }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        KJLoger.debug(this.getClass().getSimpleName() + "onPause");
-    }
-
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        KJLoger.debug(this.getClass().getSimpleName() + "onStop");
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
         KJLoger.debug(this.getClass().getSimpleName() + "onDestroy");
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        KJLoger.debug(this.getClass().getSimpleName() + "onCreateView");
-        return super.onCreateView(inflater, container, savedInstanceState);
-
-    }
 
 }

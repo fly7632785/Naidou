@@ -6,7 +6,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.model.bean.User;
+
+import org.kymjs.kjframe.KJBitmap;
 
 /**
  * Created by jafir on 15/9/29.
@@ -29,7 +32,11 @@ public class FollowAdapter extends ListBaseAdapter<User> {
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
-
+        User user = mDatas.get(position);
+        new KJBitmap.Builder().imageUrl(AppContext.HOST + user.getAvatar()).view(holder.portrait).errorBitmapRes(R.mipmap.portrait).display();
+//        Picasso.with(parent.getContext()).load(user.getAvatar()).into(holder.portrait);
+        holder.count.setText(user.getCookBookCount()+"个菜谱");
+        holder.name.setText(user.getNickname());
         return convertView;
     }
 

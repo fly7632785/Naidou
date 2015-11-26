@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/SegmentControl" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/mylibrary" />
+            <option value="$PROJECT_DIR$/smssdk" />
           </set>
         </option>
       </GradleProjectSettings>

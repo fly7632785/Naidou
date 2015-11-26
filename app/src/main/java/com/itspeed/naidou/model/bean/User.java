@@ -14,12 +14,14 @@ public class User {
     private String avatar;
     //奶豆数
     private int coins;
-    //token
-    private String apiKey;
-    //关注数
-    private int follows;
+    //关注别人数
+    private int followCount;
+    //被关注的人数
+    private int followedCount;
     //邮箱
     private String email;
+    //发布的菜谱数
+    private int cookBookCount;
 
 
     @Override
@@ -30,10 +32,20 @@ public class User {
                 ", motto='" + motto + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", coins=" + coins +
-                ", apiKey='" + apiKey + '\'' +
+                ", followCount=" + followCount +
+                ", followedCount=" + followedCount +
+                ", email='" + email + '\'' +
                 '}';
     }
 
+
+    public int getCookBookCount() {
+        return cookBookCount;
+    }
+
+    public void setCookBookCount(int cookBookCount) {
+        this.cookBookCount = cookBookCount;
+    }
 
     public String getEmail() {
         return email;
@@ -42,22 +54,23 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    public int getFollows() {
-        return follows;
+
+    public int getFollowCount() {
+        return followCount;
     }
 
-    public void setFollows(int follows) {
-        this.follows = follows;
+    public void setFollowCount(int followCount) {
+        this.followCount = followCount;
     }
 
-
-    public String getApiKey() {
-        return apiKey;
+    public int getFollowedCount() {
+        return followedCount;
     }
 
-    public void setApiKey(String apiKey) {
-        this.apiKey = apiKey;
+    public void setFollowedCount(int followedCount) {
+        this.followedCount = followedCount;
     }
+
 
     public String getUid() {
         return uid;

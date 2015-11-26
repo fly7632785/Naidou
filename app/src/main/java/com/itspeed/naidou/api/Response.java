@@ -1,12 +1,16 @@
 package com.itspeed.naidou.api;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.JsonBean.CookbookListData;
 import com.itspeed.naidou.model.bean.JsonBean.Entity;
+import com.itspeed.naidou.model.bean.JsonBean.FollowListData;
 import com.itspeed.naidou.model.bean.JsonBean.TopicListData;
 import com.itspeed.naidou.model.bean.Topic;
 import com.itspeed.naidou.model.bean.User;
+
+import org.kymjs.kjframe.utils.KJLoger;
 
 import java.util.ArrayList;
 
@@ -81,9 +85,57 @@ public class Response {
      */
     public static User getUserInfo(String data){
         Entity entity = JSON.parseObject(data, Entity.class);
-        User user = JSON.parseObject(entity.getData().toString(),User.class);
+        JSONObject object = JSON.parseObject(entity.getData().toString());
+        String userInfo = object.getString("userInfo");
+//        KJLoger.debug("userinfo:"+userInfo);
+        User user = JSON.parseObject(userInfo,User.class);
         return user;
     }
 
 
+    /**
+     * 获取关注者信息
+     */
+    public static ArrayList<User> getFollowList(String data) {
+        Entity entity = JSON.parseObject(data, Entity.class);
+        FollowListData listData = JSON.parseObject(entity.getData().toString(), FollowListData.class);
+        KJLoger.debug("getFollowList:" + listData.getList().toString());
+        return listData.getList();
+    }
+
+    /**
+     * 获取我的收藏
+     * @return
+     */
+    public static ArrayList<CookBook> getMyCollectList(String data) {
+        Entity entity = JSON.parseObject(data, Entity.class);
+        CookbookListData listData = JSON.parseObject(entity.getData().toString(), CookbookListData.class);
+        KJLoger.debug("getMyCollectList::" + listData.getList().toString());
+        return listData.getList();
+
+    }
+
+
+    /**
+     * 获取我的菜谱
+     * @return
+     */
+    public static ArrayList<CookBook> getMyCookbookList(String data) {
+        Entity entity = JSON.parseObject(data, Entity.class);
+        CookbookListData listData = JSON.parseObject(entity.getData().toString(), CookbookListData.class);
+        KJLoger.debug("getMyCookbookList::" + listData.getList().toString());
+        return listData.getList();
+
+    }
+
+    /**
+     * 获取APIkey
+     * @param data
+     * @return
+     */
+    public static String getApiKey(String data) {
+        Entity entity = JSON.parseObject(data, Entity.class);
+        JSONObject object = JSON.parseObject(entity.getData().toString());
+        return  object.getString("apiKey");
+    }
 }

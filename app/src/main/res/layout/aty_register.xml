@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:background="@color/white"
-        android:layout_height="110dp">
+        android:layout_height="60dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
@@ -39,8 +39,10 @@
                 android:text="手机"
                 android:layout_height="match_parent" />
             <EditText
+                android:enabled="false"
                 android:layout_width="0dp"
                 android:layout_weight="3"
+                android:background="@null"
                 android:hint="请输入登陆密码,至少6个字符"
                 android:textColor="@color/sign_textcolor"
                 android:textSize="15dp"
@@ -49,39 +51,40 @@
                 android:id="@+id/sign_phone" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:orientation="horizontal"-->
 
-            android:layout_height="50dp">
+            <!--android:layout_height="50dp">-->
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:gravity="center_vertical|"
-                android:paddingLeft="20dp"
-                android:textColor="@color/sign_textcolor"
-                android:text="验证码"
-                android:layout_height="match_parent" />
-            <EditText
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:hint="短信验证码"
-                android:background="@null"
-                android:textColor="@color/sign_textcolor"
-                android:textSize="15dp"
-                android:textColorHint="@color/sign_text_hintcolor"
-                android:layout_height="match_parent"
-                android:id="@+id/sign_verify" />
-            <ImageView
-                android:layout_width="0dp"
-                android:paddingRight="20dp"
-                android:layout_weight="1"
-                android:src="@drawable/selector_sign_verify"
-                android:layout_height="wrap_content"
-                android:id="@+id/sign_get_verify" />
-        </LinearLayout>
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textSize="15sp"-->
+                <!--android:gravity="center_vertical|"-->
+                <!--android:paddingLeft="20dp"-->
+                <!--android:textColor="@color/sign_textcolor"-->
+                <!--android:text="验证码"-->
+                <!--android:layout_height="match_parent" />-->
+            <!--<EditText-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="2"-->
+                <!--android:hint="短信验证码"-->
+                <!--android:background="@null"-->
+                <!--android:textColor="@color/sign_textcolor"-->
+                <!--android:textSize="15dp"-->
+                <!--android:textColorHint="@color/sign_text_hintcolor"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:id="@+id/sign_verify" />-->
+            <!--<ImageView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:paddingRight="20dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:src="@drawable/selector_sign_verify"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/sign_get_verify" />-->
+            <!-- -->
+        <!--</LinearLayout>-->
     </LinearLayout>
 
     <LinearLayout

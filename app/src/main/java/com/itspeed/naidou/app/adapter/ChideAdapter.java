@@ -50,7 +50,7 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
         Picasso.with(parent.getContext()).load(img[position % img.length]).into(holder.img);
         holder.title.setText(cb.getTitle());
         holder.time.setText(StringUtils.friendlyTime(TimeUtil.msToDate(cb.getTime())));
-        holder.likes.setText(cb.getLikeCount()+"");
+        holder.likes.setText(cb.getLikedCount()+"");
         holder.collects.setText(cb.getCollectCount()+"");
         holder.isCollect.setSelected(cb.isCollect());
         holder.isLike.setSelected(cb.isLike());
@@ -88,6 +88,9 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
         @Override
         public void onClick(View v) {
             ImageView img = (ImageView) v;
+            if(mDatas == null){
+                return;
+            }
             CookBook cb = mDatas.get(position);
             isCollect = cb.isCollect();
             isLike = cb.isLike();
@@ -120,11 +123,11 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
                     if(isLike){
                         doLike(cid);
                         //点赞数改变
-                        mDatas.get(position).setLikeCount(cb.getLikeCount() + 1);
+                        mDatas.get(position).setLikedCount(cb.getLikedCount() + 1);
                     }else {
                         cancelLike(cid);
                         //点赞数改变
-                        mDatas.get(position).setLikeCount(cb.getLikeCount() - 1);
+                        mDatas.get(position).setLikedCount(cb.getLikedCount() - 1);
                     }
                     notifyDataSetChanged();
                     break;
@@ -137,6 +140,7 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
+                KJLoger.debug("收藏成功：" + t);
                 if(Response.getSuccess(t)){
                 ViewInject.toast("收藏成功");
                 }
@@ -149,7 +153,7 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-                KJLoger.debug("点赞：" + t);
+                KJLoger.debug("取消收藏成功：" + t);
                 if (Response.getSuccess(t)) {
                 ViewInject.toast("取消收藏成功");
                 }
@@ -162,6 +166,7 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
+                KJLoger.debug("点赞成功：" + t);
                 if (Response.getSuccess(t)) {
                     ViewInject.toast("点赞成功");
                 }
@@ -175,6 +180,7 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
+                KJLoger.debug("取消点赞成功：" + t);
                 if (Response.getSuccess(t)) {
                     ViewInject.toast("取消点赞成功");
                 }

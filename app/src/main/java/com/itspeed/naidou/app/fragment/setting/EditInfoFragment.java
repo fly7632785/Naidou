@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.activity.SelectActivity;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
@@ -20,7 +21,11 @@ import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.model.bean.User;
 import com.squareup.picasso.Picasso;
 
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.utils.KJLoger;
+
+import java.io.File;
 
 /**
  * Created by jafir on 15/9/28.
@@ -43,6 +48,8 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
     public static final int TO_SELECT_PHOTO = 1;
     /** 图片路径 */
     private String picPath = null;
+    /** 图片上传后 返回来的id **/
+    private int avatarId;
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -80,7 +87,7 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
         setTitleType(TitleBarActivity.TitleBarType.Titlebar2);
         setBackImage(R.drawable.selector_title_back);
         setTitle("编辑信息");
-        setMenuImage(null);
+        setMenuImage(R.drawable.selector_title_confirm);
     }
 
     @Override
@@ -106,10 +113,60 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
     }
 
     @Override
+    public void onMenuClick() {
+        super.onMenuClick();
+        upload();
+
+    }
+
+    /**
+     * 上传图片（头像）   成功后获取服务器返回的图片ID
+     * 然后 上传修改后的信息
+     */
+    private void upload() {
+
+        File file  = new File(SelectActivity.IMG_PATH,"avatar.jpeg");
+        KJLoger.debug("文件路径："+file.getAbsolutePath());
+        KJLoger.debug("文件是否存在："+file.exists()+"大小："+file.length());
+        NaidouApi.upload(file, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("upload:" + t);
+                //解析返回来的图片在服务器的ID
+                avatarId = 1;
+                complete();
+            }
+        });
+
+
+
+
+    }
+
+    /**
+     * 上传修改信息
+     */
+    private void complete() {
+        final String nickname = mNickname.getText().toString().trim();
+        final String email = mEmail.getText().toString().trim();
+        final String motto = mMotto.getText().toString().trim();
+        NaidouApi.editInfo(AppContext.UID,nickname, email, motto,avatarId, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("complete:"+t);
+
+            }
+        });
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == TO_SELECT_PHOTO) {
             picPath = data.getStringExtra(SelectActivity.KEY_RETURN_PHOTO_PATH);
+            KJLoger.debug("成功返回：picpath:"+picPath);
             Bitmap bm = BitmapFactory.decodeFile(picPath);
             if(bm !=null && mAvatar != null) {
                 mAvatar.setImageBitmap(bm);

@@ -14,7 +14,7 @@ public class CookBook {
         this.title = title;
         this.time = time;
         this.isLike = isLike;
-        this.likeCount = likes;
+        this.likedCount = likes;
         this.collectCount = collects;
     }
 
@@ -30,7 +30,7 @@ public class CookBook {
     //         孩子--（4-6月、7-8月、9-12月、1岁-2岁、3-6岁）
     private String type2;
     //点赞数
-    private int likeCount;
+    private int likedCount;
     //是否收藏
     private boolean isCollect;
     //收藏数
@@ -57,7 +57,10 @@ public class CookBook {
                 ", time='" + time + '\'' +
                 ", type1='" + type1 + '\'' +
                 ", type2='" + type2 + '\'' +
+                ", likedCount=" + likedCount +
                 ", isCollect=" + isCollect +
+                ", collectCount=" + collectCount +
+                ", isLike=" + isLike +
                 ", foodMaterials=" + foodMaterials +
                 ", steps=" + steps +
                 ", productUrl='" + productUrl + '\'' +
@@ -73,39 +76,6 @@ public class CookBook {
 
     public void setCid(int cid) {
         this.cid = cid;
-    }
-
-
-    public int getLikeCount() {
-        return likeCount;
-    }
-
-    public void setLikeCount(int likeCount) {
-        this.likeCount = likeCount;
-    }
-
-    public int getCollectCount() {
-        return collectCount;
-    }
-
-    public void setCollectCount(int collectCount) {
-        this.collectCount = collectCount;
-    }
-
-    public boolean isLike() {
-        return isLike;
-    }
-
-    public void setIsLike(boolean isLike) {
-        this.isLike = isLike;
-    }
-
-    public String getCover720() {
-        return cover720;
-    }
-
-    public void setCover720(String cover720) {
-        this.cover720 = cover720;
     }
 
     public String getTitle() {
@@ -140,7 +110,13 @@ public class CookBook {
         this.type2 = type2;
     }
 
+    public int getLikedCount() {
+        return likedCount;
+    }
 
+    public void setLikedCount(int likedCount) {
+        this.likedCount = likedCount;
+    }
 
     public boolean isCollect() {
         return isCollect;
@@ -148,6 +124,22 @@ public class CookBook {
 
     public void setIsCollect(boolean isCollect) {
         this.isCollect = isCollect;
+    }
+
+    public int getCollectCount() {
+        return collectCount;
+    }
+
+    public void setCollectCount(int collectCount) {
+        this.collectCount = collectCount;
+    }
+
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setIsLike(boolean isLike) {
+        this.isLike = isLike;
     }
 
     public ArrayList<FoodMaterial> getFoodMaterials() {
@@ -188,5 +180,13 @@ public class CookBook {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getCover720() {
+        return cover720;
+    }
+
+    public void setCover720(String cover720) {
+        this.cover720 = cover720;
     }
 }

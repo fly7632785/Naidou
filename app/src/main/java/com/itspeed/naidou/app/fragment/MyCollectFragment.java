@@ -5,14 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.api.NaidouApi;
+import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.adapter.MyCollectAdapter;
 import com.itspeed.naidou.model.bean.CookBook;
 
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.utils.KJLoger;
 
 import java.util.ArrayList;
 
@@ -26,36 +31,55 @@ public class MyCollectFragment extends TitleBarSupportFragment{
     private View layout;
     @BindView(id = R.id.mycollect_grid)
     private GridView mGridView;
+    @BindView(id = R.id.mycollect_text)
+    private TextView mEmpty;
     private MyCollectAdapter mAdapter;
-    private ArrayList<CookBook> data;
+    private ArrayList<CookBook> mData;
 
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-
+        aty = (SimpleBackActivity) getActivity();
         layout = View.inflate(aty, R.layout.frag_mycollect,null);
+        onChange();
         return layout;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        aty = (SimpleBackActivity) getActivity();
-        onChange();
-    }
 
     @Override
     protected void initData() {
         super.initData();
         mAdapter = new MyCollectAdapter();
-        data = new ArrayList<>();
+        mData = new ArrayList<>();
         //模拟添加数据
-        for (int i = 0;i<10;i++){
-            CookBook cookBook = new CookBook();
-            data.add(cookBook);
-        }
-        mAdapter.setData(data);
-        mGridView.setAdapter(mAdapter);
+//        for (int i = 0;i<10;i++){
+//            CookBook cookBook = new CookBook();
+//            mData.add(cookBook);
+//        }
+        requestData();
+
+
+    }
+
+    private void requestData() {
+        NaidouApi.getMyCollect(1, 10, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                if(Response.getSuccess(t)) {
+                    KJLoger.debug("getMyCollect:"+t);
+                    mData = Response.getMyCollectList(t);
+                    if(mData.isEmpty() || mData == null){
+                        mEmpty.setVisibility(View.VISIBLE);
+                    }else {
+                        mAdapter.setData(mData);
+                        mGridView.setAdapter(mAdapter);
+                    }
+                }
+
+            }
+        });
+
     }
 
     @Override
@@ -81,7 +105,7 @@ public class MyCollectFragment extends TitleBarSupportFragment{
         layout= null;
         mAdapter = null;
         mGridView = null;
-        data = null;
+        mData = null;
         super.onDestroy();
     }
 }
