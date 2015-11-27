@@ -1,5 +1,6 @@
 package com.itspeed.naidou.app.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -118,6 +119,27 @@ public class SimpleBackActivity extends TitleBarActivity {
         intent.putExtra(DATA_KEY, data);
         fragment.startActivityForResult(intent, code);
     }
+
+    /**
+     * 跳转到SimpleBackActivity时，只能使用该方法跳转
+     *
+     *            从哪个Activity跳转
+     * @param code
+     *            启动码
+     * @param page
+     *            要显示的Fragment
+     * @param data
+     *            传递的Bundle数据
+     */
+    public static void postShowForResult(Activity ctx, int code,
+                                         SimpleBackPage page, Bundle data) {
+        Intent intent = new Intent(ctx,
+                SimpleBackActivity.class);
+        intent.putExtra(CONTENT_KEY, page.getValue());
+        intent.putExtra(DATA_KEY, data);
+        ctx.startActivityForResult(intent, code);
+    }
+
 
     /**
      * 跳转到SimpleBackActivity时，只能使用该方法跳转

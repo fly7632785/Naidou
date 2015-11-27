@@ -115,6 +115,13 @@ public class RegisterActivity extends KJActivity {
             }
         };
         registerPage.setRegisterCallback(handler);
+        registerPage.setBackCallback(new RegisterPage.BackCallback() {
+            @Override
+            public void back() {
+                ViewInject.toast("返回");
+                aty.finish();
+            }
+        });
         registerPage.show(aty);
     }
 
@@ -126,7 +133,7 @@ public class RegisterActivity extends KJActivity {
         password = editPassword.getText().toString().trim();
         confirmPassword = editConfirmPassword.getText().toString().trim();
 //        verify = editVerify.getText().toString().trim();
-        if(password.length() < 7){
+        if(password.length() < 6){
             ViewInject.toast("密码不能小于6位");
             return;
         }

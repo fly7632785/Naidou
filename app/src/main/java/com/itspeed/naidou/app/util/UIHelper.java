@@ -2,6 +2,7 @@ package com.itspeed.naidou.app.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 
 import com.itspeed.naidou.app.activity.LoginActivity;
 import com.itspeed.naidou.app.activity.MainActivity;
@@ -75,13 +76,23 @@ public class UIHelper {
     }
 
     /**
-     * 显示编辑信息
+     * 从wode显示编辑信息
+     * @param context
+     */
+    public static void showEditInfo(Fragment context,int requstCode) {
+        SimpleBackActivity.postShowForResult(context, requstCode, SimpleBackPage.EDITINFO);
+
+    }
+
+    /**
+     * 从setting显示编辑信息
      * @param context
      */
     public static void showEditInfo(Context context) {
         SimpleBackActivity.postShowWith(context, SimpleBackPage.EDITINFO);
 
     }
+
     /**
      * 显示意见反馈
      * @param context

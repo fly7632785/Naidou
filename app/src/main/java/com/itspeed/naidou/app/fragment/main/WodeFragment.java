@@ -1,5 +1,6 @@
 package com.itspeed.naidou.app.fragment.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,7 +87,7 @@ public class WodeFragment extends TitleBarSupportFragment {
                 break;
 
             case R.id.wode_portrait:
-                UIHelper.showEditInfo(aty);
+                UIHelper.showEditInfo(this,1);
                 break;
         }
 
@@ -99,22 +100,17 @@ public class WodeFragment extends TitleBarSupportFragment {
         setTitle("我的");
         setBackImage(null);
         setMenuImage(R.drawable.selector_title_setting);
+        requestData();
     }
 
     @Override
     protected void initData() {
         super.initData();
-
         //从全局user里面获取 显示信息
         setData(AppContext.user);
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        requestData();
-    }
 
     public void requestData(){
         NaidouApi.getMyInfo(new HttpCallBack() {
@@ -124,6 +120,7 @@ public class WodeFragment extends TitleBarSupportFragment {
                 KJLoger.debug("getmyInfo:" + t);
                 if (Response.getSuccess(t)) {
                     User user = Response.getUserInfo(t);
+                    KJLoger.debug("user:"+user.toString());
                     setData(user);
                 }
             }
@@ -160,4 +157,19 @@ public class WodeFragment extends TitleBarSupportFragment {
         super.onMenuClick();
         UIHelper.showSetting(aty);
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            if(resultCode == 0){
+                //成功
+                KJLoger.debug("onActivityResult:");
+                requestData();
+            }
+        }
+    }
 }
+
+

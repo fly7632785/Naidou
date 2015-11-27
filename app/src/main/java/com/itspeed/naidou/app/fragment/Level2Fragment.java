@@ -54,7 +54,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     //种类标识    0-4 为父母的 备孕 孕初 孕中 孕晚 月子  5-9 为孩子的 4-6月 7-8月 9-12月 1-2岁 3-6岁
     private int cate;
 
-    public String[] category = new String[]{
+    public static String[] category = new String[]{
             "CATE_PARENT_BEIYUN", "CATE_PARENT_YUNQIAN", "CATE_PARENT_YUNZHONG", "CATE_PARENT_YUNWAN", "CATE_PARENT_YUEZI",
             "CATE_CHILD_PHASE1", "CATE_CHILD_PHASE2", "CATE_CHILD_PHASE3", "CATE_CHILD_PHASE4", "CATE_CHILD_PHASE5",
     };
@@ -93,6 +93,11 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAdapter.notifyDataSetChanged();
+    }
 
     /**
      * 上拉加载数据

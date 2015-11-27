@@ -43,8 +43,8 @@ public class Step3RecylerAdapter extends RecyclerView.Adapter<Step3RecylerAdapte
             holder.yongliang.setHint("如:500g");
         }
         FoodMaterial foodMaterial = list.get(position);
-        foodMaterial.setType(holder.cailiao.getText().toString());
-        foodMaterial.setAmount(holder.yongliang.getText().toString());
+        foodMaterial.setFood(holder.cailiao.getText().toString());
+        foodMaterial.setWeight(holder.yongliang.getText().toString());
 
     }
 

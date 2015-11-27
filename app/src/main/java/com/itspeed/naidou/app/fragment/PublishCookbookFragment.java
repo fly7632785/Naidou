@@ -2,6 +2,7 @@ package com.itspeed.naidou.app.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,15 +17,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.api.NaidouApi;
+import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.PublishActivity;
 import com.itspeed.naidou.app.activity.SelectActivity;
 import com.itspeed.naidou.app.adapter.PublishPagerAdapter;
 
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.SupportFragment;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -79,6 +85,9 @@ public class PublishCookbookFragment extends SupportFragment {
     private TextView step3add;
     private boolean isFinishStep3;
 
+    private String []step3foods;
+    private String []step3weights;
+
 
     //step4
     private View step4;
@@ -95,6 +104,7 @@ public class PublishCookbookFragment extends SupportFragment {
     private ImageView viewImg;
 
     private boolean isFinishStep4;
+    private ProgressDialog dialog;
 
 
     @Override
@@ -136,23 +146,20 @@ public class PublishCookbookFragment extends SupportFragment {
 
         step4linear = (LinearLayout) step4.findViewById(R.id.step4_linear);
         //初始化4个 item
-        View view1 = View.inflate(aty,R.layout.item_linear_step4,null);
-        View view2 = View.inflate(aty,R.layout.item_linear_step4,null);
-        View view3 = View.inflate(aty,R.layout.item_linear_step4,null);
+        View view1 = View.inflate(aty, R.layout.item_linear_step4, null);
+        View view2 = View.inflate(aty, R.layout.item_linear_step4, null);
         step4linear.addView(view1);
         step4linear.addView(view2);
-        step4linear.addView(view3);
 
         //为这个3个item的delete设置监听
-        for(int i=0 ; i < step4linear.getChildCount();i++ ){
+        for (int i = 0; i < step4linear.getChildCount(); i++) {
             TextView desc = (TextView) step4linear.getChildAt(i).findViewById(R.id.item_linear_step4_describe);
             TextView title = (TextView) step4linear.getChildAt(i).findViewById(R.id.item_linear_step4_step);
             ImageView img = (ImageView) step4linear.getChildAt(i).findViewById(R.id.item_linear_step4_img);
-
             //step提示
             title.setText("" + (i + 1));
             desc.setOnClickListener(this);
-            img.setOnClickListener(new MyOnClick(i+1));
+            img.setOnClickListener(new MyOnClick(i));
         }
 
 
@@ -165,11 +172,8 @@ public class PublishCookbookFragment extends SupportFragment {
         step4delete.setOnClickListener(this);
 
 
-
-
-
-
     }
+
     /**
      * 第三步
      */
@@ -183,22 +187,22 @@ public class PublishCookbookFragment extends SupportFragment {
 
         step3linear = (LinearLayout) step3.findViewById(R.id.step3_linear);
         //初始化4个 item
-        View view1 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
-        View view2 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
-        View view3 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
-        View view4 = View.inflate(aty,R.layout.item_recyclerview_step3,null);
+        View view1 = View.inflate(aty, R.layout.item_recyclerview_step3, null);
+        View view2 = View.inflate(aty, R.layout.item_recyclerview_step3, null);
+        View view3 = View.inflate(aty, R.layout.item_recyclerview_step3, null);
+        View view4 = View.inflate(aty, R.layout.item_recyclerview_step3, null);
         step3linear.addView(view1);
         step3linear.addView(view2);
         step3linear.addView(view3);
         step3linear.addView(view4);
 
         //为这个4个item的delete设置监听
-        for(int i=0 ; i < step3linear.getChildCount();i++ ){
+        for (int i = 0; i < step3linear.getChildCount(); i++) {
             EditText cailiao = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_cailiao);
-            EditText yongliang = (EditText)step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_yongliang);
+            EditText yongliang = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_yongliang);
             ImageView delete = (ImageView) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_delete);
             //第一栏的hint提示
-            if(i == 0){
+            if (i == 0) {
                 cailiao.setHint("例如:猪肉");
                 yongliang.setHint("例如:500g");
             }
@@ -216,6 +220,7 @@ public class PublishCookbookFragment extends SupportFragment {
 
 
     }
+
     /**
      * 第二步
      */
@@ -267,6 +272,7 @@ public class PublishCookbookFragment extends SupportFragment {
 
     /**
      * 点击事件
+     *
      * @param v
      */
     @Override
@@ -317,7 +323,7 @@ public class PublishCookbookFragment extends SupportFragment {
                 cate.setText("孩子");
                 selectChild();
                 cate1 = 2;
-                isFinishStep1 =true;
+                isFinishStep1 = true;
                 break;
 
             //step2
@@ -350,14 +356,14 @@ public class PublishCookbookFragment extends SupportFragment {
             //step3
             case R.id.step3_next:
                 isFinishStep3 = checkStep3Finish();
-                if(isFinishStep3) {
+                if (isFinishStep3) {
                     mViewPager.setCurrentItem(3, true);
                 }
                 //打印   整理出来的数据
-                for(int i=0;i< step3linear.getChildCount();i++){
+                for (int i = 0; i < step3linear.getChildCount(); i++) {
                     EditText cailiao = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_cailiao);
                     EditText yongliang = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_yongliang);
-                    KJLoger.debug("第二种111材料"+cailiao.getText()+":" +yongliang.getText());
+                    KJLoger.debug("第二种111材料" + cailiao.getText() + ":" + yongliang.getText());
                 }
                 break;
             case R.id.step3_add:
@@ -373,8 +379,11 @@ public class PublishCookbookFragment extends SupportFragment {
 
             //step4
             case R.id.step4_next:
+                isFinishStep4 = checkStep4Finish();
                 //发布
-                finishPublish();
+                if(isFinishStep4) {
+                    finishPublish();
+                }
 
                 break;
             case R.id.step4_add:
@@ -383,7 +392,7 @@ public class PublishCookbookFragment extends SupportFragment {
                 step4add();
                 break;
             case R.id.step4_delete:
-                if(step4linear.getChildCount() > 0) {
+                if (step4linear.getChildCount() > 0) {
                     step4linear.removeViewAt(step4linear.getChildCount() - 1);
                 }
                 break;
@@ -395,12 +404,12 @@ public class PublishCookbookFragment extends SupportFragment {
             case R.id.item_linear_step4_describe:
                 viewDesc = v;
                 descEdit = new EditText(aty);
-                descDialog =new  AlertDialog.Builder(aty).setTitle("描述")
+                descDialog = new AlertDialog.Builder(aty).setTitle("描述")
                         .setView(descEdit)
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                ((TextView)viewDesc).setText(descEdit.getText());
+                                ((TextView) viewDesc).setText(descEdit.getText());
                             }
                         }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                             @Override
@@ -435,31 +444,212 @@ public class PublishCookbookFragment extends SupportFragment {
          * 所有数据 封装成json
          * **/
 
-//        NaidouApi.upload(new File(SelectActivity.IMG_PATH, "avatar.jpeg"), new HttpCallBack() {
-//            @Override
-//            public void onSuccess(String t) {
-//                super.onSuccess(t);
-//                KJLoger.debug("upload:"+t);
-//            }
-//        });
+        if(!isFinishStep1){
+            ViewInject.toast("请完成第一步");
+            return;
+        }else if(!isFinishStep2){
+            ViewInject.toast("请完成第二步");
+            return;
+        }else if(!isFinishStep3){
+            ViewInject.toast("请完成第三步");
+            return;
+        }else if(!isFinishStep4){
+//            ViewInject.toast("请完成第四步");
+            return;
+        }else{
+            uploadPictures();
+        }
 
+    }
+
+    private String[] picNames;
+    private int[] picIds ;
+    private int i = 0;
+    //检查5个上传文件的请求是否完成
+    private boolean isFinished[];
+
+    private String[] picUrls;
+    private String[] picDecs;
+
+    /**
+     * 获取现在有多少步
+     */
+    private void getStepCount() {
+        int count = step4linear.getChildCount();
+        KJLoger.debug("现在有多少步：" + count);
+        //初始化
+        picIds = new int[count];
+        picNames = new String[count];
+        isFinished = new boolean[count];
+        for (int i = 0; i < count; i++) {
+            picNames[i] = "step"+i+".jpeg";
+        }
+        picUrls = new String[step4linear.getChildCount()];
+        picDecs = new String[step4linear.getChildCount()];
+    }
+
+
+
+    /**
+     * 上传图片
+     */
+    private void uploadPictures() {
+
+        //获取现在有多少步骤
+        getStepCount();
+
+        //提示上传
+         dialog = new ProgressDialog(aty);
+        dialog.setMessage("正在上传图片...");
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        for (int index = 0; index < picNames.length; index++) {
+            File file = new File(SelectActivity.IMG_PATH, picNames[i]);
+            KJLoger.debug("文件路径："+file.getAbsolutePath());
+            KJLoger.debug("文件是否存在："+file.exists()+"大小："+file.length());
+            NaidouApi.upload(file, new HttpCallBack() {
+                @Override
+                public void onSuccess(String t) {
+                    super.onSuccess(t);
+                    KJLoger.debug("upload:"+t);
+                    if (Response.getSuccess(t)) {
+                        KJLoger.debug("avatarId" + i + ":" + picIds[i]);
+                        picIds[i] = Response.getPictureId(t);
+                        picUrls[i] = Response.getPictureUrl(t);
+                        isFinished[i] = true;
+                        i++;
+                        //检测是否5个文件全部上传
+                        for (int i = 0; i < isFinished.length; i++) {
+                            if(!isFinished[i]) {
+                                return;
+                            }
+                        }
+                            //上传json数据
+                            uploadData();
+
+                    }
+                }
+            });
+        }
 
 
     }
 
 
+
+    /**
+     * 上传json数据
+     */
+    private void uploadData() {
+        //获取标题
+        String title = step3title.getText().toString();
+        //获取描述
+        String desc = step3desc.getText().toString();
+        //获取cate种类
+        int category =  getCookbookCate();
+        //获取 食材json
+        String materialJson = getMaterialJson();
+        //获取 步骤json
+        String stepsJson = getStepJson();
+
+        KJLoger.debug("data://" + "title:" + title + "desc:" + desc + "category:" + Level2Fragment.category[category]
+                        + "materialjson:" + materialJson + "stepsjson:" + stepsJson
+        );
+
+        NaidouApi.publishCookBook(title, desc, picIds[picIds.length - 1], Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("publishCookBook:" + t);
+                if (Response.getSuccess(t)) {
+                    dialog.dismiss();
+                    ViewInject.toast("发布菜谱成功");
+                    aty.finish();
+                }
+            }
+        });
+
+    }
+
+    private String getMaterialJson() {
+        step3foods = new String[step3linear.getChildCount()];
+        step3weights = new String[step3linear.getChildCount()];
+        setStep3Material();
+        com.alibaba.fastjson.JSONArray array = new com.alibaba.fastjson.JSONArray();
+        for (int i = 0; i < step3linear.getChildCount(); i++) {
+            JSONObject o = new JSONObject();
+            o.put("food", step3foods[i]);
+            o.put("weight", step3weights[i]);
+            array.add(o);
+        }
+        KJLoger.debug("getMaterialJson:" + array.toString());
+        return array.toJSONString();
+    }
+
+
+
+
+    private String getStepJson() {
+
+        setStep4Steps();
+
+        com.alibaba.fastjson.JSONArray array = new com.alibaba.fastjson.JSONArray();
+        for (int i = 0; i < step4linear.getChildCount(); i++) {
+            JSONObject o = new JSONObject();
+            o.put("pic", picUrls[i]);
+            o.put("description", picDecs[i]);
+            array.add(o);
+        }
+        KJLoger.debug("getStepJson:"+array.toString());
+        return array.toJSONString();
+    }
+
+    private void setStep3Material() {
+        for (int i = 0; i < step3linear.getChildCount(); i++) {
+            EditText food = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_cailiao);
+            EditText weight = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_yongliang);
+            step3foods[i] = food.getText().toString();
+            step3weights[i] = weight.getText().toString();
+        }
+    }
+
+    private void setStep4Steps() {
+        for (int i = 0; i < step4linear.getChildCount(); i++) {
+            TextView desc = (TextView) step4linear.getChildAt(i).findViewById(R.id.item_linear_step4_describe);
+            picDecs[i] = desc.getText().toString();
+        }
+    }
+
+    /**
+     * 获取菜谱的种类
+     */
+    private int getCookbookCate() {
+        int index = 0;
+        if(cate1 == 1){
+            //父母
+            index = cate2-1;//0-4 备孕-》月子
+        }else if(cate1 == 2){
+            //孩子
+            index = cate2-1+5;//5-9 3岁-》2岁
+        }
+        return index;
+    }
+
+
+
     /**
      * 这里去跳转到 选择图片的对话框
+     *
      * @param position 传入不同item 的img 的position
      */
     private void toSelectPhoto(int position) {
-        Intent intent = new Intent(aty,SelectActivity.class);
-        intent.putExtra(SelectActivity.KEY_PHOTO_PATH,"step"+position+".jpeg");
-        intent.putExtra(SelectActivity.KEY_X_RATE,16);//x比例
-        intent.putExtra(SelectActivity.KEY_Y_RATE,9);//y比例
-        intent.putExtra(SelectActivity.KEY_WIDTH,640);//宽
-        intent.putExtra(SelectActivity.KEY_HEIGHT,360);//高
-        startActivityForResult(intent,TO_SELECT_PHOTO);
+        Intent intent = new Intent(aty, SelectActivity.class);
+        intent.putExtra(SelectActivity.KEY_PHOTO_PATH, "step" + position + ".jpeg");
+        intent.putExtra(SelectActivity.KEY_X_RATE, 16);//x比例
+        intent.putExtra(SelectActivity.KEY_Y_RATE, 9);//y比例
+        intent.putExtra(SelectActivity.KEY_WIDTH, 640);//宽
+        intent.putExtra(SelectActivity.KEY_HEIGHT, 360);//高
+        startActivityForResult(intent, TO_SELECT_PHOTO);
     }
 
     /**
@@ -469,33 +659,71 @@ public class PublishCookbookFragment extends SupportFragment {
     private boolean checkStep3Finish() {
         String title = step3title.getText().toString().trim();
         String desc = step3desc.getText().toString().trim();
-        if(title.equals("") || desc.equals("")){
+        if (title.equals("") || desc.equals("")) {
             ViewInject.toast("标题或者描述不能为空");
-            return  false;
-        }
-        else {
+            return false;
+        }else if(!isFinishMaterial()){
+            return false;
+        }else {
             return true;
         }
-        
+
+    }
+
+    /**
+     * 判断是否完成了食材添加
+     * @return
+     */
+    private boolean isFinishMaterial() {
+        for (int i = 0; i < step3linear.getChildCount(); i++) {
+            EditText cailiao = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_cailiao);
+            EditText yongliang = (EditText) step3linear.getChildAt(i).findViewById(R.id.item_recycler_step3_yongliang);
+            if(cailiao.getText().toString().equals("")||yongliang.getText().toString().equals("")){
+                ViewInject.toast("材料或用量不能为空");
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+    /**
+     * 判断第四步是否完成
+     *
+     */
+    private boolean checkStep4Finish() {
+        for (int i = 0; i < step4linear.getChildCount(); i++) {
+            ImageView img = (ImageView) step4linear.getChildAt(i).findViewById(R.id.item_linear_step4_img);
+            TextView desc = (TextView) step4linear.getChildAt(i).findViewById(R.id.item_linear_step4_describe);
+            if(desc.getText().toString().equals("") || desc.getText().toString().equals("点击添加描述")){
+                ViewInject.toast("请填写描述");
+                return false;
+            }else if(img.getDrawable() == null){
+                ViewInject.toast("请添加图片");
+                return false;
+            }
+        }
+        return true;
     }
 
 
     /**
-     *step4里面增加一栏
+     * step4里面增加一栏
      */
     private void step4add() {
         View view = View.inflate(aty, R.layout.item_linear_step4, null);
         TextView step = (TextView) view.findViewById(R.id.item_linear_step4_step);
         ImageView img = (ImageView) view.findViewById(R.id.item_linear_step4_img);
         TextView desc = (TextView) view.findViewById(R.id.item_linear_step4_describe);
-        step.setText(""+(step4linear.getChildCount()+1));
+        step.setText("" + (step4linear.getChildCount() + 1));
         desc.setOnClickListener(this);
-        img.setOnClickListener(new MyOnClick(step4linear.getChildCount()+1));
+        img.setOnClickListener(new MyOnClick(step4linear.getChildCount()));
         step4linear.addView(view);
     }
 
     /**
-     *step3里面增加一栏
+     * step3里面增加一栏
      */
     private void step3add() {
         View view = View.inflate(aty, R.layout.item_recyclerview_step3, null);
@@ -515,6 +743,7 @@ public class PublishCookbookFragment extends SupportFragment {
         yuezi.setImageResource(R.drawable.selector_publish_9_12);
 
     }
+
     /**
      * 改变step2的选择  父母
      */
@@ -546,11 +775,13 @@ public class PublishCookbookFragment extends SupportFragment {
         if (resultCode == Activity.RESULT_OK && requestCode == TO_SELECT_PHOTO) {
             String picPath = data.getStringExtra(SelectActivity.KEY_RETURN_PHOTO_PATH);
             Bitmap bm = BitmapFactory.decodeFile(picPath);
-            if(bm != null && viewImg!=null) {
+            if (bm != null && viewImg != null) {
                 viewImg.setImageBitmap(bm);
             }
         }
     }
+
+
 
 
     /**
@@ -558,17 +789,17 @@ public class PublishCookbookFragment extends SupportFragment {
      * 因为涉及到对于不同item里面图片点击的区分  所以传入position
      * 在跳转到 选择图片的时候因为要传入 图片名称，故这里把position拼接到名字里面
      * step+position.jpeg
-     *
      */
     private class MyOnClick implements View.OnClickListener {
         private int position;
+
         public MyOnClick(int i) {
             this.position = i;
         }
 
         @Override
         public void onClick(View v) {
-            if(v.getId() == R.id.item_linear_step4_img) {
+            if (v.getId() == R.id.item_linear_step4_img) {
                 viewImg = (ImageView) v;
                 toSelectPhoto(position);
             }

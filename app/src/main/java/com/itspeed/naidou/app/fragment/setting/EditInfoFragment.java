@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
+import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.activity.SelectActivity;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
@@ -23,6 +24,7 @@ import com.squareup.picasso.Picasso;
 
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 
 import java.io.File;
@@ -31,17 +33,17 @@ import java.io.File;
  * Created by jafir on 15/9/28.
  * 设置里面 编辑个人信息  fragment
  */
-public class EditInfoFragment  extends TitleBarSupportFragment{
+public class EditInfoFragment  extends TitleBarSupportFragment {
 
     private SimpleBackActivity aty;
     private View layout;
     @BindView(id = R.id.edit_portrait,click = true)
     private ImageView mAvatar;
-    @BindView(id = R.id.edit_motto)
+    @BindView(id = R.id.edit_motto,click = true)
     private EditText mMotto;
-    @BindView(id = R.id.edit_nickname)
+    @BindView(id = R.id.edit_nickname,click = true)
     private EditText mNickname;
-    @BindView(id = R.id.edit_email)
+    @BindView(id = R.id.edit_email,click = true)
     private EditText mEmail;
 
     /** 选择文件 */
@@ -64,7 +66,9 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
     protected void initData() {
         super.initData();
         setData(AppContext.user);
+
     }
+
 
     /**
      * 设置数据显示数据
@@ -79,6 +83,7 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
             mNickname.setText(user.getNickname());
             mMotto.setText(user.getMotto());
             mEmail.setText(null);
+            avatarId = user.getAvatarId();
         }
     }
 
@@ -103,6 +108,16 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
                 intent.putExtra(SelectActivity.KEY_HEIGHT,100);//高
                 startActivityForResult(intent,TO_SELECT_PHOTO);
             break;
+
+            case R.id.edit_nickname:
+                mNickname.setSelection(mNickname.getText().length());
+                break;
+            case R.id.edit_email:
+                mEmail.setSelection(mEmail.getText().length());
+                break;
+            case R.id.edit_motto:
+                mMotto.setSelection(mMotto.getText().length());
+                break;
         }
     }
 
@@ -115,13 +130,13 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
     @Override
     public void onMenuClick() {
         super.onMenuClick();
-        upload();
+        complete();
 
     }
 
     /**
      * 上传图片（头像）   成功后获取服务器返回的图片ID
-     * 然后 上传修改后的信息
+     *
      */
     private void upload() {
 
@@ -134,11 +149,12 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
                 super.onSuccess(t);
                 KJLoger.debug("upload:" + t);
                 //解析返回来的图片在服务器的ID
-                avatarId = 1;
-                complete();
+                if(Response.getSuccess(t)) {
+                    avatarId = Response.getPictureId(t);
+                    KJLoger.debug("avatarId:" + avatarId);
+                }
             }
         });
-
 
 
 
@@ -151,11 +167,16 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
         final String nickname = mNickname.getText().toString().trim();
         final String email = mEmail.getText().toString().trim();
         final String motto = mMotto.getText().toString().trim();
-        NaidouApi.editInfo(AppContext.UID,nickname, email, motto,avatarId, new HttpCallBack() {
+        NaidouApi.editInfo(nickname, email, motto,avatarId, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-                KJLoger.debug("complete:"+t);
+                if(Response.getSuccess(t)){
+                    KJLoger.debug("complete:"+t);
+                    ViewInject.toast("修改成功");
+                    aty.setResult(0,aty.getIntent());
+                    aty.finish();
+                }
 
             }
         });
@@ -170,6 +191,7 @@ public class EditInfoFragment  extends TitleBarSupportFragment{
             Bitmap bm = BitmapFactory.decodeFile(picPath);
             if(bm !=null && mAvatar != null) {
                 mAvatar.setImageBitmap(bm);
+                upload();
             }
         }
     }

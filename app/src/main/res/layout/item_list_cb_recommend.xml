@@ -3,27 +3,103 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:gravity="center_horizontal"
     android:layout_height="match_parent">
-    
-    <ImageView
-        android:layout_width="330dp"
-        android:src="@mipmap/img1"
-        android:id="@+id/item_list_cb_recommend_img"
-        android:scaleType="fitXY"
-        android:layout_height="400dp" />
-    <View
-        android:layout_width="330dp"
-        android:layout_alignBottom="@+id/item_list_cb_recommend_img"
-        android:background="@drawable/shape_img"
-        android:layout_height="200dp"/>
-    <TextView
-        android:layout_width="330dp"
-        android:text="小鸡炖蘑菇"
-        android:id="@+id/item_list_cb_recommend_title"
+
+
+    <LinearLayout
+        android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:textSize="18sp"
-        android:layout_marginBottom="15dp"
-        android:textColor="@color/white"
-        android:layout_alignBottom="@+id/item_list_cb_recommend_img"
-        android:layout_height="wrap_content" />
+        android:id="@+id/item_list_cb_recommend_layout"
+        android:layout_width="320dp"
+        android:background="#06333333"
+        android:layout_height="350dp">
+        <ImageView
+            android:layout_width="320dp"
+            android:src="@mipmap/img2"
+            android:id="@+id/item_list_cb_recommend_img"
+            android:scaleType="centerCrop"
+            android:layout_height="180dp" />
+        <TextView
+            android:layout_width="330dp"
+            android:text="小鸡炖蘑菇"
+            android:layout_marginTop="10dp"
+            android:id="@+id/item_list_cb_recommend_title"
+            android:gravity="center_horizontal"
+            android:textSize="22sp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#333333"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="320dp"
+            android:lineSpacingExtra="5dp"
+            android:id="@+id/item_list_cb_recommend_desc"
+            android:text="面对不爱吃饭的孩子时可以选择一些颜色鲜艳的石材，这道彩疏炒虾仁就是一道色彩丰富，味道鲜美的菜肴"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#666666"
+            android:layout_height="60dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingRight="10dp"
+            android:layout_height="30dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:src="@mipmap/portrait"
+                android:padding="2dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="共8步"
+                android:id="@+id/item_list_cb_recommend_steps"
+                android:textSize="13sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#666666"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="月子餐"
+                android:background="@color/topic_red"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/item_list_cb_recommend_cate"
+                android:textSize="13sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+        <org.kymjs.kjframe.widget.RoundImageView
+            android:layout_width="50dp"
+            android:src="@mipmap/portrait"
+            android:layout_height="50dp"
+            android:id="@+id/item_list_cb_recommend_portrait"
+             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Jafir"
+            android:id="@+id/item_list_cb_recommend_name"
+            android:textSize="13sp"
+            android:textColor="#666666"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
 
 </RelativeLayout>

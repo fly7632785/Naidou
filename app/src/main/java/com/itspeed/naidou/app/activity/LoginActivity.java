@@ -131,7 +131,7 @@ public class LoginActivity extends KJActivity {
                         writeToSP();
                         //跳转
                         UIHelper.showMain(aty);
-                        ViewInject.toast("登录成功");
+//                        ViewInject.toast("登录成功");
                         dialog.dismiss();
                         aty.finish();
                     }
@@ -168,9 +168,9 @@ public class LoginActivity extends KJActivity {
      */
     private void writeToApplication(String t) {
         if(t != null) {
-            AppContext.user = Response.getUserInfo(t);
+            AppContext.user = Response.getMyInfo(t);
             AppContext.TOKEN = Response.getApiKey(t);
-            KJLoger.debug("user:"+AppContext.user.toString());
+//            KJLoger.debug("user:"+AppContext.user.toString());
         }
     }
 
@@ -183,7 +183,10 @@ public class LoginActivity extends KJActivity {
         //加密密码
         password = CryptoUtil.encrypto(password);
         PreferenceHelper.write(aty, LoginActivity.TAG, "login_password", password);
-        PreferenceHelper.write(aty,TAG,"apiKey",AppContext.TOKEN);
+        /**
+         * 这里做token本地化
+         */
+        PreferenceHelper.write(aty,TAG,"apiKey",CryptoUtil.encrypto(AppContext.TOKEN));
     }
 
 

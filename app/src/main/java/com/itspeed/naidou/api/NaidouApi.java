@@ -64,7 +64,7 @@ public class NaidouApi {
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
         params.put("_username",phone);
-        params.put("_password",password);
+        params.put("_password", password);
         kjh.post(baseHost+url,params,callBack);
     }
 
@@ -104,7 +104,7 @@ public class NaidouApi {
      * @param callBack
      */
     public  static  void getRecommendChideList(HttpCallBack callBack){
-        String url = "";
+        String url = "getRecommendRecipe";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;//缓存1小时
         KJHttp kjh = new KJHttp(config);
@@ -141,7 +141,7 @@ public class NaidouApi {
         params.putHeaders("ApiKey", AppContext.TOKEN);
         KJLoger.debug("ApiKey:" + AppContext.TOKEN);
         params.put("_cate", cate);
-        params.put("_page",page);
+        params.put("_page", page);
         kjh.get(baseHost + url, params, callBack);
     }
 
@@ -221,7 +221,7 @@ public class NaidouApi {
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
         params.putHeaders("ApiKey", AppContext.TOKEN);
-        params.put("_cid",cid);
+        params.put("_cid", cid);
         kjh.get(baseHost + url, params, callBack);
     }
 
@@ -309,7 +309,7 @@ public class NaidouApi {
      * 编辑资料
      * @param callBack
      */
-    public static  void editInfo(int uid,String nickname,String email,String motto,int avatarId,HttpCallBack callBack){
+    public static  void editInfo(String nickname,String email,String motto,int avatarId,HttpCallBack callBack){
         String url = "doUpdateUserInfo";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
@@ -318,27 +318,26 @@ public class NaidouApi {
         params.putHeaders("ApiKey", AppContext.TOKEN);
         params.put("_nickname", nickname);
         params.put("_email", email);
-        params.put("_uid", uid);
         params.put("_avatar_id",avatarId);
         params.put("_motto", motto);
-        kjh.post(baseHost+url, params, callBack);
+        kjh.post(baseHost + url, params, callBack);
     }
 
 
     /**
      * 修改密码
-     * @param uid
      * @param callBack
      */
-    public static  void modifyPwd(String uid,String oldPwd,String newPwd,HttpCallBack callBack){
-        String url = "";
+    public static  void modifyPwd(String oldPwd,String newPwd,String confirm,HttpCallBack callBack){
+        String url = "doResettingPassword";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
         params.putHeaders("ApiKey", AppContext.TOKEN);
-        params.put("_oldPwd", oldPwd);
-        params.put("_newPwd",newPwd);
+        params.put("_original_password", oldPwd);
+        params.put("_password",newPwd);
+        params.put("_re_password",confirm);
         kjh.post(baseHost+url, params, callBack);
     }
 
@@ -394,7 +393,7 @@ public class NaidouApi {
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
         params.putHeaders("ApiKey", AppContext.TOKEN);
-        params.put("_uid",uid);
+        params.put("_uid", uid);
         kjh.post(baseHost + url, params, callBack);
     }
 
@@ -423,7 +422,28 @@ public class NaidouApi {
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
         params.putHeaders("ApiKey", AppContext.TOKEN);
+        KJLoger.debug("picpath:"+file.getAbsolutePath());
         params.put("_picture", file);
+        kjh.post(baseHost + url, params, callBack);
+
+    }
+
+    /**
+     * 发布菜谱
+     */
+    public static void publishCookBook(String  tilte,String desc,int coverId,String cate,String material,String steps,HttpCallBack callBack) {
+        String url = "publishCookbook";
+        HttpConfig config = new HttpConfig();
+        config.cacheTime = 0;
+        KJHttp kjh = new KJHttp(config);
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        params.put("_title", tilte);
+        params.put("_description", desc);
+        params.put("_coverId", coverId);
+        params.put("_category_name", cate);
+        params.put("_foods", material);
+        params.put("_steps",steps);
         kjh.post(baseHost + url, params, callBack);
 
     }

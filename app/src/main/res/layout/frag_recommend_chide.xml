@@ -7,7 +7,7 @@
     <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
         android:id="@+id/recommend_chide_recyler_pager"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="470dp"
         android:layout_marginTop="16dp"
         android:clipToPadding="false"
         android:paddingLeft="30dp"
@@ -18,7 +18,7 @@
     <com.itspeed.naidou.app.view.AdapterIndicator
         android:id="@+id/recommend_chide_indicator"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:layout_above="@+id/recommend_chide_img"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

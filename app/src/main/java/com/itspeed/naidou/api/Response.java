@@ -79,11 +79,11 @@ public class Response {
 
 
     /**
-     * 获取用户信息（我的、别人的）
+     * 获取我的用户信息（我的）
      * @param data
      * @return
      */
-    public static User getUserInfo(String data){
+    public static User getMyInfo(String data){
         Entity entity = JSON.parseObject(data, Entity.class);
         JSONObject object = JSON.parseObject(entity.getData().toString());
         String userInfo = object.getString("userInfo");
@@ -92,6 +92,17 @@ public class Response {
         return user;
     }
 
+
+    /**
+     * 获取用户信息
+     * @param data
+     * @return
+     */
+    public static User getUserInfo(String data){
+        Entity entity = JSON.parseObject(data, Entity.class);
+        User user = JSON.parseObject(entity.getData().toString(),User.class);
+        return user;
+    }
 
     /**
      * 获取关注者信息
@@ -137,5 +148,20 @@ public class Response {
         Entity entity = JSON.parseObject(data, Entity.class);
         JSONObject object = JSON.parseObject(entity.getData().toString());
         return  object.getString("apiKey");
+    }
+
+    public static int getPictureId(String data) {
+        Entity entity = JSON.parseObject(data, Entity.class);
+        JSONObject object = JSON.parseObject(entity.getData().toString());
+        JSONObject fileObject = JSON.parseObject(object.getString("file"));
+        return  fileObject.getInteger("id");
+
+    }
+
+    public static String getPictureUrl(String data) {
+        Entity entity = JSON.parseObject(data, Entity.class);
+        JSONObject object = JSON.parseObject(entity.getData().toString());
+        JSONObject fileObject = JSON.parseObject(object.getString("file"));
+        return  fileObject.getString("path");
     }
 }

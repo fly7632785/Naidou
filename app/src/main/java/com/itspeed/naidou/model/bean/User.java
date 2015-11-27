@@ -10,6 +10,8 @@ public class User {
     private String nickname;
     //用户个性签名
     private String motto;
+    //用户头像ID
+    private int avatarId;
     //用户头像url
     private String avatar;
     //奶豆数
@@ -30,14 +32,23 @@ public class User {
                 "uid='" + uid + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", motto='" + motto + '\'' +
+                ", avatarId=" + avatarId +
                 ", avatar='" + avatar + '\'' +
                 ", coins=" + coins +
                 ", followCount=" + followCount +
                 ", followedCount=" + followedCount +
                 ", email='" + email + '\'' +
+                ", cookBookCount=" + cookBookCount +
                 '}';
     }
 
+    public int getAvatarId() {
+        return avatarId;
+    }
+
+    public void setAvatarId(int avatarId) {
+        this.avatarId = avatarId;
+    }
 
     public int getCookBookCount() {
         return cookBookCount;

@@ -2,10 +2,14 @@ package com.itspeed.naidou.app;
 
 import android.app.Application;
 
+import com.itspeed.naidou.app.activity.LoginActivity;
+import com.itspeed.naidou.app.util.CryptoUtil;
 import com.itspeed.naidou.model.bean.User;
 
 import org.kymjs.kjframe.http.HttpConfig;
 import org.kymjs.kjframe.utils.DensityUtils;
+import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.PreferenceHelper;
 
 import cn.smssdk.SMSSDK;
 
@@ -42,7 +46,13 @@ public class AppContext extends Application {
         //init smsSDK
         SMSSDK.initSDK(this, ShareSDKAppKey, ShareSDKAppSecret);
 
-
+        /**
+         * 这里 token做了本地化
+         * 防止 应用程序 因内存不足而前面的activity被回收，
+         * 然后重启之后，丢失token  那时候会重新获取token
+         */
+        TOKEN = CryptoUtil.decrypto(PreferenceHelper.readString(this, LoginActivity.TAG,"apiKey"));
+        KJLoger.debug("application.token"+TOKEN);
 
     }
 

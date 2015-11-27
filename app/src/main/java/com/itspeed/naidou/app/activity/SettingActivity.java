@@ -134,5 +134,6 @@ public class SettingActivity extends  TitleBarActivity{
         super.onDestroy();
     }
 
+
 }
 

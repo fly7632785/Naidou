@@ -91,7 +91,6 @@
             android:maxWidth="200dp"
             android:layout_alignTop="@+id/text_motto"
             android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
             android:layout_height="wrap_content"
             android:id="@+id/edit_motto" />
     </RelativeLayout>
