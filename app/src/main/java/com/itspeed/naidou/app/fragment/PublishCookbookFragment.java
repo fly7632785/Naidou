@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,10 +25,12 @@ import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.PublishActivity;
 import com.itspeed.naidou.app.activity.SelectActivity;
 import com.itspeed.naidou.app.adapter.PublishPagerAdapter;
+import com.itspeed.naidou.app.util.SoftboardManager;
 
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.SupportFragment;
 import org.kymjs.kjframe.ui.ViewInject;
+import org.kymjs.kjframe.utils.DensityUtils;
 import org.kymjs.kjframe.utils.KJLoger;
 
 import java.io.File;
@@ -327,31 +330,32 @@ public class PublishCookbookFragment extends SupportFragment {
                 break;
 
             //step2
-            case R.id.step2_yunchu:
+            case R.id.step2_beiyun:
                 mViewPager.setCurrentItem(2, true);
                 cate2 = 1;
                 isFinishStep2 = true;
                 break;
-            case R.id.step2_yunzhong:
+            case R.id.step2_yunchu:
                 mViewPager.setCurrentItem(2, true);
                 cate2 = 2;
                 isFinishStep2 = true;
                 break;
-            case R.id.step2_yunwan:
+            case R.id.step2_yunzhong:
                 mViewPager.setCurrentItem(2, true);
                 cate2 = 3;
                 isFinishStep2 = true;
                 break;
-            case R.id.step2_yuezi:
+            case R.id.step2_yunwan:
                 mViewPager.setCurrentItem(2, true);
                 cate2 = 4;
                 isFinishStep2 = true;
                 break;
-            case R.id.step2_beiyun:
+            case R.id.step2_yuezi:
                 mViewPager.setCurrentItem(2, true);
                 cate2 = 5;
                 isFinishStep2 = true;
                 break;
+
 
             //step3
             case R.id.step3_next:
@@ -404,12 +408,16 @@ public class PublishCookbookFragment extends SupportFragment {
             case R.id.item_linear_step4_describe:
                 viewDesc = v;
                 descEdit = new EditText(aty);
+                descEdit.setBackground(null);
+                descEdit.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DensityUtils.dip2px(aty,100)));
                 descDialog = new AlertDialog.Builder(aty).setTitle("描述")
                         .setView(descEdit)
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ((TextView) viewDesc).setText(descEdit.getText());
+                                //隐藏软键盘
+                                SoftboardManager.HideKeyboard(descEdit);
                             }
                         }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                             @Override
@@ -463,7 +471,7 @@ public class PublishCookbookFragment extends SupportFragment {
     }
 
     private String[] picNames;
-    private int[] picIds ;
+    private int picIds ;
     private int i = 0;
     //检查5个上传文件的请求是否完成
     private boolean isFinished[];
@@ -478,7 +486,6 @@ public class PublishCookbookFragment extends SupportFragment {
         int count = step4linear.getChildCount();
         KJLoger.debug("现在有多少步：" + count);
         //初始化
-        picIds = new int[count];
         picNames = new String[count];
         isFinished = new boolean[count];
         for (int i = 0; i < count; i++) {
@@ -504,7 +511,7 @@ public class PublishCookbookFragment extends SupportFragment {
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
         for (int index = 0; index < picNames.length; index++) {
-            File file = new File(SelectActivity.IMG_PATH, picNames[i]);
+            File file = new File(SelectActivity.IMG_PATH, picNames[index]);
             KJLoger.debug("文件路径："+file.getAbsolutePath());
             KJLoger.debug("文件是否存在："+file.exists()+"大小："+file.length());
             NaidouApi.upload(file, new HttpCallBack() {
@@ -513,8 +520,8 @@ public class PublishCookbookFragment extends SupportFragment {
                     super.onSuccess(t);
                     KJLoger.debug("upload:"+t);
                     if (Response.getSuccess(t)) {
-                        KJLoger.debug("avatarId" + i + ":" + picIds[i]);
-                        picIds[i] = Response.getPictureId(t);
+                        picIds = Response.getPictureId(t);
+                        KJLoger.debug("avatarId" + i + ":" + picIds);
                         picUrls[i] = Response.getPictureUrl(t);
                         isFinished[i] = true;
                         i++;
@@ -552,11 +559,11 @@ public class PublishCookbookFragment extends SupportFragment {
         //获取 步骤json
         String stepsJson = getStepJson();
 
-        KJLoger.debug("data://" + "title:" + title + "desc:" + desc + "category:" + Level2Fragment.category[category]
+        KJLoger.debug("data://" + "title:" + title + "desc:" + desc + "category:" +"coverid:"+picIds+ Level2Fragment.category[category]
                         + "materialjson:" + materialJson + "stepsjson:" + stepsJson
         );
 
-        NaidouApi.publishCookBook(title, desc, picIds[picIds.length - 1], Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
+        NaidouApi.publishCookBook(title, desc, picIds, Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
@@ -736,11 +743,11 @@ public class PublishCookbookFragment extends SupportFragment {
      * 改变step2的选择  孩子
      */
     private void selectChild() {
-        beiyun.setImageResource(R.drawable.selector_publish_1_2);
-        yunchu.setImageResource(R.drawable.selector_publish_3_4);
-        yunzhong.setImageResource(R.drawable.selector_publish_4_5);
-        yunwan.setImageResource(R.drawable.selector_publish_6_8);
-        yuezi.setImageResource(R.drawable.selector_publish_9_12);
+        beiyun.setImageResource(R.drawable.selector_publish_4_5);
+        yunchu.setImageResource(R.drawable.selector_publish_6_8);
+        yunzhong.setImageResource(R.drawable.selector_publish_9_12);
+        yunwan.setImageResource(R.drawable.selector_publish_1_2);
+        yuezi.setImageResource(R.drawable.selector_publish_3_4);
 
     }
 

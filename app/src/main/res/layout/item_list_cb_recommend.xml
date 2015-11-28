@@ -48,7 +48,7 @@
             android:layout_height="30dp">
             <ImageView
                 android:layout_width="20dp"
-                android:src="@mipmap/portrait"
+                android:src="@mipmap/step"
                 android:padding="2dp"
                 android:layout_height="20dp" />
             <TextView

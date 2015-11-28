@@ -47,7 +47,8 @@ public class CookBook {
     private String portraitUrl;
     private String userName;
 
-    private String cover720;
+    //封面
+    private String cover;
 
     @Override
     public String toString() {
@@ -66,7 +67,7 @@ public class CookBook {
                 ", productUrl='" + productUrl + '\'' +
                 ", portraitUrl='" + portraitUrl + '\'' +
                 ", userName='" + userName + '\'' +
-                ", cover720='" + cover720 + '\'' +
+                ", cover='" + cover + '\'' +
                 '}';
     }
 
@@ -182,11 +183,11 @@ public class CookBook {
         this.userName = userName;
     }
 
-    public String getCover720() {
-        return cover720;
+    public String getCover() {
+        return cover;
     }
 
-    public void setCover720(String cover720) {
-        this.cover720 = cover720;
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 }

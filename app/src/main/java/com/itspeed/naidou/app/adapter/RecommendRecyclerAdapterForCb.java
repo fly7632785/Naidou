@@ -9,11 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jafir on 15/10/7.
@@ -29,14 +29,18 @@ public class RecommendRecyclerAdapterForCb extends RecyclerView.Adapter<Recommen
 
     private ArrayList<CookBook> mCookbooks;
 
-    public RecommendRecyclerAdapterForCb(List<CookBook> cookbooks) {
-        mCookbooks = new ArrayList<>(cookbooks);
+
+    public void setData(ArrayList<CookBook> list){
+        mCookbooks = list;
+        this.notifyDataSetChanged();
     }
+
 
     class ImageViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
         TextView textView;
+
 
         public ImageViewHolder(View itemView) {
             super(itemView);
@@ -74,9 +78,12 @@ public class RecommendRecyclerAdapterForCb extends RecyclerView.Adapter<Recommen
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
+        if(mCookbooks.isEmpty()){
+            return;
+        }
         position = position % mCookbooks.size();
         CookBook cookBook = mCookbooks.get(position);
-        Picasso.with(mContext).load(img[position%img.length]).into(holder.imageView);
+        Picasso.with(mContext).load(AppContext.HOST+cookBook.getCover()).into(holder.imageView);
         holder.textView.setText(cookBook.getTitle());
     }
 

@@ -1,6 +1,7 @@
 package com.itspeed.naidou.api;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.JsonBean.CookbookListData;
@@ -62,6 +63,20 @@ public class Response {
         Entity cookBookEntity = JSON.parseObject(data, Entity.class);
         CookbookListData listData = JSON.parseObject(cookBookEntity.getData().toString(), CookbookListData.class);
         return listData.getList();
+
+    }
+
+    /**
+     * 返回推荐食谱
+     *
+     * @param data
+     * @return 菜谱列表
+     */
+    public static ArrayList<CookBook> getRecommendChideList(String data) {
+        Entity entity = JSON.parseObject(data, Entity.class);
+        ArrayList<CookBook> list = (ArrayList<CookBook>) JSONArray.parseArray(entity.getData().toString(), CookBook.class);
+        KJLoger.debug("list:"+list.toString());
+        return list;
     }
 
 
@@ -164,4 +179,6 @@ public class Response {
         JSONObject fileObject = JSON.parseObject(object.getString("file"));
         return  fileObject.getString("path");
     }
+
+
 }

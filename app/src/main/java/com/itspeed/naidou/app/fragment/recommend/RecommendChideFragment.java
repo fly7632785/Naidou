@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.api.NaidouApi;
+import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.adapter.RecommendRecyclerAdapterForCb;
 import com.itspeed.naidou.app.util.UIHelper;
@@ -17,8 +19,10 @@ import com.itspeed.naidou.app.view.AdapterIndicator;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.SupportFragment;
+import org.kymjs.kjframe.utils.KJLoger;
 
 import java.util.ArrayList;
 
@@ -35,6 +39,7 @@ public class RecommendChideFragment extends SupportFragment{
     @BindView(id = R.id.recommend_chide_img,click = true)
     private ImageView mImageView;
     private Handler mHandler;
+    private RecommendRecyclerAdapterForCb mAdapter;
 
     public RecommendChideFragment(Handler mHandler) {
         this.mHandler = mHandler;
@@ -62,6 +67,17 @@ public class RecommendChideFragment extends SupportFragment{
     protected void initData() {
         super.initData();
         init();
+//        requestData();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+//        mPullLayout.doPullRefreshing(true,50);
+        //清除原有数据
+        mData.clear();
+        //请求第一页 然后解析 设置数据
+        requestData();
     }
 
     private void init() {
@@ -77,24 +93,19 @@ public class RecommendChideFragment extends SupportFragment{
         LinearLayoutManager lllayout = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(lllayout);
 
-        //模拟数据
+//        //模拟数据
         mData = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            CookBook cookBook = new CookBook();
-            cookBook.setTitle("小鸡炖蘑菇" + i);
-            mData.add(cookBook);
-        }
-        RecommendRecyclerAdapterForCb adapter = new RecommendRecyclerAdapterForCb(mData);
-
+        mAdapter = new RecommendRecyclerAdapterForCb();
+        mAdapter.setData(mData);
+        mRecyclerView.setAdapter(mAdapter);
         //绑定indicator和recyclerViewpager
         mIndicator.bindView(mRecyclerView);
 
-        mRecyclerView.setAdapter(adapter);
         //设置现在的 卡片position
         mRecyclerView.scrollToPosition(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % 5);
 
         mRecyclerView.setHasFixedSize(true);
-        adapter.setOnItemClickListener(new RecommendRecyclerAdapterForCb.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new RecommendRecyclerAdapterForCb.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
 //                ViewInject.toast("点击：" + position);
@@ -153,6 +164,21 @@ public class RecommendChideFragment extends SupportFragment{
 
             }
         });
+    }
+
+    private void requestData() {
+        NaidouApi.getRecommendChideList(new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                if(Response.getSuccess(t)){
+                    KJLoger.debug("requestData:"+t);
+                    mData = Response.getRecommendChideList(t);
+                    mAdapter.setData(mData);
+                }
+            }
+        });
+
     }
 
 

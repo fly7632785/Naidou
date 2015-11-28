@@ -49,7 +49,7 @@ public class MyCollectAdapter extends ListBaseAdapter<CookBook> {
 
         CookBook cb = mDatas.get(position);
 //        Picasso.with(parent.getContext()).load(cb.getCover720()).into(holder.img);
-        new KJBitmap.Builder().imageUrl(AppContext.HOST+cb.getCover720()).errorBitmapRes(R.mipmap.img2).view(holder.img).display();
+        new KJBitmap.Builder().imageUrl(AppContext.HOST+cb.getCover()).errorBitmapRes(R.mipmap.img2).view(holder.img).display();
         holder.title.setText(cb.getTitle());
         holder.likes.setText(cb.getLikedCount()+"");
         holder.isCollect.setSelected(cb.isCollect());

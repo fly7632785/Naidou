@@ -93,11 +93,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAdapter.notifyDataSetChanged();
-    }
+
 
     /**
      * 上拉加载数据
@@ -129,9 +125,6 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
                     KJLoger.debug("data:"+addData);
                     //!!!!!!!异步 设置数据 只能在这里
 
-//                for (int i = 0; i < 5; i++) {
-//                    addData.add(new CookBook(true, "title" + i, "12312312", true,12,34));
-//                }
                     //第一次 加载数据
                     //请求第一页数据 然后装入总的data
                     if (mData.isEmpty()) {
