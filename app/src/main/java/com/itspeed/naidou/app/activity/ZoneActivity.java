@@ -10,6 +10,7 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.adapter.MyCookBookAdapter;
+import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.User;
 
@@ -136,6 +137,9 @@ public class ZoneActivity extends KJActivity {
                 this.finish();
                 break;
             case R.id.zone_list_head_follow:
+                if(RightsManager.isVisitor(v.getContext())) {
+                    return;
+                }
                 doFollow();
                 break;
 

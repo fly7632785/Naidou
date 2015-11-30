@@ -1,25 +1,22 @@
 package com.itspeed.naidou.app.fragment.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.itspeed.naidou.R;
-import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.app.activity.MainActivity;
-import com.itspeed.naidou.app.activity.SelectActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.ChildrenFragment;
 import com.itspeed.naidou.app.fragment.ParentFragment;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
+import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.UIHelper;
 
-import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
-
-import java.io.File;
 
 /**
  * Created by jafir on 15/9/1.
@@ -80,6 +77,10 @@ public class ChideFragment extends TitleBarSupportFragment {
     @Override
     public void onMenuClick() {
         super.onMenuClick();
+
+        if(RightsManager.isVisitor(aty)) {
+            return;
+        }
         UIHelper.showPublish(aty);
     }
 
@@ -90,16 +91,7 @@ public class ChideFragment extends TitleBarSupportFragment {
     public void onBackClick() {
         super.onBackClick();
         ViewInject.toast("点击了back");
-        File file = new File(SelectActivity.IMG_PATH, "avatar.jpeg");
-        KJLoger.debug("文件路径："+file.getAbsolutePath());
-        KJLoger.debug("文件是否存在："+file.exists()+"大小："+file.length());
-        NaidouApi.upload(file, new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("upload:" + t);
-            }
-        });
+        aty.sendBroadcast(new Intent("com.itspeed.naidou.FORCE_OFFLINE"));
     }
 
     @Override

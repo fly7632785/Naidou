@@ -25,6 +25,8 @@ import org.kymjs.kjframe.utils.SystemTool;
 
 import java.util.Map;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by jafir on 10/15/15.
  * 登录界面，重写onStart方法，目的在于打开界面的时候 有记住密码的功能
@@ -62,11 +64,23 @@ public class LoginActivity extends KJActivity {
     @Override
     public void initData() {
         super.initData();
-        dialog =new ProgressDialog(aty);
+        dialog = new ProgressDialog(aty);
         dialog.setMessage("正在登录...");
         dialog.setCanceledOnTouchOutside(false);
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(aty);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(aty);
     }
 
     @Override
@@ -75,10 +89,12 @@ public class LoginActivity extends KJActivity {
         name = PreferenceHelper.readString(aty, TAG, "login_account");
         password = PreferenceHelper.readString(aty, TAG, "login_password");
         //解密
-        password = CryptoUtil.decrypto(password);
+        if (password != null) {
+            password = CryptoUtil.decrypto(password);
+        }
 
         KJLoger.debug("zhanghao:" + name + "mima:" + password);
-        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(password)){
+        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(password)) {
             editName.setText(name);
             editPassword.setText(password);
         }
@@ -92,6 +108,7 @@ public class LoginActivity extends KJActivity {
 
                 break;
             case R.id.login_scan:
+                AppContext.isVisitor = true;
                 UIHelper.showMain(aty);
                 aty.finish();
                 break;
@@ -106,11 +123,12 @@ public class LoginActivity extends KJActivity {
 
     /**
      * 检测账号密码是否合适
+     *
      * @return
      */
     private boolean login() {
-         name = editName.getText().toString().trim();
-         password = editPassword.getText().toString().trim();
+        name = editName.getText().toString().trim();
+        password = editPassword.getText().toString().trim();
 
         if (name.equals("") || name == null || password == null || password.equals("")) {
             Toast.makeText(aty, "用户名或者密码不能为空", Toast.LENGTH_SHORT).show();
@@ -125,6 +143,9 @@ public class LoginActivity extends KJActivity {
                     //提示登录情况
                     ViewInject.toast(Response.getMessage(s));
                     if (Response.getSuccess(s)) {
+
+                        //设置为用户模式
+                        AppContext.isVisitor = false;
                         //保存token 和 用户信息
                         writeToApplication(s);
                         //账号密码写入 SP
@@ -147,7 +168,7 @@ public class LoginActivity extends KJActivity {
                 public void onFailure(int errorNo, String strMsg) {
                     super.onFailure(errorNo, strMsg);
                     KJLoger.debug("错误：" + strMsg);
-                    ViewInject.toast("错误："+strMsg);
+                    ViewInject.toast("错误：" + strMsg);
                     dialog.dismiss();
                 }
 
@@ -164,10 +185,11 @@ public class LoginActivity extends KJActivity {
 
     /**
      * 写入Application
+     *
      * @param t
      */
     private void writeToApplication(String t) {
-        if(t != null) {
+        if (t != null) {
             AppContext.user = Response.getMyInfo(t);
             AppContext.TOKEN = Response.getApiKey(t);
 //            KJLoger.debug("user:"+AppContext.user.toString());
@@ -186,7 +208,7 @@ public class LoginActivity extends KJActivity {
         /**
          * 这里做token本地化
          */
-        PreferenceHelper.write(aty,TAG,"apiKey",CryptoUtil.encrypto(AppContext.TOKEN));
+        PreferenceHelper.write(aty, TAG, "apiKey", CryptoUtil.encrypto(AppContext.TOKEN));
     }
 
 

@@ -11,7 +11,7 @@ import org.kymjs.kjframe.utils.DensityUtils;
 import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.PreferenceHelper;
 
-import cn.smssdk.SMSSDK;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 
@@ -29,6 +29,11 @@ public class AppContext extends Application {
     public static String ShareSDKAppKey = "cb608ba9eb78";
     public static String ShareSDKAppSecret = "2ee504a3e7bea6c5624c7e1254461205";
 
+    public static String JpushAppKey = "494431c4ab15e0103267f15c";
+    public static String JpushSecret = "63f8befa3f4f4ac2d87c5e2b";
+    public static boolean  isVisitor = false;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -44,14 +49,22 @@ public class AppContext extends Application {
         screenW = DensityUtils.getScreenW(this);
 
 
-
         /**
          * 这里 token做了本地化
          * 防止 应用程序 因内存不足而前面的activity被回收，
          * 然后重启之后，丢失token  那时候会重新获取token
          */
-        TOKEN = CryptoUtil.decrypto(PreferenceHelper.readString(this, LoginActivity.TAG,"apiKey"));
-        KJLoger.debug("application.token"+TOKEN);
+
+        String password = PreferenceHelper.readString(this, LoginActivity.TAG, "apiKey");
+        if(password != null) {
+            TOKEN = CryptoUtil.decrypto(password);
+            KJLoger.debug("application.token"+TOKEN);
+        }
+
+//        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
+
+
 
     }
 

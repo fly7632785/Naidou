@@ -33,11 +33,13 @@ public class MyCollectAdapter extends ListBaseAdapter<CookBook> {
             holder.img = (ImageView) convertView.findViewById(R.id.item_list_mycollect_img);
             holder.portrait = (ImageView) convertView.findViewById(R.id.item_list_mycollect_portrait);
             holder.author = (TextView) convertView.findViewById(R.id.item_list_mycollect_name);
-            holder.isLike = (ImageView) convertView.findViewById(R.id.item_list_mycollect_islike);
-            holder.isCollect = (ImageView) convertView.findViewById(R.id.item_list_mycollect_iscollect);
             holder.title = (TextView) convertView.findViewById(R.id.item_list_mycollect_title);
-            holder.likes = (TextView) convertView.findViewById(R.id.item_list_mycollect_likes);
-            holder.collects = (TextView) convertView.findViewById(R.id.item_list_mycollect_collects);
+
+            View likecollect = convertView.findViewById(R.id.item_list_mycollect_layout_like_collect);
+            holder.isLike = (ImageView) likecollect.findViewById(R.id.layout_islike);
+            holder.isCollect = (ImageView) likecollect.findViewById(R.id.layout_iscollect);
+            holder.likes = (TextView) likecollect.findViewById(R.id.layout_likes);
+            holder.collects = (TextView) likecollect.findViewById(R.id.layout_collects);
             convertView.setTag(holder);
         }else {
             holder = (ViewHolder) convertView.getTag();
@@ -84,7 +86,7 @@ public class MyCollectAdapter extends ListBaseAdapter<CookBook> {
             isLike = cb.isLike();
             String cid =String.valueOf(mDatas.get(position).getCid());
             switch (v.getId()) {
-                case R.id.item_list_cookbook_iscollect:
+                case R.id.layout_iscollect:
                     isCollect = !isCollect;
                     //本地改变状态
                     mDatas.get(position).setIsCollect(isCollect);
@@ -102,7 +104,7 @@ public class MyCollectAdapter extends ListBaseAdapter<CookBook> {
                     //点击之后刷新
                     notifyDataSetChanged();
                     break;
-                case R.id.item_list_cookbook_islike:
+                case R.id.layout_islike:
                     isLike = !isLike;
                     //本地改变状态
                     mDatas.get(position).setIsLike(isLike);

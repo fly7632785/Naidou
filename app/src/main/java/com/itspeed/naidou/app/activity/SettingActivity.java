@@ -1,5 +1,6 @@
 package com.itspeed.naidou.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,11 +12,13 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.util.DataCleanManager;
+import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.util.UpdateManager;
 
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.ui.KJActivityStack;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 
@@ -82,9 +85,15 @@ public class SettingActivity extends  TitleBarActivity{
 
         switch (v.getId()){
             case R.id.setting_editinfo:
+                if(RightsManager.isVisitor(aty)) {
+                    return;
+                }
                 UIHelper.showEditInfo(aty);
                 break;
             case R.id.setting_modifypassword:
+                if(RightsManager.isVisitor(aty)) {
+                    return;
+                }
                 UIHelper.showModifyPwd(aty);
                 break;
             case R.id.setting_feedback:
@@ -109,6 +118,9 @@ public class SettingActivity extends  TitleBarActivity{
                 manager.checkUpdate();
                 break;
             case R.id.setting_login_out:
+                if(RightsManager.isVisitor(aty)) {
+                    return;
+                }
                 NaidouApi.logout(new HttpCallBack() {
                     @Override
                     public void onSuccess(String t) {
@@ -116,6 +128,10 @@ public class SettingActivity extends  TitleBarActivity{
                         KJLoger.debug("logout:" + t);
                         if (Response.getSuccess(t)) {
                             ViewInject.toast("注销成功");
+                            KJActivityStack.create().finishAllActivity();
+                            Intent intent = new Intent(aty, LoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            aty.startActivity(intent);
                             aty.finish();
                         }
                     }

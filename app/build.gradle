@@ -21,6 +21,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    sourceSets.main {
+        jniLibs.srcDirs = ['libs']  // <-- Set your folder here!
+    }
 }
 repositories {
     maven {
@@ -32,5 +36,6 @@ dependencies {
     compile project(':mylibrary')
     compile project(':SegmentControl')
     compile project(':smssdk')
+    compile files('libs/jpush-android-2.0.5.jar')
 }
 

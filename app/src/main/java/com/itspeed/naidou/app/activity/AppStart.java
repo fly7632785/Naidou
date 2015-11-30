@@ -17,6 +17,8 @@ import org.kymjs.kjframe.http.HttpConfig;
 import org.kymjs.kjframe.utils.DensityUtils;
 import org.kymjs.kjframe.utils.PreferenceHelper;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by jafir on 10/15/15.
  * 应用程序的开始和入口，有一个动画界面
@@ -87,6 +89,17 @@ public class AppStart extends KJActivity{
         finish();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(aty);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(aty);
+    }
 
     @Override
     protected void onDestroy() {

@@ -9,6 +9,7 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
+import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.TimeUtil;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.squareup.picasso.Picasso;
@@ -88,6 +89,9 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
 
         @Override
         public void onClick(View v) {
+            if(RightsManager.isVisitor(v.getContext())) {
+                return;
+            }
             ImageView img = (ImageView) v;
             if(mDatas == null){
                 return;

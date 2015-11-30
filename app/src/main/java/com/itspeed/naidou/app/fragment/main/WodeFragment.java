@@ -16,6 +16,7 @@ import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
+import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.User;
 
@@ -69,9 +70,14 @@ public class WodeFragment extends TitleBarSupportFragment {
     protected void widgetClick(View v) {
         super.widgetClick(v);
 
+        if(RightsManager.isVisitor(aty)) {
+            return;
+        }
 
         switch (v.getId()){
+
             case R.id.wode_cookbook_layout:
+
                 UIHelper.showMyCookbook(aty);
 
                 break;

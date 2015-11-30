@@ -12,14 +12,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.api.NaidouApi;
+import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
+import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.FoodMaterial;
 import com.itspeed.naidou.model.bean.Step;
 
 import org.kymjs.kjframe.KJBitmap;
+import org.kymjs.kjframe.http.HttpCallBack;
+import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.DensityUtils;
 import org.kymjs.kjframe.utils.KJLoger;
 
@@ -61,6 +66,10 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     private GridViewAdapter mGridAdapter;
     private String[] mStepChinese = new String[]{"一","二","三","四","五","六","七","八","九","十","十一","十三","十四"};
     private String[] mStepEnglish = new String[]{"ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN","EIGHT","NINE","TEN","ELEVEN","TWELVE","THIRTEEN","FOURTEEN"};
+    private boolean isLike;
+    private boolean isCollect;
+    private int  likes;
+    private int  collects;
 
 
     @Override
@@ -113,6 +122,12 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         mIsCollect.setOnClickListener(this);
         mAvatar.setOnClickListener(this);
 
+        //点赞收藏
+        isLike =true;
+        isCollect = false;
+        likes = 10;
+        collects = 2;
+
         //有了数据之后就设置数据
         for (int i = 0; i < 14; i++) {
             mFoodMaterialData.add(new FoodMaterial());
@@ -141,14 +156,45 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     @Override
     protected void widgetClick(View v) {
         super.widgetClick(v);
+
         switch (v.getId()){
             case R.id.chide_detail_head_avatar:
                 UIHelper.showZone(aty,uid);
                 break;
             case R.id.layout_islike:
-
+                if(RightsManager.isVisitor(v.getContext())) {
+                    return;
+                }
+                isLike = !isLike;
+                //请求点赞或者取消点赞
+                if(isLike){
+                    doLike(cid);
+                    mIsLike.setSelected(false);
+                    //点赞数改变
+                    mLikes.setText(""+(likes-1));
+                }else {
+                    cancelLike(cid);
+                    mIsLike.setSelected(true);
+                    //点赞数改变
+                    mLikes.setText(""+(likes+1));
+                }
                 break;
             case R.id.layout_iscollect:
+                if(RightsManager.isVisitor(v.getContext())) {
+                    return;
+                }
+                isCollect = !isCollect;
+                //请求点赞或者取消点赞
+                if(isCollect){
+                    doCollect(cid);
+                    //收藏数改变
+                    mIsCollect.setSelected(false);
+                    mCollects.setText(""+(collects-1));
+                }else {
+                    cancelCollect(cid);
+                    mIsCollect.setSelected(true);
+                    mCollects.setText(""+(collects+1));
+                }
 
                 break;
         }
@@ -242,6 +288,60 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         TextView step_english;
         TextView desc;
 
+    }
+
+
+    private void doCollect(String cid) {
+        NaidouApi.doCollectForChide(cid, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("收藏成功：" + t);
+                if (Response.getSuccess(t)) {
+                    ViewInject.toast("收藏成功");
+                }
+            }
+        });
+    }
+
+    private void cancelCollect(String cid) {
+        NaidouApi.cancelCollectForChide(cid, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("取消收藏成功：" + t);
+                if (Response.getSuccess(t)) {
+                    ViewInject.toast("取消收藏成功");
+                }
+            }
+        });
+    }
+
+    private void doLike(String cid) {
+        NaidouApi.doLikeForChide(cid, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("点赞成功：" + t);
+                if (Response.getSuccess(t)) {
+                    ViewInject.toast("点赞成功");
+                }
+            }
+        });
+
+    }
+
+    private void cancelLike(String cid) {
+        NaidouApi.cancelLikeForChide( cid, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("取消点赞成功：" + t);
+                if (Response.getSuccess(t)) {
+                    ViewInject.toast("取消点赞成功");
+                }
+            }
+        });
     }
 
 }
