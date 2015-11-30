@@ -30,6 +30,7 @@ import java.io.File;
 public class ChideFragment extends TitleBarSupportFragment {
 
 
+    private static final String TAG = ChideFragment.class.getSimpleName();
     private MainActivity aty;
     //父母的fragment
     private ParentFragment parentFragment;
@@ -62,6 +63,8 @@ public class ChideFragment extends TitleBarSupportFragment {
     @Override
     protected void initData() {
         super.initData();
+
+
 
     }
 

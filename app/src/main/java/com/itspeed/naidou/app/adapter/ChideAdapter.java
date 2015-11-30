@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
+import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.util.TimeUtil;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.squareup.picasso.Picasso;
@@ -47,7 +48,7 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
         holder.isLike.setOnClickListener(new MyClick(position));
 
         CookBook cb = mDatas.get(position);
-        Picasso.with(parent.getContext()).load(img[position % img.length]).into(holder.img);
+        Picasso.with(parent.getContext()).load(AppContext.HOST+cb.getCover()).into(holder.img);
         holder.title.setText(cb.getTitle());
         holder.time.setText(StringUtils.friendlyTime(TimeUtil.msToDate(cb.getTime())));
         holder.likes.setText(cb.getLikedCount()+"");

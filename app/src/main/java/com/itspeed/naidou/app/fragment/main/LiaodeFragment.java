@@ -30,7 +30,6 @@ import java.util.ArrayList;
  */
 public class LiaodeFragment extends TitleBarSupportFragment {
 
-
     private MainActivity aty;
     private View view;
 //    @BindView(id = R.id.empty_layout)

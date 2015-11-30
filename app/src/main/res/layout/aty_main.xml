@@ -21,5 +21,13 @@
         android:id="@+id/main_tab"
         layout="@layout/tab_main" />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/hint"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:src="@mipmap/hint_publish"
+        android:layout_height="match_parent" />
+
 
 </RelativeLayout>

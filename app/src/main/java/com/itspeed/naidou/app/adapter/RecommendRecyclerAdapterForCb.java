@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.AppContext;
+import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.squareup.picasso.Picasso;
 
@@ -38,8 +39,14 @@ public class RecommendRecyclerAdapterForCb extends RecyclerView.Adapter<Recommen
 
     class ImageViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
-        TextView textView;
+        ImageView cover;
+        TextView title;
+        ImageView userAvatar;
+        TextView desc;
+        TextView userName;
+        TextView cate;
+        TextView stepCount;
+
 
 
         public ImageViewHolder(View itemView) {
@@ -48,14 +55,20 @@ public class RecommendRecyclerAdapterForCb extends RecyclerView.Adapter<Recommen
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(mOnItemClickListener != null) {
-                        mOnItemClickListener.onItemClick(v, getAdapterPosition()%mCookbooks.size());
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onItemClick(v, getAdapterPosition() % mCookbooks.size());
                     }
                 }
             });
 
-            imageView = (ImageView) itemView.findViewById(R.id.item_list_cb_recommend_img);
-            textView = (TextView) itemView.findViewById(R.id.item_list_cb_recommend_title);
+            cover = (ImageView) itemView.findViewById(R.id.item_list_cb_recommend_img);
+            userAvatar = (ImageView) itemView.findViewById(R.id.item_list_cb_recommend_portrait);
+            title = (TextView) itemView.findViewById(R.id.item_list_cb_recommend_title);
+            desc = (TextView) itemView.findViewById(R.id.item_list_cb_recommend_desc);
+            userName = (TextView) itemView.findViewById(R.id.item_list_cb_recommend_username);
+            cate = (TextView) itemView.findViewById(R.id.item_list_cb_recommend_cate);
+            stepCount = (TextView) itemView.findViewById(R.id.item_list_cb_recommend_steps);
+
         }
     }
 
@@ -82,9 +95,21 @@ public class RecommendRecyclerAdapterForCb extends RecyclerView.Adapter<Recommen
             return;
         }
         position = position % mCookbooks.size();
-        CookBook cookBook = mCookbooks.get(position);
-        Picasso.with(mContext).load(AppContext.HOST+cookBook.getCover()).into(holder.imageView);
-        holder.textView.setText(cookBook.getTitle());
+        final CookBook cookBook = mCookbooks.get(position);
+
+        holder.userAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showZone(mContext, cookBook.getFromWhoId());
+            }
+        });
+        Picasso.with(mContext).load(AppContext.HOST+cookBook.getCover()).into(holder.cover);
+        Picasso.with(mContext).load(AppContext.HOST+cookBook.getFromWhoAvata()).into(holder.userAvatar);
+        holder.title.setText(cookBook.getTitle());
+        holder.desc.setText(cookBook.getDescription());
+        holder.userName.setText(cookBook.getFromWho());
+        holder.cate.setText(cookBook.getCateName()+"餐");
+        holder.stepCount.setText("共"+cookBook.getStepCount()+"步");
     }
 
 

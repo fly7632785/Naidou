@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
+import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.util.CryptoUtil;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.JsonBean.Entity;
@@ -72,7 +73,8 @@ public class RegisterActivity extends KJActivity {
         dialog = new ProgressDialog(aty);
         dialog.setMessage("正在注册...");
         dialog.setCanceledOnTouchOutside(false);
-
+        //init smsSDK
+        SMSSDK.initSDK(this, AppContext.ShareSDKAppKey, AppContext.ShareSDKAppSecret);
 
         getVerify();
     }

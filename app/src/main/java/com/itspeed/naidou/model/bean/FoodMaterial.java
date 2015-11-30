@@ -21,6 +21,15 @@ public class FoodMaterial {
     }
 
     public void setWeight(String weight) {
+
         this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "FoodMaterial{" +
+                "food='" + food + '\'' +
+                ", weight='" + weight + '\'' +
+                '}';
     }
 }

@@ -19,7 +19,7 @@ public class CookBook {
     }
 
     //id
-    private int cid;
+    private String  cid;
     //标题
     private String title;
     //时间
@@ -40,42 +40,84 @@ public class CookBook {
     //食材
     private ArrayList<FoodMaterial> foodMaterials;
     //步骤
-    private ArrayList<Step> steps;
+    private String steps;
+    //步骤数
+    private int stepCount;
+    //分类
+    private String cateName;
     //成品图
     private String productUrl;
     //用户
-    private String portraitUrl;
-    private String userName;
+    private String fromWhoAvata;
+    private String fromWho;
+    private String fromWhoId;
 
     //封面
     private String cover;
+    //描述
+    private String description;
 
-    @Override
-    public String toString() {
-        return "CookBook{" +
-                "cid=" + cid +
-                ", title='" + title + '\'' +
-                ", time='" + time + '\'' +
-                ", type1='" + type1 + '\'' +
-                ", type2='" + type2 + '\'' +
-                ", likedCount=" + likedCount +
-                ", isCollect=" + isCollect +
-                ", collectCount=" + collectCount +
-                ", isLike=" + isLike +
-                ", foodMaterials=" + foodMaterials +
-                ", steps=" + steps +
-                ", productUrl='" + productUrl + '\'' +
-                ", portraitUrl='" + portraitUrl + '\'' +
-                ", userName='" + userName + '\'' +
-                ", cover='" + cover + '\'' +
-                '}';
+    public String getFromWhoId() {
+        return fromWhoId;
     }
 
-    public int getCid() {
+    public void setFromWhoId(String fromWhoId) {
+        this.fromWhoId = fromWhoId;
+    }
+
+    public int getStepCount() {
+        return stepCount;
+    }
+
+    public void setStepCount(int stepCount) {
+        this.stepCount = stepCount;
+    }
+
+    public String getCateName() {
+        return cateName;
+    }
+
+    public void setCateName(String cateName) {
+        this.cateName = cateName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSteps() {
+        return steps;
+    }
+
+    public void setSteps(String steps) {
+        this.steps = steps;
+    }
+
+    public String getFromWhoAvata() {
+        return fromWhoAvata;
+    }
+
+    public void setFromWhoAvata(String fromWhoAvata) {
+        this.fromWhoAvata = fromWhoAvata;
+    }
+
+    public String getFromWho() {
+        return fromWho;
+    }
+
+    public void setFromWho(String fromWho) {
+        this.fromWho = fromWho;
+    }
+
+    public String getCid() {
         return cid;
     }
 
-    public void setCid(int cid) {
+    public void setCid(String cid) {
         this.cid = cid;
     }
 
@@ -151,13 +193,7 @@ public class CookBook {
         this.foodMaterials = foodMaterials;
     }
 
-    public ArrayList<Step> getSteps() {
-        return steps;
-    }
 
-    public void setSteps(ArrayList<Step> steps) {
-        this.steps = steps;
-    }
 
     public String getProductUrl() {
         return productUrl;
@@ -167,21 +203,9 @@ public class CookBook {
         this.productUrl = productUrl;
     }
 
-    public String getPortraitUrl() {
-        return portraitUrl;
-    }
 
-    public void setPortraitUrl(String portraitUrl) {
-        this.portraitUrl = portraitUrl;
-    }
 
-    public String getUserName() {
-        return userName;
-    }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getCover() {
         return cover;

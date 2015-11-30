@@ -12,7 +12,6 @@ import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.app.fragment.recommend.RecommendChideFragment;
-import com.itspeed.naidou.app.fragment.recommend.RecommendLiaodeFragment;
 
 import org.kymjs.kjframe.ui.SupportFragment;
 
@@ -28,7 +27,7 @@ public class RecommenFragment extends TitleBarSupportFragment {
     private View layout;
     private Handler handler;
     private RecommendChideFragment mChide;
-    private RecommendLiaodeFragment mLiaode;
+//    private RecommendLiaodeFragment mLiaode;
 
     @Override
     public void onChange() {
@@ -57,7 +56,7 @@ public class RecommenFragment extends TitleBarSupportFragment {
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 if(msg.what == 1) {
-                    changeFragment(R.id.recommend_fl,mLiaode,false);
+//                    changeFragment(R.id.recommend_fl,mLiaode,false);
                 }else if(msg.what == 2){
                     changeFragment(R.id.recommend_fl, mChide,true);
                 }
@@ -65,7 +64,7 @@ public class RecommenFragment extends TitleBarSupportFragment {
         };
 
         mChide = new RecommendChideFragment(handler);
-        mLiaode = new RecommendLiaodeFragment(handler);
+//        mLiaode = new RecommendLiaodeFragment(handler);
         super.changeFragment(R.id.recommend_fl, mChide);
     }
 

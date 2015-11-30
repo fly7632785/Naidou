@@ -43,8 +43,7 @@ public class AppContext extends Application {
         screenH = DensityUtils.getScreenH(this);
         screenW = DensityUtils.getScreenW(this);
 
-        //init smsSDK
-        SMSSDK.initSDK(this, ShareSDKAppKey, ShareSDKAppSecret);
+
 
         /**
          * 这里 token做了本地化

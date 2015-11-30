@@ -6,7 +6,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:layout_height="40dp">
         <View
@@ -20,6 +21,7 @@
             android:text="第一步"
             android:textColor="@color/chide_detail_step"
             android:gravity="center_vertical"
+            android:id="@+id/item_list_chide_detail_step_chinese"
             android:textSize="20dp"
             android:layout_height="match_parent" />
 
@@ -29,6 +31,7 @@
             android:layout_marginLeft="8dp"
             android:textColor="@color/chide_detail__small_step"
             android:gravity="bottom"
+            android:id="@+id/item_list_chide_detail_step_english"
             android:paddingBottom="10dp"
             android:textSize="12dp"
             android:layout_height="match_parent" />
@@ -38,11 +41,15 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
         android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="180dp"
+            android:src="@mipmap/img2"
+            android:id="@+id/item_list_chide_detail_stepimg"
             android:layout_height="140dp" />
 
         <TextView
@@ -50,7 +57,8 @@
             android:gravity="center_vertical"
             android:text="1.将诸子古洗干净剁成3.5厘米的段"
             android:textSize="14sp"
-            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:id="@+id/item_list_chide_detail_desc"
             android:layout_height="match_parent" />
 
     </LinearLayout>

@@ -10,6 +10,7 @@ import com.itspeed.naidou.app.activity.PublishActivity;
 import com.itspeed.naidou.app.activity.RegisterActivity;
 import com.itspeed.naidou.app.activity.SettingActivity;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
+import com.itspeed.naidou.app.activity.ZoneActivity;
 import com.itspeed.naidou.app.domain.SimpleBackPage;
 
 /**
@@ -152,7 +153,13 @@ public class UIHelper {
         context.startActivity(intent);
     }
 
-
-
-
+    /**
+     * 显示个人空间
+     * @param context
+     */
+    public static void showZone(Context context,String  uid) {
+        Intent intent = new Intent(context,ZoneActivity.class);
+        intent.putExtra("uid",uid);
+        context.startActivity(intent);
+    }
 }

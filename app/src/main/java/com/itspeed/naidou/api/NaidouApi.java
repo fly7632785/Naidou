@@ -40,7 +40,7 @@ public class NaidouApi {
      * @param callBack
      */
     public static void logout(HttpCallBack callBack){
-        String url = "";
+        String url = "logout";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
@@ -290,6 +290,21 @@ public class NaidouApi {
     }
 
     /**
+     * 获取菜谱
+     * @param callBack
+     */
+    public static  void getCookbook(String uid,HttpCallBack callBack){
+        String url = "getCookbooks";
+        HttpConfig config = new HttpConfig();
+        config.cacheTime = 0;
+        KJHttp kjh = new KJHttp(config);
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        params.put("_uid", uid);
+        kjh.get(baseHost + url, params, callBack);
+    }
+
+    /**
      * 获取我的收藏
      * @param callBack
      */
@@ -394,7 +409,7 @@ public class NaidouApi {
         HttpParams params = new HttpParams();
         params.putHeaders("ApiKey", AppContext.TOKEN);
         params.put("_uid", uid);
-        kjh.post(baseHost + url, params, callBack);
+        kjh.get(baseHost + url, params, callBack);
     }
 
     /**

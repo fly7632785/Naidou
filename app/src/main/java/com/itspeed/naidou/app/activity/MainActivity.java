@@ -10,17 +10,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
-import com.itspeed.naidou.app.fragment.main.ChideFragment;
-import com.itspeed.naidou.app.fragment.main.GuangdeFragment;
-import com.itspeed.naidou.app.fragment.main.LiaodeFragment;
-import com.itspeed.naidou.app.fragment.main.RecommenFragment;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
+import com.itspeed.naidou.app.fragment.main.ChideFragment;
+import com.itspeed.naidou.app.fragment.main.RecommenFragment;
 import com.itspeed.naidou.app.fragment.main.WodeFragment;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.KJActivityStack;
 import org.kymjs.kjframe.ui.SupportFragment;
 import org.kymjs.kjframe.utils.DensityUtils;
+import org.kymjs.kjframe.utils.PreferenceHelper;
 
 /**
  * 应用的主界面，包括5个模块  吃的、聊的、推荐、逛的、我的
@@ -33,14 +32,15 @@ public class MainActivity extends TitleBarActivity {
     //tab图片宽高
     private static final float IMG_WIDTH = 23;
     private static final float IMG_HEIGHT = 23;
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     //tab
     @BindView(id = R.id.tab_menu_chide)
     private TextView mTvChide;
-    @BindView(id = R.id.tab_menu_liaode)
-    private TextView mTvLiaode;
-    @BindView(id = R.id.tab_menu_guangde)
-    private TextView mTvGuangde;
+//    @BindView(id = R.id.tab_menu_liaode)
+//    private TextView mTvLiaode;
+//    @BindView(id = R.id.tab_menu_guangde)
+//    private TextView mTvGuangde;
     @BindView(id = R.id.tab_menu_wode)
     private TextView mTvWode;
     @BindView(id = R.id.tab_menu_mid)
@@ -48,10 +48,10 @@ public class MainActivity extends TitleBarActivity {
     //tab layout
     @BindView(id = R.id.ly_tab_menu_chide, click = true)
     private LinearLayout mMenuChide;
-    @BindView(id = R.id.ly_tab_menu_liaode, click = true)
-    private LinearLayout mMenuLiaode;
-    @BindView(id = R.id.ly_tab_menu_guangde, click = true)
-    private LinearLayout mMenuGuangde;
+//    @BindView(id = R.id.ly_tab_menu_liaode, click = true)
+//    private LinearLayout mMenuLiaode;
+//    @BindView(id = R.id.ly_tab_menu_guangde, click = true)
+//    private LinearLayout mMenuGuangde;
     @BindView(id = R.id.ly_tab_menu_wode, click = true)
     private LinearLayout mMenuWode;
     @BindView(id = R.id.ly_tab_menu_mid, click = true)
@@ -61,9 +61,9 @@ public class MainActivity extends TitleBarActivity {
     //吃的
     private ChideFragment mChide;
     //聊的
-    private LiaodeFragment mLiaode;
+//    private LiaodeFragment mLiaode;
     //逛的
-    private GuangdeFragment mGuangde;
+//    private GuangdeFragment mGuangde;
     //我的
     private WodeFragment mWode;
     //推荐
@@ -72,7 +72,8 @@ public class MainActivity extends TitleBarActivity {
      * 现在的fragment
      */
     private TitleBarSupportFragment currentFragment;
-
+    @BindView(id = R.id.hint, click = true)
+    private ImageView hint;
 
 
     @Override
@@ -81,9 +82,9 @@ public class MainActivity extends TitleBarActivity {
 
         //创建5个模块fragment
         mChide = new ChideFragment();
-        mGuangde = new GuangdeFragment();
+//        mGuangde = new GuangdeFragment();
         mWode = new WodeFragment();
-        mLiaode = new LiaodeFragment();
+//        mLiaode = new LiaodeFragment();
         mRecommend = new RecommenFragment();
 
         //初始化
@@ -96,40 +97,19 @@ public class MainActivity extends TitleBarActivity {
     @Override
     public void initData() {
         super.initData();
+
+
+
+
         //设置tab中图片的大小
         setImgSize(mTvChide);
-        setImgSize(mTvLiaode);
-        setImgSize(mTvGuangde);
+//        setImgSize(mTvLiaode);
+//        setImgSize(mTvGuangde);
         setImgSize(mTvWode);
 
         //初始化选中中间图标
         mMenuMid.setSelected(true);
 
-//        MenuObject send0 = new MenuObject("");
-//        MenuObject send1 = new MenuObject("Send message");
-//        MenuObject send2 = new MenuObject("Like profile");
-//        MenuObject send3 = new MenuObject("Add to friends");
-//        MenuObject send4 = new MenuObject("Add to favorites");
-//        MenuObject send5 = new MenuObject("Block user");
-//
-//        send0.setResource(R.mipmap.icn_close);
-//        send1.setResource(R.mipmap.icn_1);
-//        send2.setResource(R.mipmap.icn_2);
-//        send3.setResource(R.mipmap.icn_3);
-//        send4.setResource(R.mipmap.icn_4);
-//        send5.setResource(R.mipmap.icn_5);
-//        menuObjects.add(send0);
-//        menuObjects.add(send1);
-//        menuObjects.add(send2);
-//        menuObjects.add(send3);
-//        menuObjects.add(send4);
-//        menuObjects.add(send5);
-//
-//        MenuParams pa = new MenuParams();
-//        pa.setActionBarSize(DensityUtils.dip2px(this, 48));
-//        pa.setAnimationDuration(50);
-//        pa.setMenuObjects(menuObjects);
-//        mMenuDialogFragment = ContextMenuDialogFragment.newInstance(pa);
     }
 
 
@@ -139,6 +119,13 @@ public class MainActivity extends TitleBarActivity {
 
         switch (v.getId()) {
             case R.id.ly_tab_menu_chide:
+                //判断是否第一次进入APP查看菜谱
+                boolean isFirst = PreferenceHelper.readBoolean(aty, TAG, "first_open",
+                        true);
+                if (isFirst) {
+                    hint.setVisibility(View.VISIBLE);
+                }
+
                 //主动调用相应fragment的change方法，改变不同的titleBar
                 mChide.onChange();
                 //重置所有，并设置为选中
@@ -150,22 +137,22 @@ public class MainActivity extends TitleBarActivity {
                 currentFragment = mChide;
 
                 break;
-            case R.id.ly_tab_menu_liaode:
-                mLiaode.onChange();
-                setSelected();
-                mTvLiaode.setSelected(true);
-                changeFragment(R.id.main_content, mLiaode);
-                currentFragment = mLiaode;
-
-                break;
-            case R.id.ly_tab_menu_guangde:
-                mGuangde.onChange();
-                setSelected();
-                mTvGuangde.setSelected(true);
-                changeFragment(R.id.main_content, mGuangde);
-                currentFragment = mGuangde;
-
-                break;
+//            case R.id.ly_tab_menu_liaode:
+//                mLiaode.onChange();
+//                setSelected();
+//                mTvLiaode.setSelected(true);
+//                changeFragment(R.id.main_content, mLiaode);
+//                currentFragment = mLiaode;
+//
+//                break;
+//            case R.id.ly_tab_menu_guangde:
+//                mGuangde.onChange();
+//                setSelected();
+//                mTvGuangde.setSelected(true);
+//                changeFragment(R.id.main_content, mGuangde);
+//                currentFragment = mGuangde;
+//
+//                break;
             case R.id.ly_tab_menu_wode:
                 mWode.onChange();
                 setSelected();
@@ -182,9 +169,15 @@ public class MainActivity extends TitleBarActivity {
                 currentFragment = mRecommend;
                 break;
 
+
+            case R.id.hint:
+                hint.setVisibility(View.GONE);
+                hint = null;
+                PreferenceHelper.write(aty, TAG, "first_open", false);
+                break;
         }
 
-    }
+}
 
 
     public void changeFragment(int resView, SupportFragment targetFragment) {
@@ -193,7 +186,6 @@ public class MainActivity extends TitleBarActivity {
         }
         android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction();
-
 
 
         if (!targetFragment.isAdded()) {
@@ -213,6 +205,7 @@ public class MainActivity extends TitleBarActivity {
         currentSupportFragment = targetFragment;
         transaction.commit();
     }
+
     @Override
     public void setRootView() {
         setContentView(R.layout.aty_main);
@@ -221,6 +214,7 @@ public class MainActivity extends TitleBarActivity {
 
     /**
      * 设置tab里面每个图片的大小
+     *
      * @param textView
      */
     private void setImgSize(TextView textView) {
@@ -234,13 +228,11 @@ public class MainActivity extends TitleBarActivity {
      */
     private void setSelected() {
         mTvChide.setSelected(false);
-        mTvLiaode.setSelected(false);
-        mTvGuangde.setSelected(false);
+//        mTvLiaode.setSelected(false);
+//        mTvGuangde.setSelected(false);
         mTvWode.setSelected(false);
         mImgRecommend.setSelected(false);
     }
-
-
 
 
     //把点击事件分发到现在的fragment
@@ -266,6 +258,7 @@ public class MainActivity extends TitleBarActivity {
 
     /**
      * 点击标题栏的segment
+     *
      * @param index
      */
     @Override
@@ -295,9 +288,10 @@ public class MainActivity extends TitleBarActivity {
     }
 
     /**
-     *这里注释掉了super方法，目的在于防止 跳转到其他activity，因为内存不足的时候，这个mainActivity
+     * 这里注释掉了super方法，目的在于防止 跳转到其他activity，因为内存不足的时候，这个mainActivity
      * 被回收了之后，然后再开启，会出现数据回滚，然后造成fragment的重叠现象，
      * 注释掉之后，防止它保存数据，就可以避免这种情况
+     *
      * @param outState
      */
     @Override
@@ -310,16 +304,16 @@ public class MainActivity extends TitleBarActivity {
     protected void onDestroy() {
         setContentView(R.layout.view_null);
         mChide = null;
-        mGuangde = null;
-        mLiaode = null;
+//        mGuangde = null;
+//        mLiaode = null;
         mWode = null;
         mTvTitle = null;
         mImgBack = null;
         mImgMenu = null;
         mRlTitleBar = null;
         mMenuChide = null;
-        mMenuGuangde = null;
-        mMenuLiaode = null;
+//        mMenuGuangde = null;
+//        mMenuLiaode = null;
         mRecommend = null;
         mImgRecommend = null;
         mMenuWode = null;

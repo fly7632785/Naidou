@@ -409,7 +409,7 @@ public class PublishCookbookFragment extends SupportFragment {
                 viewDesc = v;
                 descEdit = new EditText(aty);
                 descEdit.setBackground(null);
-                descEdit.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DensityUtils.dip2px(aty,100)));
+                descEdit.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DensityUtils.dip2px(aty, 100)));
                 descDialog = new AlertDialog.Builder(aty).setTitle("描述")
                         .setView(descEdit)
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -426,6 +426,7 @@ public class PublishCookbookFragment extends SupportFragment {
                             }
                         }).create();
                 descDialog.show();
+                SoftboardManager.ShowKeyboard(descEdit);
                 break;
 
         }

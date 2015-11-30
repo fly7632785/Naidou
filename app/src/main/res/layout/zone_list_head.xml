@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:gravity="center_horizontal"
+        android:background="@mipmap/zone"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_gravity="left"
+            android:id="@+id/zone_list_head_back"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/selector_common_back"
+            android:layout_height="40dp" />
+
+        <org.kymjs.kjframe.widget.RoundImageView
+            android:id="@+id/zone_list_head_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/portrait" />
+
+
+        <TextView
+            android:id="@+id/zone_list_head_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:text="Jafir" />
+
+        <TextView
+            android:id="@+id/zone_list_head_motto"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:maxWidth="300dp"
+            android:text="what can't kill you makes you stronger" />
+
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/zone_list_head_follow"
+            android:src="@mipmap/personal_home_follow"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="他的菜谱  ( 15 )"
+        android:background="#f5f5f5"
+        android:gravity="center_vertical"
+        android:textColor="@color/topic_red"
+        android:textSize="16sp"
+        android:id="@+id/zone_list_head_cookbook_count"
+        android:paddingLeft="10dp"
+        android:layout_height="40dp" />
+</LinearLayout>

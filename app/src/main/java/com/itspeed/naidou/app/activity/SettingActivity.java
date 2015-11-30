@@ -8,11 +8,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.api.NaidouApi;
+import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.util.DataCleanManager;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.util.UpdateManager;
 
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.ui.ViewInject;
+import org.kymjs.kjframe.utils.KJLoger;
 
 /**
  * Created by jafir on 15/9/27.
@@ -104,8 +109,18 @@ public class SettingActivity extends  TitleBarActivity{
                 manager.checkUpdate();
                 break;
             case R.id.setting_login_out:
-                this.finish();
-                break;
+                NaidouApi.logout(new HttpCallBack() {
+                    @Override
+                    public void onSuccess(String t) {
+                        super.onSuccess(t);
+                        KJLoger.debug("logout:" + t);
+                        if (Response.getSuccess(t)) {
+                            ViewInject.toast("注销成功");
+                            aty.finish();
+                        }
+                    }
+                });
+                    break;
         }
     }
 
