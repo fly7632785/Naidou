@@ -109,7 +109,7 @@ public class RecommendChideFragment extends SupportFragment{
             @Override
             public void onItemClick(View view, int position) {
 //                ViewInject.toast("点击：" + position);
-                UIHelper.showChideDetail(aty);
+                UIHelper.showChideDetail(aty,mData.get(position).getCid());
             }
         });
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {

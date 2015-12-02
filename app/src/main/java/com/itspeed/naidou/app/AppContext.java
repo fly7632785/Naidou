@@ -55,13 +55,13 @@ public class AppContext extends Application {
          * 然后重启之后，丢失token  那时候会重新获取token
          */
 
-        String password = PreferenceHelper.readString(this, LoginActivity.TAG, "apiKey");
-        if(password != null) {
-            TOKEN = CryptoUtil.decrypto(password);
+        String token = PreferenceHelper.readString(this, LoginActivity.TAG, "apiKey");
+        if(token != null) {
+            TOKEN = CryptoUtil.decrypto(token);
             KJLoger.debug("application.token"+TOKEN);
         }
 
-//        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
 
 

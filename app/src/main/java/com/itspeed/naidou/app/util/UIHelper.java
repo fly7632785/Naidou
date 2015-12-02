@@ -2,8 +2,10 @@ package com.itspeed.naidou.app.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import com.itspeed.naidou.app.activity.GuideActivity;
 import com.itspeed.naidou.app.activity.LoginActivity;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.PublishActivity;
@@ -131,8 +133,10 @@ public class UIHelper {
      * 显示关于吃的详情
      * @param context
      */
-    public static void showChideDetail(Context context) {
-        SimpleBackActivity.postShowWith(context, SimpleBackPage.CHIDE_DETAIL);
+    public static void showChideDetail(Context context,String cid) {
+        Bundle bundle  = new Bundle();
+        bundle.putString("cid",cid);
+        SimpleBackActivity.postShowWith(context, SimpleBackPage.CHIDE_DETAIL,bundle);
 
     }
     /**
@@ -160,6 +164,15 @@ public class UIHelper {
     public static void showZone(Context context,String  uid) {
         Intent intent = new Intent(context,ZoneActivity.class);
         intent.putExtra("uid",uid);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 显示 引导页
+     * @param context
+     */
+    public static void showGuide(Context context) {
+        Intent intent = new Intent(context,GuideActivity.class);
         context.startActivity(intent);
     }
 }

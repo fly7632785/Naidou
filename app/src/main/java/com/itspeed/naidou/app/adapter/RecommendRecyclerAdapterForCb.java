@@ -55,7 +55,7 @@ public class RecommendRecyclerAdapterForCb extends RecyclerView.Adapter<Recommen
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mOnItemClickListener != null) {
+                    if (mOnItemClickListener != null && mCookbooks.size()!= 0) {
                         mOnItemClickListener.onItemClick(v, getAdapterPosition() % mCookbooks.size());
                     }
                 }

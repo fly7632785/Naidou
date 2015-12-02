@@ -14,6 +14,7 @@ import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.app.fragment.recommend.RecommendChideFragment;
 
 import org.kymjs.kjframe.ui.SupportFragment;
+import org.kymjs.kjframe.ui.ViewInject;
 
 /**
  * Created by jafir on 15/9/1.
@@ -25,7 +26,7 @@ public class RecommenFragment extends TitleBarSupportFragment {
 
     MainActivity aty;
     private View layout;
-    private Handler handler;
+    private  Handler handler;
     private RecommendChideFragment mChide;
 //    private RecommendLiaodeFragment mLiaode;
 
@@ -56,6 +57,7 @@ public class RecommenFragment extends TitleBarSupportFragment {
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 if(msg.what == 1) {
+                    ViewInject.toast("功能开发中...");
 //                    changeFragment(R.id.recommend_fl,mLiaode,false);
                 }else if(msg.what == 2){
                     changeFragment(R.id.recommend_fl, mChide,true);

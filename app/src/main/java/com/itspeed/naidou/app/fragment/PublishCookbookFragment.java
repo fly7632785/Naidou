@@ -472,7 +472,7 @@ public class PublishCookbookFragment extends SupportFragment {
     }
 
     private String[] picNames;
-    private int picIds ;
+    private int []picIds ;
     private int i = 0;
     //检查5个上传文件的请求是否完成
     private boolean isFinished[];
@@ -493,6 +493,7 @@ public class PublishCookbookFragment extends SupportFragment {
             picNames[i] = "step"+i+".jpeg";
         }
         picUrls = new String[step4linear.getChildCount()];
+        picIds = new int[step4linear.getChildCount()];
         picDecs = new String[step4linear.getChildCount()];
     }
 
@@ -521,7 +522,7 @@ public class PublishCookbookFragment extends SupportFragment {
                     super.onSuccess(t);
                     KJLoger.debug("upload:"+t);
                     if (Response.getSuccess(t)) {
-                        picIds = Response.getPictureId(t);
+                        picIds[i] = Response.getPictureId(t);
                         KJLoger.debug("avatarId" + i + ":" + picIds);
                         picUrls[i] = Response.getPictureUrl(t);
                         isFinished[i] = true;
@@ -560,11 +561,11 @@ public class PublishCookbookFragment extends SupportFragment {
         //获取 步骤json
         String stepsJson = getStepJson();
 
-        KJLoger.debug("data://" + "title:" + title + "desc:" + desc + "category:" +"coverid:"+picIds+ Level2Fragment.category[category]
+        KJLoger.debug("data://" + "title:" + title + "desc:" + desc + "coverid:"+picIds[step3linear.getChildCount()-1]+"category:"+ Level2Fragment.category[category]
                         + "materialjson:" + materialJson + "stepsjson:" + stepsJson
         );
 
-        NaidouApi.publishCookBook(title, desc, picIds, Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
+        NaidouApi.publishCookBook(title, desc, picIds[step3linear.getChildCount()-1], Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
@@ -588,6 +589,7 @@ public class PublishCookbookFragment extends SupportFragment {
             JSONObject o = new JSONObject();
             o.put("food", step3foods[i]);
             o.put("weight", step3weights[i]);
+
             array.add(o);
         }
         KJLoger.debug("getMaterialJson:" + array.toString());
@@ -604,7 +606,10 @@ public class PublishCookbookFragment extends SupportFragment {
         com.alibaba.fastjson.JSONArray array = new com.alibaba.fastjson.JSONArray();
         for (int i = 0; i < step4linear.getChildCount(); i++) {
             JSONObject o = new JSONObject();
-            o.put("pic", picUrls[i]);
+                JSONObject pic = new JSONObject();
+                pic.put("path",picUrls[i]);
+                pic.put("id",picIds[i]);
+            o.put("pic", pic);
             o.put("description", picDecs[i]);
             array.add(o);
         }

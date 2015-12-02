@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.adapter.RecommendRecyclerAdapterForTopic;
-import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.view.AdapterIndicator;
 import com.itspeed.naidou.model.bean.Topic;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
@@ -101,7 +100,6 @@ public class RecommendLiaodeFragment extends SupportFragment{
             @Override
             public void onItemClick(View view, int position) {
 //                ViewInject.toast("点击：" + position);
-                UIHelper.showChideDetail(aty);
             }
         });
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {

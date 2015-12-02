@@ -424,7 +424,7 @@ public class NaidouApi {
         HttpParams params = new HttpParams();
         params.put("_uid", uid);
         params.putHeaders("ApiKey", AppContext.TOKEN);
-        kjh.post(baseHost+url, params, callBack);
+        kjh.post(baseHost + url, params, callBack);
     }
 
     /**
@@ -437,7 +437,7 @@ public class NaidouApi {
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
         params.putHeaders("ApiKey", AppContext.TOKEN);
-        KJLoger.debug("picpath:"+file.getAbsolutePath());
+        KJLoger.debug("picpath:" + file.getAbsolutePath());
         params.put("_picture", file);
         kjh.post(baseHost + url, params, callBack);
 
@@ -461,5 +461,15 @@ public class NaidouApi {
         params.put("_steps",steps);
         kjh.post(baseHost + url, params, callBack);
 
+    }
+
+    public static void isTokenLegal(HttpCallBack callBack) {
+        String url = "isCredentialsNonExpired";
+        HttpConfig config = new HttpConfig();
+        config.cacheTime = 0;
+        KJHttp kjh = new KJHttp(config);
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        kjh.get(baseHost + url, params, callBack);
     }
 }

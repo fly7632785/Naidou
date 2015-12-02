@@ -25,8 +25,6 @@ import org.kymjs.kjframe.utils.SystemTool;
 
 import java.util.Map;
 
-import cn.jpush.android.api.JPushInterface;
-
 /**
  * Created by jafir on 10/15/15.
  * 登录界面，重写onStart方法，目的在于打开界面的时候 有记住密码的功能
@@ -67,21 +65,8 @@ public class LoginActivity extends KJActivity {
         dialog = new ProgressDialog(aty);
         dialog.setMessage("正在登录...");
         dialog.setCanceledOnTouchOutside(false);
-
-
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        JPushInterface.onResume(aty);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        JPushInterface.onPause(aty);
-    }
 
     @Override
     protected void onStart() {
@@ -93,7 +78,7 @@ public class LoginActivity extends KJActivity {
             password = CryptoUtil.decrypto(password);
         }
 
-        KJLoger.debug("zhanghao:" + name + "mima:" + password);
+        KJLoger.debug("账号:" + name + "密码:" + password);
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(password)) {
             editName.setText(name);
             editPassword.setText(password);

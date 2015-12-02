@@ -23,6 +23,7 @@ import com.itspeed.naidou.app.AppConfig;
 import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,42 +34,40 @@ import java.io.IOException;
 public class SelectActivity extends KJActivity {
 
     /**
-     *  关于拍照和照片的选取
-     *  拍照：拍摄照片之后会在本地生成一个图片，有一个url,（如果不进行压缩则为原图，
-     *  可以设置参数，进行压缩生成缩略图 ），
-     *  用原图然后进行裁剪，生成一个新的裁剪后存放的路径
-     *
-     *  从图库选取：从本地选取一张图片 有一个URL，用URL的图片进行裁剪，裁剪后存放到新的路径
-     *
-     *  为了确保每次的路径是不一致的，所以要有一个路径参数的传入 getIntent来获取
-     *
-     *  拍照和选取 后的裁剪都生成一张图片路径（图片的名字不同）
-     *  如果是 头像的选取 只有一个路径 图片名字为：avatar.jpeg
-     *  如果是发布菜谱的 5个步骤图 图片名字为：step1,step2,step3,step4,step5
-     *
-     *  使用模板
-     *
-     *   Intent intent = new Intent(aty,SelectActivity.class);
-     intent.putExtra(SelectActivity.KEY_PHOTO_PATH,"avatar.jpeg");
-     intent.putExtra(SelectActivity.KEY_X_RATE,1);//x比例
-     intent.putExtra(SelectActivity.KEY_Y_RATE,1);//y比例
-     intent.putExtra(SelectActivity.KEY_WIDTH,100);//宽
-     intent.putExtra(SelectActivity.KEY_HEIGHT,100);//高
-     startActivityForResult(intent,TO_SELECT_PHOTO);
-
-     然后 根据返回结果获取 uri
-
-     if (resultCode == Activity.RESULT_OK && requestCode == TO_SELECT_PHOTO) {
-     picPath = data.getStringExtra(SelectActivity.KEY_RETURN_PHOTO_PATH);
-     Bitmap bm = BitmapFactory.decodeFile(picPath);
-     mPortrait.setImageBitmap(bm);
-     }
-     *
-     *
+     * 关于拍照和照片的选取
+     * 拍照：拍摄照片之后会在本地生成一个图片，有一个url,（如果不进行压缩则为原图，
+     * 可以设置参数，进行压缩生成缩略图 ），
+     * 用原图然后进行裁剪，生成一个新的裁剪后存放的路径
+     * <p/>
+     * 从图库选取：从本地选取一张图片 有一个URL，用URL的图片进行裁剪，裁剪后存放到新的路径
+     * <p/>
+     * 为了确保每次的路径是不一致的，所以要有一个路径参数的传入 getIntent来获取
+     * <p/>
+     * 拍照和选取 后的裁剪都生成一张图片路径（图片的名字不同）
+     * 如果是 头像的选取 只有一个路径 图片名字为：avatar.jpeg
+     * 如果是发布菜谱的 5个步骤图 图片名字为：step1,step2,step3,step4,step5
+     * <p/>
+     * 使用模板
+     * <p/>
+     * Intent intent = new Intent(aty,SelectActivity.class);
+     * intent.putExtra(SelectActivity.KEY_PHOTO_PATH,"avatar.jpeg");
+     * intent.putExtra(SelectActivity.KEY_X_RATE,1);//x比例
+     * intent.putExtra(SelectActivity.KEY_Y_RATE,1);//y比例
+     * intent.putExtra(SelectActivity.KEY_WIDTH,100);//宽
+     * intent.putExtra(SelectActivity.KEY_HEIGHT,100);//高
+     * startActivityForResult(intent,TO_SELECT_PHOTO);
+     * <p/>
+     * 然后 根据返回结果获取 uri
+     * <p/>
+     * if (resultCode == Activity.RESULT_OK && requestCode == TO_SELECT_PHOTO) {
+     * picPath = data.getStringExtra(SelectActivity.KEY_RETURN_PHOTO_PATH);
+     * Bitmap bm = BitmapFactory.decodeFile(picPath);
+     * mPortrait.setImageBitmap(bm);
+     * }
      */
 
     //保存图片的本地路径
-    public static final String  IMG_PATH = Environment.getExternalStorageDirectory()+ AppConfig.saveFolder+"/imgs/";
+    public static final String IMG_PATH = Environment.getExternalStorageDirectory() + AppConfig.saveFolder + "/imgs/";
     //图片的名称 是外面传入的参数     到时候保存的路径则为 IMG_PATH+fileName
     private String fileName;
     //文件
@@ -76,30 +75,44 @@ public class SelectActivity extends KJActivity {
 
     private File originPhoto;
 
-    /** 从Intent获取图片路径的KEY */
+    /**
+     * 从Intent获取图片路径的KEY
+     */
     public static final String KEY_PHOTO_PATH = "photo_path";
-    /** 传回Intent图片路径的KEY */
+    /**
+     * 传回Intent图片路径的KEY
+     */
     public static final String KEY_RETURN_PHOTO_PATH = "return_photo_path";
 
     //版本比较：是否是4.4及以上版本
     final boolean mIsKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
-    /** 使用照相机拍照获取图片 */
+    /**
+     * 使用照相机拍照获取图片
+     */
     public static final int SELECT_PIC_BY_TACK_PHOTO = 1;
-    /** 使用相册中的图片 */
+    /**
+     * 使用相册中的图片
+     */
     public static final int SELECT_PIC_BY_PICK_PHOTO = 2;
-    /** 使用系统自带的裁剪 */
+    /**
+     * 使用系统自带的裁剪
+     */
     public static final int CROP_PHOTO = 3;
-    /** 4.4以上使用系统自带的裁剪 */
+    /**
+     * 4.4以上使用系统自带的裁剪
+     */
     public static final int CROP_PHOTO_KIAKAT = 5;
-    /** 4.4以上的从图库获取图片*/
+    /**
+     * 4.4以上的从图库获取图片
+     */
     public static final int SELECT_PIC_BY_PICK_PHOTO_KITKAT = 4;
 
 
-    public static  final String KEY_WIDTH = "imgwidth";
-    public static  final String KEY_HEIGHT = "imgheight";
-    public static  final String KEY_X_RATE = "imgXrate";
-    public static  final String KEY_Y_RATE = "imgYrate";
+    public static final String KEY_WIDTH = "imgwidth";
+    public static final String KEY_HEIGHT = "imgheight";
+    public static final String KEY_X_RATE = "imgXrate";
+    public static final String KEY_Y_RATE = "imgYrate";
 
     private int xRate;
     private int yRate;
@@ -107,20 +120,24 @@ public class SelectActivity extends KJActivity {
     private int height;
 
 
-    /** 开启相机 */
-    @BindView(id = R.id.btn_pick_photo,click = true)
+    /**
+     * 开启相机
+     */
+    @BindView(id = R.id.btn_pick_photo, click = true)
     private Button btn_take_photo;
-    /** 开启图册 */
-    @BindView(id = R.id.btn_take_photo,click = true)
+    /**
+     * 开启图册
+     */
+    @BindView(id = R.id.btn_take_photo, click = true)
     private Button btn_pick_photo;
-    /** 取消 */
-    @BindView(id = R.id.btn_cancel,click = true)
+    /**
+     * 取消
+     */
+    @BindView(id = R.id.btn_cancel, click = true)
     private Button btn_cancel;
 
 
     private Intent lastIntent;
-
-
 
 
     @Override
@@ -136,7 +153,6 @@ public class SelectActivity extends KJActivity {
     }
 
 
-
     @Override
     public void initData() {
         super.initData();
@@ -147,20 +163,20 @@ public class SelectActivity extends KJActivity {
     private void initFile() {
         lastIntent = getIntent();
         xRate = lastIntent.getIntExtra(KEY_X_RATE, 1);
-        yRate = lastIntent.getIntExtra(KEY_Y_RATE,1);
-        width = lastIntent.getIntExtra(KEY_WIDTH,80);
+        yRate = lastIntent.getIntExtra(KEY_Y_RATE, 1);
+        width = lastIntent.getIntExtra(KEY_WIDTH, 80);
         height = lastIntent.getIntExtra(KEY_HEIGHT, 80);
 
         fileName = lastIntent.getStringExtra(KEY_PHOTO_PATH);
         //创建储存图片的 文件目录
         File directory = new File(IMG_PATH);
-        if(!directory.exists()){
+        if (!directory.exists()) {
             directory.mkdir();
         }
         //创建 图片文件（文件目录 + 文件名）
-        filePhoto = new File(IMG_PATH,fileName);
-        originPhoto = new File(IMG_PATH,"origin"+fileName);
-        if(!filePhoto.exists()){
+        filePhoto = new File(IMG_PATH, fileName);
+        originPhoto = new File(IMG_PATH, "origin" + fileName);
+        if (!filePhoto.exists()) {
             try {
                 filePhoto.createNewFile();
             } catch (IOException e) {
@@ -168,7 +184,7 @@ public class SelectActivity extends KJActivity {
             }
         }
 
-        if(!originPhoto.exists()){
+        if (!originPhoto.exists()) {
             try {
                 originPhoto.createNewFile();
             } catch (IOException e) {
@@ -181,20 +197,19 @@ public class SelectActivity extends KJActivity {
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.btn_take_photo : // 开启相机
+            case R.id.btn_take_photo: // 开启相机
                 takePhoto();
                 break;
-            case R.id.btn_pick_photo : // 开启图册
+            case R.id.btn_pick_photo: // 开启图册
                 pickPhoto();
                 break;
-            case R.id.btn_cancel : // 取消操作
+            case R.id.btn_cancel: // 取消操作
                 this.finish();
                 break;
-            default :
+            default:
                 break;
         }
     }
-
 
 
     /**
@@ -213,13 +228,13 @@ public class SelectActivity extends KJActivity {
      */
     private void pickPhoto() {
         //看是否是API大于4.4
-        if(mIsKitKat){
+        if (mIsKitKat) {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             //设置选择的内容都是图片
             intent.setType("image/*");
-            startActivityForResult(intent,SELECT_PIC_BY_PICK_PHOTO_KITKAT);
-        }else {
+            startActivityForResult(intent, SELECT_PIC_BY_PICK_PHOTO_KITKAT);
+        } else {
             cropNormal();
         }
     }
@@ -244,12 +259,9 @@ public class SelectActivity extends KJActivity {
         startActivityForResult(intent, CROP_PHOTO);
 
 
-
-
-
     }
 
-    private void cropNormal(){
+    private void cropNormal() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
         intent.setType("image/*");
         intent.putExtra("crop", "true");
@@ -272,15 +284,25 @@ public class SelectActivity extends KJActivity {
      */
     private void cropPhotoKitKat(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
-//        uri = Uri.parse(getPath(aty,uri));
-        intent.setDataAndType(uri, "image/jpeg");
+
+        /**
+         * 这里很重要    要注意，4.4以后的裁剪 必须要转化一次
+         * 从 uri -> filepath ->uri
+         * 不然 不能适配所有的手机
+         * 如果用原来直接的uri 只能适配一些手机（小米，联想） 有一些手机则不行（魅族，htc..）
+         */
+        String url=getPath(aty,uri);
+        intent.setDataAndType(Uri.fromFile(new File(url)), "image/*");
+
+        KJLoger.debug("原来裁剪的uri:" + uri);
+        KJLoger.debug("现在裁剪的uri:" + Uri.fromFile(new File(url)));
+//        intent.setDataAndType(uri, "image/jpeg");  原来的方式 太直接  不行
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", xRate);
         intent.putExtra("aspectY", yRate);
         intent.putExtra("outputX", width);
         intent.putExtra("outputY", height);
         intent.putExtra("scale", true);
-        //		intent.putExtra("return-data", true);
         intent.putExtra("return-data", false);
         intent.putExtra(MediaStore.EXTRA_OUTPUT,
                 Uri.fromFile(filePhoto));
@@ -308,49 +330,61 @@ public class SelectActivity extends KJActivity {
      * @param requestCode
      * @param data
      */
-    private void doPhoto(int requestCode,int resultCode, Intent data) {
-        switch (requestCode){
-            case SELECT_PIC_BY_PICK_PHOTO:
-                if(resultCode == RESULT_OK){
-
-                }else {
-                    Toast.makeText(aty,"选择图片失败",Toast.LENGTH_SHORT).show();
-                }
-                break;
+    private void doPhoto(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+//            case SELECT_PIC_BY_PICK_PHOTO:
+//                if (resultCode == RESULT_OK) {
+//
+//                } else {
+//                    Toast.makeText(aty, "选择图片失败", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
 
             case SELECT_PIC_BY_PICK_PHOTO_KITKAT:
-                if(resultCode == RESULT_OK && data != null){
+                if (resultCode == RESULT_OK && data != null) {
                     Uri uri = data.getData();
                     //裁剪图片
                     cropPhotoKitKat(uri);
-                }else {
-                    Toast.makeText(aty,"4.4版本选择图片失败",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(aty, "4.4版本选择图片失败", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
             case SELECT_PIC_BY_TACK_PHOTO:
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     //拍照成功之后就去裁剪
                     cropPhoto(Uri.fromFile(originPhoto));
-                }else {
-                    Toast.makeText(aty,"拍照失败",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(aty, "拍照失败", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
             case CROP_PHOTO:
-                if(resultCode == RESULT_OK){
-                    if(data != null) {
+                KJLoger.debug("此时的result:" + resultCode);
+                if (resultCode == RESULT_OK) {
+                    if (data != null) {
                         Uri u = data.getData();
-                        KJLoger.debug("ur:" + u);
+                        Bitmap bitmap = data.getParcelableExtra("data");
+                        KJLoger.debug("uri:" + u);
+                        KJLoger.debug("birmap:" + bitmap);
+
+
+                        Bitmap mPhoto = data.getExtras().getParcelable("data");
+                        KJLoger.debug("mPhoto:" + mPhoto);
+                        String filePath = data.getExtras().getString("filePath");
+                        if (!StringUtils.isEmpty(filePath))
+                            KJLoger.debug("filepath:" + filePath);
                     }
+
+
                     Toast.makeText(aty, "裁剪成功", Toast.LENGTH_SHORT).show();
-                    KJLoger.debug("path:"+filePhoto.toString());
+                    KJLoger.debug("path:" + filePhoto.toString());
                     KJLoger.debug("path:" + filePhoto);
                     lastIntent.putExtra(KEY_RETURN_PHOTO_PATH, filePhoto.toString());
                     setResult(RESULT_OK, lastIntent);
                     this.finish();
-                }else {
-                    Toast.makeText(aty,"裁剪失败",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(aty, "裁剪失败", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -362,15 +396,11 @@ public class SelectActivity extends KJActivity {
 /**********************************分割线 下面是一些获取图片 和 判断方法*******************************************************/
 
 
-
-
-
-
-
     /**
      * <br>功能简述:4.4及以上获取图片的方法
      * <br>功能详细描述:
      * <br>注意:
+     *
      * @param context
      * @param uri
      * @return
@@ -417,7 +447,7 @@ public class SelectActivity extends KJActivity {
                 }
 
                 final String selection = "_id=?";
-                final String[] selectionArgs = new String[] { split[1] };
+                final String[] selectionArgs = new String[]{split[1]};
 
                 return getDataColumn(context, contentUri, selection, selectionArgs);
             }
@@ -444,7 +474,7 @@ public class SelectActivity extends KJActivity {
 
         Cursor cursor = null;
         final String column = "_data";
-        final String[] projection = { column };
+        final String[] projection = {column};
 
         try {
             cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
@@ -459,7 +489,6 @@ public class SelectActivity extends KJActivity {
         }
         return null;
     }
-
 
 
     /**

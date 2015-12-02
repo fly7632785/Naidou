@@ -18,6 +18,31 @@ public class CookBook {
         this.collectCount = collects;
     }
 
+    @Override
+    public String toString() {
+        return "CookBook{" +
+                "cid='" + cid + '\'' +
+                ", title='" + title + '\'' +
+                ", time='" + time + '\'' +
+                ", type1='" + type1 + '\'' +
+                ", type2='" + type2 + '\'' +
+                ", likedCount=" + likedCount +
+                ", isCollect=" + isCollect +
+                ", collectCount=" + collectCount +
+                ", isLike=" + isLike +
+                ", foodMaterials=" + foodMaterials +
+                ", steps='" + steps + '\'' +
+                ", stepCount=" + stepCount +
+                ", cateName='" + cateName + '\'' +
+                ", productUrl='" + productUrl + '\'' +
+                ", fromWhoAvata='" + fromWhoAvata + '\'' +
+                ", fromWho='" + fromWho + '\'' +
+                ", fromWhoId='" + fromWhoId + '\'' +
+                ", cover='" + cover + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
     //id
     private String  cid;
     //标题

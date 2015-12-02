@@ -1,6 +1,5 @@
 package com.itspeed.naidou.app.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -9,12 +8,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.api.NaidouApi;
+import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
+import com.itspeed.naidou.app.util.UIHelper;
 
 import org.kymjs.kjframe.KJActivity;
-import org.kymjs.kjframe.KJHttp;
-import org.kymjs.kjframe.http.HttpConfig;
-import org.kymjs.kjframe.utils.DensityUtils;
+import org.kymjs.kjframe.http.HttpCallBack;
+import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.PreferenceHelper;
 
 import cn.jpush.android.api.JPushInterface;
@@ -23,34 +24,40 @@ import cn.jpush.android.api.JPushInterface;
  * Created by jafir on 10/15/15.
  * 应用程序的开始和入口，有一个动画界面
  */
-public class AppStart extends KJActivity{
+public class AppStart extends KJActivity {
 
     public static String TAG = "appstart";
-    private KJHttp mKjh;
     private ImageView image;
-
+    private boolean isTokenLegal = false;
+    private boolean isFirst;
+    private String token;
 
     @Override
     public void setRootView() {
         image = new ImageView(aty);
         image.setImageResource(R.mipmap.start);
+        image.setScaleType(ImageView.ScaleType.FIT_XY);
         Animation anim = AnimationUtils.loadAnimation(aty, R.anim.splash_start);
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onAnimationStart(Animation animation) {}
+            public void onAnimationStart(Animation animation) {
+                //动画开始的时候去 检测证书
+
+                checkToken();
+            }
 
             @Override
             public void onAnimationEnd(Animation animation) {
+                //动画结束 跳转
                 jumpTo();
             }
 
             @Override
-            public void onAnimationRepeat(Animation animation) {}
+            public void onAnimationRepeat(Animation animation) {
+            }
         });
         image.setAnimation(anim);
         setContentView(image);
-        AppContext.screenH = DensityUtils.getScreenH(aty);
-        AppContext.screenW = DensityUtils.getScreenW(aty);
     }
 
 
@@ -63,31 +70,43 @@ public class AppStart extends KJActivity{
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public void initData() {
-        super.initData();
-        HttpConfig config = new HttpConfig();
-        config.cacheTime = 0;
-        mKjh = new KJHttp(config);
+
+    private void checkToken() {
+        //验证证书
+        token = AppContext.TOKEN;
+        NaidouApi.isTokenLegal(new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("isTokenLegal"+t);
+                if (Response.getSuccess(t)) {
+                    isTokenLegal = true;
+                }
+            }
+        });
     }
+
 
     /**
      * 判断是不是第一次进入，如果是就到引导页
      */
     private void jumpTo() {
-        boolean isFirst = PreferenceHelper.readBoolean(aty, TAG, "first_open",
+        isFirst = PreferenceHelper.readBoolean(aty, TAG, "first_open",
                 true);
-        Intent jumpIntent = new Intent();
-        if (!isFirst) {
-//            isOnline();
-            jumpIntent.setClass(aty, LoginActivity.class);
+        //有token验证
+        if (isFirst) {
+            //引导页
+            UIHelper.showGuide(aty);
+            PreferenceHelper.write(aty, TAG, "first_open", false);
+        } else if (token.equals("") || token == null || !isTokenLegal) {
+            //去登录
+            UIHelper.showLogin(aty);
         } else {
-//            PreferenceHelper.write(aty, TAG, "first_open", false);
-            jumpIntent.setClass(aty, GuideActivity.class);
+            UIHelper.showMain(aty);
         }
-        startActivity(jumpIntent);
         finish();
     }
+
 
     @Override
     protected void onResume() {
@@ -105,7 +124,6 @@ public class AppStart extends KJActivity{
     protected void onDestroy() {
         setContentView(R.layout.view_null);
         image = null;
-        mKjh = null;
         super.onDestroy();
     }
 }

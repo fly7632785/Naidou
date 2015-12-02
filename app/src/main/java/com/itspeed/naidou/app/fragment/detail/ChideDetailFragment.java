@@ -82,7 +82,6 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         aty = (SimpleBackActivity) getActivity();
-        KJLoger.debug("onCreate");
         onChange();
     }
 
@@ -90,9 +89,11 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     @Override
     protected void initData() {
         super.initData();
-        KJLoger.debug("initData");
 
-        cid = aty.getIntent().getStringExtra("cid");
+        //获取cid
+        cid = (String) aty.getBundleData().get("cid");
+        KJLoger.debug("chidedetail  Cid:"+cid);
+
         initHead();
         mListView = (ListView) layout.findViewById(R.id.chide_detail_list);
         mListView.addHeaderView(head);
@@ -157,6 +158,9 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     protected void widgetClick(View v) {
         super.widgetClick(v);
 
+        if(cid == null){
+            return;
+        }
         switch (v.getId()){
             case R.id.chide_detail_head_avatar:
                 UIHelper.showZone(aty,uid);
@@ -171,12 +175,15 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
                     doLike(cid);
                     mIsLike.setSelected(false);
                     //点赞数改变
-                    mLikes.setText(""+(likes-1));
+                    likes--;
+                    mLikes.setText(""+likes);
+
                 }else {
                     cancelLike(cid);
                     mIsLike.setSelected(true);
                     //点赞数改变
-                    mLikes.setText(""+(likes+1));
+                    likes++;
+                    mLikes.setText(""+likes);
                 }
                 break;
             case R.id.layout_iscollect:
@@ -188,12 +195,14 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
                 if(isCollect){
                     doCollect(cid);
                     //收藏数改变
+                    collects--;
                     mIsCollect.setSelected(false);
-                    mCollects.setText(""+(collects-1));
+                    mCollects.setText(""+collects);
                 }else {
                     cancelCollect(cid);
                     mIsCollect.setSelected(true);
-                    mCollects.setText(""+(collects+1));
+                    collects++;
+                    mCollects.setText(""+collects);
                 }
 
                 break;

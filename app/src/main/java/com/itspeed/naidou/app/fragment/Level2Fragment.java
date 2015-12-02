@@ -192,7 +192,8 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        UIHelper.showChideDetail(aty);
+        UIHelper.showChideDetail(aty,mData.get(position).getCid());
+        KJLoger.debug("点击了ID:"+mData.get(position).getCid());
     }
 
 
