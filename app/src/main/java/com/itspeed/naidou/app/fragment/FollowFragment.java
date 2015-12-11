@@ -1,9 +1,11 @@
 package com.itspeed.naidou.app.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.adapter.FollowAdapter;
+import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.User;
 
 import org.kymjs.kjframe.http.HttpCallBack;
@@ -34,6 +37,7 @@ public class FollowFragment extends TitleBarSupportFragment{
     private ArrayList<User> mData;
     @BindView(id = R.id.mycookbook_text)
     private TextView mEmptyText;
+    private ProgressDialog dialog;
 
 
     @Override
@@ -52,13 +56,20 @@ public class FollowFragment extends TitleBarSupportFragment{
     @Override
     protected void initData() {
         super.initData();
+
+        dialog = new ProgressDialog(aty);
+        dialog.setMessage("加载中...");
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
         mAdapter = new FollowAdapter();
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                UIHelper.showZone(aty,mData.get(position).getUid());
+            }
+        });
         mData = new ArrayList<>();
-//        //模拟添加数据
-//        for (int i = 0;i<10;i++){
-//            User user = new User();
-//            data.add(user);
-//        }
         requestData();
     }
 
@@ -69,6 +80,7 @@ public class FollowFragment extends TitleBarSupportFragment{
                 super.onSuccess(t);
                 KJLoger.debug("getMyFollow:"+t);
                 if(Response.getSuccess(t)){
+                    dialog.dismiss();
                     mData = Response.getFollowList(t);
                     if(mData.isEmpty() || mData==null){
                         mEmptyText.setVisibility(View.VISIBLE);

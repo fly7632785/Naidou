@@ -156,6 +156,16 @@ public class SimpleBackActivity extends TitleBarActivity {
     }
 
 
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        if(currentFragment.getTag().equals(ChideDetailFragment.class.getName())){
+//            KJLoger.debug("equal");
+//            UIHelper.showMain(aty);
+//            this.finish();
+//        }
+//    }
+
     @Override
     protected void onDestroy() {
         setContentView(R.layout.view_null);

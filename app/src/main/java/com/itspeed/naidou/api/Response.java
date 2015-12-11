@@ -181,4 +181,20 @@ public class Response {
     }
 
 
+    /**
+     *获取 菜谱详情
+     * @param data
+     */
+    public static CookBook getChideDetail(String data) {
+        Entity entity = JSON.parseObject(data, Entity.class);
+        CookBook cookBook = JSON.parseObject(entity.getData().toString(),CookBook.class);
+        return cookBook;
+    }
+
+    public static ArrayList<CookBook> getUserCookbook(String data) {
+        Entity entity = JSON.parseObject(data, Entity.class);
+        JSONObject object = JSON.parseObject(entity.getData().toString());
+        ArrayList<CookBook> cb = (ArrayList<CookBook>) JSON.parseArray(object.getString("recipes"),CookBook.class);
+        return cb;
+    }
 }

@@ -1,5 +1,6 @@
 package com.itspeed.naidou.app.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +23,6 @@ import com.itspeed.naidou.model.bean.JsonBean.Entity;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.SupportFragment;
-import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.SystemTool;
 
@@ -58,8 +58,11 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
             "CATE_PARENT_BEIYUN", "CATE_PARENT_YUNQIAN", "CATE_PARENT_YUNZHONG", "CATE_PARENT_YUNWAN", "CATE_PARENT_YUEZI",
             "CATE_CHILD_PHASE1", "CATE_CHILD_PHASE2", "CATE_CHILD_PHASE3", "CATE_CHILD_PHASE4", "CATE_CHILD_PHASE5",
     };
-
-
+    @SuppressLint("ValidFragment")
+    public Level2Fragment() {
+        super();
+    }
+    @SuppressLint("ValidFragment")
     public Level2Fragment(int cate, Context aty) {
         this.aty = aty;
         this.cate = cate;
@@ -122,6 +125,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
                     //解析数据
                     ArrayList<CookBook> addData;
                     addData = Response.getChideList(t);
+                    KJLoger.debug("dataSize:"+addData.size());
                     KJLoger.debug("data:"+addData);
                     //!!!!!!!异步 设置数据 只能在这里
 
@@ -129,6 +133,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
                     //请求第一页数据 然后装入总的data
                     if (mData.isEmpty()) {
                         mData.addAll(addData);
+                        KJLoger.debug("mDataSize:" + mData.size());
                         mAdapter.setData(mData);
                         mListView.setAdapter(mAdapter);
                     } else {
@@ -176,7 +181,6 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     @Override
     public void onPullDownToRefresh(PullToRefreshBase refreshView) {
         //刷新数据
-        ViewInject.toast("刷新");
         //清除原有数据
         mData.clear();
         //请求第一页 然后解析 设置数据
@@ -186,7 +190,6 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     @Override
     public void onPullUpToRefresh(PullToRefreshBase refreshView) {
         //加载数据
-        ViewInject.toast("加载");
         loadData();
     }
 

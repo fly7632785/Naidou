@@ -40,6 +40,7 @@
                 android:layout_height="match_parent" />
             <EditText
                 android:enabled="false"
+                android:singleLine="true"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:background="@null"
@@ -106,6 +107,7 @@
         <EditText
             android:layout_width="0dp"
             android:layout_weight="3"
+            android:singleLine="true"
             android:hint="请输入登陆密码,至少6个字符"
             android:textColor="@color/sign_textcolor"
             android:textSize="15dp"
@@ -138,6 +140,7 @@
             android:inputType="textPassword"
             android:textColor="@color/sign_textcolor"
             android:textSize="15dp"
+            android:singleLine="true"
             android:background="@null"
             android:textColorHint="@color/sign_text_hintcolor"
             android:layout_height="match_parent"
@@ -146,9 +149,9 @@
 
     <ImageView
         android:layout_marginTop="50dp"
-        android:layout_width="140dp"
+        android:layout_width="wrap_content"
         android:id="@+id/sign_up"
         android:background="@drawable/selector_sign_up"
         android:layout_gravity="center_horizontal"
-        android:layout_height="50dp" />
+        android:layout_height="wrap_content" />
 </LinearLayout>

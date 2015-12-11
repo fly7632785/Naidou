@@ -14,7 +14,7 @@
         <org.kymjs.kjframe.widget.RoundImageView
             android:layout_width="35dp"
             android:id="@+id/item_list_mycollect_portrait"
-            android:src="@mipmap/portrait"
+            android:src="@mipmap/default_avatar"
             android:layout_height="35dp" />
         <TextView
             android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
         android:layout_marginBottom="5dp"
         android:id="@+id/item_list_mycollect_img"
         android:layout_width="match_parent"
-        android:src="@mipmap/img1"
+        android:src="@mipmap/default_bg"
         android:layout_height="130dp" />
 
     <TextView

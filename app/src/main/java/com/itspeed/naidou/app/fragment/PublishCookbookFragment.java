@@ -408,6 +408,11 @@ public class PublishCookbookFragment extends SupportFragment {
             case R.id.item_linear_step4_describe:
                 viewDesc = v;
                 descEdit = new EditText(aty);
+                String  content = ((TextView) viewDesc).getText().toString();
+                if(!content.equals("") && !content.equals("点击添加描述")) {
+                    descEdit.setText(content);
+                    descEdit.setSelection(descEdit.getText().length());
+                }
                 descEdit.setBackground(null);
                 descEdit.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DensityUtils.dip2px(aty, 100)));
                 descDialog = new AlertDialog.Builder(aty).setTitle("描述")
@@ -504,6 +509,9 @@ public class PublishCookbookFragment extends SupportFragment {
      */
     private void uploadPictures() {
 
+        //初始化 变量
+        i= 0;
+
         //获取现在有多少步骤
         getStepCount();
 
@@ -523,7 +531,7 @@ public class PublishCookbookFragment extends SupportFragment {
                     KJLoger.debug("upload:"+t);
                     if (Response.getSuccess(t)) {
                         picIds[i] = Response.getPictureId(t);
-                        KJLoger.debug("avatarId" + i + ":" + picIds);
+                        KJLoger.debug("avatarId" + i + ":" + picIds[i]);
                         picUrls[i] = Response.getPictureUrl(t);
                         isFinished[i] = true;
                         i++;
@@ -561,11 +569,11 @@ public class PublishCookbookFragment extends SupportFragment {
         //获取 步骤json
         String stepsJson = getStepJson();
 
-        KJLoger.debug("data://" + "title:" + title + "desc:" + desc + "coverid:"+picIds[step3linear.getChildCount()-1]+"category:"+ Level2Fragment.category[category]
+        KJLoger.debug("data://" + "title:" + title + "desc:" + desc + "coverid:"+picIds[step4linear.getChildCount()-1]+"category:"+ Level2Fragment.category[category]
                         + "materialjson:" + materialJson + "stepsjson:" + stepsJson
         );
 
-        NaidouApi.publishCookBook(title, desc, picIds[step3linear.getChildCount()-1], Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
+        NaidouApi.publishCookBook(title, desc, picIds[step4linear.getChildCount()-1], Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
@@ -613,6 +621,8 @@ public class PublishCookbookFragment extends SupportFragment {
             o.put("description", picDecs[i]);
             array.add(o);
         }
+
+        KJLoger.debug("getStepJson:" + array.toJSONString());
         KJLoger.debug("getStepJson:"+array.toString());
         return array.toJSONString();
     }
@@ -657,11 +667,11 @@ public class PublishCookbookFragment extends SupportFragment {
      */
     private void toSelectPhoto(int position) {
         Intent intent = new Intent(aty, SelectActivity.class);
-        intent.putExtra(SelectActivity.KEY_PHOTO_PATH, "step" + position + ".jpeg");
-        intent.putExtra(SelectActivity.KEY_X_RATE, 16);//x比例
-        intent.putExtra(SelectActivity.KEY_Y_RATE, 9);//y比例
+        intent.putExtra(SelectActivity.KEY_PHOTO_NAME, "step" + position + ".jpeg");
+        intent.putExtra(SelectActivity.KEY_X_RATE, 4);//x比例
+        intent.putExtra(SelectActivity.KEY_Y_RATE, 3);//y比例
         intent.putExtra(SelectActivity.KEY_WIDTH, 640);//宽
-        intent.putExtra(SelectActivity.KEY_HEIGHT, 360);//高
+        intent.putExtra(SelectActivity.KEY_HEIGHT, 480);//高
         startActivityForResult(intent, TO_SELECT_PHOTO);
     }
 
@@ -749,8 +759,8 @@ public class PublishCookbookFragment extends SupportFragment {
      * 改变step2的选择  孩子
      */
     private void selectChild() {
-        beiyun.setImageResource(R.drawable.selector_publish_4_5);
-        yunchu.setImageResource(R.drawable.selector_publish_6_8);
+        beiyun.setImageResource(R.drawable.selector_publish_4_6);
+        yunchu.setImageResource(R.drawable.selector_publish_7_8);
         yunzhong.setImageResource(R.drawable.selector_publish_9_12);
         yunwan.setImageResource(R.drawable.selector_publish_1_2);
         yuezi.setImageResource(R.drawable.selector_publish_3_4);

@@ -89,7 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="10dp"
-        android:src="@mipmap/img2"
+        android:src="@mipmap/default_bg"
         android:visibility="gone" />
 
 

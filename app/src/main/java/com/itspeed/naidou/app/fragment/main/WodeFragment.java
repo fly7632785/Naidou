@@ -21,10 +21,9 @@ import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.User;
 
 import org.kymjs.kjframe.KJBitmap;
-import org.kymjs.kjframe.bitmap.BitmapConfig;
 import org.kymjs.kjframe.http.HttpCallBack;
-import org.kymjs.kjframe.http.HttpConfig;
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 
 /**
@@ -93,7 +92,8 @@ public class WodeFragment extends TitleBarSupportFragment {
                 break;
 
             case R.id.wode_portrait:
-                UIHelper.showEditInfo(this,1);
+                ViewInject.toast("请在设置里面编辑个人资料哦");
+//                UIHelper.showEditInfo(this,1);
                 break;
         }
 
@@ -106,7 +106,7 @@ public class WodeFragment extends TitleBarSupportFragment {
         setTitle("我的");
         setBackImage(null);
         setMenuImage(R.drawable.selector_title_setting);
-        requestData();
+//        requestData();
     }
 
     @Override
@@ -118,6 +118,15 @@ public class WodeFragment extends TitleBarSupportFragment {
     }
 
 
+    /**
+     * 每次回来都去更新数据 看看是否如奶否关注人数等变化
+     */
+    @Override
+    public void onStart() {
+        super.onStart();
+        requestData();
+    }
+
     public void requestData(){
         NaidouApi.getMyInfo(new HttpCallBack() {
             @Override
@@ -126,7 +135,7 @@ public class WodeFragment extends TitleBarSupportFragment {
                 KJLoger.debug("getmyInfo:" + t);
                 if (Response.getSuccess(t)) {
                     User user = Response.getUserInfo(t);
-                    KJLoger.debug("user:"+user.toString());
+                    KJLoger.debug("user:" + user.toString());
                     setData(user);
                 }
             }
@@ -145,11 +154,12 @@ public class WodeFragment extends TitleBarSupportFragment {
             //显示数据
             //头像     本地的avatar.jpeg
             //设置 头像缓存时间30天
-            HttpConfig httpConfig = new HttpConfig();
-            httpConfig.cacheTime = 30*3600;
-            new KJBitmap.Builder().imageUrl(AppContext.HOST + user.getAvatar()).view(mAvatar).errorBitmapRes(R.mipmap.portrait).display(new KJBitmap(httpConfig,new BitmapConfig()));
+//            HttpConfig httpConfig = new HttpConfig();
+//            httpConfig.cacheTime = 30*3600;
+//            new KJBitmap.Builder().imageUrl(AppContext.HOST + user.getAvatar()).view(mAvatar).errorBitmapRes(R.mipmap.portrait).display(new KJBitmap(httpConfig,new BitmapConfig()));
 //            KJLoger.debug("cachepath:" + HttpConfig.CACHEPATH + "");
 //            KJLoger.debug("cachetime:" + httpConfig.cacheTime);
+            new KJBitmap().displayWithErrorBitmap(mAvatar,AppContext.userAvatarPath,R.mipmap.default_avatar);
             mCoins.setText(user.getCoins() + "");
             mFollow.setText(user.getFollowCount()+"");
             mNickname.setText(user.getNickname());

@@ -24,6 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:layout_height="50dp"
+            android:src="@mipmap/default_avatar"
             android:id="@+id/edit_portrait" />
     </RelativeLayout>
 

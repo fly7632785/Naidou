@@ -34,7 +34,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="16dp"
-                android:text="修改密码后请牢记新密码哦！密码确认修改后将重新登陆奶豆客户端！"
+                android:text="温馨提示：修改密码后请牢记新密码哦！密码确认修改后不需要再麻烦重新登录了哦！"
                 android:textColor="#666666" />
         </LinearLayout>
     </LinearLayout>
@@ -57,6 +57,7 @@
             android:layout_width="0dp"
             android:textColor="#333333"
             android:paddingLeft="15dp"
+            android:singleLine="true"
             android:id="@+id/modifypwd_oldpwd"
             android:textColorHint="#666666"
             android:hint="请输入原密码"
@@ -90,6 +91,7 @@
             android:layout_width="0dp"
             android:textColor="#333333"
             android:paddingLeft="15dp"
+            android:singleLine="true"
             android:inputType="textPassword"
             android:id="@+id/modifypwd_newpwd"
             android:textColorHint="#666666"
@@ -126,6 +128,7 @@
             android:id="@+id/modifypwd_confirmnew"
             android:textColorHint="#666666"
             android:hint="再次输入密码"
+            android:singleLine="true"
             android:inputType="textPassword"
             android:textSize="14sp"
             android:gravity="bottom"

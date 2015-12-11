@@ -6,9 +6,9 @@
     <ImageView
         android:id="@+id/item_list_cookbook_img"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:scaleType="centerCrop"
-        android:src="@mipmap/img2" />
+        android:src="@mipmap/default_bg" />
 
     <View
         android:id="@+id/item_list_cookbook_img1"

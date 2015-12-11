@@ -14,8 +14,10 @@ import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.util.CryptoUtil;
 import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.model.bean.User;
 
 import org.kymjs.kjframe.KJActivity;
+import org.kymjs.kjframe.KJHttp;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
@@ -48,6 +50,7 @@ public class LoginActivity extends KJActivity {
 
     private String name;
     private String password;
+    private User user;
 
     private ProgressDialog dialog;
 
@@ -94,6 +97,13 @@ public class LoginActivity extends KJActivity {
                 break;
             case R.id.login_scan:
                 AppContext.isVisitor = true;
+                User user = new User();
+                //设置默认 user信息
+                user.setNickname("游客");
+                user.setMotto("论从游客到会员的过程需要多大勇气");
+                AppContext.userAvatarPath = "youkeAvatarPath";
+                AppContext.user = user;
+                AppContext.TOKEN = "dd3eee88b4bdcbf999d6458f10cabe2b56c4b561";
                 UIHelper.showMain(aty);
                 aty.finish();
                 break;
@@ -131,13 +141,13 @@ public class LoginActivity extends KJActivity {
 
                         //设置为用户模式
                         AppContext.isVisitor = false;
-                        //保存token 和 用户信息
+
+
+                        //设置全局 token
                         writeToApplication(s);
-                        //账号密码写入 SP
-                        writeToSP();
-                        //跳转
+                        //用户信息 账号密码 token写入 SP
+                        writeToSP(s);
                         UIHelper.showMain(aty);
-//                        ViewInject.toast("登录成功");
                         dialog.dismiss();
                         aty.finish();
                     }
@@ -168,6 +178,32 @@ public class LoginActivity extends KJActivity {
         }
     }
 
+    private void writeUserInfo2SP(User user) {
+        /**
+         * 这里做用户信息本地化
+         */
+        PreferenceHelper.write(aty, "userInfo", "avatarId",user.getAvatarId());
+        PreferenceHelper.write(aty, "userInfo", "avatar", user.getAvatar());
+        PreferenceHelper.write(aty, "userInfo", "nickName", user.getNickname());
+        PreferenceHelper.write(aty, "userInfo", "email", user.getEmail());
+        PreferenceHelper.write(aty, "userInfo", "motto", user.getMotto());
+        PreferenceHelper.write(aty, "userInfo", "coins", user.getCoins());
+        PreferenceHelper.write(aty, "userInfo", "follow", user.getFollowedCount());
+        PreferenceHelper.write(aty, "userInfo", "uid", user.getUid());
+
+        //下载 头像到手机
+        new KJHttp().download(AppContext.userAvatarPath, AppContext.HOST+user.getAvatar(), new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("download:"+t);
+                if(Response.getSuccess(t)){
+
+                }
+            }
+        });
+    }
+
     /**
      * 写入Application
      *
@@ -177,7 +213,6 @@ public class LoginActivity extends KJActivity {
         if (t != null) {
             AppContext.user = Response.getMyInfo(t);
             AppContext.TOKEN = Response.getApiKey(t);
-//            KJLoger.debug("user:"+AppContext.user.toString());
         }
     }
 
@@ -185,7 +220,7 @@ public class LoginActivity extends KJActivity {
     /**
      * 写入本地保存
      */
-    private void writeToSP() {
+    private void writeToSP(String t) {
         PreferenceHelper.write(aty, TAG, "login_account", name);
         //加密密码
         password = CryptoUtil.encrypto(password);
@@ -194,7 +229,11 @@ public class LoginActivity extends KJActivity {
          * 这里做token本地化
          */
         PreferenceHelper.write(aty, TAG, "apiKey", CryptoUtil.encrypto(AppContext.TOKEN));
+        User user = Response.getMyInfo(t);
+        writeUserInfo2SP(user);
+
     }
+
 
 
     @Override

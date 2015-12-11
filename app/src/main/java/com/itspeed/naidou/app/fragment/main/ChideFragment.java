@@ -1,6 +1,5 @@
 package com.itspeed.naidou.app.fragment.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +13,6 @@ import com.itspeed.naidou.app.fragment.ParentFragment;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.UIHelper;
-
-import org.kymjs.kjframe.ui.ViewInject;
-import org.kymjs.kjframe.utils.KJLoger;
 
 /**
  * Created by jafir on 15/9/1.
@@ -69,7 +65,8 @@ public class ChideFragment extends TitleBarSupportFragment {
     public void onChange() {
         super.onChange();
         setTitleType(TitleBarActivity.TitleBarType.Titlebar1);
-        setBackImage(R.drawable.selector_titlebar_search);
+//        setBackImage(R.drawable.selector_titlebar_search);
+        setBackImage(null);
         setMenuImage(R.drawable.selector_titlebar_add);
     }
 
@@ -90,14 +87,12 @@ public class ChideFragment extends TitleBarSupportFragment {
     @Override
     public void onBackClick() {
         super.onBackClick();
-        ViewInject.toast("点击了back");
-        aty.sendBroadcast(new Intent("com.itspeed.naidou.FORCE_OFFLINE"));
+//        aty.sendBroadcast(new Intent("com.itspeed.naidou.FORCE_OFFLINE"));
     }
 
     @Override
     public void onSegmentClick(int index) {
         super.onSegmentClick(index);
-        KJLoger.debug("点击了："+index);
         switch (index){
             case 0:
                 changeFragment(R.id.cookbood_fl,parentFragment);

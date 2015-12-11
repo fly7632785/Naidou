@@ -26,10 +26,10 @@ public class RightsManager {
 
     public static void alertToLogin(final Context context) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-        dialog.setTitle("请登录");
-        dialog.setMessage("您现在是游客,是否去登录");
+        dialog.setTitle("温馨提示");
+        dialog.setMessage("享受更好的服务，赶紧登录吧！");
         dialog.setCancelable(false);
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("这就去", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -40,7 +40,7 @@ public class RightsManager {
                 context.startActivity(intent);
             }
         });
-        dialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton("再看看", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

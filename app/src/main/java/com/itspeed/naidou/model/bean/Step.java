@@ -1,41 +1,43 @@
 package com.itspeed.naidou.model.bean;
 
+import com.itspeed.naidou.model.bean.JsonBean.Pic;
+
 /**
  * Created by jafir on 15/9/14.
  */
 public class Step {
-    //图片
-    private String img;
 
-    private int imgId;
 
 
     //描述
-    private String describe;
+    private String description;
 
 
-    public String getDescribe() {
-        return describe;
+    private Pic pic;
+
+
+    @Override
+    public String toString() {
+        return "Step{" +
+                "description='" + description + '\'' +
+                ", pic=" + pic +
+                '}';
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public String getDescription() {
+        return description;
     }
 
-    public String getImg() {
-        return img;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public Pic getPic() {
+        return pic;
     }
 
-    public int getImgId() {
-        return imgId;
-    }
-
-    public void setImgId(int imgId) {
-        this.imgId = imgId;
+    public void setPic(Pic pic) {
+        this.pic = pic;
     }
 }
 

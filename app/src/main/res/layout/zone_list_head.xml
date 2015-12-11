@@ -10,13 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:gravity="center_horizontal"
-        android:background="@mipmap/zone"
+        android:background="@mipmap/zone_bg"
         android:orientation="vertical">
         <ImageView
             android:layout_width="40dp"
             android:layout_gravity="left"
             android:id="@+id/zone_list_head_back"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:src="@drawable/selector_common_back"
             android:layout_height="40dp" />
@@ -26,7 +26,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:src="@mipmap/portrait" />
+            android:src="@mipmap/default_avatar" />
 
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
-            android:text="Jafir" />
+            android:text="" />
 
         <TextView
             android:id="@+id/zone_list_head_motto"
@@ -43,8 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:maxWidth="300dp"
-            android:text="what can't kill you makes you stronger" />
+            android:maxWidth="300dp"/>
 
 
         <ImageView

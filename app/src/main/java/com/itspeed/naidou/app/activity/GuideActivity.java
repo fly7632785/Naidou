@@ -25,7 +25,7 @@ public class GuideActivity extends KJActivity {
     private ViewPager viewPager;
     @BindView(id = R.id.indicator_guide)
     private FlycoPageIndicaor mIndicator;
-    private int[ ]  guides = {R.mipmap.welcome1,R.mipmap.welcome2,R.mipmap.welcome3,R.mipmap.welcome4,R.mipmap.welcome5};
+    private int[ ]  guides = {R.mipmap.welcome2,R.mipmap.welcome3,R.mipmap.welcome5};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

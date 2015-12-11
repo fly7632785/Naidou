@@ -2,15 +2,19 @@ package com.itspeed.naidou.app.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
+import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.adapter.MyCookBookAdapter;
 import com.itspeed.naidou.app.util.RightsManager;
+import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.User;
 
@@ -33,6 +37,8 @@ public class ZoneActivity extends KJActivity {
 
     @BindView(id = R.id.zone_list)
     private ListView mListView;
+    @BindView(id = R.id.load_layout)
+    private RelativeLayout mLoadLayout;
     private MyCookBookAdapter mAdapter;
     private ArrayList<CookBook> mData;
     private String uid;
@@ -44,6 +50,7 @@ public class ZoneActivity extends KJActivity {
     private TextView mUsername;
     private TextView mUserMotto;
     private TextView mCookbookCount;
+    private User user;
 
 
     @Override
@@ -57,14 +64,13 @@ public class ZoneActivity extends KJActivity {
         super.onCreate(savedInstanceState);
 
 
-
     }
 
     private void initHeader() {
         head = View.inflate(this, R.layout.zone_list_head, null);
-        mBack  = (ImageView) head.findViewById(R.id.zone_list_head_back);
-        mUserAvatar  = (ImageView) head.findViewById(R.id.zone_list_head_avatar);
-        mFollow  = (ImageView) head.findViewById(R.id.zone_list_head_follow);
+        mBack = (ImageView) head.findViewById(R.id.zone_list_head_back);
+        mUserAvatar = (ImageView) head.findViewById(R.id.zone_list_head_avatar);
+        mFollow = (ImageView) head.findViewById(R.id.zone_list_head_follow);
         mUsername = (TextView) head.findViewById(R.id.zone_list_head_name);
         mCookbookCount = (TextView) head.findViewById(R.id.zone_list_head_cookbook_count);
         mUserMotto = (TextView) head.findViewById(R.id.zone_list_head_motto);
@@ -73,24 +79,42 @@ public class ZoneActivity extends KJActivity {
         mFollow.setOnClickListener(this);
         //请求userInfo
         //设置数据
+
         NaidouApi.getUserInfo(uid, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
                 KJLoger.debug("getUserInfo:" + t);
                 if (Response.getSuccess(t)) {
-                    User user = Response.getUserInfo(t);
+                    mLoadLayout.setVisibility(View.GONE);
+                    user = Response.getUserInfo(t);
+                    mData = Response.getUserCookbook(t);
                     setHeaderData(user);
+                    setData(user);
                 }
             }
         });
     }
 
+    private void setData(User user) {
+        KJLoger.debug(user.toString());
+        mCookbookCount.setText("他有" + user.getCookBookCount() + "菜谱呢");
+        if (user.isFollowedByMe()) {
+            mFollow.setImageResource(R.mipmap.personal_home_followed);
+        } else {
+            mFollow.setImageResource(R.mipmap.personal_home_follow);
+        }
+        mAdapter.setData(mData);
+        mListView.setAdapter(mAdapter);
+    }
+
+
     private void setHeaderData(User user) {
-        new KJBitmap.Builder().imageUrl(user.getAvatar()).errorBitmapRes(R.mipmap.portrait).view(mUserAvatar).display();
+        new KJBitmap.Builder().imageUrl(AppContext.HOST + user.getAvatar()).errorBitmapRes(R.mipmap.portrait).view(mUserAvatar).display();
         mUsername.setText(user.getNickname());
+        mFollow.setSelected(user.isFollowedByMe());
         mUserMotto.setText(user.getMotto());
-        mCookbookCount.setText("他的菜谱（" + user.getCookBookCount() + ")");
+        mCookbookCount.setText("他有" + user.getCookBookCount() + "个菜谱呢");
 
     }
 
@@ -100,17 +124,23 @@ public class ZoneActivity extends KJActivity {
         super.initData();
         uid = getIntent().getStringExtra("uid");
         //模拟uid
-        if(uid ==null){
-            uid ="1";
+        if (uid == null) {
+            uid = "1";
         }
+
         initHeader();
         mListView = (ListView) findViewById(R.id.zone_list);
         mListView.addHeaderView(head);
-
-        mData = new ArrayList<>();
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position > 0) {
+                    UIHelper.showChideDetail(aty, mData.get(position - 1).getCid());
+                }
+            }
+        });
         mAdapter = new MyCookBookAdapter();
-        mAdapter.setData(mData);
-        mListView.setAdapter(mAdapter);
+
 //        requestData();
 
     }
@@ -132,29 +162,54 @@ public class ZoneActivity extends KJActivity {
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.zone_list_head_back:
                 this.finish();
                 break;
             case R.id.zone_list_head_follow:
-                if(RightsManager.isVisitor(v.getContext())) {
+                if (RightsManager.isVisitor(v.getContext())) {
                     return;
                 }
-                doFollow();
+                if(uid.equals(AppContext.user.getUid())){
+                    ViewInject.toast("不能关注自己哦");
+                    return;
+                }
+                boolean isFollowed = user.isFollowedByMe();
+                if (isFollowed) {
+                    cancelFollow();
+                    user.setIsFollowedByMe(false);
+                    mFollow.setImageResource(R.mipmap.personal_home_follow);
+                } else {
+                    doFollow();
+                    mFollow.setImageResource(R.mipmap.personal_home_followed);
+                    user.setIsFollowedByMe(true);
+                }
+
                 break;
 
         }
     }
+
 
     private void doFollow() {
         NaidouApi.doFollow(uid, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-                KJLoger.debug("doFollow:" + t);
                 if (Response.getSuccess(t)) {
                     ViewInject.toast("关注成功");
-                    mFollow.setImageResource(R.mipmap.personal_home_followed);
+                }
+            }
+        });
+    }
+
+    private void cancelFollow() {
+        NaidouApi.cancelFollow(uid, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                if (Response.getSuccess(t)) {
+                    ViewInject.toast("取消关注");
                 }
             }
         });
@@ -163,17 +218,17 @@ public class ZoneActivity extends KJActivity {
     @Override
     protected void onDestroy() {
         setContentView(R.layout.view_null);
-         mListView = null;
-         mAdapter = null;
-         mData = null;
-         uid = null;
-         head = null;
-         mUserAvatar = null;
-         mBack = null;
-         mFollow = null;
-         mUsername = null;
-         mUserMotto = null;
-         mCookbookCount = null;
+        mListView = null;
+        mAdapter = null;
+        mData = null;
+        uid = null;
+        head = null;
+        mUserAvatar = null;
+        mBack = null;
+        mFollow = null;
+        mUsername = null;
+        mUserMotto = null;
+        mCookbookCount = null;
         super.onDestroy();
     }
 

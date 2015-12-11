@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.model.bean.UpdateInfo;
 import com.panwrona.downloadprogressbar.library.DownloadProgressBar;
 
@@ -40,7 +41,7 @@ import java.net.URL;
  *
  */
 public class UpdateManager {
-    private final static  String PATH = "http://qd.poms.baidupcs.com/file/a87c7dca7c79829db831c633c35c5252?bkt=p2-nb-91&fid=3826537302-250528-340583633460049&time=1444446989&sign=FDTAXGERLBH-DCb740ccc5511e5e8fedcff06b081203-nP7KCRLvsHBRNiaMjt%2Fl4Ef3JoA%3D&to=qb&fm=Nin,B,T,t&sta_dx=0&sta_cs=0&sta_ft=xml&sta_ct=5&fm2=Ningbo,B,T,t&newver=1&newfm=1&secfm=1&flow_ver=3&pkey=1400a87c7dca7c79829db831c633c35c525250a7931d0000000000ba&sl=76283983&expires=8h&rt=sh&r=154813005&mlogid=6551271840509639914&vuk=3826537302&vbdid=1649289285&fin=update_info.xml&slt=pm&uta=0&rtype=1&iv=0&isw=0&dp-logid=6551271840509639914&dp-callid=0.1.1，http://pan.baidu.com/s/1i3D8HRB";
+    private final static  String PATH = AppContext.HOST+"update_info.xml";
     /* 下载中 */
     private static final int DOWNLOAD = 1;
     /* 下载结束 */
@@ -134,10 +135,10 @@ public class UpdateManager {
         // 获取当前软件版本
         int versionCode = getAppVersionCode(mContext);
 
-        info = new UpdateInfo();
-        info.setUrl("http://kibey-static.b0.upaiyun.com/download/echo_80.apk");
-        info.setVersion("2");
-        info.setVersionName("version 2.0");
+//        info = new UpdateInfo();
+//        info.setUrl("http://kibey-static.b0.upaiyun.com/download/echo_80.apk");
+//        info.setVersion("2");
+//        info.setVersionName("version 2.0");
 
         if (null != info)
         {
@@ -263,7 +264,7 @@ public class UpdateManager {
                 URL url = new URL(path);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(5 * 1000);
-                conn.setRequestMethod("GET");
+                conn.setRequestMethod("POST");
                 InputStream inStream = conn.getInputStream();
                 info = Parser.getUpdataInfo(inStream);
                 mHandler.sendEmptyMessage(FINISH_DOWNLOAD_XML);

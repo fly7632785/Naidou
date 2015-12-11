@@ -4,6 +4,8 @@ package com.itspeed.naidou.model.bean;
  * Created by jafir on 15/9/2.
  */
 public class User {
+
+
     //用户id
     private String uid;
     //用户昵称
@@ -25,6 +27,9 @@ public class User {
     //发布的菜谱数
     private int cookBookCount;
 
+    private boolean isFollowedByMe;
+    private boolean isFollowMe;
+
 
     @Override
     public String toString() {
@@ -39,49 +44,10 @@ public class User {
                 ", followedCount=" + followedCount +
                 ", email='" + email + '\'' +
                 ", cookBookCount=" + cookBookCount +
+                ", isFollowedByMe=" + isFollowedByMe +
+                ", isFollowMe=" + isFollowMe +
                 '}';
     }
-
-    public int getAvatarId() {
-        return avatarId;
-    }
-
-    public void setAvatarId(int avatarId) {
-        this.avatarId = avatarId;
-    }
-
-    public int getCookBookCount() {
-        return cookBookCount;
-    }
-
-    public void setCookBookCount(int cookBookCount) {
-        this.cookBookCount = cookBookCount;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getFollowCount() {
-        return followCount;
-    }
-
-    public void setFollowCount(int followCount) {
-        this.followCount = followCount;
-    }
-
-    public int getFollowedCount() {
-        return followedCount;
-    }
-
-    public void setFollowedCount(int followedCount) {
-        this.followedCount = followedCount;
-    }
-
 
     public String getUid() {
         return uid;
@@ -89,14 +55,6 @@ public class User {
 
     public void setUid(String uid) {
         this.uid = uid;
-    }
-
-    public int getCoins() {
-        return coins;
-    }
-
-    public void setCoins(int coins) {
-        this.coins = coins;
     }
 
     public String getNickname() {
@@ -115,6 +73,14 @@ public class User {
         this.motto = motto;
     }
 
+    public int getAvatarId() {
+        return avatarId;
+    }
+
+    public void setAvatarId(int avatarId) {
+        this.avatarId = avatarId;
+    }
+
     public String getAvatar() {
         return avatar;
     }
@@ -123,5 +89,59 @@ public class User {
         this.avatar = avatar;
     }
 
+    public int getCoins() {
+        return coins;
+    }
 
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+
+    public int getFollowCount() {
+        return followCount;
+    }
+
+    public void setFollowCount(int followCount) {
+        this.followCount = followCount;
+    }
+
+    public int getFollowedCount() {
+        return followedCount;
+    }
+
+    public void setFollowedCount(int followedCount) {
+        this.followedCount = followedCount;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getCookBookCount() {
+        return cookBookCount;
+    }
+
+    public void setCookBookCount(int cookBookCount) {
+        this.cookBookCount = cookBookCount;
+    }
+
+    public boolean isFollowedByMe() {
+        return isFollowedByMe;
+    }
+
+    public void setIsFollowedByMe(boolean isFollowedByMe) {
+        this.isFollowedByMe = isFollowedByMe;
+    }
+
+    public boolean isFollowMe() {
+        return isFollowMe;
+    }
+
+    public void setIsFollowMe(boolean isFollowMe) {
+        this.isFollowMe = isFollowMe;
+    }
 }

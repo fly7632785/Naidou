@@ -293,14 +293,14 @@ public class NaidouApi {
      * 获取菜谱
      * @param callBack
      */
-    public static  void getCookbook(String uid,HttpCallBack callBack){
-        String url = "getCookbooks";
+    public static  void getCookbook(String cid,HttpCallBack callBack){
+        String url = "getRecipeDetails";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
         params.putHeaders("ApiKey", AppContext.TOKEN);
-        params.put("_uid", uid);
+        params.put("_cid", cid);
         kjh.get(baseHost + url, params, callBack);
     }
 
@@ -373,7 +373,7 @@ public class NaidouApi {
      * @param callBack
      */
     public static  void feedBack(String content,HttpCallBack callBack){
-        String url = "";
+        String url = "sendSuggestion";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
@@ -402,7 +402,7 @@ public class NaidouApi {
      * @param callBack
      */
     public  static  void doFollow(String uid,HttpCallBack callBack){
-        String url = "followUserById";
+        String url = "doFollowUser";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
@@ -417,14 +417,14 @@ public class NaidouApi {
      * @param callBack
      */
     public  static  void cancelFollow(String uid,HttpCallBack callBack){
-        String url = "";
+        String url = "doCancelFollowUser";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
         params.put("_uid", uid);
         params.putHeaders("ApiKey", AppContext.TOKEN);
-        kjh.post(baseHost + url, params, callBack);
+        kjh.get(baseHost + url, params, callBack);
     }
 
     /**

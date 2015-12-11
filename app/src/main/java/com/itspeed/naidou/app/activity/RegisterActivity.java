@@ -24,6 +24,8 @@ import org.kymjs.kjframe.utils.PreferenceHelper;
 import org.kymjs.kjframe.utils.SystemTool;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
@@ -57,6 +59,7 @@ public class RegisterActivity extends KJActivity {
 //    private String verify;
     private ProgressDialog dialog;
     private EventHandler handler;
+    private String reg = "^[\\@A-Za-z0-9\\!\\#\\$\\%\\^\\&\\*\\.\\~]{6,22}$";
 
 
     @Override
@@ -137,6 +140,13 @@ public class RegisterActivity extends KJActivity {
 //        verify = editVerify.getText().toString().trim();
         if(password.length() < 6){
             ViewInject.toast("密码不能小于6位");
+            return;
+        }
+
+        Pattern  pattern = Pattern.compile(reg);
+        Matcher matcher = pattern.matcher(password);
+        if(!matcher.matches()){
+            ViewInject.toast("密码格式不正确");
             return;
         }
         if (password.equals(confirmPassword)) {

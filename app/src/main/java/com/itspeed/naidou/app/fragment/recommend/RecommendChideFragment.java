@@ -1,5 +1,6 @@
 package com.itspeed.naidou.app.fragment.recommend;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,6 +42,7 @@ public class RecommendChideFragment extends SupportFragment{
     private Handler mHandler;
     private RecommendRecyclerAdapterForCb mAdapter;
 
+    @SuppressLint("ValidFragment")
     public RecommendChideFragment(Handler mHandler) {
         this.mHandler = mHandler;
     }
@@ -51,6 +53,9 @@ public class RecommendChideFragment extends SupportFragment{
         layout = View.inflate(aty, R.layout.frag_recommend_chide,null);
 
         return layout;
+    }
+    @SuppressLint("ValidFragment")
+    public RecommendChideFragment() {
     }
 
     @Override
@@ -68,6 +73,13 @@ public class RecommendChideFragment extends SupportFragment{
         super.initData();
         init();
 //        requestData();
+    }
+
+    public void update() {
+        //清除原有数据
+        mData.clear();
+        //请求第一页 然后解析 设置数据
+        requestData();
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 
 import org.kymjs.kjframe.ui.SupportFragment;
+import org.kymjs.kjframe.utils.KJLoger;
 
 /**
  * Created by jafir on 15/7/3.
@@ -39,10 +40,33 @@ public abstract class TitleBarSupportFragment extends SupportFragment {
         }
         app = (AppContext) getActivity().getApplication();
         super.onCreate(savedInstanceState);
+        KJLoger.state(this.getClass().getName(), "---------onCreate ");
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        KJLoger.state(this.getClass().getName(), "---------onPause ");
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        KJLoger.state(this.getClass().getName(), "---------onStop ");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        KJLoger.state(this.getClass().getName(), "---------onStart ");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        KJLoger.state(this.getClass().getName(), "---------onDetach ");
+    }
 
     /**
      * 方便Fragment中设置ActionBar资源
@@ -87,6 +111,17 @@ public abstract class TitleBarSupportFragment extends SupportFragment {
     protected void setTitle(CharSequence text) {
         if (outsideAty != null) {
             outsideAty.mTvTitle.setText(text);
+        }
+    }
+
+    /**
+     * 设置右边的文字
+     *
+     * @param text
+     */
+    protected void setRightTxt(CharSequence text) {
+        if (outsideAty != null) {
+            outsideAty.mTvRight.setText(text);
         }
     }
 
@@ -170,6 +205,7 @@ public abstract class TitleBarSupportFragment extends SupportFragment {
     public void onDestroy() {
         currentSupportFragment  = null;
         super.onDestroy();
+        KJLoger.state(this.getClass().getName(), "---------onDestroy ");
     }
 
 

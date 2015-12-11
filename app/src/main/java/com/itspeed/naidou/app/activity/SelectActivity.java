@@ -68,10 +68,12 @@ public class SelectActivity extends KJActivity {
 
     //保存图片的本地路径
     public static final String IMG_PATH = Environment.getExternalStorageDirectory() + AppConfig.saveFolder + "/imgs/";
+    public static final String IMG_AVATAR_PATH = Environment.getExternalStorageDirectory()  + "/avatars/";
     //图片的名称 是外面传入的参数     到时候保存的路径则为 IMG_PATH+fileName
     private String fileName;
     //文件
     private File filePhoto;
+    private String path;
 
     private File originPhoto;
 
@@ -79,6 +81,10 @@ public class SelectActivity extends KJActivity {
      * 从Intent获取图片路径的KEY
      */
     public static final String KEY_PHOTO_PATH = "photo_path";
+    /**
+     * 从Intent获取图片名称
+     */
+    public static final String KEY_PHOTO_NAME = "photo_name";
     /**
      * 传回Intent图片路径的KEY
      */
@@ -167,15 +173,21 @@ public class SelectActivity extends KJActivity {
         width = lastIntent.getIntExtra(KEY_WIDTH, 80);
         height = lastIntent.getIntExtra(KEY_HEIGHT, 80);
 
-        fileName = lastIntent.getStringExtra(KEY_PHOTO_PATH);
+        fileName = lastIntent.getStringExtra(KEY_PHOTO_NAME);
+        path = lastIntent.getStringExtra(KEY_PHOTO_PATH);
+        //如果没有传则默认路径
+        if(path == null|| path.equals("")){
+            path = IMG_PATH;
+        }
+
         //创建储存图片的 文件目录
-        File directory = new File(IMG_PATH);
+        File directory = new File(path);
         if (!directory.exists()) {
             directory.mkdir();
         }
         //创建 图片文件（文件目录 + 文件名）
-        filePhoto = new File(IMG_PATH, fileName);
-        originPhoto = new File(IMG_PATH, "origin" + fileName);
+        filePhoto = new File(path, fileName);
+        originPhoto = new File(path, "origin" + fileName);
         if (!filePhoto.exists()) {
             try {
                 filePhoto.createNewFile();

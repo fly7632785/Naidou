@@ -34,7 +34,7 @@
                 android:layout_weight="4"
                 android:id="@+id/item_gridview_step4_img"
                 android:scaleType="fitXY"
-                android:src="@mipmap/img2"
+                android:src="@mipmap/default_bg"
                 android:layout_height="0dp" />
             <TextView
                 android:layout_width="match_parent"

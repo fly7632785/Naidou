@@ -7,7 +7,7 @@
 
 
     <org.kymjs.kjframe.widget.RoundImageView
-        android:src="@mipmap/portrait"
+        android:src="@mipmap/default_avatar"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:id="@+id/item_list_follow_portrait"
@@ -41,7 +41,7 @@
         android:layout_weight="1.5"
         android:id="@+id/item_list_follow_isfollow"
         android:layout_marginRight="10dp"
-        android:src="@mipmap/myfollow_follow"
+        android:src="@mipmap/myfollow_cancel"
         android:layout_height="35dp" />
 
 

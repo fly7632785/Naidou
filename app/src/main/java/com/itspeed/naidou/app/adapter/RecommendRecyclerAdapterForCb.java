@@ -104,7 +104,7 @@ public class RecommendRecyclerAdapterForCb extends RecyclerView.Adapter<Recommen
             }
         });
         Picasso.with(mContext).load(AppContext.HOST+cookBook.getCover()).into(holder.cover);
-        Picasso.with(mContext).load(AppContext.HOST+cookBook.getFromWhoAvata()).into(holder.userAvatar);
+        Picasso.with(mContext).load(AppContext.HOST+cookBook.getFromWhoAvatar()).into(holder.userAvatar);
         holder.title.setText(cookBook.getTitle());
         holder.desc.setText(cookBook.getDescription());
         holder.userName.setText(cookBook.getFromWho());

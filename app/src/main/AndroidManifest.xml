@@ -42,6 +42,17 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />"
 
+
+
+        <service android:name=".app.service.MyService"
+            android:process=":myremoteService">
+            <intent-filter>
+                <action android:name="com.itspeed.myservice"/>
+            </intent-filter>
+        </service>
+
+
+
         <!-- 强制下线-->
         <receiver android:name=".app.receiver.OfflineReceiver" >
 
@@ -49,6 +60,11 @@
                 <action android:name="com.itspeed.naidou.FORCE_OFFLINE" />
             </intent-filter>
         </receiver>
+
+
+
+
+
 
 
         <!-- jpush-->

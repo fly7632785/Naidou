@@ -1,5 +1,6 @@
 package com.itspeed.naidou.app.fragment.recommend;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,8 +36,12 @@ public class RecommendLiaodeFragment extends SupportFragment{
     private ImageView mImageView;
     private Handler mHandler;
 
+    @SuppressLint("ValidFragment")
     public RecommendLiaodeFragment(Handler mHandler) {
         this.mHandler = mHandler;
+    }
+    @SuppressLint("ValidFragment")
+    public RecommendLiaodeFragment() {
     }
 
     @Override

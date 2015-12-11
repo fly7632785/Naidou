@@ -13,16 +13,26 @@
 
     <TextView
         android:layout_width="100dp"
-        android:text="奶豆"
+        android:text="奶豆母婴"
         android:gravity="center"
         android:textSize="25sp"
         android:textColor="#333333"
         android:layout_height="50dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="让您靠做饭就能“养家糊口”"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:layout_width="100dp"
         android:text="1.0版"
         android:id="@+id/about_version"
         android:gravity="center"
+        android:layout_marginTop="10dp"
         android:textSize="14sp"
         android:textColor="#ff6666"
         android:layout_height="50dp" />
@@ -33,17 +43,25 @@
         android:layout_width="match_parent"
         android:gravity="bottom|center_horizontal"
         android:layout_marginBottom="20dp"
-        android:text="计速公司  版权所有"
+        android:text="网站:www.naidour.com"
         android:textColor="#666666"
         android:textSize="13sp"
-        android:layout_height="200dp" />
+        android:layout_height="160dp" />
     <TextView
         android:layout_width="match_parent"
-        android:text="Copyright"
-        android:paddingLeft="30dp"
+        android:text="成都计速科技有限公司 版权所有"
+        android:textColor="#666666"
+        android:textSize="17sp"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:text="Copyright©2015 Naidour.All Rights Reserved"
+        android:gravity="center"
         android:textColor="#666666"
         android:textSize="13sp"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

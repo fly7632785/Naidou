@@ -20,12 +20,14 @@ import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.model.bean.User;
-import com.squareup.picasso.Picasso;
 
+import org.kymjs.kjframe.KJBitmap;
+import org.kymjs.kjframe.KJHttp;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.PreferenceHelper;
 import org.kymjs.kjframe.utils.StringUtils;
 
 import java.io.File;
@@ -72,27 +74,21 @@ public class EditInfoFragment extends TitleBarSupportFragment {
     @Override
     protected void initData() {
         super.initData();
-        setData(AppContext.user);
+        setData();
 
     }
 
 
     /**
      * 设置数据显示数据
-     *
-     * @param user
      */
-    private void setData(User user) {
-        if (user != null) {
-            //设置全局user信息
-            AppContext.user = user;
-            //显示数据
-            Picasso.with(aty).load("http://139.129.29.84/" + user.getAvatar()).placeholder(R.mipmap.portrait).into(mAvatar);
-            mNickname.setText(user.getNickname());
-            mMotto.setText(user.getMotto());
-            mEmail.setText(null);
-            avatarId = user.getAvatarId();
-        }
+    private void setData() {
+        //显示数据
+        new KJBitmap().display(mAvatar, AppContext.userAvatarPath);
+        mNickname.setText(PreferenceHelper.readString(aty,"userInfo","nickName"));
+        mMotto.setText(PreferenceHelper.readString(aty, "userInfo", "motto"));
+        mEmail.setText(PreferenceHelper.readString(aty,"userInfo","email"));
+        avatarId = AppContext.user.getAvatarId();
     }
 
 
@@ -109,7 +105,8 @@ public class EditInfoFragment extends TitleBarSupportFragment {
         switch (v.getId()) {
             case R.id.edit_portrait:
                 Intent intent = new Intent(aty, SelectActivity.class);
-                intent.putExtra(SelectActivity.KEY_PHOTO_PATH, "avatar.jpeg");
+                intent.putExtra(SelectActivity.KEY_PHOTO_NAME, "avatar.jpeg");
+                intent.putExtra(SelectActivity.KEY_PHOTO_PATH, SelectActivity.IMG_AVATAR_PATH);
                 intent.putExtra(SelectActivity.KEY_X_RATE, 1);//x比例
                 intent.putExtra(SelectActivity.KEY_Y_RATE, 1);//y比例
                 intent.putExtra(SelectActivity.KEY_WIDTH, 100);//宽
@@ -147,7 +144,7 @@ public class EditInfoFragment extends TitleBarSupportFragment {
      */
     private void upload() {
 
-        File file = new File(SelectActivity.IMG_PATH, "avatar.jpeg");
+        File file = new File(SelectActivity.IMG_AVATAR_PATH, "avatar.jpeg");
         KJLoger.debug("文件路径：" + file.getAbsolutePath());
         KJLoger.debug("文件是否存在：" + file.exists() + "大小：" + file.length());
         NaidouApi.upload(file, new HttpCallBack() {
@@ -185,9 +182,17 @@ public class EditInfoFragment extends TitleBarSupportFragment {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
+                KJLoger.debug("editInfo:" + t);
                 if (Response.getSuccess(t)) {
-                    KJLoger.debug("complete:" + t);
                     ViewInject.toast("修改成功");
+
+                    User user = new User();
+                    user.setNickname(nickname);
+                    user.setMotto(motto);
+                    user.setEmail(email);
+                    writeUserInfo2SP(user);
+
+
                     aty.setResult(0, aty.getIntent());
                     aty.finish();
                 }
@@ -195,6 +200,28 @@ public class EditInfoFragment extends TitleBarSupportFragment {
             }
         });
     }
+
+    private void writeUserInfo2SP(User user) {
+        /**
+         * 这里做用户信息本地化
+         */
+        PreferenceHelper.write(aty, "userInfo", "nickName", user.getNickname());
+        PreferenceHelper.write(aty, "userInfo", "email", user.getEmail());
+        PreferenceHelper.write(aty, "userInfo", "motto", user.getMotto());
+
+        //下载 头像到手机
+        new KJHttp().download(AppContext.userAvatarPath, AppContext.HOST+user.getAvatar(), new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("download:" + t);
+                if (Response.getSuccess(t)) {
+
+                }
+            }
+        });
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -12,6 +12,7 @@ import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.model.bean.User;
 
 import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.http.HttpCallBack;
@@ -41,9 +42,7 @@ public class AppStart extends KJActivity {
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                //动画开始的时候去 检测证书
 
-                checkToken();
             }
 
             @Override
@@ -56,8 +55,29 @@ public class AppStart extends KJActivity {
             public void onAnimationRepeat(Animation animation) {
             }
         });
-        image.setAnimation(anim);
         setContentView(image);
+        image.startAnimation(anim);
+
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
+        //动画开始的时候去 检测证书
+        checkToken();
+        //恢复本地的 用户信息
+        restroreUserInfo();
+    }
+
+    private void restroreUserInfo() {
+        User user = new User();
+        user.setAvatarId(PreferenceHelper.readInt(aty,"userInfo","avatarId"));
+        user.setUid(PreferenceHelper.readString(aty, "userInfo", "uid"));
+        user.setAvatar(PreferenceHelper.readString(aty, "userInfo", "avatar"));
+        user.setNickname(PreferenceHelper.readString(aty, "userInfo", "nickName"));
+        user.setEmail(PreferenceHelper.readString(aty, "userInfo", "email"));
+        user.setMotto(PreferenceHelper.readString(aty, "userInfo", "motto"));
+        user.setCoins(PreferenceHelper.readInt(aty, "userInfo", "coins"));
+        user.setFollowCount(PreferenceHelper.readInt(aty, "userInfo", "follow"));
+        AppContext.user = user;
+
     }
 
 

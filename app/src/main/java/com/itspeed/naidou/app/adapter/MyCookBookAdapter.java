@@ -18,8 +18,6 @@ import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.StringUtils;
 
-import java.util.Random;
-
 /**
  * Created by jafir on 15/9/29.
  */
@@ -52,8 +50,8 @@ public class MyCookBookAdapter extends ListBaseAdapter<CookBook> {
 
 
         CookBook cb = mDatas.get(position);
-        new KJBitmap.Builder().imageUrl(AppContext.HOST + cb.getCover()).errorBitmapRes(R.mipmap.img2).view(holder.img).display();
-        holder.drip.setImageResource(drips[new Random().nextInt(3)]);
+        new KJBitmap.Builder().imageUrl(AppContext.HOST + cb.getCover()).errorBitmapRes(R.mipmap.default_bg).view(holder.img).display();
+        holder.drip.setImageResource(drips[position%3]);
         holder.title.setText(cb.getTitle());
         holder.isLike.setSelected(cb.isLike());
         holder.isCollect.setSelected(cb.isCollect());

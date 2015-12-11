@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:scaleType="fitXY"
-        android:src="@mipmap/img2" />
+        android:src="@mipmap/default_bg" />
 
     <TextView
         android:id="@+id/item_gridview_guangde_title"

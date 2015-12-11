@@ -74,11 +74,12 @@
             android:layout_alignBottom="@+id/wode_follow_layout"
             android:background="@mipmap/wode_img_point"
             android:layout_marginBottom="30dp"
+            android:visibility="gone"
             android:layout_height="8dp" />
 
         <org.kymjs.kjframe.widget.RoundImageView
             android:layout_width="85dp"
-            android:src="@mipmap/portrait"
+            android:src="@mipmap/default_avatar"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_height="85dp"

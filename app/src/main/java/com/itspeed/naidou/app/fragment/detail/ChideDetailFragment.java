@@ -9,24 +9,30 @@ import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
+import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.app.util.RightsManager;
+import com.itspeed.naidou.app.util.TimeUtil;
 import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.FoodMaterial;
 import com.itspeed.naidou.model.bean.Step;
 
 import org.kymjs.kjframe.KJBitmap;
 import org.kymjs.kjframe.http.HttpCallBack;
+import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.DensityUtils;
 import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.StringUtils;
 
 import java.util.ArrayList;
 
@@ -39,7 +45,8 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 
     private SimpleBackActivity aty;
     private View layout;
-
+    @BindView(id = R.id.load_layout)
+    private RelativeLayout mLoadLayout;
     private String cid;
     private String uid;
 
@@ -63,7 +70,6 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     private ArrayList<FoodMaterial> mFoodMaterialData = new ArrayList<>();
     private ArrayList<Step> mStepData = new ArrayList<>();
 
-    private GridViewAdapter mGridAdapter;
     private String[] mStepChinese = new String[]{"一","二","三","四","五","六","七","八","九","十","十一","十三","十四"};
     private String[] mStepEnglish = new String[]{"ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN","EIGHT","NINE","TEN","ELEVEN","TWELVE","THIRTEEN","FOURTEEN"};
     private boolean isLike;
@@ -83,8 +89,15 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         super.onCreate(savedInstanceState);
         aty = (SimpleBackActivity) getActivity();
         onChange();
+        KJLoger.debug("chidedetail:onCreate");
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        KJLoger.debug("chidedetail:onStart");
+        mListAdapter.notifyDataSetChanged();
+    }
 
     @Override
     protected void initData() {
@@ -92,18 +105,73 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 
         //获取cid
         cid = (String) aty.getBundleData().get("cid");
-        KJLoger.debug("chidedetail  Cid:"+cid);
-
         initHead();
         mListView = (ListView) layout.findViewById(R.id.chide_detail_list);
+        mListView.setClickable(false);
         mListView.addHeaderView(head);
         //请求数据 设置数据
-        for (int i = 0; i < 10; i++) {
-            mStepData.add(new Step());
-        }
+
+        requestData();
+
         mListAdapter = new ListViewAdapter();
         mListView.setAdapter(mListAdapter);
     }
+
+    private void requestData(){
+        NaidouApi.getCookbook(cid, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("getCookbook:"+t);
+                if(Response.getSuccess(t)){
+                    mLoadLayout.setVisibility(View.GONE);
+                   CookBook cookBook = Response.getChideDetail(t);
+                    KJLoger.debug("cookBookDetail:" + cookBook.toString());
+                    setData(cookBook);
+                }
+
+            }
+        });
+    }
+
+    private void setData(CookBook cookBook){
+        uid = cookBook.getFromWhoId();
+
+        new KJBitmap.Builder().imageUrl(AppContext.HOST+cookBook.getFromWhoAvatar()).view(mAvatar).display();
+        new KJBitmap.Builder().imageUrl(AppContext.HOST+cookBook.getCover()).view(mCover).display();
+        mTime.setText(StringUtils.friendlyTime(TimeUtil.msToDate(cookBook.getTime())));
+        mLikes.setText("" + cookBook.getLikedCount());
+        mCollects.setText("" + cookBook.getCollectCount());
+        mTitle.setText(cookBook.getTitle());
+        mDesc.setText(cookBook.getDescription());
+        mUsername.setText(cookBook.getFromWho());
+
+        //食材
+        mFoodMaterialData = cookBook.getFoods();
+        isCollect = cookBook.isCollect();
+        isLike = cookBook.isLike();
+        collects = cookBook.getCollectCount();
+        likes = cookBook.getLikedCount();
+
+        mIsLike.setSelected(isLike);
+        mIsCollect.setSelected(isCollect);
+
+        //有了数据之后就设置数据
+        for (int i = 0; i < mFoodMaterialData.size(); i++) {
+            View view = View.inflate(aty,R.layout.item_gridview_chide_detail_head,null);
+            view.setLayoutParams(new FrameLayout.LayoutParams(DensityUtils.getScreenW(aty)/2, ViewGroup.LayoutParams.WRAP_CONTENT));
+            TextView food = (TextView) view.findViewById(R.id.item_gridview_chide_detail_head_food);
+            TextView weight = (TextView) view.findViewById(R.id.item_gridview_chide_detail_head_weight);
+            food.setText(mFoodMaterialData.get(i).getFood());
+            weight.setText(mFoodMaterialData.get(i).getWeight());
+            mGridLayout.addView(view);
+        }
+
+        mStepData = cookBook.getSteps();
+
+        mListAdapter.notifyDataSetChanged();
+    }
+
 
     private void initHead() {
         head = View.inflate(aty,R.layout.chide_detail_head,null);
@@ -115,33 +183,17 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         mLikes = (TextView) layout.findViewById(R.id.layout_likes);
         mCollects = (TextView) layout.findViewById(R.id.layout_collects);
         mUsername = (TextView) head.findViewById(R.id.chide_detail_head_username);
+        mTitle = (TextView) head.findViewById(R.id.chide_detail_head_title);
         mTime = (TextView) head.findViewById(R.id.chide_detail_head_time);
         mDesc = (TextView) head.findViewById(R.id.chide_detail_head_desc);
-//        mGridview = (GridView) head.findViewById(R.id.chide_detail_head_gridview);
         mGridLayout = (GridLayout) head.findViewById(R.id.chide_detail_head_gridlayout);
         mIsLike.setOnClickListener(this);
         mIsCollect.setOnClickListener(this);
         mAvatar.setOnClickListener(this);
 
-        //点赞收藏
-        isLike =true;
-        isCollect = false;
-        likes = 10;
-        collects = 2;
 
-        //有了数据之后就设置数据
-        for (int i = 0; i < 14; i++) {
-            mFoodMaterialData.add(new FoodMaterial());
-            View view = View.inflate(aty,R.layout.item_gridview_chide_detail_head,null);
-            view.setLayoutParams(new FrameLayout.LayoutParams(DensityUtils.getScreenW(aty)/2, ViewGroup.LayoutParams.WRAP_CONTENT));
-            TextView food = (TextView) view.findViewById(R.id.item_gridview_chide_detail_head_food);
-            TextView weight = (TextView) view.findViewById(R.id.item_gridview_chide_detail_head_weight);
-//            food.setText(mFoodMaterialData.get(i).getFood());
-//            weight.setText(mFoodMaterialData.get(i).getWeight());
-            mGridLayout.addView(view);
-        }
-//        mGridAdapter = new GridViewAdapter();
-//        mGridview.setAdapter(mGridAdapter);
+
+
 
     }
 
@@ -151,6 +203,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         setTitleType(TitleBarActivity.TitleBarType.Titlebar3);
         setBackImage(R.drawable.selector_title_back);
         setTitle("");
+        setRightTxt("");
         setMenuImage(null);
     }
 
@@ -173,16 +226,16 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
                 //请求点赞或者取消点赞
                 if(isLike){
                     doLike(cid);
-                    mIsLike.setSelected(false);
+                    mIsLike.setSelected(true);
                     //点赞数改变
-                    likes--;
+                    likes++;
                     mLikes.setText(""+likes);
 
                 }else {
                     cancelLike(cid);
-                    mIsLike.setSelected(true);
+                    mIsLike.setSelected(false);
                     //点赞数改变
-                    likes++;
+                    likes--;
                     mLikes.setText(""+likes);
                 }
                 break;
@@ -195,13 +248,13 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
                 if(isCollect){
                     doCollect(cid);
                     //收藏数改变
-                    collects--;
-                    mIsCollect.setSelected(false);
+                    collects++;
+                    mIsCollect.setSelected(true);
                     mCollects.setText(""+collects);
                 }else {
                     cancelCollect(cid);
-                    mIsCollect.setSelected(true);
-                    collects++;
+                    mIsCollect.setSelected(false);
+                    collects--;
                     mCollects.setText(""+collects);
                 }
 
@@ -212,44 +265,20 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     @Override
     public void onBackClick() {
         super.onBackClick();
+//        UIHelper.showMain(aty);
         aty.finish();
     }
 
+
+
     @Override
     public void onDestroy() {
+        KJLoger.debug("chidedetail:onDestroy");
         aty = null;
         layout= null;
         super.onDestroy();
     }
 
-    private class GridViewAdapter extends BaseAdapter{
-
-        @Override
-        public int getCount() {
-            return mFoodMaterialData.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return mFoodMaterialData.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View view = View.inflate(aty,R.layout.item_gridview_chide_detail_head,null);
-            TextView food = (TextView) view.findViewById(R.id.item_gridview_chide_detail_head_food);
-            TextView weight = (TextView) view.findViewById(R.id.item_gridview_chide_detail_head_weight);
-            FoodMaterial fm = mFoodMaterialData.get(position);
-//            food.setText(fm.getFood());
-//            weight.setText(fm.getWeight());
-            return view;
-        }
-    }
     private class ListViewAdapter extends BaseAdapter{
 
         @Override
@@ -283,8 +312,8 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
             }
 
             Step step = mStepData.get(position);
-            new KJBitmap.Builder().view(holder.cover).imageUrl(step.getImg()).display();
-//            holder.desc.setText(step.getDescribe());
+            new KJBitmap.Builder().view(holder.cover).imageUrl(AppContext.HOST+step.getPic().getPath()).display();
+            holder.desc.setText(step.getDescription());
             holder.step_chinese.setText("第"+mStepChinese[position]+"步");
             holder.step_english.setText("STEP "+mStepEnglish[position]);
             return convertView;

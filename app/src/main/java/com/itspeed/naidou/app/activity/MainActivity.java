@@ -90,7 +90,6 @@ public class MainActivity extends TitleBarActivity {
         //初始化
         changeFragment(R.id.main_content, mRecommend);
         currentFragment = mRecommend;
-
     }
 
 
@@ -108,6 +107,7 @@ public class MainActivity extends TitleBarActivity {
         setImgSize(mTvWode);
 
         //初始化选中中间图标
+
         mMenuMid.setSelected(true);
 
     }

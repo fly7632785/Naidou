@@ -29,9 +29,10 @@
         android:layout_height="match_parent"
         android:background="@color/login_textcolor"  />
     <EditText
-        android:hint="请用手机号登陆"
+        android:hint="请用手机或者邮箱登录"
         android:id="@+id/login_username"
         android:textSize="16sp"
+        android:singleLine="true"
         android:textColorHint="@color/login_textcolor"
         android:textColor="@color/login_textcolor"
         android:layout_width="match_parent"
@@ -58,6 +59,7 @@
             android:background="@color/login_textcolor"  />
         <EditText
             android:hint="请输入密码"
+            android:singleLine="true"
             android:id="@+id/login_password"
             android:textSize="16sp"
             android:inputType="textPassword"

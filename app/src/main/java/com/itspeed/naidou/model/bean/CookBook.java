@@ -18,30 +18,6 @@ public class CookBook {
         this.collectCount = collects;
     }
 
-    @Override
-    public String toString() {
-        return "CookBook{" +
-                "cid='" + cid + '\'' +
-                ", title='" + title + '\'' +
-                ", time='" + time + '\'' +
-                ", type1='" + type1 + '\'' +
-                ", type2='" + type2 + '\'' +
-                ", likedCount=" + likedCount +
-                ", isCollect=" + isCollect +
-                ", collectCount=" + collectCount +
-                ", isLike=" + isLike +
-                ", foodMaterials=" + foodMaterials +
-                ", steps='" + steps + '\'' +
-                ", stepCount=" + stepCount +
-                ", cateName='" + cateName + '\'' +
-                ", productUrl='" + productUrl + '\'' +
-                ", fromWhoAvata='" + fromWhoAvata + '\'' +
-                ", fromWho='" + fromWho + '\'' +
-                ", fromWhoId='" + fromWhoId + '\'' +
-                ", cover='" + cover + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 
     //id
     private String  cid;
@@ -63,9 +39,9 @@ public class CookBook {
     //是否赞
     private boolean isLike;
     //食材
-    private ArrayList<FoodMaterial> foodMaterials;
+    private ArrayList<FoodMaterial> foods;
     //步骤
-    private String steps;
+    private ArrayList<Step> steps;
     //步骤数
     private int stepCount;
     //分类
@@ -73,69 +49,39 @@ public class CookBook {
     //成品图
     private String productUrl;
     //用户
-    private String fromWhoAvata;
     private String fromWho;
     private String fromWhoId;
+    private String fromWhoAvatar;
 
     //封面
     private String cover;
     //描述
     private String description;
 
-    public String getFromWhoId() {
-        return fromWhoId;
-    }
 
-    public void setFromWhoId(String fromWhoId) {
-        this.fromWhoId = fromWhoId;
-    }
-
-    public int getStepCount() {
-        return stepCount;
-    }
-
-    public void setStepCount(int stepCount) {
-        this.stepCount = stepCount;
-    }
-
-    public String getCateName() {
-        return cateName;
-    }
-
-    public void setCateName(String cateName) {
-        this.cateName = cateName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getSteps() {
-        return steps;
-    }
-
-    public void setSteps(String steps) {
-        this.steps = steps;
-    }
-
-    public String getFromWhoAvata() {
-        return fromWhoAvata;
-    }
-
-    public void setFromWhoAvata(String fromWhoAvata) {
-        this.fromWhoAvata = fromWhoAvata;
-    }
-
-    public String getFromWho() {
-        return fromWho;
-    }
-
-    public void setFromWho(String fromWho) {
-        this.fromWho = fromWho;
+    @Override
+    public String toString() {
+        return "CookBook{" +
+                "cid='" + cid + '\'' +
+                ", title='" + title + '\'' +
+                ", time='" + time + '\'' +
+                ", type1='" + type1 + '\'' +
+                ", type2='" + type2 + '\'' +
+                ", likedCount=" + likedCount +
+                ", isCollect=" + isCollect +
+                ", collectCount=" + collectCount +
+                ", isLike=" + isLike +
+                ", foods=" + foods +
+                ", steps=" + steps +
+                ", stepCount=" + stepCount +
+                ", cateName='" + cateName + '\'' +
+                ", productUrl='" + productUrl + '\'' +
+                ", fromWho='" + fromWho + '\'' +
+                ", fromWhoId='" + fromWhoId + '\'' +
+                ", fromWhoAvatar='" + fromWhoAvatar + '\'' +
+                ", cover='" + cover + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 
     public String getCid() {
@@ -210,15 +156,37 @@ public class CookBook {
         this.isLike = isLike;
     }
 
-    public ArrayList<FoodMaterial> getFoodMaterials() {
-        return foodMaterials;
+    public ArrayList<FoodMaterial> getFoods() {
+        return foods;
     }
 
-    public void setFoodMaterials(ArrayList<FoodMaterial> foodMaterials) {
-        this.foodMaterials = foodMaterials;
+    public void setFoods(ArrayList<FoodMaterial> foods) {
+        this.foods = foods;
     }
 
+    public ArrayList<Step> getSteps() {
+        return steps;
+    }
 
+    public void setSteps(ArrayList<Step> steps) {
+        this.steps = steps;
+    }
+
+    public int getStepCount() {
+        return stepCount;
+    }
+
+    public void setStepCount(int stepCount) {
+        this.stepCount = stepCount;
+    }
+
+    public String getCateName() {
+        return cateName;
+    }
+
+    public void setCateName(String cateName) {
+        this.cateName = cateName;
+    }
 
     public String getProductUrl() {
         return productUrl;
@@ -228,9 +196,29 @@ public class CookBook {
         this.productUrl = productUrl;
     }
 
+    public String getFromWho() {
+        return fromWho;
+    }
 
+    public void setFromWho(String fromWho) {
+        this.fromWho = fromWho;
+    }
 
+    public String getFromWhoId() {
+        return fromWhoId;
+    }
 
+    public void setFromWhoId(String fromWhoId) {
+        this.fromWhoId = fromWhoId;
+    }
+
+    public String getFromWhoAvatar() {
+        return fromWhoAvatar;
+    }
+
+    public void setFromWhoAvatar(String fromWhoAvatar) {
+        this.fromWhoAvatar = fromWhoAvatar;
+    }
 
     public String getCover() {
         return cover;
@@ -238,5 +226,13 @@ public class CookBook {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

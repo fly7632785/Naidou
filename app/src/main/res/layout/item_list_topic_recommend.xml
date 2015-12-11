@@ -25,7 +25,7 @@
         android:layout_height="160dp"
         android:scaleType="centerCrop"
         android:layout_marginTop="35dp"
-        android:src="@mipmap/img2" />
+        android:src="@mipmap/default_bg" />
 
     <TextView
         android:layout_width="match_parent"

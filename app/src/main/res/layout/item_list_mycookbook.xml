@@ -69,7 +69,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/img2"
+                    android:src="@mipmap/default_bg"
                     android:layout_height="160dp" />
                 <View
                     android:layout_width="match_parent"

@@ -33,6 +33,7 @@
 
 
         <EditText
+            android:singleLine="true"
             android:id="@+id/step3_title"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -50,6 +51,7 @@
             android:id="@+id/step3_describe"
             android:layout_width="match_parent"
             android:textSize="13sp"
+            android:singleLine="true"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"

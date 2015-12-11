@@ -14,7 +14,7 @@
         android:layout_height="350dp">
         <ImageView
             android:layout_width="320dp"
-            android:src="@mipmap/img2"
+            android:src="@mipmap/default_bg"
             android:id="@+id/item_list_cb_recommend_img"
             android:scaleType="centerCrop"
             android:layout_height="180dp" />
@@ -86,14 +86,13 @@
         android:layout_height="wrap_content">
         <org.kymjs.kjframe.widget.RoundImageView
             android:layout_width="50dp"
-            android:src="@mipmap/portrait"
+            android:src="@mipmap/default_avatar"
             android:layout_height="50dp"
             android:id="@+id/item_list_cb_recommend_portrait"
              />
         <TextView
             android:layout_width="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Jafir"
             android:id="@+id/item_list_cb_recommend_username"
             android:textSize="13sp"
             android:textColor="#666666"

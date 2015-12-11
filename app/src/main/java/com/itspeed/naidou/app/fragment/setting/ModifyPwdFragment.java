@@ -22,6 +22,9 @@ import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.PreferenceHelper;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by jafir on 15/9/28.
  * 设置里面 修改密码  fragment
@@ -40,6 +43,7 @@ public class ModifyPwdFragment extends TitleBarSupportFragment {
     @BindView(id = R.id.modifypwd_confirmnew)
     private EditText mConfirNewPwd;
 
+    private String reg = "^[\\@A-Za-z0-9\\!\\#\\$\\%\\^\\&\\*\\.\\~]{6,22}$";
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         layout = View.inflate(aty, R.layout.frag_modifypwd, null);
@@ -81,6 +85,13 @@ public class ModifyPwdFragment extends TitleBarSupportFragment {
 
         if (old.equals("") || newPwd.equals("") || confirm.equals("")) {
             ViewInject.toast("不能为空");
+            return;
+        }
+
+        Pattern pattern = Pattern.compile(reg);
+        Matcher matcher = pattern.matcher(newPwd);
+        if(!matcher.matches()){
+            ViewInject.toast("密码格式不正确");
             return;
         }
         NaidouApi.modifyPwd(old, newPwd, confirm, new HttpCallBack() {

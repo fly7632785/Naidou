@@ -2,6 +2,7 @@ package com.itspeed.naidou.app.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Created by jafir on 15/11/18.
@@ -11,8 +12,9 @@ import java.util.Date;
 public class TimeUtil {
     public static String msToDate(String ms){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         //这里要乘以1000
-        String hms = formatter.format(new Date(Long.valueOf(ms )* 1000));
+        String hms = formatter.format(new Date(Long.valueOf(ms)* 1000));
         return hms;
     }
 }

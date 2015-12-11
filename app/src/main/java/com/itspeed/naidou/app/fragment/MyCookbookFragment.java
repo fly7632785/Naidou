@@ -1,11 +1,13 @@
 package com.itspeed.naidou.app.fragment;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,6 +17,7 @@ import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.adapter.MyCookBookAdapter;
+import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.CookBook;
 
 import org.kymjs.kjframe.http.HttpCallBack;
@@ -37,6 +40,7 @@ public class MyCookbookFragment extends TitleBarSupportFragment{
     private ArrayList<CookBook> mData;
     @BindView(id = R.id.mycookbook_text)
     private TextView mEmpty;
+    private ProgressDialog dialog;
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -50,13 +54,20 @@ public class MyCookbookFragment extends TitleBarSupportFragment{
     @Override
     protected void initData() {
         super.initData();
+
+        dialog = new ProgressDialog(aty);
+        dialog.setMessage("加载中...");
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
         mAdapter = new MyCookBookAdapter();
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                UIHelper.showChideDetail(aty,mData.get(position).getCid());
+            }
+        });
         mData = new ArrayList<>();
-        //模拟添加数据
-//        for (int i = 0;i<10;i++){
-//            CookBook cookBook = new CookBook();
-//            mData.add(cookBook);
-//        }
         requestData();
         mListView.setDivider(new ColorDrawable(Color.TRANSPARENT));
     }
@@ -76,6 +87,7 @@ public class MyCookbookFragment extends TitleBarSupportFragment{
             public void onSuccess(String t) {
                 super.onSuccess(t);
                 if (Response.getSuccess(t)) {
+                    dialog.dismiss();
                     KJLoger.debug("getMyCookbook:" + t);
                     mData = Response.getMyCookbookList(t);
                     if (mData.isEmpty() || mData == null) {

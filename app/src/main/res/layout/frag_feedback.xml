@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="16dp"
-                android:text="”亲爱的的用户，我们珍视您的每一个反馈，您的建议和批评是对我们最大的支持，是我们对产品优化改良的方向和动力“"
+                android:text="”亲爱的用户，我们珍视您的每一个反馈，您的建议和批评是对我们最大的支持，是我们对产品优化改良的方向和动力“"
                 android:textColor="#666666" />
         </LinearLayout>
     </LinearLayout>
