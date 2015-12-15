@@ -3,6 +3,7 @@ package com.itspeed.naidou.app.activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.itspeed.naidou.R;
@@ -25,6 +26,9 @@ public class PublishActivity extends KJActivity {
 
     @Override
     public void setRootView() {
+        int mode = WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
+                | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN;
+        getWindow().setSoftInputMode(mode);
         setContentView(R.layout.aty_publish);
     }
 
@@ -33,6 +37,9 @@ public class PublishActivity extends KJActivity {
     public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+
+
+
 
         //设置状态栏 包括颜色改变
         LayoutUtils.init1(aty, mView, R.color.topic_red);

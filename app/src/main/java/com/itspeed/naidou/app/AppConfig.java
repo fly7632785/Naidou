@@ -16,4 +16,7 @@ public class AppConfig {
      */
     public static String saveFolder = "/Naidou";
     public static String httpCachePath = saveFolder + "/httpCache";
+    /**
+     *
+     */
 }

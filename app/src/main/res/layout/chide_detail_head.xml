@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="210dp">
+        android:layout_height="290dp">
 
         <ImageView
             android:id="@+id/chide_detail_head_cover"

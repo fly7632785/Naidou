@@ -41,7 +41,6 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
     private ArrayList<CookBook> mData;
     //每次请求返回的数据
     private ArrayList<CookBook> addData;
-    private String cache;
 
     private ChideAdapter mAdapter;
     @BindView(id = R.id.level2_list)

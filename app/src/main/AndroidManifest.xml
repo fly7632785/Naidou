@@ -5,10 +5,12 @@
     <application
         android:name=".app.AppContext"
         android:allowBackup="true"
-        android:icon="@mipmap/logo_256"
+        android:icon="@mipmap/logo_512_corner"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.activity.AppStart">
+        <activity android:name=".app.activity.AppStart"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,19 +23,36 @@
             android:label="@string/app_name"
             android:launchMode="singleTask" />
 
-        <activity android:name=".app.activity.SettingActivity" />
-        <activity android:name=".app.activity.SimpleBackActivity" />
-        <activity android:name=".app.activity.PublishActivity" />
+        <activity android:name=".app.activity.SettingActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".app.activity.SimpleBackActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".app.activity.PublishActivity"
+            android:screenOrientation="portrait"
+            />
+
         <activity
             android:name=".app.activity.LoginActivity"
+            android:screenOrientation="portrait"
             android:launchMode="singleTask" />
-        <activity android:name=".app.activity.RegisterActivity" />
+        <activity android:name=".app.activity.RegisterActivity"
+            android:screenOrientation="portrait"
+            />
 
-        <activity android:name=".app.activity.GuideActivity" />
-        <activity android:name=".app.activity.TestActivity" />
-        <activity android:name=".app.activity.ZoneActivity" />
+        <activity android:name=".app.activity.GuideActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".app.activity.TestActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".app.activity.ZoneActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".app.activity.SelectActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/DialogStyleBottom" />
 
         <activity

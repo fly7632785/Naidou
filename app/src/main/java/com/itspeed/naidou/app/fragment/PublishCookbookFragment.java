@@ -510,7 +510,7 @@ public class PublishCookbookFragment extends SupportFragment {
     private void uploadPictures() {
 
         //初始化 变量
-        i= 0;
+        count = 0;
 
         //获取现在有多少步骤
         getStepCount();
@@ -520,8 +520,46 @@ public class PublishCookbookFragment extends SupportFragment {
         dialog.setMessage("正在上传图片...");
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-        for (int index = 0; index < picNames.length; index++) {
-            File file = new File(SelectActivity.IMG_PATH, picNames[index]);
+//        for (int index = 0; index < picNames.length; index++) {
+//            File file = new File(SelectActivity.IMG_PATH, picNames[index]);
+//            KJLoger.debug("文件路径："+file.getAbsolutePath());
+//            KJLoger.debug("文件是否存在："+file.exists()+"大小："+file.length());
+//            NaidouApi.upload(file, new HttpCallBack() {
+//                @Override
+//                public void onSuccess(String t) {
+//                    super.onSuccess(t);
+//                    KJLoger.debug("upload:"+t);
+//                    if (Response.getSuccess(t)) {
+//                        picIds[i] = Response.getPictureId(t);
+//                        KJLoger.debug("avatarId" + i + ":" + picIds[i]);
+//                        picUrls[i] = Response.getPictureUrl(t);
+//                        isFinished[i] = true;
+//                        i++;
+//                        //检测是否5个文件全部上传
+//                        for (int i = 0; i < isFinished.length; i++) {
+//                            if(!isFinished[i]) {
+//                                return;
+//                            }
+//                        }
+//                        //上传json数据
+//                        uploadData();
+//
+//                    }
+//                }
+//            });
+//        }
+        /**
+         * 上传图片
+         */
+
+        uploadPic();
+
+    }
+
+    private int count = 0;
+
+    private void uploadPic() {
+        File file = new File(SelectActivity.IMG_PATH, picNames[count]);
             KJLoger.debug("文件路径："+file.getAbsolutePath());
             KJLoger.debug("文件是否存在："+file.exists()+"大小："+file.length());
             NaidouApi.upload(file, new HttpCallBack() {
@@ -530,28 +568,36 @@ public class PublishCookbookFragment extends SupportFragment {
                     super.onSuccess(t);
                     KJLoger.debug("upload:"+t);
                     if (Response.getSuccess(t)) {
-                        picIds[i] = Response.getPictureId(t);
-                        KJLoger.debug("avatarId" + i + ":" + picIds[i]);
-                        picUrls[i] = Response.getPictureUrl(t);
-                        isFinished[i] = true;
-                        i++;
-                        //检测是否5个文件全部上传
-                        for (int i = 0; i < isFinished.length; i++) {
-                            if(!isFinished[i]) {
-                                return;
-                            }
-                        }
+                        picIds[count] = Response.getPictureId(t);
+                        KJLoger.debug("avatarId" + count + ":" + picIds[count]);
+                        picUrls[count] = Response.getPictureUrl(t);
+                        isFinished[count] = true;
+                        count++;
+                        //上传  递归   看是否上传完成
+                        if(count < picNames.length){
+                            uploadPic();
+                        }else {
                             //上传json数据
                             uploadData();
+                        }
+
+//                        //检测是否5个文件全部上传
+//                        for (int i = 0; i < isFinished.length; i++) {
+//                            if(!isFinished[i]) {
+//                                return;
+//                            }
+//                        }
 
                     }
                 }
             });
-        }
+
+
+
+
 
 
     }
-
 
 
     /**

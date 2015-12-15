@@ -130,6 +130,7 @@ public class ZoneActivity extends KJActivity {
 
         initHeader();
         mListView = (ListView) findViewById(R.id.zone_list);
+        mListView.setDividerHeight(0);
         mListView.addHeaderView(head);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

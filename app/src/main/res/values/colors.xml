@@ -2,6 +2,11 @@
 
 <resources>
 
+    <color name="colorPrimary">#ff6666</color>
+    <color name="colorPrimaryDark">#ff6666</color>
+    <color name="colorAccent">#2AA9FE</color>
+
+
     <!-- topic-->
     <color name="topic">#2AA9FE</color>
     <color name="topic_red">#ff6666</color>

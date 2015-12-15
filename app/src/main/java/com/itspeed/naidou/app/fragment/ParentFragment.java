@@ -28,7 +28,7 @@ public class ParentFragment extends Level1Fragment {
 
         //从服务解析标题菜单
         level2Cate.setType(0);
-        titles = new String[]{"备孕","孕前","孕中","孕晚","月子"};
+        titles = new String[]{"备孕","孕初","孕中","孕晚","月子"};
         level2Cate.setNames(titles);
 
 

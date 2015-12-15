@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:gravity="center_horizontal"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
 
@@ -51,16 +52,16 @@
         android:layout_width="match_parent"
         android:text="成都计速科技有限公司 版权所有"
         android:textColor="#666666"
-        android:textSize="17sp"
+        android:textSize="12sp"
         android:gravity="center"
         android:layout_height="wrap_content" />
     <TextView
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:text="Copyright©2015 Naidour.All Rights Reserved"
         android:gravity="center"
         android:textColor="#666666"
-        android:textSize="13sp"
+        android:textSize="12sp"
         android:layout_height="wrap_content" />
 
 

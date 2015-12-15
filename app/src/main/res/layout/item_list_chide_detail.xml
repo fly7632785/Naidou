@@ -50,16 +50,17 @@
             android:layout_width="180dp"
             android:src="@mipmap/default_bg"
             android:id="@+id/item_list_chide_detail_stepimg"
-            android:layout_height="140dp" />
+            android:layout_height="135dp" />
 
         <TextView
             android:layout_width="match_parent"
-            android:gravity="center"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
             android:text="1.将诸子古洗干净剁成3.5厘米的段"
             android:textSize="14sp"
             android:paddingLeft="10dp"
             android:id="@+id/item_list_chide_detail_desc"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

@@ -202,7 +202,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         super.onChange();
         setTitleType(TitleBarActivity.TitleBarType.Titlebar3);
         setBackImage(R.drawable.selector_title_back);
-        setTitle("");
+        setTitle("菜谱详情");
         setRightTxt("");
         setMenuImage(null);
     }

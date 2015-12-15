@@ -51,7 +51,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:background="@color/white"
-        android:layout_height="180dp">
+        android:layout_height="160dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,20 +70,21 @@
                     android:layout_centerVertical="true"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/default_bg"
-                    android:layout_height="160dp" />
+                    android:layout_height="140dp" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
-                    android:layout_height="80dp"
-                    android:layout_alignParentBottom="true"
+                    android:layout_height="60dp"
+                    android:layout_alignBottom="@+id/item_list_mycookbook_img"
                     android:background="@drawable/shape_img"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:text="小鸡炖蘑菇"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="10dp"
+
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:id="@+id/item_list_mycookbook_title"

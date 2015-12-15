@@ -81,13 +81,13 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="60dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content">
         <org.kymjs.kjframe.widget.RoundImageView
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:src="@mipmap/default_avatar"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:id="@+id/item_list_cb_recommend_portrait"
              />
         <TextView
