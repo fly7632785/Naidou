@@ -119,100 +119,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96b34051-ea1b-4605-8685-15a718e417ee" name="Default" comment="1.01版本发布&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/libs/MobLogCollector.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/libs/MobTools.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/libs/SMSSDK-1.3.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/jniLibs/arm64-v8a/libsmssdk.so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/jniLibs/armeabi/libsmssdk.so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/jniLibs/armeabi-v7a/libsmssdk.so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/jniLibs/mips/libsmssdk.so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/jniLibs/mips64/libsmssdk.so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/jniLibs/x86/libsmssdk.so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/jniLibs/x86_64/libsmssdk.so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_back_arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_back_arrow2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_cl_divider.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_clear_search.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_cp_default_avatar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_default_avatar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_dialog_back.9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_dialog_bg.9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_input_bg_focus.9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_input_bg_normal.9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_input_bg_special_focus.9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_input_bg_special_normal.9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/raw/smssdk_pydb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_search_icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable-xhdpi/smssdk_sharesdk_icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/AndroidManifest.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/BackVerifyDialogLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/BasePageLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/CommonDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/ContactDetailPage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/ContactDetailPageLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/ContactEntry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/ContactItemMaker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/ContactListPageLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/ContactsAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/ContactsListView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/ContactsListviewItemLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/ContactsPage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/CountryAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/CountryListPageLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/CountryListView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/CountryPage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/DefaultContactViewItem.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/DefaultOnSendMessageListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/DrawableHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/GroupListView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/IdentifyNumPage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/IdentifyNumPageLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/LayoutFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/ListviewTitleLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/ProgressDialogLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/RegisterPage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/RegisterPageLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/Res.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/SMSReceiver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/SearchEngine.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/SendMsgDialogLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/SizeHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/SmartVerifyPage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/java/cn/smssdk/gui/layout/TitleLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/values/smssdk_arrays.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/values-en/smssdk_arrays.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable/smssdk_btn_disenable.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable/smssdk_btn_enable.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/values/smssdk_colors.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable/smssdk_corners_bg.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable/smssdk_corners_bg_nor.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable/smssdk_corners_bg_pre.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable/smssdk_country_bg_selector.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable/smssdk_country_group_scroll_down.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable/smssdk_country_group_scroll_up.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable/smssdk_dialog_btn_back.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/drawable/smssdk_edittext_bg_selector.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/values/smssdk_errors.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/values-en/smssdk_errors.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/values/smssdk_strings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/values-en/smssdk_strings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/values/smssdk_styles.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/values/strings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smssdk/src/main/res/values-en/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/AppStart.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/AppStart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/GuideActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/GuideActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/fragment/Level2Fragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/fragment/Level2Fragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/PublishActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/PublishActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/RegisterActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/RegisterActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/SelectActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/SelectActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/SettingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/SettingActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/SimpleBackActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/SimpleBackActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/ZoneActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/itspeed/naidou/app/activity/ZoneActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Naidou.iws" />
@@ -4377,124 +4283,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Naidou" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Naidou" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smssdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Naidou" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Naidou" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smssdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Naidou" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Naidou" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smssdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Naidou" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Naidou" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smssdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jniLibs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Naidou" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Naidou" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smssdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane">
@@ -5212,7 +5000,13 @@
       <option name="project" value="LOCAL" />
       <updated>1450160862900</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="1.01版本发布&#10;">
+      <created>1450697943061</created>
+      <option name="number" value="00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1450697943061</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TodoView">
@@ -5236,7 +5030,7 @@
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5823627" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32875606" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34248787" sideWeight="0.50586265" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6672213" sideWeight="0.51130855" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.6672213" sideWeight="0.51130855" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32612312" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294509" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -5247,7 +5041,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30129242" sideWeight="0.48752078" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30129242" sideWeight="0.48752078" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="123" width="1080" height="513" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="10" side_tool="false" content_ui="combo" />
@@ -5636,6 +5430,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6527051">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5643,6 +5438,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47469458">
           <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5667,6 +5463,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.71875">
           <caret line="57" column="51" selection-start-line="57" selection-start-column="51" selection-end-line="57" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5681,6 +5478,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5702,6 +5500,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.70331585">
           <caret line="213" column="5" selection-start-line="213" selection-start-column="5" selection-end-line="213" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5717,6 +5516,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="232" column="20" selection-start-line="232" selection-start-column="20" selection-end-line="232" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5724,6 +5524,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="152" column="24" selection-start-line="152" selection-start-column="24" selection-end-line="152" selection-end-column="24" />
+          <folding>
+            <element signature="e#1703#1704#0" expanded="true" />
+            <element signature="e#1755#1756#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5731,6 +5535,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="146" column="20" selection-start-line="146" selection-start-column="20" selection-end-line="146" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5738,6 +5543,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="92" column="20" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5745,6 +5551,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.70331585">
           <caret line="318" column="25" selection-start-line="318" selection-start-column="25" selection-end-line="318" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5752,6 +5559,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.70331585">
           <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5767,6 +5575,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7329843">
           <caret line="211" column="0" selection-start-line="211" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
