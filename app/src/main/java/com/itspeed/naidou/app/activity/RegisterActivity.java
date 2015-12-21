@@ -209,6 +209,7 @@ public class RegisterActivity extends KJActivity {
         editPhone = null;
 //        editVerify = null;
         SMSSDK.unregisterEventHandler(handler);
+        System.gc();
         super.onDestroy();
     }
 }

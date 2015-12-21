@@ -90,6 +90,7 @@ public class GuideActivity extends KJActivity {
         viewPager = null;
         mIndicator = null;
         guides = null;
+        System.gc();
         super.onDestroy();
     }
 }

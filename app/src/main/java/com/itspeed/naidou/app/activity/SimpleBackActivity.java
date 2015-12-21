@@ -175,6 +175,7 @@ public class SimpleBackActivity extends TitleBarActivity {
         mTvTitle = null;
         mTvRight = null;
         currentFragment = null;
+        System.gc();
         super.onDestroy();
     }
 }

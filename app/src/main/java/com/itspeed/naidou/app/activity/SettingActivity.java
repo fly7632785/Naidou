@@ -162,6 +162,7 @@ public class SettingActivity extends  TitleBarActivity{
         mImgBack  = null;
         mImgMenu = null;
         mRlTitleBar = null;
+        System.gc();
         super.onDestroy();
     }
 

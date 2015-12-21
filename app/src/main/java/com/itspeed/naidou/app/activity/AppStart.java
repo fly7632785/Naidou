@@ -144,6 +144,7 @@ public class AppStart extends KJActivity {
     protected void onDestroy() {
         setContentView(R.layout.view_null);
         image = null;
+        System.gc();
         super.onDestroy();
     }
 }

@@ -542,6 +542,7 @@ public class SelectActivity extends KJActivity {
         btn_cancel = null;
         btn_pick_photo = null;
         btn_take_photo = null;
+        System.gc();
         super.onDestroy();
     }
 }

@@ -230,6 +230,7 @@ public class ZoneActivity extends KJActivity {
         mUsername = null;
         mUserMotto = null;
         mCookbookCount = null;
+        System.gc();
         super.onDestroy();
     }
 

@@ -63,6 +63,7 @@ public class PublishActivity extends KJActivity {
         setContentView(R.layout.view_null);
         publishCookbookFragment = null;
         mView = null;
+        System.gc();
         super.onDestroy();
     }
 }

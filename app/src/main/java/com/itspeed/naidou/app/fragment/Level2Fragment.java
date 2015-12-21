@@ -18,7 +18,6 @@ import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.view.PullToRefreshBase;
 import com.itspeed.naidou.app.view.PullToRefreshList;
 import com.itspeed.naidou.model.bean.CookBook;
-import com.itspeed.naidou.model.bean.JsonBean.Entity;
 
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
@@ -67,22 +66,32 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
         this.cate = cate;
     }
 
+
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-        aty = getActivity();
-        layout = View.inflate(aty, R.layout.frag_level2, null);
         return layout;
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        aty = getActivity();
+        layout = View.inflate(aty, R.layout.frag_level2, null);
+
         initPull();
         mData = new ArrayList<>();
         addData = new ArrayList<>();
         mAdapter = new ChideAdapter();
         //第一次进入请求数据
         requestData(1);
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+
+//        KJLoger.debug("level2 fragmen:+" + cate + "initdata");
+
 //        mEmptyLayout.setOnLayoutClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -118,9 +127,8 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-                KJLoger.debug("sssss:" + t);
-                Entity entity = Response.getEntity(t);
-                if (entity.is_success()) {
+                KJLoger.debug("chideList:" + t);
+                if (Response.getSuccess(t)) {
                     //解析数据
                     ArrayList<CookBook> addData;
                     addData = Response.getChideList(t);
@@ -135,7 +143,7 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
                         KJLoger.debug("mDataSize:" + mData.size());
                         mAdapter.setData(mData);
                         mListView.setAdapter(mAdapter);
-                    } else {
+                    } else  {
                         mAdapter.addData(addData);
                     }
                     //只要请求到数据就 去掉
