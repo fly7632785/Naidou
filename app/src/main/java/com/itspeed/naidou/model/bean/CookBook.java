@@ -7,9 +7,18 @@ import java.util.ArrayList;
  */
 public class CookBook {
     public CookBook() {
+        title = "";
+        cover = "";
+        description = "";
+        taste = "";
+        object = "";
+        proce = "";
+        difficult = "";
+        foods = new ArrayList<>();
+        steps = new ArrayList<>();
     }
 
-    public CookBook(boolean isCollect, String title, String time, boolean isLike,int likes,int collects) {
+    public CookBook(boolean isCollect, String title, String time, boolean isLike, int likes, int collects) {
         this.isCollect = isCollect;
         this.title = title;
         this.time = time;
@@ -20,7 +29,7 @@ public class CookBook {
 
 
     //id
-    private String  cid;
+    private String cid;
     //标题
     private String title;
     //时间
@@ -30,6 +39,15 @@ public class CookBook {
     //二级属性  父母--（备孕、孕初、孕中、孕晚、月子）
     //         孩子--（4-6月、7-8月、9-12月、1岁-2岁、3-6岁）
     private String type2;
+    //工艺
+    private String proce;
+    //口味
+    private String taste;
+    //对象
+    private String object;
+    //难度
+    private String difficult;
+
     //点赞数
     private int likedCount;
     //是否收藏
@@ -67,6 +85,10 @@ public class CookBook {
                 ", time='" + time + '\'' +
                 ", type1='" + type1 + '\'' +
                 ", type2='" + type2 + '\'' +
+                ", proce='" + proce + '\'' +
+                ", taste='" + taste + '\'' +
+                ", object='" + object + '\'' +
+                ", difficult='" + difficult + '\'' +
                 ", likedCount=" + likedCount +
                 ", isCollect=" + isCollect +
                 ", collectCount=" + collectCount +
@@ -82,6 +104,38 @@ public class CookBook {
                 ", cover='" + cover + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public String getProce() {
+        return proce;
+    }
+
+    public void setProce(String proce) {
+        this.proce = proce;
+    }
+
+    public String getTaste() {
+        return taste;
+    }
+
+    public void setTaste(String taste) {
+        this.taste = taste;
+    }
+
+    public String getObject() {
+        return object;
+    }
+
+    public void setObject(String object) {
+        this.object = object;
+    }
+
+    public String getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(String difficult) {
+        this.difficult = difficult;
     }
 
     public String getCid() {

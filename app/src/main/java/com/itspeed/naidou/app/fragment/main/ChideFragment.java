@@ -5,20 +5,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.fastjson.JSON;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.ChildrenFragment;
 import com.itspeed.naidou.app.fragment.ParentFragment;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
-import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.model.bean.CookBook;
+
+import org.kymjs.kjframe.utils.FileUtils;
+import org.kymjs.kjframe.utils.KJLoger;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Created by jafir on 15/9/1.
  * 吃的fragment
  * 包括 分类  父母（）孩子（）
- *
  */
 public class ChideFragment extends TitleBarSupportFragment {
 
@@ -31,13 +38,10 @@ public class ChideFragment extends TitleBarSupportFragment {
     private ChildrenFragment childrenFragment;
 
 
-
-
-
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-        View  view = View.inflate(aty,R.layout.frag_chide,null);
-        return  view;
+        View view = View.inflate(aty, R.layout.frag_chide, null);
+        return view;
     }
 
     @Override
@@ -58,7 +62,6 @@ public class ChideFragment extends TitleBarSupportFragment {
         super.initData();
 
 
-
     }
 
     @Override
@@ -75,13 +78,55 @@ public class ChideFragment extends TitleBarSupportFragment {
     public void onMenuClick() {
         super.onMenuClick();
 
-        if(RightsManager.isVisitor(aty)) {
-            return;
+//        if (RightsManager.isVisitor(aty)) {
+//            return;
+//        }
+
+        //生成一个json对象 保存到本地
+        //然后每一个步骤完成 就修改数据
+        //最后发布成功 就删除  或者 当做草稿
+
+        CookBook cookBook = new CookBook();
+
+//        ArrayList<Step> steps = new ArrayList<>();
+//        ArrayList<FoodMaterial> foodMaterials = new ArrayList<>();
+//        for (int i = 0; i < 5; i++) {
+//            Step step = new Step();
+//            step.setDescription("描述");
+//            Pic pic = new Pic();
+//            pic.setPath("path");
+//            step.setPic(pic);
+//            steps.add(step);
+//
+//            FoodMaterial foodMaterial = new FoodMaterial();
+//            foodMaterial.setWeight("123");
+//            foodMaterials.add(foodMaterial);
+//        }
+//
+//        cookBook.setFoods(foodMaterials);
+//        cookBook.setSteps(steps);
+
+        String s = JSON.toJSONString(cookBook);
+        File file = FileUtils.getSaveFile("craft", "publish_file.txt");
+        KJLoger.debug(file.toString());
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(file);
+            writer.write(s.trim());
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
+
         UIHelper.showPublish(aty);
     }
-
-
 
 
     @Override
@@ -93,17 +138,16 @@ public class ChideFragment extends TitleBarSupportFragment {
     @Override
     public void onSegmentClick(int index) {
         super.onSegmentClick(index);
-        switch (index){
+        switch (index) {
             case 0:
-                changeFragment(R.id.cookbood_fl,parentFragment);
+                changeFragment(R.id.cookbood_fl, parentFragment);
                 break;
             case 1:
-                changeFragment(R.id.cookbood_fl,childrenFragment);
+                changeFragment(R.id.cookbood_fl, childrenFragment);
                 break;
         }
 
     }
-
 
 
 }

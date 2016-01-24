@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
+import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.util.DataCleanManager;
 import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.UIHelper;
@@ -21,6 +22,7 @@ import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.KJActivityStack;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.PreferenceHelper;
 
 /**
  * Created by jafir on 15/9/27.
@@ -132,6 +134,8 @@ public class SettingActivity extends  TitleBarActivity{
                             Intent intent = new Intent(aty, LoginActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             aty.startActivity(intent);
+                            PreferenceHelper.remove(aty, LoginActivity.TAG, "apiKey");
+                            AppContext.TOKEN = "";
                             aty.finish();
                         }
                     }

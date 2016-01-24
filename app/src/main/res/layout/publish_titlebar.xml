@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/publish_title"
+    android:layout_height="46dp">
+
+
+
+    <ImageView
+        android:layout_width="46dp"
+        android:padding="12dp"
+        android:id="@+id/publish_title_back"
+        android:src="@drawable/selector_title_cancel"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="标题"
+        android:id="@+id/publish_title_title"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:textColor="#333333"
+        android:textSize="17sp"
+        android:layout_centerInParent="true"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="下一步"
+        android:id="@+id/publish_title_right"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:textColor="#f83030"
+        android:textSize="16sp"
+        android:layout_alignParentRight="true"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:layout_width="46dp"
+        android:src="@drawable/selector_title_confirm"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:id="@+id/publish_title_right_confirm"
+        android:layout_alignParentRight="true"
+        android:layout_height="match_parent" />
+</RelativeLayout>

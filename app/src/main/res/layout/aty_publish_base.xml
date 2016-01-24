@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include layout="@layout/publish_titlebar"/>
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:hint="在此输入菜谱标题"
+        android:textColorHint="#666666"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="#f83030"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:drawableLeft="@mipmap/publish_edit_right"
+        android:textSize="19sp"
+        android:id="@+id/publish_base_title"
+        android:background="@null"
+        android:layout_height="40dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/publish_base_cover"
+        android:layout_marginRight="20dp"
+        android:src="@mipmap/publish_cover"
+        android:layout_height="260dp" />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/publish_base_desc"
+        android:singleLine="true"
+        android:layout_marginRight="20dp"
+        android:hint="写几句简单的描述吧..."
+        android:textColorHint="#666666"
+        android:textSize="14sp"
+        android:gravity="start"
+        android:background="@null"
+        android:layout_height="150dp" />
+
+</LinearLayout>

@@ -1,18 +1,26 @@
 package com.itspeed.naidou.app.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import com.itspeed.naidou.app.activity.BigPictureActivity;
 import com.itspeed.naidou.app.activity.GuideActivity;
 import com.itspeed.naidou.app.activity.LoginActivity;
 import com.itspeed.naidou.app.activity.MainActivity;
-import com.itspeed.naidou.app.activity.PublishActivity;
 import com.itspeed.naidou.app.activity.RegisterActivity;
 import com.itspeed.naidou.app.activity.SettingActivity;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
+import com.itspeed.naidou.app.activity.StepScanActivity;
 import com.itspeed.naidou.app.activity.ZoneActivity;
+import com.itspeed.naidou.app.activity.publish.StepAddFoodMaterial;
+import com.itspeed.naidou.app.activity.publish.StepAddStep;
+import com.itspeed.naidou.app.activity.publish.StepAddStepDetail;
+import com.itspeed.naidou.app.activity.publish.StepBase;
+import com.itspeed.naidou.app.activity.publish.StepBaseInfo;
+import com.itspeed.naidou.app.activity.publish.StepProce;
 import com.itspeed.naidou.app.domain.SimpleBackPage;
 
 /**
@@ -153,9 +161,51 @@ public class UIHelper {
      * @param context
      */
     public static void showPublish(Context context) {
-        Intent intent = new Intent(context,PublishActivity.class);
+        Intent intent = new Intent(context,StepBase.class);
         context.startActivity(intent);
     }
+
+
+    /**
+     * 显示添加菜谱
+     * @param context
+     */
+    public static void showPublishBaseInfo(Context context) {
+        Intent intent = new Intent(context,StepBaseInfo.class);
+        context.startActivity(intent);
+    }
+
+
+    public static void showPublishAddFoodMaterial(Context context) {
+        Intent intent = new Intent(context,StepAddFoodMaterial.class);
+        context.startActivity(intent);
+    }
+
+    public static void showPublishAddStep(Context context) {
+        Intent intent = new Intent(context,StepAddStep.class);
+        context.startActivity(intent);
+    }
+    public static void showPublishAddStepDetail(Activity context,int position,int code,String desc,String path) {
+        Intent intent = new Intent(context,StepAddStepDetail.class);
+        intent.putExtra("position",position);
+        intent.putExtra("path",path);
+        intent.putExtra("desc",desc);
+        context.startActivityForResult(intent,code);
+    }
+    public static void showPublishProce(Activity context,int proceCode,int proceIndex) {
+        Intent intent = new Intent(context,StepProce.class);
+        intent.putExtra("proceIndex",proceIndex);
+        context.startActivityForResult(intent,proceCode);
+    }
+
+//    /**
+//     * 显示添加菜谱
+//     * @param context
+//     */
+//    public static void showPublish(Context context) {
+//        Intent intent = new Intent(context,PublishActivity.class);
+//        context.startActivity(intent);
+//    }
 
     /**
      * 显示个人空间
@@ -175,4 +225,31 @@ public class UIHelper {
         Intent intent = new Intent(context,GuideActivity.class);
         context.startActivity(intent);
     }
+
+    /**
+     * 显示大图
+     * @param context
+     */
+    public static void showBigPicture(Context context,String url) {
+        Intent intent = new Intent(context,BigPictureActivity.class);
+        intent.putExtra("bigImgUrl",url);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 步骤查看
+     * @param context
+     * @param position
+     * @param urls
+     * @param descs
+     */
+    public static void showPictrueScan(Context context, int position, String[] urls, String[] descs) {
+        Intent intent = new Intent(context,StepScanActivity.class);
+        intent.putExtra("position",position);
+        intent.putExtra("urls",urls);
+        intent.putExtra("descs",descs);
+        context.startActivity(intent);
+    }
+
+
 }

@@ -11,6 +11,7 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
+import com.itspeed.naidou.app.util.ReleaseResource;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.User;
 
@@ -143,6 +144,7 @@ public class AppStart extends KJActivity {
     @Override
     protected void onDestroy() {
         setContentView(R.layout.view_null);
+        ReleaseResource.recyclerImg(image);
         image = null;
         System.gc();
         super.onDestroy();

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/view_pick_table"
+    android:background="@drawable/shape_pick_lable"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="36dp"
+        android:id="@+id/view_pick_table_left"
+        android:layout_marginLeft="5dp"
+        android:padding="7dp"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/publish_less"
+        android:layout_height="36dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="title"
+        android:textColor="@color/topic_red"
+        android:textSize="16sp"
+        android:layout_centerInParent="true"
+        android:id="@+id/view_pick_table_text"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_marginRight="5dp"
+        android:layout_width="36dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="7dp"
+        android:src="@mipmap/publish_more"
+        android:id="@+id/view_pick_table_right"
+        android:layout_height="36dp" />
+
+
+
+</RelativeLayout>

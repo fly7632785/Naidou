@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include layout="@layout/publish_titlebar"/>
+
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/publish_add_step_detail_img"
+        android:layout_marginRight="20dp"
+        android:src="@mipmap/default_bg"
+        android:layout_height="200dp" />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/publish_add_step_detail_desc"
+        android:layout_marginRight="20dp"
+        android:hint="步骤描述..."
+        android:textColorHint="#666666"
+        android:textSize="14sp"
+        android:gravity="start"
+        android:background="@null"
+        android:layout_height="250dp" />
+
+</LinearLayout>

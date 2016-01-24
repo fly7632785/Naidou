@@ -13,6 +13,7 @@ import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.util.CryptoUtil;
+import com.itspeed.naidou.app.util.ReleaseResource;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.User;
 
@@ -20,6 +21,7 @@ import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.KJHttp;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.ui.KJActivityStack;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.PreferenceHelper;
@@ -46,6 +48,12 @@ public class LoginActivity extends KJActivity {
     private TextView findback;
     @BindView(id = R.id.login_sign, click = true)
     private ImageView sign;
+    @BindView(id = R.id.login_bg)
+    private ImageView mLayoutBg;
+    @BindView(id = R.id.login_account_bg)
+    private ImageView mAccountBg;
+    @BindView(id = R.id.login_password_bg)
+    private ImageView mPasswordBg;
 
 
     private String name;
@@ -235,10 +243,16 @@ public class LoginActivity extends KJActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        KJActivityStack.create().appExit(aty);
+    }
 
     @Override
     protected void onDestroy() {
         setContentView(R.layout.view_null);
+        ReleaseResource.recyclerImg(mAccountBg, mLayoutBg, mPasswordBg, login, sign);
         name = null;
         password = null;
         dialog = null;
@@ -248,6 +262,7 @@ public class LoginActivity extends KJActivity {
         scan = null;
         findback = null;
         sign = null;
+        System.gc();
         super.onDestroy();
     }
 }

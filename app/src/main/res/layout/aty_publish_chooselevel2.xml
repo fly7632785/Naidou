@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/publish_titlebar"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/step2_cate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/step2_yuezi"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="父母"
+            android:textSize="17sp" />
+
+
+        <ImageView
+            android:id="@+id/step2_yunchu"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="110dp"
+            android:src="@drawable/selector_publish_yunchu" />
+
+        <ImageView
+            android:id="@+id/step2_yunzhong"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/step2_yunchu"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/step2_yunchu"
+            android:layout_toRightOf="@+id/step2_yunchu"
+            android:src="@drawable/selector_publish_yunzhong" />
+
+        <ImageView
+            android:id="@+id/step2_beiyun"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/step2_yunchu"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@+id/step2_yunchu"
+            android:layout_toStartOf="@+id/step2_yunchu"
+            android:src="@drawable/selector_publish_beiyun" />
+
+
+        <ImageView
+            android:id="@+id/step2_yuezi"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignLeft="@+id/step2_beiyun"
+            android:layout_below="@+id/step2_beiyun"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/selector_publish_yuezi" />
+
+
+        <ImageView
+            android:id="@+id/step2_yunwan"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignRight="@+id/step2_yunzhong"
+            android:layout_below="@+id/step2_yunzhong"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/selector_publish_yunwan" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

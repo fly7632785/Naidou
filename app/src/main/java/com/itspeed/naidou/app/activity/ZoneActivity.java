@@ -98,7 +98,7 @@ public class ZoneActivity extends KJActivity {
 
     private void setData(User user) {
         KJLoger.debug(user.toString());
-        mCookbookCount.setText("他有" + user.getCookBookCount() + "菜谱呢");
+//        mCookbookCount.setText("他有" + user.getCookBookCount() + "个菜谱呢");
         if (user.isFollowedByMe()) {
             mFollow.setImageResource(R.mipmap.personal_home_followed);
         } else {

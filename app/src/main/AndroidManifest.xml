@@ -7,6 +7,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/logo_512_corner"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity android:name=".app.activity.AppStart"
             android:screenOrientation="portrait"
@@ -31,6 +32,27 @@
             />
         <activity android:name=".app.activity.PublishActivity"
             android:screenOrientation="portrait"
+            />
+        <activity android:name=".app.activity.BigPictureActivity"
+            />
+        <!-- publish-->
+        <activity android:name=".app.activity.publish.StepBase"
+            />
+        <activity android:name=".app.activity.publish.StepBaseInfo"
+            />
+        <activity android:name=".app.activity.publish.StepAddFoodMaterial"
+            />
+        <activity android:name=".app.activity.publish.StepAddStep"
+            />
+        <activity android:name=".app.activity.publish.StepProce"
+            />
+        <activity android:name=".app.activity.publish.StepAddStepDetail"
+            />
+
+
+
+        <activity android:name=".app.activity.StepScanActivity"
+            android:screenOrientation="landscape"
             />
 
         <activity

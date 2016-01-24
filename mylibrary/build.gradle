@@ -36,4 +36,5 @@ dependencies {
     compile 'com.flyco.pageindicator:FlycoPageIndicator_Lib:1.0.0@aar'
     compile files('libs/fastjson-1.2.5.jar')
     compile 'com.github.panwrona:DownloadProgressBar:1.1'
+    compile 'com.commit451:PhotoView:1.2.4'
 }

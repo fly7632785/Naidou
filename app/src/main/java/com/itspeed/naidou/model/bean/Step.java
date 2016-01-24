@@ -8,6 +8,10 @@ import com.itspeed.naidou.model.bean.JsonBean.Pic;
 public class Step {
 
 
+    public Step() {
+        description = "";
+        pic = new Pic();
+    }
 
     //描述
     private String description;

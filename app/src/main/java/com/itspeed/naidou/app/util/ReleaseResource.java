@@ -22,4 +22,19 @@ public class ReleaseResource {
             }
         }
     }
+
+
+    public static void recyclerImg(ImageView ...views){
+        for(ImageView imageView:views){
+            if(imageView == null){
+                continue;
+            }
+            Drawable drawable = imageView.getDrawable();
+            if(drawable!=null) {
+                drawable.setCallback(null);
+            }
+            imageView.setImageBitmap(null);
+            imageView.setBackground(null);
+        }
+    }
 }

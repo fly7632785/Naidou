@@ -9,6 +9,8 @@
 
     <!-- topic-->
     <color name="topic">#2AA9FE</color>
+    <color name="normal_font">#666666</color>
+    <color name="normal_dark_font">#333333</color>
     <color name="topic_red">#ff6666</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>

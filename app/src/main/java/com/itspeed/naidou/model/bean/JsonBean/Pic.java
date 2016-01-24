@@ -6,15 +6,31 @@ package com.itspeed.naidou.model.bean.JsonBean;
 public class Pic {
 
     private String path;
+    private String localPath;
     private int id;
 
+
+    public Pic() {
+        path = "0";
+        localPath = "0";
+        id = 0;
+    }
 
     @Override
     public String toString() {
         return "Pic{" +
                 "path='" + path + '\'' +
+                ", localPath='" + localPath + '\'' +
                 ", id=" + id +
                 '}';
+    }
+
+    public String getLocalPath() {
+        return localPath;
+    }
+
+    public void setLocalPath(String localPath) {
+        this.localPath = localPath;
     }
 
     public String getPath() {

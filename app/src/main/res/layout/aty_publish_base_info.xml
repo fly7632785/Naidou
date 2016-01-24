@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include layout="@layout/publish_titlebar"/>
+
+
+
+   <LinearLayout
+       style="@style/publish_base_info_style"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <ImageView
+           android:layout_marginRight="10dp"
+           android:layout_width="43dp"
+           android:src="@mipmap/object"
+           android:layout_height="43dp" />
+       <com.itspeed.naidou.app.view.CustomView.PickLableView
+           android:layout_width="match_parent"
+           android:id="@+id/publish_base_info_object"
+           android:gravity="center"
+           android:layout_height="36dp">
+
+       </com.itspeed.naidou.app.view.CustomView.PickLableView>
+   </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="工艺"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="23dp"
+        android:textColor="#333333"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        style="@style/publish_base_info_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="43dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/proce"
+            android:layout_height="43dp" />
+        <com.itspeed.naidou.app.view.CustomView.PickLableView
+            android:layout_width="match_parent"
+            android:id="@+id/publish_base_info_proce"
+            android:gravity="center"
+            android:layout_height="36dp">
+
+        </com.itspeed.naidou.app.view.CustomView.PickLableView>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="对象"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="23dp"
+        android:textColor="#333333"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        style="@style/publish_base_info_style"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="43dp"
+            android:src="@mipmap/time"
+            android:layout_height="43dp" />
+        <com.itspeed.naidou.app.view.CustomView.PickLableView
+            android:layout_width="match_parent"
+            android:id="@+id/publish_base_info_time"
+            android:gravity="center"
+            android:layout_height="36dp">
+
+        </com.itspeed.naidou.app.view.CustomView.PickLableView>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="时间"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="23dp"
+        android:textColor="#333333"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        style="@style/publish_base_info_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="43dp"
+            android:src="@mipmap/taste"
+            android:layout_height="43dp" />
+        <com.itspeed.naidou.app.view.CustomView.PickLableView
+            android:id="@+id/publish_base_info_taste"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="36dp">
+
+        </com.itspeed.naidou.app.view.CustomView.PickLableView>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="口味"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="23dp"
+        android:textColor="#333333"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        style="@style/publish_base_info_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_width="43dp"
+            android:src="@mipmap/difficult"
+            android:layout_height="43dp" />
+        <com.itspeed.naidou.app.view.CustomView.PickLableView
+            android:id="@+id/publish_base_info_difficult"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="36dp">
+        </com.itspeed.naidou.app.view.CustomView.PickLableView>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="难度"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="23dp"
+        android:textColor="#333333"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

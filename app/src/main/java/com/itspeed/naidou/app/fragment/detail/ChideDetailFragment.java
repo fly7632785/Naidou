@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
@@ -19,6 +20,7 @@ import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
+import com.itspeed.naidou.app.util.ReleaseResource;
 import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.TimeUtil;
 import com.itspeed.naidou.app.util.UIHelper;
@@ -115,6 +117,26 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 
         mListAdapter = new ListViewAdapter();
         mListView.setAdapter(mListAdapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(mStepData != null) {
+                    String[] urls = new String[mStepData.size()];
+                    String[] descs = new String[mStepData.size()];
+                    for (int i = 0; i < mStepData.size(); i++) {
+                        urls[i] = AppContext.HOST1+mStepData.get(i).getPic().getPath();
+                        descs[i] = mStepData.get(i).getDescription();
+                    }
+                    for (int i = 0; i < urls.length; i++) {
+                        KJLoger.debug("urls"+urls[i]);
+                        KJLoger.debug("descs"+descs[i]);
+                    }
+//                    KJLoger.debug("okpositon:"+position);
+                    //因为有header所以要减去1
+                    UIHelper.showPictrueScan(parent.getContext(), position-1,urls,descs);
+                }
+            }
+        });
     }
 
     private void requestData(){
@@ -273,8 +295,9 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 
     @Override
     public void onDestroy() {
-        KJLoger.debug("chidedetail:onDestroy");
+//        KJLoger.debug("chidedetail:onDestroy");
         aty = null;
+        ReleaseResource.recyclerImg(mAvatar, mCover, mIsCollect, mIsLike);
         layout= null;
         super.onDestroy();
     }
@@ -297,7 +320,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, final ViewGroup parent) {
             ViewHolder holder = null;
             if(convertView == null){
                 holder = new ViewHolder();
@@ -310,8 +333,14 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
             }else {
                 holder = (ViewHolder) convertView.getTag();
             }
+            final Step step = mStepData.get(position);
+            holder.cover.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UIHelper.showBigPicture(parent.getContext(),step.getPic().getPath());
+                }
+            });
 
-            Step step = mStepData.get(position);
             new KJBitmap.Builder().view(holder.cover).imageUrl(AppContext.HOST+step.getPic().getPath()).display();
             holder.desc.setText(step.getDescription());
             holder.step_chinese.setText("第"+mStepChinese[position]+"步");

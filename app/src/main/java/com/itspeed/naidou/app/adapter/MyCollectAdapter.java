@@ -10,8 +10,8 @@ import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.model.bean.CookBook;
+import com.squareup.picasso.Picasso;
 
-import org.kymjs.kjframe.KJBitmap;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
@@ -50,8 +50,10 @@ public class MyCollectAdapter extends ListBaseAdapter<CookBook> {
 
 
         CookBook cb = mDatas.get(position);
-        new KJBitmap.Builder().imageUrl(AppContext.HOST+cb.getCover()).errorBitmapRes(R.mipmap.default_bg).view(holder.img).display();
-        new KJBitmap.Builder().imageUrl(AppContext.HOST+cb.getFromWhoAvatar()).errorBitmapRes(R.mipmap.default_avatar).view(holder.portrait).display();
+        Picasso.with(parent.getContext()).load(AppContext.HOST+cb.getCover()).error(R.mipmap.default_bg).into(holder.img);
+        Picasso.with(parent.getContext()).load(AppContext.HOST+cb.getFromWhoAvatar()).error(R.mipmap.default_avatar).into(holder.portrait);
+//        new KJBitmap.Builder().imageUrl(AppContext.HOST+cb.getCover()).errorBitmapRes(R.mipmap.default_bg).view(holder.img).display();
+//        new KJBitmap.Builder().imageUrl(AppContext.HOST+cb.getFromWhoAvatar()).errorBitmapRes(R.mipmap.default_avatar).view(holder.portrait).display();
         holder.title.setText(cb.getTitle());
         holder.author.setText(cb.getFromWho());
         holder.likes.setText(cb.getLikedCount()+"");
