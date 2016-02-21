@@ -38,6 +38,8 @@ public class StepAddStepDetail extends BasePublishActivity {
     private boolean hasImg = false;
     private boolean isUpload = false;
     private String desc;
+    private String path = "0";
+    private int id = -1;
 
     @Override
     public void setRootView() {
@@ -115,7 +117,13 @@ public class StepAddStepDetail extends BasePublishActivity {
         Intent intent = getIntent();
         intent.putExtra("position",position);
         if (hasImg) {
-            intent.putExtra("path", picPath);
+            intent.putExtra("id",id);
+            intent.putExtra("path",path);
+            intent.putExtra("localPath", picPath);
+        }else {
+            intent.putExtra("id",-1);
+            intent.putExtra("path","0");
+            intent.putExtra("localPath", "0");
         }
         if (!StringUtils.isEmpty(mDesc.getText().toString())){
             intent.putExtra("desc",mDesc.getText().toString());
@@ -154,8 +162,8 @@ public class StepAddStepDetail extends BasePublishActivity {
                 super.onSuccess(t);
                 KJLoger.debug("upload:" + t);
                 if (Response.getSuccess(t)) {
-                    int id = Response.getPictureId(t);
-                    String url = Response.getPictureUrl(t);
+                    id = Response.getPictureId(t);
+                    path = Response.getPictureUrl(t);
                     //// TODO: 16/1/23
                     isUpload = false;
                     mImg.setImageBitmap(bm);

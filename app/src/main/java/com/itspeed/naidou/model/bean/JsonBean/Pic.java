@@ -1,9 +1,11 @@
 package com.itspeed.naidou.model.bean.JsonBean;
 
+import java.io.Serializable;
+
 /**
  * Created by jafir on 15/12/3.
  */
-public class Pic {
+public class Pic implements Serializable{
 
     private String path;
     private String localPath;

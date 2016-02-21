@@ -46,7 +46,17 @@
             />
         <activity android:name=".app.activity.publish.StepProce"
             />
+        <activity android:name=".app.activity.publish.StepDifficult"
+            />
+        <activity android:name=".app.activity.publish.StepTime"
+            />
+        <activity android:name=".app.activity.publish.StepTaste"
+            />
+        <activity android:name=".app.activity.publish.StepObject"
+            />
         <activity android:name=".app.activity.publish.StepAddStepDetail"
+            />
+        <activity android:name=".app.activity.publish.StepAll"
             />
 
 

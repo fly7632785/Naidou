@@ -1,9 +1,11 @@
 package com.itspeed.naidou.model.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by jafir on 15/9/14.
  */
-public class FoodMaterial {
+public class FoodMaterial implements Serializable{
 
     private String food;
     private String weight;

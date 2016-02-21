@@ -17,4 +17,10 @@ public class TimeUtil {
         String hms = formatter.format(new Date(Long.valueOf(ms)* 1000));
         return hms;
     }
+    public static String currentDate(){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        String hms = formatter.format(new Date(System.currentTimeMillis()));
+        return hms;
+    }
 }

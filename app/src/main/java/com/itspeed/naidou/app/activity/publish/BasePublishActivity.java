@@ -52,10 +52,18 @@ public abstract class BasePublishActivity extends KJActivity {
         mImgBack.setOnClickListener(this);
         mImgConfirm.setOnClickListener(this);
         mTvRight.setOnClickListener(this);
-        cookBook = getCookbook();
+
+        KJLoger.debug("2222");
 
     }
 
+
+    @Override
+    public void initData() {
+        super.initData();
+        KJLoger.debug("4444");
+        cookBook = getCookbook();
+    }
 
     @Override
     public void widgetClick(View v) {

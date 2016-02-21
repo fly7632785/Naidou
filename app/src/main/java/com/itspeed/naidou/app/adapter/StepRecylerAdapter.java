@@ -60,6 +60,8 @@ public class StepRecylerAdapter extends RecyclerView.Adapter<StepRecylerAdapter.
             if (bm != null ) {
                 holder.img.setImageBitmap(bm);
             }
+        }else {
+            holder.img.setImageResource(R.mipmap.default_bg);
         }
 
     }

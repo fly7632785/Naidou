@@ -119,6 +119,7 @@ public class StepProce extends BasePublishActivity {
             textView.setBackgroundResource(orderColor[position]);
             if(position==currentIndex){
                 textView.setSelected(true);
+                textView.setTextColor(getResources().getColor(R.color.white));
             }
             textView.setOnClickListener(new MyClickListener(position));
             return view;
@@ -145,6 +146,7 @@ public class StepProce extends BasePublishActivity {
             for (int i = 0; i < mGridView.getChildCount(); i++) {
                 if (!textView.toString().equals(((LinearLayout) mGridView.getChildAt(i)).getChildAt(0).toString())) {
                         ((LinearLayout) mGridView.getChildAt(i)).getChildAt(0).setSelected(false);
+                    ((TextView)((LinearLayout) mGridView.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.normal_dark_font));
 
                     }
             }

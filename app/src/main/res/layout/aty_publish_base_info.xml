@@ -28,7 +28,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="工艺"
+        android:text="对象"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="23dp"
         android:textColor="#333333"
@@ -53,7 +53,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="对象"
+        android:text="工艺"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="23dp"
         android:textColor="#333333"

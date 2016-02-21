@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include layout="@layout/publish_titlebar"/>
+
+    <com.itspeed.naidou.app.view.CustomView.PickLableView
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_width="280dp"
+        android:id="@+id/publish_object_pickview"
+        android:layout_height="36dp"></com.itspeed.naidou.app.view.CustomView.PickLableView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/publish_object_yunchu"
+            style="@style/publish_object_text"
+            android:text="孕初"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/publish_object_yunzhong"
+            android:layout_below="@+id/publish_object_yunchu"
+            style="@style/publish_object_text"
+            android:layout_marginLeft="30dp"
+            android:text="孕中"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/publish_object_yunchu"
+            android:layout_toRightOf="@+id/publish_object_yunchu"
+            />
+
+        <TextView
+            android:id="@+id/publish_object_beiyun"
+            style="@style/publish_object_text"
+            android:layout_below="@+id/publish_object_yunchu"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:text="备孕"
+            android:layout_toLeftOf="@+id/publish_object_yunchu"
+            android:layout_toStartOf="@+id/publish_object_yunchu"/>
+
+
+        <TextView
+            android:id="@+id/publish_object_yuezi"
+            style="@style/publish_object_text"
+            android:layout_alignLeft="@+id/publish_object_beiyun"
+            android:layout_below="@+id/publish_object_beiyun"
+            android:layout_marginLeft="40dp"
+            android:text="月子"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/publish_object_yunwan"
+            android:layout_alignRight="@+id/publish_object_yunzhong"
+            style="@style/publish_object_text"
+            android:layout_below="@+id/publish_object_yunzhong"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="30dp"
+            android:text="孕晚"
+             />
+
+    </RelativeLayout>
+
+</LinearLayout>

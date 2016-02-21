@@ -18,10 +18,18 @@ import com.itspeed.naidou.app.activity.ZoneActivity;
 import com.itspeed.naidou.app.activity.publish.StepAddFoodMaterial;
 import com.itspeed.naidou.app.activity.publish.StepAddStep;
 import com.itspeed.naidou.app.activity.publish.StepAddStepDetail;
+import com.itspeed.naidou.app.activity.publish.StepAll;
 import com.itspeed.naidou.app.activity.publish.StepBase;
 import com.itspeed.naidou.app.activity.publish.StepBaseInfo;
+import com.itspeed.naidou.app.activity.publish.StepDifficult;
+import com.itspeed.naidou.app.activity.publish.StepObject;
 import com.itspeed.naidou.app.activity.publish.StepProce;
+import com.itspeed.naidou.app.activity.publish.StepTaste;
+import com.itspeed.naidou.app.activity.publish.StepTime;
 import com.itspeed.naidou.app.domain.SimpleBackPage;
+import com.itspeed.naidou.model.bean.CookBook;
+
+import java.io.Serializable;
 
 /**
  * Created by jafir on 15/9/27.
@@ -148,6 +156,17 @@ public class UIHelper {
 
     }
     /**
+     * 预览本地菜谱详情
+     * @param context
+     */
+    public static void showLocalCbDetail(Context context,String cid,CookBook cookBook) {
+        Bundle bundle  = new Bundle();
+        bundle.putString("cid",cid);
+        bundle.putSerializable("cookbook", (Serializable) cookBook);
+        SimpleBackActivity.postShowWith(context, SimpleBackPage.CHIDE_DETAIL,bundle);
+
+    }
+    /**
      * 显示关于逛的详情
      * @param context
      */
@@ -164,6 +183,15 @@ public class UIHelper {
         Intent intent = new Intent(context,StepBase.class);
         context.startActivity(intent);
     }
+    /**
+     * 显示添加菜谱
+     * @param context
+     */
+    public static void showModifyPublish(Context context) {
+        Intent intent = new Intent(context,StepBase.class);
+        intent.putExtra("isModify",true);
+        context.startActivity(intent);
+    }
 
 
     /**
@@ -172,6 +200,15 @@ public class UIHelper {
      */
     public static void showPublishBaseInfo(Context context) {
         Intent intent = new Intent(context,StepBaseInfo.class);
+        context.startActivity(intent);
+    }
+    /**
+     * 显示添加菜谱
+     * @param context
+     */
+    public static void showModifyPublishBaseInfo(Context context) {
+        Intent intent = new Intent(context,StepBaseInfo.class);
+        intent.putExtra("isModify",true);
         context.startActivity(intent);
     }
 
@@ -185,17 +222,52 @@ public class UIHelper {
         Intent intent = new Intent(context,StepAddStep.class);
         context.startActivity(intent);
     }
+    public static void showModifyPublishAddFoodMaterial(Context context) {
+        Intent intent = new Intent(context,StepAddFoodMaterial.class);
+        intent.putExtra("isModify",true);
+        context.startActivity(intent);
+    }
+
+    public static void showModifyPublishAddStep(Context context) {
+        Intent intent = new Intent(context,StepAddStep.class);
+        intent.putExtra("isModify",true);
+        context.startActivity(intent);
+    }
     public static void showPublishAddStepDetail(Activity context,int position,int code,String desc,String path) {
         Intent intent = new Intent(context,StepAddStepDetail.class);
         intent.putExtra("position",position);
         intent.putExtra("path",path);
         intent.putExtra("desc",desc);
-        context.startActivityForResult(intent,code);
+        context.startActivityForResult(intent, code);
     }
     public static void showPublishProce(Activity context,int proceCode,int proceIndex) {
         Intent intent = new Intent(context,StepProce.class);
         intent.putExtra("proceIndex",proceIndex);
+        context.startActivityForResult(intent, proceCode);
+    }
+    public static void showPublishObject(Activity context,int proceCode,int proceIndex) {
+        Intent intent = new Intent(context,StepObject.class);
+        intent.putExtra("proceIndex",proceIndex);
         context.startActivityForResult(intent,proceCode);
+    }
+    public static void showPublishDifficult(Activity context,int proceCode,int proceIndex) {
+        Intent intent = new Intent(context,StepDifficult.class);
+        intent.putExtra("proceIndex",proceIndex);
+        context.startActivityForResult(intent,proceCode);
+    }
+    public static void showPublishTime(Activity context,int proceCode,int proceIndex) {
+        Intent intent = new Intent(context,StepTime.class);
+        intent.putExtra("proceIndex",proceIndex);
+        context.startActivityForResult(intent,proceCode);
+    }
+    public static void showPublishTaste(Activity context,int proceCode,int proceIndex) {
+        Intent intent = new Intent(context,StepTaste.class);
+        intent.putExtra("proceIndex",proceIndex);
+        context.startActivityForResult(intent,proceCode);
+    }
+    public static void showPublishAll(Activity context) {
+        Intent intent = new Intent(context,StepAll.class);
+        context.startActivity(intent);
     }
 
 //    /**

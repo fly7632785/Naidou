@@ -35,6 +35,11 @@ public class PickLableView extends RelativeLayout implements View.OnClickListene
 
     private onPickViewListener l;
 
+
+
+
+    private onPickViewChangedListener l1;
+
     public PickLableView(Context context) {
         super(context);
         init(context);
@@ -73,7 +78,9 @@ public class PickLableView extends RelativeLayout implements View.OnClickListene
         this.l = l;
     }
 
-
+    public void setViewStateChangedListener(onPickViewChangedListener l1) {
+        this.l1 = l1;
+    }
     public  void setContent(String[] content){
         this.content = content;
         if(content.length!=0){
@@ -120,6 +127,9 @@ public class PickLableView extends RelativeLayout implements View.OnClickListene
             index--;
             text.setText(content[index]);
         }
+        if(l1!=null) {
+            l1.onViewStateChanged(this, index);
+        }
     }
     private void rightClick() {
 
@@ -127,6 +137,13 @@ public class PickLableView extends RelativeLayout implements View.OnClickListene
             index++;
             text.setText(content[index]);
         }
+        if(l1!=null) {
+            l1.onViewStateChanged(this, index);
+        }
+    }
+
+    public String  getText() {
+        return text.getText().toString();
     }
 
 
@@ -134,6 +151,11 @@ public class PickLableView extends RelativeLayout implements View.OnClickListene
 //        void onRightClick();
 //        void onLeftClick();
         void onViewClick(View view);
+    }
+
+
+    public interface  onPickViewChangedListener{
+        void onViewStateChanged(View view,int index);
     }
 
 }

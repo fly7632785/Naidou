@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+
+
+    <include layout="@layout/publish_titlebar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/publish_all_cb_ll"
+        android:padding="5dp"
+        android:gravity="center_vertical"
+        android:layout_height="72dp">
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:layout_width="12dp"
+            android:id="@+id/publish_all_cb_point"
+            android:scaleType="fitXY"
+            android:src="@mipmap/indicator_red_point"
+            android:layout_height="12dp" />
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/publish_all_cb"
+                android:text="菜谱"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:id="@+id/publish_all_cb_detail"
+                android:text="未添加"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        style="@style/line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:id="@+id/publish_all_baseinfo_ll"
+        android:gravity="center_vertical"
+        android:layout_height="72dp">
+        <ImageView
+            android:id="@+id/publish_all_baseinfo_point"
+            android:layout_marginLeft="15dp"
+            android:layout_width="12dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/indicator_red_point"
+            android:layout_height="12dp" />
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/publish_all_baseinfo"
+                android:text="基本属性"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:id="@+id/publish_all_baseinfo_detail"
+                android:text="未添加"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        style="@style/line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:id="@+id/publish_all_food_ll"
+        android:gravity="center_vertical"
+        android:layout_height="72dp">
+        <ImageView
+            android:id="@+id/publish_all_food_point"
+            android:layout_marginLeft="15dp"
+            android:layout_width="12dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/indicator_red_point"
+            android:layout_height="12dp" />
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/publish_all_food"
+                android:text="食材"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:id="@+id/publish_all_food_detail"
+                android:text="未添加"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        style="@style/line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:id="@+id/publish_all_step_ll"
+        android:gravity="center_vertical"
+        android:layout_height="72dp">
+        <ImageView
+            android:id="@+id/publish_all_step_point"
+            android:layout_marginLeft="15dp"
+            android:layout_width="12dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/indicator_red_point"
+            android:layout_height="12dp" />
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/publish_all_step"
+                android:text="步骤"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:id="@+id/publish_all_step_detail"
+                android:text="未添加"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        style="@style/line"/>
+
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/publish_all_perfect"
+        android:layout_width="match_parent"
+        android:src="@mipmap/perfect"
+        android:layout_above="@+id/publish_all_publish"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="发布食谱"
+        android:id="@+id/publish_all_publish"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        android:background="#eb4960"
+        android:layout_alignParentBottom="true"
+        android:layout_height="48dp" />
+</RelativeLayout>

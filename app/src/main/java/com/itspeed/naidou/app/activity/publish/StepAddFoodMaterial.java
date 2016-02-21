@@ -16,10 +16,11 @@ public class StepAddFoodMaterial extends BasePublishActivity {
 
     @BindView(id = R.id.publish_add_foodmaterial_linear)
     private LinearLayout mLinear;
+    private boolean isModify;
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.aty_publish_step2);
+        setContentView(R.layout.aty_publish_add_foodmaterial);
     }
 
 
@@ -27,6 +28,10 @@ public class StepAddFoodMaterial extends BasePublishActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTvTitle.setText("食材");
+        isModify = getIntent().getBooleanExtra("isModify",false);
+        if(isModify){
+            mTvRight.setText("完成");
+        }
 
     }
 
@@ -51,6 +56,12 @@ public class StepAddFoodMaterial extends BasePublishActivity {
     @Override
     protected void onRightTextClick() {
         super.onRightTextClick();
-        UIHelper.showPublishAddStep(this);
+        if(!isModify) {
+            UIHelper.showPublishAddStep(this);
+            this.finish();
+        }else {
+            this.finish();
+        }
+
     }
 }

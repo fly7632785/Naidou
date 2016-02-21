@@ -16,7 +16,7 @@ import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.CookBook;
 
 import org.kymjs.kjframe.utils.FileUtils;
-import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.PreferenceHelper;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -85,30 +85,26 @@ public class ChideFragment extends TitleBarSupportFragment {
         //生成一个json对象 保存到本地
         //然后每一个步骤完成 就修改数据
         //最后发布成功 就删除  或者 当做草稿
+        boolean isFirst = PreferenceHelper.readBoolean(aty, TAG, "first_open",
+                true);
+        CookBook cookBook;
+        if (isFirst) {
+            PreferenceHelper.write(aty,TAG,"first_open",false);
+            cookBook = new CookBook();
+            setCookbook(cookBook);
+        }
 
-        CookBook cookBook = new CookBook();
 
-//        ArrayList<Step> steps = new ArrayList<>();
-//        ArrayList<FoodMaterial> foodMaterials = new ArrayList<>();
-//        for (int i = 0; i < 5; i++) {
-//            Step step = new Step();
-//            step.setDescription("描述");
-//            Pic pic = new Pic();
-//            pic.setPath("path");
-//            step.setPic(pic);
-//            steps.add(step);
-//
-//            FoodMaterial foodMaterial = new FoodMaterial();
-//            foodMaterial.setWeight("123");
-//            foodMaterials.add(foodMaterial);
-//        }
-//
-//        cookBook.setFoods(foodMaterials);
-//        cookBook.setSteps(steps);
+        UIHelper.showPublish(aty);
+    }
 
-        String s = JSON.toJSONString(cookBook);
+    /**
+     * 把步骤操作后的菜谱重新存到本地 整合数据
+     */
+    protected void setCookbook(CookBook cookbook) {
+
+        String s = JSON.toJSONString(cookbook);
         File file = FileUtils.getSaveFile("craft", "publish_file.txt");
-        KJLoger.debug(file.toString());
         FileWriter writer = null;
         try {
             writer = new FileWriter(file);
@@ -124,10 +120,7 @@ public class ChideFragment extends TitleBarSupportFragment {
             }
 
         }
-
-        UIHelper.showPublish(aty);
     }
-
 
     @Override
     public void onBackClick() {

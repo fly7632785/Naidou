@@ -14,6 +14,7 @@ import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.SelectActivity;
 import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.model.bean.JsonBean.Pic;
 
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
@@ -38,6 +39,7 @@ public class StepBase extends BasePublishActivity {
 
     private boolean hasCover;
 
+    private boolean isModify;
     @Override
     public void setRootView() {
         setContentView(R.layout.aty_publish_base);
@@ -48,6 +50,10 @@ public class StepBase extends BasePublishActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTvTitle.setText("菜谱");
+        isModify = getIntent().getBooleanExtra("isModify",false);
+        if(isModify){
+            mTvRight.setText("完成");
+        }
     }
 
     @Override
@@ -55,6 +61,22 @@ public class StepBase extends BasePublishActivity {
         super.initData();
 
 
+
+
+        if(!cookBook.getTitle().equals("")){
+            mTitle.setText(cookBook.getTitle());
+        }
+        if(!cookBook.getDescription().equals("")){
+            mDesc.setText(cookBook.getDescription());
+        }
+        if(!cookBook.getCoverPic().getLocalPath().equals("0")){
+            Bitmap bm = BitmapFactory.decodeFile(cookBook.getCoverPic().getLocalPath());
+            if (bm != null && mCover != null) {
+                mCover.setImageBitmap(bm);
+            }
+        }
+
+        //// TODO: 16/1/24 封面
     }
 
     @Override
@@ -107,7 +129,12 @@ public class StepBase extends BasePublishActivity {
 //        }
         cookBook.setDescription(mDesc.getText().toString());
         setCookbook(cookBook);
-        UIHelper.showPublishBaseInfo(this);
+        if(!isModify) {
+            UIHelper.showPublishBaseInfo(this);
+            this.finish();
+        }else {
+            this.finish();
+        }
         KJLoger.debug(getCookbook().toString());
     }
 
@@ -127,13 +154,13 @@ public class StepBase extends BasePublishActivity {
             Bitmap bm = BitmapFactory.decodeFile(picPath);
             if (bm != null && mCover != null) {
 
-                uploadPic(bm);
+                uploadPic(bm,picPath);
             }
         }
     }
 
 
-    private void uploadPic(final Bitmap bm) {
+    private void uploadPic(final Bitmap bm, final String  localPath) {
         File file = new File(SelectActivity.IMG_PATH, "cover.jpeg");
         KJLoger.debug("文件路径：" + file.getAbsolutePath());
         KJLoger.debug("文件是否存在：" + file.exists() + "大小：" + file.length());
@@ -143,9 +170,13 @@ public class StepBase extends BasePublishActivity {
                 super.onSuccess(t);
                 KJLoger.debug("upload:" + t);
                 if (Response.getSuccess(t)) {
+                    Pic pic = new Pic();
                     int id = Response.getPictureId(t);
                     String url = Response.getPictureUrl(t);
-                    cookBook.setCover(id + "");
+                    pic.setId(id);
+                    pic.setPath(url);
+                    pic.setLocalPath(localPath);
+                    cookBook.setCoverPic(pic);
                     mCover.setImageBitmap(bm);
                     hasCover = true;
                 }

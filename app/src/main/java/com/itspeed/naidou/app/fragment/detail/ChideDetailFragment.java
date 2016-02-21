@@ -72,17 +72,17 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     private ArrayList<FoodMaterial> mFoodMaterialData = new ArrayList<>();
     private ArrayList<Step> mStepData = new ArrayList<>();
 
-    private String[] mStepChinese = new String[]{"一","二","三","四","五","六","七","八","九","十","十一","十三","十四"};
-    private String[] mStepEnglish = new String[]{"ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN","EIGHT","NINE","TEN","ELEVEN","TWELVE","THIRTEEN","FOURTEEN"};
+    private String[] mStepChinese = new String[]{"一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十三", "十四"};
+    private String[] mStepEnglish = new String[]{"ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN"};
     private boolean isLike;
     private boolean isCollect;
-    private int  likes;
-    private int  collects;
+    private int likes;
+    private int collects;
 
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-        layout = View.inflate(aty, R.layout.frag_chide_detail,null);
+        layout = View.inflate(aty, R.layout.frag_chide_detail, null);
         return layout;
     }
 
@@ -107,47 +107,56 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 
         //获取cid
         cid = (String) aty.getBundleData().get("cid");
+        CookBook cookBook = (CookBook) aty.getBundleData().get("cookbook");
         initHead();
         mListView = (ListView) layout.findViewById(R.id.chide_detail_list);
         mListView.setClickable(false);
         mListView.addHeaderView(head);
-        //请求数据 设置数据
 
-        requestData();
+        //预览功能   如果 是从本地json数据 预览
+        //则不去请求数据  直接提取数据
+        //规定： 如果是本地预览则是传入 cid为-1
+        if (cid.equals("-1")) {
+            //本地 提取json数据
+            requestDataFromLocal(cookBook);
+        } else {
+            //网络 请求数据 设置数据
+            requestData();
+        }
 
         mListAdapter = new ListViewAdapter();
         mListView.setAdapter(mListAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(mStepData != null) {
+                if (mStepData != null) {
                     String[] urls = new String[mStepData.size()];
                     String[] descs = new String[mStepData.size()];
                     for (int i = 0; i < mStepData.size(); i++) {
-                        urls[i] = AppContext.HOST1+mStepData.get(i).getPic().getPath();
+                        urls[i] = AppContext.HOST1 + mStepData.get(i).getPic().getPath();
                         descs[i] = mStepData.get(i).getDescription();
                     }
                     for (int i = 0; i < urls.length; i++) {
-                        KJLoger.debug("urls"+urls[i]);
-                        KJLoger.debug("descs"+descs[i]);
+                        KJLoger.debug("urls" + urls[i]);
+                        KJLoger.debug("descs" + descs[i]);
                     }
 //                    KJLoger.debug("okpositon:"+position);
                     //因为有header所以要减去1
-                    UIHelper.showPictrueScan(parent.getContext(), position-1,urls,descs);
+                    UIHelper.showPictrueScan(parent.getContext(), position - 1, urls, descs);
                 }
             }
         });
     }
 
-    private void requestData(){
+    private void requestData() {
         NaidouApi.getCookbook(cid, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-                KJLoger.debug("getCookbook:"+t);
-                if(Response.getSuccess(t)){
+                KJLoger.debug("getCookbook:" + t);
+                if (Response.getSuccess(t)) {
                     mLoadLayout.setVisibility(View.GONE);
-                   CookBook cookBook = Response.getChideDetail(t);
+                    CookBook cookBook = Response.getChideDetail(t);
                     KJLoger.debug("cookBookDetail:" + cookBook.toString());
                     setData(cookBook);
                 }
@@ -156,11 +165,18 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         });
     }
 
-    private void setData(CookBook cookBook){
+    private void requestDataFromLocal(CookBook cookBook) {
+        mLoadLayout.setVisibility(View.GONE);
+        KJLoger.debug("loacal cookBookDetail:" + cookBook.toString());
+        setLocalData(cookBook);
+    }
+
+
+    private void setData(CookBook cookBook) {
         uid = cookBook.getFromWhoId();
 
-        new KJBitmap.Builder().imageUrl(AppContext.HOST+cookBook.getFromWhoAvatar()).view(mAvatar).display();
-        new KJBitmap.Builder().imageUrl(AppContext.HOST+cookBook.getCover()).view(mCover).display();
+        new KJBitmap.Builder().imageUrl(AppContext.HOST + cookBook.getFromWhoAvatar()).view(mAvatar).display();
+        new KJBitmap.Builder().imageUrl(AppContext.HOST + cookBook.getCover()).view(mCover).display();
         mTime.setText(StringUtils.friendlyTime(TimeUtil.msToDate(cookBook.getTime())));
         mLikes.setText("" + cookBook.getLikedCount());
         mCollects.setText("" + cookBook.getCollectCount());
@@ -180,8 +196,8 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 
         //有了数据之后就设置数据
         for (int i = 0; i < mFoodMaterialData.size(); i++) {
-            View view = View.inflate(aty,R.layout.item_gridview_chide_detail_head,null);
-            view.setLayoutParams(new FrameLayout.LayoutParams(DensityUtils.getScreenW(aty)/2, ViewGroup.LayoutParams.WRAP_CONTENT));
+            View view = View.inflate(aty, R.layout.item_gridview_chide_detail_head, null);
+            view.setLayoutParams(new FrameLayout.LayoutParams(DensityUtils.getScreenW(aty) / 2, ViewGroup.LayoutParams.WRAP_CONTENT));
             TextView food = (TextView) view.findViewById(R.id.item_gridview_chide_detail_head_food);
             TextView weight = (TextView) view.findViewById(R.id.item_gridview_chide_detail_head_weight);
             food.setText(mFoodMaterialData.get(i).getFood());
@@ -191,12 +207,54 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 
         mStepData = cookBook.getSteps();
 
-        mListAdapter.notifyDataSetChanged();
+//        mListAdapter.notifyDataSetChanged();
+    }
+    private void setLocalData(CookBook cookBook) {
+
+        mLikes.setVisibility(View.GONE);
+        mCollects.setVisibility(View.GONE);
+        mIsLike.setVisibility(View.GONE);
+        mIsCollect.setVisibility(View.GONE);
+
+
+        new KJBitmap.Builder().imageUrl(AppContext.userAvatarPath).view(mAvatar).display();
+        new KJBitmap.Builder().imageUrl(AppContext.HOST + cookBook.getCoverPic().getPath()).view(mCover).display();
+        mTime.setText(StringUtils.friendlyTime(TimeUtil.currentDate()));
+//        mLikes.setText("" + cookBook.getLikedCount());
+//        mCollects.setText("" + cookBook.getCollectCount());
+        mTitle.setText(cookBook.getTitle());
+        mDesc.setText(cookBook.getDescription());
+        mUsername.setText(AppContext.user.getNickname());
+
+        //食材
+        mFoodMaterialData = cookBook.getFoods();
+//        isCollect = cookBook.isCollect();
+//        isLike = cookBook.isLike();
+//        collects = cookBook.getCollectCount();
+//        likes = cookBook.getLikedCount();
+
+//        mIsLike.setSelected(isLike);
+//        mIsCollect.setSelected(isCollect);
+
+        //有了数据之后就设置数据
+        for (int i = 0; i < mFoodMaterialData.size(); i++) {
+            View view = View.inflate(aty, R.layout.item_gridview_chide_detail_head, null);
+            view.setLayoutParams(new FrameLayout.LayoutParams(DensityUtils.getScreenW(aty) / 2, ViewGroup.LayoutParams.WRAP_CONTENT));
+            TextView food = (TextView) view.findViewById(R.id.item_gridview_chide_detail_head_food);
+            TextView weight = (TextView) view.findViewById(R.id.item_gridview_chide_detail_head_weight);
+            food.setText(mFoodMaterialData.get(i).getFood());
+            weight.setText(mFoodMaterialData.get(i).getWeight());
+            mGridLayout.addView(view);
+        }
+
+        mStepData = cookBook.getSteps();
+
+//        mListAdapter.notifyDataSetChanged();
     }
 
 
     private void initHead() {
-        head = View.inflate(aty,R.layout.chide_detail_head,null);
+        head = View.inflate(aty, R.layout.chide_detail_head, null);
         mCover = (ImageView) head.findViewById(R.id.chide_detail_head_cover);
         mAvatar = (ImageView) head.findViewById(R.id.chide_detail_head_avatar);
         View layout = head.findViewById(R.id.chide_detail_head_layout_like_collect);
@@ -212,9 +270,6 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         mIsLike.setOnClickListener(this);
         mIsCollect.setOnClickListener(this);
         mAvatar.setOnClickListener(this);
-
-
-
 
 
     }
@@ -233,51 +288,51 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     protected void widgetClick(View v) {
         super.widgetClick(v);
 
-        if(cid == null){
+        if (cid == null) {
             return;
         }
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.chide_detail_head_avatar:
-                UIHelper.showZone(aty,uid);
+                UIHelper.showZone(aty, uid);
                 break;
             case R.id.layout_islike:
-                if(RightsManager.isVisitor(v.getContext())) {
+                if (RightsManager.isVisitor(v.getContext())) {
                     return;
                 }
                 isLike = !isLike;
                 //请求点赞或者取消点赞
-                if(isLike){
+                if (isLike) {
                     doLike(cid);
                     mIsLike.setSelected(true);
                     //点赞数改变
                     likes++;
-                    mLikes.setText(""+likes);
+                    mLikes.setText("" + likes);
 
-                }else {
+                } else {
                     cancelLike(cid);
                     mIsLike.setSelected(false);
                     //点赞数改变
                     likes--;
-                    mLikes.setText(""+likes);
+                    mLikes.setText("" + likes);
                 }
                 break;
             case R.id.layout_iscollect:
-                if(RightsManager.isVisitor(v.getContext())) {
+                if (RightsManager.isVisitor(v.getContext())) {
                     return;
                 }
                 isCollect = !isCollect;
                 //请求点赞或者取消点赞
-                if(isCollect){
+                if (isCollect) {
                     doCollect(cid);
                     //收藏数改变
                     collects++;
                     mIsCollect.setSelected(true);
-                    mCollects.setText(""+collects);
-                }else {
+                    mCollects.setText("" + collects);
+                } else {
                     cancelCollect(cid);
                     mIsCollect.setSelected(false);
                     collects--;
-                    mCollects.setText(""+collects);
+                    mCollects.setText("" + collects);
                 }
 
                 break;
@@ -292,17 +347,16 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     }
 
 
-
     @Override
     public void onDestroy() {
 //        KJLoger.debug("chidedetail:onDestroy");
         aty = null;
         ReleaseResource.recyclerImg(mAvatar, mCover, mIsCollect, mIsLike);
-        layout= null;
+        layout = null;
         super.onDestroy();
     }
 
-    private class ListViewAdapter extends BaseAdapter{
+    private class ListViewAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
@@ -322,34 +376,35 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         @Override
         public View getView(int position, View convertView, final ViewGroup parent) {
             ViewHolder holder = null;
-            if(convertView == null){
+            if (convertView == null) {
                 holder = new ViewHolder();
                 convertView = android.view.View.inflate(aty, R.layout.item_list_chide_detail, null);
                 holder.cover = (ImageView) convertView.findViewById(R.id.item_list_chide_detail_stepimg);
-                holder.desc = (TextView) convertView .findViewById(R.id.item_list_chide_detail_desc);
-                holder.step_chinese = (TextView) convertView .findViewById(R.id.item_list_chide_detail_step_chinese);
-                holder.step_english = (TextView) convertView .findViewById(R.id.item_list_chide_detail_step_english);
+                holder.desc = (TextView) convertView.findViewById(R.id.item_list_chide_detail_desc);
+                holder.step_chinese = (TextView) convertView.findViewById(R.id.item_list_chide_detail_step_chinese);
+                holder.step_english = (TextView) convertView.findViewById(R.id.item_list_chide_detail_step_english);
                 convertView.setTag(holder);
-            }else {
+            } else {
                 holder = (ViewHolder) convertView.getTag();
             }
             final Step step = mStepData.get(position);
             holder.cover.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    UIHelper.showBigPicture(parent.getContext(),step.getPic().getPath());
+                    UIHelper.showBigPicture(parent.getContext(), step.getPic().getPath());
                 }
             });
 
-            new KJBitmap.Builder().view(holder.cover).imageUrl(AppContext.HOST+step.getPic().getPath()).display();
+//            new KJBitmap.Builder().view(holder.cover).imageUrl(AppContext.HOST + step.getPic().getPath()).display();
+            new KJBitmap.Builder().view(holder.cover).imageUrl(step.getPic().getLocalPath()).display();
             holder.desc.setText(step.getDescription());
-            holder.step_chinese.setText("第"+mStepChinese[position]+"步");
-            holder.step_english.setText("STEP "+mStepEnglish[position]);
+            holder.step_chinese.setText("第" + mStepChinese[position] + "步");
+            holder.step_english.setText("STEP " + mStepEnglish[position]);
             return convertView;
         }
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         ImageView cover;
         TextView step_chinese;
         TextView step_english;
@@ -399,7 +454,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     }
 
     private void cancelLike(String cid) {
-        NaidouApi.cancelLikeForChide( cid, new HttpCallBack() {
+        NaidouApi.cancelLikeForChide(cid, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);

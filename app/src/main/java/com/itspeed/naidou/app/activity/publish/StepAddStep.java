@@ -16,9 +16,11 @@ import com.itspeed.naidou.model.bean.JsonBean.Pic;
 import com.itspeed.naidou.model.bean.Step;
 
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.ui.KJActivityStack;
 import org.kymjs.kjframe.utils.KJLoger;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by jafir on 16/1/18.
@@ -34,6 +36,7 @@ public class StepAddStep extends BasePublishActivity {
     private RelativeLayout mMoreStep;
     private ArrayList<Step> list = new ArrayList<>();
     private StepRecylerAdapter mAdapter;
+    private boolean isModify;
 
     @Override
     public void setRootView() {
@@ -46,16 +49,24 @@ public class StepAddStep extends BasePublishActivity {
         super.onCreate(savedInstanceState);
         mTvTitle.setText("步骤");
         mTvRight.setText("完成");
+        isModify = getIntent().getBooleanExtra("isModify",false);
+        KJLoger.debug("3333");
 
     }
 
     @Override
     public void initData() {
         super.initData();
-        Step step = new Step();
-        step.setDescription("菜谱描述...");
-        list.add(step);
+        KJLoger.debug("11111");
+        KJLoger.debug(cookBook.toString());
+        if(cookBook.getSteps().size() != 0){
+            list = cookBook.getSteps();
+        }else {
+            Step step = new Step();
+            step.setDescription("菜谱描述...");
+            list.add(step);
 
+        }
         final LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(manager);
@@ -63,12 +74,14 @@ public class StepAddStep extends BasePublishActivity {
         mAdapter.setOnItemClickListener(new StepRecylerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                KJLoger.debug("click:"+position);
                 UIHelper.showPublishAddStepDetail(aty, position, RQ_STEP, list.get(position).getDescription(), list.get(position).getPic().getLocalPath());
             }
         });
         mAdapter.setOnItemLongClickListener(new StepRecylerAdapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(View view, final int position) {
+                KJLoger.debug("longClick:"+position);
                 //delete
                 AlertDialog.Builder builder = new AlertDialog.Builder(aty);
                 builder.setNegativeButton("取消", null).setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -83,8 +96,6 @@ public class StepAddStep extends BasePublishActivity {
     }
 
 
-    private void done() {
-    }
 
 
     @Override
@@ -106,6 +117,45 @@ public class StepAddStep extends BasePublishActivity {
 
 
     @Override
+    protected void onRightTextClick() {
+        super.onRightTextClick();
+        done();
+    }
+
+    private void done() {
+
+        /**
+         * 这里不能动态的 根据list的size作为 循环边界，因为 如果remove了
+         * size就会变
+         * 所以 只能用iterator
+         */
+//        KJLoger.debug("list："+list.toString());
+
+        Iterator<Step> iterator = list.iterator();
+        while (iterator.hasNext()){
+            Step step = iterator.next();
+            if((step.getPic().getLocalPath().equals("0") ||step.getPic().getPath().equals("0"))
+                    && step.getDescription().equals("菜谱描述...")
+                    ){
+                iterator.remove();
+            }
+        }
+//        KJLoger.debug("listsieze:"+list.size());
+        cookBook.setSteps(list);
+        setCookbook(cookBook);
+        getCookbook();
+        mAdapter.notifyDataSetChanged();
+        if(!isModify) {
+            UIHelper.showPublishAll(this);
+            KJLoger.debug("duos:"+KJActivityStack.create().getCount());
+//            KJActivityStack.create().finishActivity(StepBase.class);
+//            KJActivityStack.create().finishActivity(StepBaseInfo.class);
+//            KJActivityStack.create().finishActivity(StepAddFoodMaterial.class);
+        }
+        this.finish();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -114,12 +164,17 @@ public class StepAddStep extends BasePublishActivity {
         }
 
         if(requestCode == RQ_STEP){
-            KJLoger.debug("获取到本地图片");
+//            KJLoger.debug("获取到本地图片");
+            String localPath = data.getStringExtra("localPath");
             String path = data.getStringExtra("path");
+            int id = data.getIntExtra("id", -1);
             String desc = data.getStringExtra("desc");
             int position = data.getIntExtra("position", -1);
             Pic pic = new Pic();
-            pic.setLocalPath(path);
+            pic.setPath(path);
+            pic.setId(id);
+            pic.setLocalPath(localPath);
+//            KJLoger.debug("llll"+list.toString());
             list.get(position).setPic(pic);
             list.get(position).setDescription(desc);
             mAdapter.refresh(position);

@@ -1,19 +1,26 @@
 package com.itspeed.naidou.model.bean;
 
+import com.itspeed.naidou.model.bean.JsonBean.Pic;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by jafir on 15/9/14.
  */
-public class CookBook {
+public class CookBook implements Serializable {
     public CookBook() {
         title = "";
+        coverPic = new Pic();
+
         cover = "";
         description = "";
         taste = "";
         object = "";
         proce = "";
         difficult = "";
+        time = "";
+        cookTime = "";
         foods = new ArrayList<>();
         steps = new ArrayList<>();
     }
@@ -34,6 +41,8 @@ public class CookBook {
     private String title;
     //时间
     private String time;
+    //烹饪时间时间
+    private String cookTime;
     //一级属性（父母、孩子）
     private String type1;
     //二级属性  父母--（备孕、孕初、孕中、孕晚、月子）
@@ -72,6 +81,8 @@ public class CookBook {
     private String fromWhoAvatar;
 
     //封面
+    private Pic coverPic;
+
     private String cover;
     //描述
     private String description;
@@ -83,6 +94,7 @@ public class CookBook {
                 "cid='" + cid + '\'' +
                 ", title='" + title + '\'' +
                 ", time='" + time + '\'' +
+                ", cookTime='" + cookTime + '\'' +
                 ", type1='" + type1 + '\'' +
                 ", type2='" + type2 + '\'' +
                 ", proce='" + proce + '\'' +
@@ -101,9 +113,22 @@ public class CookBook {
                 ", fromWho='" + fromWho + '\'' +
                 ", fromWhoId='" + fromWhoId + '\'' +
                 ", fromWhoAvatar='" + fromWhoAvatar + '\'' +
+                ", coverPic=" + coverPic +
                 ", cover='" + cover + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public String getCookTime() {
+        return cookTime;
+    }
+
+    public void setCookTime(String cookTime) {
+        this.cookTime = cookTime;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     public String getProce() {
@@ -161,6 +186,7 @@ public class CookBook {
     public void setTime(String time) {
         this.time = time;
     }
+
 
     public String getType1() {
         return type1;
@@ -274,12 +300,16 @@ public class CookBook {
         this.fromWhoAvatar = fromWhoAvatar;
     }
 
-    public String getCover() {
-        return cover;
+    public Pic getCoverPic() {
+        return coverPic;
     }
 
-    public void setCover(String cover) {
-        this.cover = cover;
+    public void setCoverPic(Pic coverPic) {
+        this.coverPic = coverPic;
+    }
+
+    public String getCover() {
+        return cover;
     }
 
     public String getDescription() {

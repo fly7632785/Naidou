@@ -2,10 +2,12 @@ package com.itspeed.naidou.model.bean;
 
 import com.itspeed.naidou.model.bean.JsonBean.Pic;
 
+import java.io.Serializable;
+
 /**
  * Created by jafir on 15/9/14.
  */
-public class Step {
+public class Step implements Serializable{
 
 
     public Step() {
