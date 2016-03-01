@@ -9,9 +9,105 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
+        android:layout_above="@+id/chide_detail_head_bottom"
         android:background="@color/white">
 
     </ListView>
+
+    <LinearLayout
+        android:id="@+id/chide_detail_head_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@drawable/shape_tab"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:id="@+id/chide_detail_head_bottom_comment"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/proce" />
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:text="评论"
+                android:textColor="#333333"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="35dp"
+            android:gravity="center_vertical"
+            android:id="@+id/chide_detail_head_bottom_share"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/proce" />
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:text="分享"
+                android:textColor="#333333"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="35dp"
+            android:gravity="center_vertical"
+            android:id="@+id/chide_detail_head_bottom_collect"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/selector_common_like" />
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:text="收藏"
+                android:id="@+id/chide_detail_head_bottom_collect_tip"
+                android:textColor="#333333"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:id="@+id/chide_detail_head_bottom_like"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/selector_common_like" />
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:id="@+id/chide_detail_head_bottom_like_tip"
+                android:text="点赞"
+                android:textColor="#333333"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 

@@ -28,6 +28,8 @@
     <color name="indicator_text">#3a3a3a</color>
     <!-- chideDetail-->
     <color name="chide_detail_step">#ff6666</color>
+    <color name="chide_detail_tip">#ff6666</color>
+    <color name="chide_detail_tip_normal">#333333</color>
 
     <color name="chide_detail__small_step">#703a3a3a</color>
 

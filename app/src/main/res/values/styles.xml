@@ -148,6 +148,23 @@
         <item name="android:layout_centerVertical">true</item>
     </style>
 
+
+
+
+
+    <!-- cookbookdetail-->
+
+
+    <style name="cookbook_detail_baseinfo">
+
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">7dp</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
 <!--mycookbook-->
 
     <style name="mycookbook_like_collect">

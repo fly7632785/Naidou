@@ -11,12 +11,14 @@ import android.widget.RelativeLayout;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.adapter.StepRecylerAdapter;
+import com.itspeed.naidou.app.manager.ActivityManager;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.JsonBean.Pic;
 import com.itspeed.naidou.model.bean.Step;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.KJActivityStack;
+import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 
 import java.util.ArrayList;
@@ -152,9 +154,8 @@ public class StepAddStep extends BasePublishActivity {
             UIHelper.showPublishAll(this);
             KJLoger.debug("duos:" + KJActivityStack.create().getCount());
             // TODO: 16/3/1 这里需要把前面的三个 activity给删除掉
-//            KJActivityStack.create().finishActivity(StepBase.class);
-//            KJActivityStack.create().finishActivity(StepBaseInfo.class);
-//            KJActivityStack.create().finishActivity(StepAddFoodMaterial.class);
+            ActivityManager.getScreenManager().popAllActivityExceptOne(StepAddStep.class);
+//            ViewInject.toast(ActivityManager.getScreenManager().getCount()+"ge");
         }
         this.finish();
     }

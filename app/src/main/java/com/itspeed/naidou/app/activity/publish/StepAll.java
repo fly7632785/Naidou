@@ -15,6 +15,7 @@ import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppConstant;
 import com.itspeed.naidou.app.fragment.Level2Fragment;
 import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.FoodMaterial;
 import com.itspeed.naidou.model.bean.Step;
 
@@ -232,7 +233,11 @@ public class StepAll extends BasePublishActivity {
                 break;
 
             case R.id.publish_all_publish:
-                uploadData();
+                if(step1 && step2 && step3 &&step4) {
+                    uploadData();
+                }else {
+                    ViewInject.toast("请完成菜谱内容");
+                }
                 break;
         }
     }
@@ -270,11 +275,21 @@ public class StepAll extends BasePublishActivity {
                 if (Response.getSuccess(t)) {
                     dialog.dismiss();
                     ViewInject.toast("发布菜谱成功");
+
+                    clearLocal();
                     aty.finish();
                 }
             }
         });
 
+    }
+
+    /**
+     * 清理草稿箱 相当于重建一个新的菜谱
+     */
+    private void clearLocal() {
+        cookBook = new CookBook();
+        setCookbook(cookBook);
     }
 
     /**

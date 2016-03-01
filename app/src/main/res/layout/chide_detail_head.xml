@@ -1,159 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/white"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:orientation="vertical">
 
-
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="290dp">
+        android:layout_height="270dp"
+        android:layout_width="match_parent">
 
         <ImageView
             android:id="@+id/chide_detail_head_cover"
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_width="match_parent"
             android:scaleType="fitXY"
             android:src="@mipmap/default_bg" />
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
             android:background="@mipmap/chide_detail_head"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_height="68dp"
+            android:layout_width="match_parent" />
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
 
             <org.kymjs.kjframe.widget.RoundImageView
                 android:id="@+id/chide_detail_head_avatar"
-                android:layout_width="40dp"
+                android:layout_height="31dp"
+                android:layout_width="31dp"
                 android:padding="3dp"
-                android:layout_marginLeft="16dp"
-                android:layout_height="40dp"
                 android:src="@mipmap/default_avatar" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textColor="#333333"
-                    android:textSize="13sp"
-                    android:id="@+id/chide_detail_head_username"
-                    android:text="Jafir"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textColor="#666666"
-                    android:textSize="11sp"
-                    android:id="@+id/chide_detail_head_time"
-                    android:text="1小时前"
-                    android:layout_height="wrap_content" />
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/chide_detail_head_username"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:text="Jafir"
+                android:textColor="#333333"
+                android:textSize="13sp" />
+
 
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
         android:gravity="center_vertical"
-        android:layout_height="40dp">
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/chide_detail_head_title"
-            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:textSize="18sp"
+            android:layout_width="wrap_content"
             android:text="娃娃菜白玉蘑菇汤"
-            android:textColor="#333333" />
-        <include layout="@layout/layout_like_collect"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="15dp"
-            android:id="@+id/chide_detail_head_layout_like_collect"
+            android:textColor="#333333"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/chide_detail_head_time"
+            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            />
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/chide_detail_head_title"
+            android:layout_width="wrap_content"
+            android:text="1小时前"
+            android:textColor="#666666"
+            android:textSize="11sp" />
+
+        <!--<include-->
+        <!--android:id="@+id/chide_detail_head_layout_like_collect"-->
+        <!--layout="@layout/layout_like_collect"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginRight="15dp" />-->
 
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/chide_detail_head_desc"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:layout_width="match_parent"
         android:lineSpacingExtra="2dp"
         android:text="我跟媳妇曾经就面向对象设计这个话题做过有趣的探讨。当我把它们发表在社区之后，得到了一些很不错的反馈，也大大鼓舞了我。所以，我很高兴能把我们后面的一次谈话继续分享出来，那是关于面向对象的设计模式的，大家往下看吧。"
-        android:id="@+id/chide_detail_head_desc"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:textColor="#666666"
-        android:layout_marginBottom="15dp"
-        android:layout_height="wrap_content" />
+        android:textColor="#666666" />
 
 
     <LinearLayout
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:background="#f5f5f5"
-        android:paddingLeft="15dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:orientation="horizontal"
-        android:layout_height="60dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@mipmap/proce"></ImageView>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:text="炖" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@mipmap/time"></ImageView>
+
+            <TextView
+                style="@style/cookbook_detail_baseinfo"
+                android:text="90分钟" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@mipmap/taste"></ImageView>
+
+            <TextView
+                style="@style/cookbook_detail_baseinfo"
+                android:text="家常味" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@mipmap/difficult"></ImageView>
+
+            <TextView
+                style="@style/cookbook_detail_baseinfo"
+                android:text="厨神级别" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#fffaf6"
+        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp">
+
         <View
-            android:layout_width="8dp"
             android:background="@color/chide_detail_step"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_width="8dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
             android:text="食材"
             android:textColor="@color/chide_detail_step"
-            android:gravity="center_vertical"
-            android:textSize="18dp"
-            android:layout_height="match_parent" />
+            android:textSize="18dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:text="FOOD MATERAIL"
-            android:layout_marginLeft="8dp"
-            android:textColor="@color/chide_detail__small_step"
             android:gravity="bottom"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
             android:paddingBottom="10dp"
-            android:textSize="12dp"
-            android:layout_height="match_parent" />
+            android:text="FOOD MATERAIL"
+            android:textColor="@color/chide_detail__small_step"
+            android:textSize="12dp" />
     </LinearLayout>
 
     <!--<GridView-->
 
-        <!--android:layout_width="match_parent"-->
-        <!--android:id="@+id/chide_detail_head_gridview"-->
-        <!--android:numColumns="2"-->
-        <!--android:paddingTop="10dp"-->
-        <!--android:paddingLeft="15dp"-->
-        <!--android:paddingRight="15dp"-->
-        <!--android:background="#f5f5f5"-->
-        <!--android:horizontalSpacing="30dp"-->
-        <!--android:layout_marginBottom="10dp"-->
-        <!--android:layout_height="140dp">-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:id="@+id/chide_detail_head_gridview"-->
+    <!--android:numColumns="2"-->
+    <!--android:paddingTop="10dp"-->
+    <!--android:paddingLeft="15dp"-->
+    <!--android:paddingRight="15dp"-->
+    <!--android:background="#f5f5f5"-->
+    <!--android:horizontalSpacing="30dp"-->
+    <!--android:layout_marginBottom="10dp"-->
+    <!--android:layout_height="140dp">-->
     <!--</GridView>-->
 
     <GridLayout
-        android:layout_width="match_parent"
-        android:id="@+id/chide_detail_head_gridlayout"
+        android:background="#fffaf6"
         android:columnCount="2"
-        android:paddingBottom="10dp"
-        android:background="#f5f5f5"
-        android:layout_height="wrap_content">
+        android:id="@+id/chide_detail_head_gridlayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:paddingBottom="10dp">
 
     </GridLayout>
 </LinearLayout>

@@ -54,6 +54,7 @@ public class StepBase extends BasePublishActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         mTvTitle.setText("菜谱");
         isModify = getIntent().getBooleanExtra("isModify",false);
         if(isModify){
@@ -77,6 +78,7 @@ public class StepBase extends BasePublishActivity {
             Bitmap bm = BitmapFactory.decodeFile(cookBook.getCoverPic().getLocalPath());
             if (bm != null && mCover != null) {
                 mCover.setImageBitmap(bm);
+                hasCover =true;
             }
         }
     }

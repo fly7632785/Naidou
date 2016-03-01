@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.app.manager.ActivityManager;
 import com.itspeed.naidou.model.bean.CookBook;
 
 import org.kymjs.kjframe.KJActivity;
@@ -46,6 +47,9 @@ public abstract class BasePublishActivity extends KJActivity {
         //无标题
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+
+        ActivityManager.getScreenManager().pushActivity(this);
+
         mImgBack = (ImageView) findViewById(R.id.publish_title_back);
         mImgConfirm = (ImageView) findViewById(R.id.publish_title_right_confirm);
 
@@ -155,6 +159,11 @@ public abstract class BasePublishActivity extends KJActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityManager.getScreenManager().popActivity(this);
+    }
 
     /**
      * 给子类去实现，右边文字的点击（举报）
