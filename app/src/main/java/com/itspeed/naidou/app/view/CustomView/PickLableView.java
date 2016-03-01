@@ -13,6 +13,10 @@ import com.itspeed.naidou.R;
 
 /**
  * Created by jafir on 16/1/21.
+ * 标签选择器
+ * 可点击 中间文字
+ * 左右 - +号切换
+ *
  */
 public class PickLableView extends RelativeLayout implements View.OnClickListener {
 
@@ -147,12 +151,18 @@ public class PickLableView extends RelativeLayout implements View.OnClickListene
     }
 
 
+    /**
+     * 点击中间文字触发点击事件
+     */
     public  interface onPickViewListener {
 //        void onRightClick();
 //        void onLeftClick();
         void onViewClick(View view);
     }
 
+    /**
+     * 当选项变化时的触发事件
+     */
 
     public interface  onPickViewChangedListener{
         void onViewStateChanged(View view,int index);

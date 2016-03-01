@@ -35,6 +35,7 @@ import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.DensityUtils;
 import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.StringUtils;
+import org.kymjs.kjframe.utils.SystemTool;
 
 import java.util.ArrayList;
 
@@ -147,23 +148,99 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
             }
         });
     }
-
+    /**
+     * 请求数据
+     * 首先检查是否有网络
+     * 有：从网络获取数据
+     * 没有：从本地缓存获取
+     */
     private void requestData() {
-        NaidouApi.getCookbook(cid, new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("getCookbook:" + t);
-                if (Response.getSuccess(t)) {
-                    mLoadLayout.setVisibility(View.GONE);
-                    CookBook cookBook = Response.getChideDetail(t);
-                    KJLoger.debug("cookBookDetail:" + cookBook.toString());
-                    setData(cookBook);
-                }
 
+        if(!SystemTool.checkNet(aty)){
+            String data = getFromLocal("localChideDetail", "localchide"+cid+".txt");
+            if(data != null && !data.equals("")) {
+                setData(data);
             }
-        });
+
+        }else {
+            NaidouApi.getCookbook(cid, new HttpCallBack() {
+                @Override
+                public void onSuccess(String t) {
+                    super.onSuccess(t);
+                    setData(t);
+                    writeToLocal(t,"localChideDetail", "localchide"+cid+".txt");
+                }
+            });
+        }
+
+
     }
+
+
+
+
+    private void setData(String t) {
+        KJLoger.debug("getCookbook:" + t);
+        if (Response.getSuccess(t)) {
+            mLoadLayout.setVisibility(View.GONE);
+            CookBook cookBook = Response.getChideDetail(t);
+            KJLoger.debug("cookBookDetail:" + cookBook.toString());
+            setData(cookBook);
+        }
+    }
+
+//    private void writeToLocal(String t) {
+//
+//        //只储存  最新一页的缓存数据
+//        File file = FileUtils.getSaveFile("localChideDetail", "localchide"+cid+".txt");
+//        FileWriter writer = null;
+//        try {
+//            writer = new FileWriter(file);
+//            writer.write(t.trim());
+//            writer.flush();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                writer.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+//    }
+//
+//    private String getFromLocal(){
+//        File file = FileUtils.getSaveFile("localChideDetail", "localchide"+cid+".txt");
+//        char[] buffer = new char[1024];
+//        StringBuilder builder = new StringBuilder();
+//        String  data ;
+//        BufferedReader br = null;
+//        FileReader fileReader = null;
+//        try {
+//            fileReader = new FileReader(file);
+//            br = new BufferedReader(fileReader);
+//            try {
+//                while ((data = br.readLine()) != null) {
+//                    builder.append(data);
+//                }
+//                return builder.toString();
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                fileReader.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return null;
+//    }
+
 
     private void requestDataFromLocal(CookBook cookBook) {
         mLoadLayout.setVisibility(View.GONE);
@@ -209,6 +286,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 
 //        mListAdapter.notifyDataSetChanged();
     }
+
     private void setLocalData(CookBook cookBook) {
 
         mLikes.setVisibility(View.GONE);
@@ -296,7 +374,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
                 UIHelper.showZone(aty, uid);
                 break;
             case R.id.layout_islike:
-                if (RightsManager.isVisitor(v.getContext())) {
+                if (RightsManager.isVisitor(v.getContext())|| !SystemTool.checkNet(v.getContext())) {
                     return;
                 }
                 isLike = !isLike;
@@ -395,8 +473,13 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
                 }
             });
 
-//            new KJBitmap.Builder().view(holder.cover).imageUrl(AppContext.HOST + step.getPic().getPath()).display();
-            new KJBitmap.Builder().view(holder.cover).imageUrl(step.getPic().getLocalPath()).display();
+            if (cid.equals("-1")) {
+                //本地 提取json数据
+                new KJBitmap.Builder().view(holder.cover).imageUrl(step.getPic().getLocalPath()).display();
+            } else {
+                //网络 请求数据 设置数据
+                new KJBitmap.Builder().view(holder.cover).imageUrl(AppContext.HOST + step.getPic().getPath()).display();
+            }
             holder.desc.setText(step.getDescription());
             holder.step_chinese.setText("第" + mStepChinese[position] + "步");
             holder.step_english.setText("STEP " + mStepEnglish[position]);

@@ -21,7 +21,6 @@ import com.itspeed.naidou.model.bean.CookBook;
 
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
-import org.kymjs.kjframe.ui.SupportFragment;
 import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.SystemTool;
 
@@ -31,7 +30,7 @@ import java.util.ArrayList;
  * Created by jafir on 15/9/21.
  * 二级菜单的fragment 里面是listView
  */
-public class Level2Fragment extends SupportFragment implements PullToRefreshBase.OnRefreshListener, AdapterView.OnItemClickListener {
+public class Level2Fragment extends BaseSupportFragment implements PullToRefreshBase.OnRefreshListener, AdapterView.OnItemClickListener {
 
     private Context aty;
     private View layout;
@@ -122,57 +121,88 @@ public class Level2Fragment extends SupportFragment implements PullToRefreshBase
      * @return
      */
     private ArrayList<CookBook> requestData(int page) {
+        /**
+         * 请求数据
+         * 首先检查是否有网络
+         * 有：从网络获取数据
+         * 没有：从本地缓存获取
+         */
+        if(!SystemTool.checkNet(aty)){
 
-        NaidouApi.getChideList(category[cate], page, new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("chideList:" + t);
-                if (Response.getSuccess(t)) {
-                    //解析数据
-                    ArrayList<CookBook> addData;
-                    addData = Response.getChideList(t);
-                    KJLoger.debug("dataSize:"+addData.size());
-                    KJLoger.debug("data:"+addData);
-                    //!!!!!!!异步 设置数据 只能在这里
+            //只缓存第一页 其余不再加载
+            if(page == 1) {
+                String data = getFromLocal("localCookbooks", "localCookbooks"+category[cate]+".txt");
+                KJLoger.debug("localdatachide" + category[cate] + ":" + data);
+                if (data != null && !data.equals("")) {
+                    setData(data);
+                }
+            }
 
-                    //第一次 加载数据
-                    //请求第一页数据 然后装入总的data
-                    if (mData.isEmpty()) {
-                        mData.addAll(addData);
-                        KJLoger.debug("mDataSize:" + mData.size());
-                        mAdapter.setData(mData);
-                        mListView.setAdapter(mAdapter);
-                    } else  {
-                        mAdapter.addData(addData);
+            //完了之后 回复上下拉
+            mPullLayout.onPullDownRefreshComplete();
+            mPullLayout.onPullUpRefreshComplete();
+
+
+        }else {
+
+            NaidouApi.getChideList(category[cate], page, new HttpCallBack() {
+                @Override
+                public void onSuccess(String t) {
+                    super.onSuccess(t);
+                    KJLoger.debug("chideList:" + t);
+
+                    writeToLocal(t,"localCookbooks", "localCookbooks"+category[cate]+".txt");
+
+                    setData(t);
+                }
+
+                @Override
+                public void onFailure(int errorNo, String strMsg) {
+                    super.onFailure(errorNo, strMsg);
+                    if (!SystemTool.checkNet(aty)) {
+                        Toast.makeText(aty, "您的网络没有连接", Toast.LENGTH_SHORT).show();
                     }
-                    //只要请求到数据就 去掉
+                    if (mAdapter != null && mAdapter.getCount() > 0) {
+                        return;
+                    } else {
+//                    mEmptyLayout.setErrorType(EmptyLayout.NODATA);
+                    }
+                }
+
+                @Override
+                public void onFinish() {
+                    super.onFinish();
+                    mPullLayout.onPullDownRefreshComplete();
+                    mPullLayout.onPullUpRefreshComplete();
+                }
+            });
+        }
+        return addData;
+    }
+
+    private void setData(String t) {
+        if (Response.getSuccess(t)) {
+            //解析数据
+            ArrayList<CookBook> addData;
+            addData = Response.getChideList(t);
+//            KJLoger.debug("dataSize:" + addData.size());
+            KJLoger.debug("data:" + addData);
+            //!!!!!!!异步 设置数据 只能在这里
+
+            //第一次 加载数据
+            //请求第一页数据 然后装入总的data
+            if (mData.isEmpty()) {
+                mData.addAll(addData);
+//                KJLoger.debug("mDataSize:" + mData.size());
+                mAdapter.setData(mData);
+                mListView.setAdapter(mAdapter);
+            } else {
+                mAdapter.addData(addData);
+            }
+            //只要请求到数据就 去掉
 //                mEmptyLayout.dismiss();
 
-                }
-            }
-
-            @Override
-            public void onFailure(int errorNo, String strMsg) {
-                super.onFailure(errorNo, strMsg);
-                if (!SystemTool.checkNet(aty)) {
-                    Toast.makeText(aty, "您的网络没有连接", Toast.LENGTH_SHORT).show();
-                }
-                if (mAdapter != null && mAdapter.getCount() > 0) {
-                    return;
-                } else {
-//                    mEmptyLayout.setErrorType(EmptyLayout.NODATA);
-                }
-            }
-
-            @Override
-            public void onFinish() {
-                super.onFinish();
-                mPullLayout.onPullDownRefreshComplete();
-                mPullLayout.onPullUpRefreshComplete();
-            }
-        });
-        return addData;
+        }
     }
 
     private void initPull() {

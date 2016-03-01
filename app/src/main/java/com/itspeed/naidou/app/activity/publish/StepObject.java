@@ -11,10 +11,11 @@ import com.itspeed.naidou.app.view.CustomView.PickLableView;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
-import org.kymjs.kjframe.utils.KJLoger;
 
 /**
  * Created by jafir on 16/1/22.
+ * 基本属性 的选择对象
+ *
  */
 public class StepObject extends BasePublishActivity {
 
@@ -35,6 +36,9 @@ public class StepObject extends BasePublishActivity {
 
     private int currentIndex;
 
+    /**
+     * 用一个数组来装textView方便使用index下标
+     */
     private TextView[] objects = new TextView[5];
     private boolean isParent;
 
@@ -57,6 +61,9 @@ public class StepObject extends BasePublishActivity {
     @Override
     public void initData() {
         super.initData();
+        /**
+         * 填充数组
+         */
         objects[0] = beiyun;
         objects[1] = yunchu;
         objects[2] = yunzhong;
@@ -65,13 +72,20 @@ public class StepObject extends BasePublishActivity {
         //0-9 对应  备孕 到  孩子的 3-6岁
         currentIndex = getIntent().getIntExtra("proceIndex", 0);
         pickLableView.setContent(new String[]{"父母", "孩子"});
-        if (currentIndex >= 4) {
+        /**
+         * 如果 下标>4 表示 从5-9是孩子
+         * <= 4 表示0-4为父母
+         */
+        if (currentIndex > 4) {
             pickLableView.setIndex(1);
             isParent = false;
         } else {
             pickLableView.setIndex(0);
             isParent = true;
         }
+        /**
+         * 根据是否为父母 改变下面的5个种类选项
+         */
         if (isParent) {
             //父母
             beiyun.setText(AppConstant.object_f[0]);
@@ -89,9 +103,16 @@ public class StepObject extends BasePublishActivity {
         }
 
 
+        /**
+         * 设置 选中状态 和 选中后字体颜色
+         */
         objects[currentIndex % 5].setSelected(true);
         objects[currentIndex % 5].setTextColor(getResources().getColor(R.color.white));
 
+        /**
+         * 设置 pickView的监听
+         * 根据index 0为父母 1为孩子
+         */
         pickLableView.setViewStateChangedListener(new PickLableView.onPickViewChangedListener() {
             @Override
             public void onViewStateChanged(View view, int index) {
@@ -133,12 +154,16 @@ public class StepObject extends BasePublishActivity {
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.publish_object_beiyun:
+                //初始化 所有选项
+
                 iniSelect();
+                //根据是否为父母 算出下标
                 if (isParent) {
                     currentIndex = 0;
                 } else {
                     currentIndex = 5;
                 }
+                //设置选中项
                 objects[currentIndex % 5].setSelected(true);
                 objects[currentIndex % 5].setTextColor(getResources().getColor(R.color.white));
                 break;
@@ -187,6 +212,9 @@ public class StepObject extends BasePublishActivity {
     }
 
 
+    /**
+     * 初始化 所有按钮状态
+     */
     private void iniSelect() {
         beiyun.setSelected(false);
         yunchu.setSelected(false);
@@ -208,7 +236,7 @@ public class StepObject extends BasePublishActivity {
             ViewInject.toast("请选择");
             return;
         }
-        KJLoger.debug("objectinde:" + currentIndex);
+//        KJLoger.debug("objectindex:" + currentIndex);
         Intent intent = getIntent();
         intent.putExtra("proceIndex", currentIndex);
         this.setResult(RESULT_OK, intent);

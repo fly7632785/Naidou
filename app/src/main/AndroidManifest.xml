@@ -37,7 +37,13 @@
             />
         <!-- publish-->
         <activity android:name=".app.activity.publish.StepBase"
-            />
+
+            >
+            <intent-filter>
+                <action android:name="com.itspeed.naidou.publish"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            </activity>
         <activity android:name=".app.activity.publish.StepBaseInfo"
             />
         <activity android:name=".app.activity.publish.StepAddFoodMaterial"

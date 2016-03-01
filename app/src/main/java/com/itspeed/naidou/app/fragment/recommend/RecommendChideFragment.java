@@ -15,6 +15,7 @@ import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.adapter.RecommendRecyclerAdapterForCb;
+import com.itspeed.naidou.app.fragment.BaseSupportFragment;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.app.view.AdapterIndicator;
 import com.itspeed.naidou.model.bean.CookBook;
@@ -22,8 +23,8 @@ import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
-import org.kymjs.kjframe.ui.SupportFragment;
 import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.SystemTool;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ import java.util.ArrayList;
  * Created by jafir on 10/23/15.
  * 推荐里面的菜谱推荐
  */
-public class RecommendChideFragment extends SupportFragment{
+public class RecommendChideFragment extends BaseSupportFragment{
     private ArrayList<CookBook> mData;
     private  RecyclerViewPager mRecyclerView;
     private  AdapterIndicator mIndicator;
@@ -178,21 +179,40 @@ public class RecommendChideFragment extends SupportFragment{
         });
     }
 
+    /**
+     * 请求数据
+     */
     private void requestData() {
-        NaidouApi.getRecommendChideList(new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                if(Response.getSuccess(t)){
-                    KJLoger.debug("requestData:"+t);
-                    mData = Response.getRecommendChideList(t);
-                    mAdapter.setData(mData);
-                }
+        if(!SystemTool.checkNet(aty)){
+            String data = getFromLocal("localRecommend", "localRecommendChide.txt");
+            if(data != null && !data.equals("")) {
+                setData(data);
             }
-        });
+
+        }else {
+            NaidouApi.getRecommendChideList(new HttpCallBack() {
+                @Override
+                public void onSuccess(String t) {
+                    super.onSuccess(t);
+                    if (Response.getSuccess(t)) {
+                        KJLoger.debug("requestData:" + t);
+                        setData(t);
+                        writeToLocal(t,"localRecommend", "localRecommendChide.txt");
+                    }
+                }
+            });
+        }
 
     }
 
+    /**
+     * 设置数据
+     * @param t
+     */
+    private void setData(String t) {
+        mData = Response.getRecommendChideList(t);
+        mAdapter.setData(mData);
+    }
 
     @Override
     public void onDestroy() {

@@ -17,6 +17,7 @@ import org.kymjs.kjframe.ui.ViewInject;
 
 /**
  * Created by jafir on 16/1/22.
+ * 菜谱基本属性 口味选择
  */
 public class StepTaste extends BasePublishActivity {
 
@@ -60,6 +61,11 @@ public class StepTaste extends BasePublishActivity {
         this.finish();
     }
 
+    /**
+     * 因为每个按钮的背景颜色是不同的
+     * 而且是没有规律的，所以只能用数组
+     * 组合出不同的背景
+     */
     private int orderColor[] = new int[]{
             R.drawable.selector_proce_lable4, R.drawable.selector_proce_lable4,
             R.drawable.selector_proce_lable2, R.drawable.selector_proce_lable3,
@@ -140,10 +146,19 @@ public class StepTaste extends BasePublishActivity {
         public void onClick(View v) {
             TextView textView = (TextView) v;
             textView.setSelected(!textView.isSelected());
+            //如果是选中的话 就是修改子体颜色
             if(textView.isSelected()){
                 textView.setTextColor(getResources().getColor(R.color.white));
             }
+            //设置 index
             currentIndex = position;
+
+
+            /**
+             * 遍历所有的按钮
+             * 如果按下的按钮不是  选中的按钮 则把状态设置为没有选中
+             * 再把字体颜色设置为 默认颜色
+             */
             for (int i = 0; i < mGridView.getChildCount(); i++) {
                 if (!textView.toString().equals(((LinearLayout) mGridView.getChildAt(i)).getChildAt(0).toString())) {
                         ((LinearLayout) mGridView.getChildAt(i)).getChildAt(0).setSelected(false);

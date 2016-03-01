@@ -12,6 +12,7 @@ import org.kymjs.kjframe.ui.ViewInject;
 
 /**
  * Created by jafir on 16/1/22.
+ * 菜谱基本属性 时间选择
  */
 public class StepTime extends BasePublishActivity {
 
@@ -38,6 +39,7 @@ public class StepTime extends BasePublishActivity {
     private int currentIndex;
 
 
+    //数组 装按钮 便于使用index
     private TextView[] times = new TextView[9];
 
     @Override
@@ -58,6 +60,7 @@ public class StepTime extends BasePublishActivity {
     @Override
     public void initData() {
         super.initData();
+        //获取 现在选中的下标
         currentIndex = getIntent().getIntExtra("proceIndex", -1);
         times[0] = t1;
         times[1] = t2;
@@ -69,6 +72,7 @@ public class StepTime extends BasePublishActivity {
         times[7] = t8;
         times[8] = t9;
 
+        //设置现在选中的状态
         if(currentIndex != -1){
             times[currentIndex].setSelected(true);
             times[currentIndex].setTextColor(getResources().getColor(R.color.white));
@@ -161,6 +165,9 @@ public class StepTime extends BasePublishActivity {
         this.finish();
     }
 
+    /**
+     * 初始化 所有按钮的状态
+     */
     private void initSelect() {
         t1.setSelected(false);
         t2.setSelected(false);

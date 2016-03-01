@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
 
-    <include layout="@layout/publish_titlebar" />
+    <include layout="@layout/publish_titlebar"
+        android:id="@+id/include"
+        />
 
     <ScrollView
+        android:layout_below="@+id/include"
+        android:layout_above="@+id/publish_add_foodmaterial_more_l"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,16 +21,46 @@
             android:id="@+id/publish_add_foodmaterial_linear"
             android:layout_height="wrap_content">
 
-                <View
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#65656565"
-                    />
+                <!--<View-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:background="#65656565"-->
+                    <!--/>-->
 
 
 
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/publish_add_foodmaterial_more_l"
+        android:layout_alignParentBottom="true"
+        android:layout_width="150dp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:src="@drawable/selector_publish_more_step"
+            android:id="@+id/publish_add_step_more"
+            android:layout_marginRight="15dp"
+            android:scaleType="fitXY"
+            android:layout_alignParentRight="true"
+            android:layout_height="24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="增加"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/publish_add_step_more"
+            />
+    </RelativeLayout>
+</RelativeLayout>

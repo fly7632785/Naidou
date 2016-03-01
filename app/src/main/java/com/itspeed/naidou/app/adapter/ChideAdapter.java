@@ -18,6 +18,7 @@ import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.StringUtils;
+import org.kymjs.kjframe.utils.SystemTool;
 
 /**
  * Created by jafir on 15/9/21.
@@ -89,7 +90,7 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
 
         @Override
         public void onClick(View v) {
-            if(RightsManager.isVisitor(v.getContext())) {
+            if(RightsManager.isVisitor(v.getContext()) || !SystemTool.checkNet(v.getContext())) {
                 return;
             }
             ImageView img = (ImageView) v;

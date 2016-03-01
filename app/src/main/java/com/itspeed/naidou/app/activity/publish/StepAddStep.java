@@ -24,15 +24,21 @@ import java.util.Iterator;
 
 /**
  * Created by jafir on 16/1/18.
+ * 添加步骤
+ * <p/>
+ * 进入有两种模式
+ * 1、直接进入 添加
+ * 2、从总览进入 修改 如果是这种要判断是否为从总览进入 然后进行不同的操作模式
+ * 进入之后都会去检查本地数据是否存在 如果存在则要填充数据
  */
 public class StepAddStep extends BasePublishActivity {
 
 
     private static final int RQ_STEP = 1;
-    @BindView(id  = R.id.publish_add_step_recyclerview)
+    @BindView(id = R.id.publish_add_step_recyclerview)
     private RecyclerView mRecyclerView;
 
-    @BindView(id = R.id.publish_add_step_more_l,click = true)
+    @BindView(id = R.id.publish_add_step_more_l, click = true)
     private RelativeLayout mMoreStep;
     private ArrayList<Step> list = new ArrayList<>();
     private StepRecylerAdapter mAdapter;
@@ -49,19 +55,17 @@ public class StepAddStep extends BasePublishActivity {
         super.onCreate(savedInstanceState);
         mTvTitle.setText("步骤");
         mTvRight.setText("完成");
-        isModify = getIntent().getBooleanExtra("isModify",false);
-        KJLoger.debug("3333");
+        //是否 需要修改  因为如果从总览里面进入 则为修改模式
+        isModify = getIntent().getBooleanExtra("isModify", false);
 
     }
 
     @Override
     public void initData() {
         super.initData();
-        KJLoger.debug("11111");
-        KJLoger.debug(cookBook.toString());
-        if(cookBook.getSteps().size() != 0){
+        if (cookBook.getSteps().size() != 0) {
             list = cookBook.getSteps();
-        }else {
+        } else {
             Step step = new Step();
             step.setDescription("菜谱描述...");
             list.add(step);
@@ -74,14 +78,14 @@ public class StepAddStep extends BasePublishActivity {
         mAdapter.setOnItemClickListener(new StepRecylerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                KJLoger.debug("click:"+position);
+                KJLoger.debug("click:" + position);
                 UIHelper.showPublishAddStepDetail(aty, position, RQ_STEP, list.get(position).getDescription(), list.get(position).getPic().getLocalPath());
             }
         });
         mAdapter.setOnItemLongClickListener(new StepRecylerAdapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(View view, final int position) {
-                KJLoger.debug("longClick:"+position);
+                KJLoger.debug("longClick:" + position);
                 //delete
                 AlertDialog.Builder builder = new AlertDialog.Builder(aty);
                 builder.setNegativeButton("取消", null).setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -96,15 +100,14 @@ public class StepAddStep extends BasePublishActivity {
     }
 
 
-
-
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
-        if (v.getId() ==  R.id.publish_add_step_more_l){
+        if (v.getId() == R.id.publish_add_step_more_l) {
             Step step = new Step();
             step.setDescription("菜谱描述...");
             mAdapter.addData(step);
+            mRecyclerView.scrollToPosition(list.size() - 1);
         }
     }
 
@@ -132,11 +135,11 @@ public class StepAddStep extends BasePublishActivity {
 //        KJLoger.debug("list："+list.toString());
 
         Iterator<Step> iterator = list.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Step step = iterator.next();
-            if((step.getPic().getLocalPath().equals("0") ||step.getPic().getPath().equals("0"))
+            if ((step.getPic().getLocalPath().equals("0") || step.getPic().getPath().equals("0"))
                     && step.getDescription().equals("菜谱描述...")
-                    ){
+                    ) {
                 iterator.remove();
             }
         }
@@ -145,9 +148,10 @@ public class StepAddStep extends BasePublishActivity {
         setCookbook(cookBook);
         getCookbook();
         mAdapter.notifyDataSetChanged();
-        if(!isModify) {
+        if (!isModify) {
             UIHelper.showPublishAll(this);
-            KJLoger.debug("duos:"+KJActivityStack.create().getCount());
+            KJLoger.debug("duos:" + KJActivityStack.create().getCount());
+            // TODO: 16/3/1 这里需要把前面的三个 activity给删除掉
 //            KJActivityStack.create().finishActivity(StepBase.class);
 //            KJActivityStack.create().finishActivity(StepBaseInfo.class);
 //            KJActivityStack.create().finishActivity(StepAddFoodMaterial.class);
@@ -159,11 +163,15 @@ public class StepAddStep extends BasePublishActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode != RESULT_OK){
+        if (resultCode != RESULT_OK) {
             return;
         }
 
-        if(requestCode == RQ_STEP){
+        /**
+         * 这里是 每次添加图片之后 是否成功的返回
+         * 如果成功 则填充 图片然后更新listview
+         */
+        if (requestCode == RQ_STEP) {
 //            KJLoger.debug("获取到本地图片");
             String localPath = data.getStringExtra("localPath");
             String path = data.getStringExtra("path");

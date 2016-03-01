@@ -24,6 +24,8 @@ import java.io.File;
 
 /**
  * Created by jafir on 16/1/18.
+ * 添加步骤的详细界面
+ *
  */
 public class StepAddStepDetail extends BasePublishActivity {
 
@@ -58,6 +60,10 @@ public class StepAddStepDetail extends BasePublishActivity {
     @Override
     public void initData() {
         super.initData();
+        /**
+         * 获取传递过来的 图片 及描述
+         * 然后填充
+         */
         position = getIntent().getIntExtra("position", 0);
         desc = getIntent().getStringExtra("desc");
         picPath = getIntent().getStringExtra("path");
@@ -116,6 +122,12 @@ public class StepAddStepDetail extends BasePublishActivity {
         }
         Intent intent = getIntent();
         intent.putExtra("position",position);
+        /**
+         * 这里是 返回 步骤信息
+         * 首先要判断是否 已经添加了 图片
+         * 如果添加则 需返回 图片服务器内地址 id 和本地路径
+         * 如果没有则 返回 -1 0 0 表示 是默认的图片
+         */
         if (hasImg) {
             intent.putExtra("id",id);
             intent.putExtra("path",path);
@@ -151,6 +163,13 @@ public class StepAddStepDetail extends BasePublishActivity {
     }
 
 
+    /**
+     * 上传图片  返回 id和路径
+     *
+     * 如果成功则从本地 直接把该图片 显示出来
+     * 否则 不做操作 还是显示默认图片
+     * @param bm
+     */
     private void uploadPic(final Bitmap bm) {
         isUpload = true;
         File file = new File(SelectActivity.IMG_PATH, "step"+position+".jpeg");

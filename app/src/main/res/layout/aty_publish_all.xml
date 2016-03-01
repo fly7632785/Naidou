@@ -127,6 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
                 android:id="@+id/publish_all_food_detail"
+                android:singleLine="true"
                 android:text="未添加"
                 android:textSize="14sp"
                 android:textColor="#666666"

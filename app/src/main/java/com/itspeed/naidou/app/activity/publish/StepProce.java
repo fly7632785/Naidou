@@ -17,6 +17,7 @@ import org.kymjs.kjframe.ui.ViewInject;
 
 /**
  * Created by jafir on 16/1/22.
+ * 菜谱基本属性 工艺选择
  */
 public class StepProce extends BasePublishActivity {
 

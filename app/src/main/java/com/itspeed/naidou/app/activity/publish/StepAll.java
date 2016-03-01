@@ -1,21 +1,37 @@
 package com.itspeed.naidou.app.activity.publish;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.api.NaidouApi;
+import com.itspeed.naidou.api.Response;
+import com.itspeed.naidou.app.AppConstant;
+import com.itspeed.naidou.app.fragment.Level2Fragment;
 import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.FoodMaterial;
+import com.itspeed.naidou.model.bean.Step;
 
+import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.StringUtils;
 
 /**
  * Created by jafir on 16/1/22.
+ *
+ * 发布 总览
+ *
+ * 从纵览 可以跳转到相应的 属性和详情界面去修改内容
+ *
+ *
  */
 public class StepAll extends BasePublishActivity {
 
@@ -68,6 +84,7 @@ public class StepAll extends BasePublishActivity {
     private boolean step2;
     private boolean step3;
     private boolean step4;
+    private ProgressDialog dialog;
 
 
     @Override
@@ -101,6 +118,11 @@ public class StepAll extends BasePublishActivity {
     }
 
 
+    /**
+     * 预览
+     * chideDetail 界面也有俩个入口模式 一个是从网络获取数据
+     * 一个是 本地预览而用
+     */
     private void preview() {
         UIHelper.showLocalCbDetail(this, "-1", cookBook);
     }
@@ -113,6 +135,12 @@ public class StepAll extends BasePublishActivity {
 
     }
 
+    /**
+     * 设置数据   从本地获取数据 并填充
+     * 如果 4个步骤有一个不全则无法发布菜谱
+     *
+     *
+     */
     private void setData() {
         //重新获取
         cookBook = getCookbook();
@@ -172,7 +200,7 @@ public class StepAll extends BasePublishActivity {
             stepPerfect.setVisibility(View.VISIBLE);
         }
 
-        KJLoger.debug("cb:" + cookBook.toString());
+//        KJLoger.debug("cb:" + cookBook.toString());
     }
 
 
@@ -202,7 +230,92 @@ public class StepAll extends BasePublishActivity {
             case R.id.publish_all_step_ll:
                 UIHelper.showModifyPublishAddStep(this);
                 break;
+
+            case R.id.publish_all_publish:
+                uploadData();
+                break;
         }
+    }
+
+
+    /**
+     * 上传json数据
+     */
+    private void uploadData() {
+
+        dialog = new ProgressDialog(aty);
+        dialog.setMessage("正在上传图片...");
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+
+
+        //获取cate种类
+        int category =  getCategory();
+        //获取 食材json
+        String materialJson = JSON.toJSONString(cookBook.getFoods());
+
+        //获取 步骤json
+        String stepsJson = getStepJson();
+
+        KJLoger.debug("data://"  + "coverid:"+cookBook.getCoverPic().getId()+"category:"+ Level2Fragment.category[category]
+                        + "materialjson:" + materialJson + "stepsjson:" + stepsJson
+        );
+
+        NaidouApi.publishCookBook(cookBook.getTitle(), cookBook.getDescription(), cookBook.getCoverPic().getId(), Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("publishCookBook:" + t);
+                if (Response.getSuccess(t)) {
+                    dialog.dismiss();
+                    ViewInject.toast("发布菜谱成功");
+                    aty.finish();
+                }
+            }
+        });
+
+    }
+
+    /**
+     * 获取步骤的json数据
+     *
+     * @return
+     */
+    private String getStepJson() {
+
+
+        com.alibaba.fastjson.JSONArray array = new com.alibaba.fastjson.JSONArray();
+        for (int i = 0; i < cookBook.getSteps().size(); i++) {
+            Step  step = cookBook.getSteps().get(i);
+
+
+            JSONObject o = new JSONObject();
+            JSONObject pic = new JSONObject();
+            pic.put("path",step.getPic().getPath());
+            pic.put("id",step.getPic().getId());
+            o.put("pic", pic);
+            o.put("description", step.getDescription());
+            array.add(o);
+        }
+
+        return array.toJSONString();
+    }
+
+
+    /**
+     * 获取 对应object 的category 种类
+     * @return
+     */
+    private int getCategory() {
+
+
+        for (int i = 0; i < AppConstant.object.length; i++) {
+            if(cookBook.getObject().equals(AppConstant.object[i])){
+                return i;
+            }
+        }
+        return 0;
     }
 }
 

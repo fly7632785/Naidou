@@ -34,6 +34,8 @@ import cn.smssdk.gui.RegisterPage;
 /**
  * Created by jafir on 10/15/15.
  * 用户注册界面，需要用手机注册，发送验证码，验证
+ * 这里用了 第三方的 手机号码短信验证
+ *
  */
 public class RegisterActivity extends KJActivity {
 
@@ -59,6 +61,7 @@ public class RegisterActivity extends KJActivity {
 //    private String verify;
     private ProgressDialog dialog;
     private EventHandler handler;
+    //密码规则 正则
     private String reg = "^[\\@A-Za-z0-9\\!\\#\\$\\%\\^\\&\\*\\.\\~]{6,22}$";
 
 

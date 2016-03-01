@@ -25,6 +25,7 @@ import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.SystemTool;
 
 /**
  * Created by jafir on 15/9/1.
@@ -37,16 +38,16 @@ public class WodeFragment extends TitleBarSupportFragment {
     private View view;
 
 
-    @BindView(id = R.id.wode_cookbook_layout,click = true)
+    @BindView(id = R.id.wode_cookbook_layout, click = true)
     private LinearLayout ly_mycookbook;
-//    @BindView(id = R.id.wode_message_layout,click = true)
+    //    @BindView(id = R.id.wode_message_layout,click = true)
 //    private LinearLayout ly_myMessage;
-    @BindView(id = R.id.wode_collect_layout,click = true)
+    @BindView(id = R.id.wode_collect_layout, click = true)
     private LinearLayout ly_myCollect;
-    @BindView(id = R.id.wode_follow_layout,click = true)
+    @BindView(id = R.id.wode_follow_layout, click = true)
     private LinearLayout ly_follow;
 
-    @BindView(id = R.id.wode_portrait,click = true)
+    @BindView(id = R.id.wode_portrait, click = true)
     private ImageView mAvatar;
     @BindView(id = R.id.wode_count_of_naidou)
     private TextView mCoins;
@@ -60,7 +61,7 @@ public class WodeFragment extends TitleBarSupportFragment {
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         aty = (MainActivity) getActivity();
-        view = View.inflate(aty, R.layout.frag_wode,null);
+        view = View.inflate(aty, R.layout.frag_wode, null);
         onChange();
         return view;
     }
@@ -69,11 +70,14 @@ public class WodeFragment extends TitleBarSupportFragment {
     protected void widgetClick(View v) {
         super.widgetClick(v);
 
-        if(RightsManager.isVisitor(aty)) {
+        /**
+         * 检测是否是游客模式 排除非用户点击
+         */
+        if (RightsManager.isVisitor(aty)) {
             return;
         }
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.wode_cookbook_layout:
 
@@ -112,8 +116,9 @@ public class WodeFragment extends TitleBarSupportFragment {
     @Override
     protected void initData() {
         super.initData();
+        //一开始AppStart的时候 获取了本地的用户信息 保存到了 APPLICATION 里面
         //从全局user里面获取 显示信息
-        setData(AppContext.user);
+        setUserInfo(AppContext.user);
 
     }
 
@@ -127,28 +132,52 @@ public class WodeFragment extends TitleBarSupportFragment {
         requestData();
     }
 
-    public void requestData(){
-        NaidouApi.getMyInfo(new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("getmyInfo:" + t);
-                if (Response.getSuccess(t)) {
-                    User user = Response.getUserInfo(t);
-                    KJLoger.debug("user:" + user.toString());
-                    setData(user);
-                }
+    /**
+     * 请求数据
+     * 首先检查是否有网络
+     * 有：从网络获取数据
+     * 没有：从本地缓存获取
+     */
+    public void requestData() {
+        if (!SystemTool.checkNet(aty)) {
+            String data = getFromLocal("localUserInfo", "localUserInfo.txt");
+            KJLoger.debug("localdataUser:" + data);
+            if (data != null && !data.equals("")) {
+                setData(data);
             }
-        });
+        } else {
+            NaidouApi.getMyInfo(new HttpCallBack() {
+                @Override
+                public void onSuccess(String t) {
+                    super.onSuccess(t);
+                    KJLoger.debug("getmyInfo:" + t);
+                    setData(t);
+                    writeToLocal(t,"localUserInfo", "localUserInfo.txt");
+                }
+            });
+        }
     }
+
 
 
     /**
      * 设置数据显示数据
+     */
+
+    private void setData(String t) {
+        if (Response.getSuccess(t)) {
+            User user = Response.getUserInfo(t);
+            KJLoger.debug("user:" + user.toString());
+            setUserInfo(user);
+        }
+    }
+
+    /**
+     * 设置显示user用户信息
      * @param user
      */
-    private void setData(User user) {
-        if(user != null) {
+    private void setUserInfo(User user) {
+        if (user != null) {
             //设置全局user信息
             AppContext.user = user;
             //显示数据
@@ -159,14 +188,70 @@ public class WodeFragment extends TitleBarSupportFragment {
 //            new KJBitmap.Builder().imageUrl(AppContext.HOST + user.getAvatar()).view(mAvatar).errorBitmapRes(R.mipmap.portrait).display(new KJBitmap(httpConfig,new BitmapConfig()));
 //            KJLoger.debug("cachepath:" + HttpConfig.CACHEPATH + "");
 //            KJLoger.debug("cachetime:" + httpConfig.cacheTime);
-            new KJBitmap().displayWithErrorBitmap(mAvatar,AppContext.userAvatarPath,R.mipmap.default_avatar);
+            new KJBitmap().displayWithErrorBitmap(mAvatar, AppContext.userAvatarPath, R.mipmap.default_avatar);
             mCoins.setText(user.getCoins() + "");
-            mFollow.setText(user.getFollowCount()+"");
+            mFollow.setText(user.getFollowCount() + "");
             mNickname.setText(user.getNickname());
             mMotto.setText(user.getMotto());
         }
     }
 
+
+//    /**
+//     * 写入
+//     * @param t
+//     */
+//    private void writeToLocal(String t) {
+//
+//        //只储存  最新一页的缓存数据
+//        File file = FileUtils.getSaveFile("localUserInfo", "localUserInfo.txt");
+//        FileWriter writer = null;
+//        try {
+//            writer = new FileWriter(file);
+//            writer.write(t.trim());
+//            writer.flush();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                writer.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+//    }
+//
+//    private String getFromLocal() {
+//        File file = FileUtils.getSaveFile("localUserInfo", "localUserInfo.txt");
+//        char[] buffer = new char[1024];
+//        StringBuilder builder = new StringBuilder();
+//        String data;
+//        BufferedReader br = null;
+//        FileReader fileReader = null;
+//        try {
+//            fileReader = new FileReader(file);
+//            br = new BufferedReader(fileReader);
+//            try {
+//                while ((data = br.readLine()) != null) {
+//                    builder.append(data);
+//                }
+//                return builder.toString();
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                fileReader.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return null;
+//    }
 
     @Override
     public void onMenuClick() {
@@ -178,8 +263,8 @@ public class WodeFragment extends TitleBarSupportFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
-            if(resultCode == 0){
+        if (requestCode == 1) {
+            if (resultCode == 0) {
                 //成功
                 KJLoger.debug("onActivityResult:");
                 requestData();

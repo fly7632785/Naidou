@@ -13,7 +13,7 @@ import org.kymjs.kjframe.utils.KJLoger;
  * Created by jafir on 15/7/3.
  * fragment 的titlebarfragment 基类
  */
-public abstract class TitleBarSupportFragment extends SupportFragment {
+public abstract class TitleBarSupportFragment extends BaseSupportFragment {
 
     protected SupportFragment currentSupportFragment;
 

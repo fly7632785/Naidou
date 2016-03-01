@@ -18,12 +18,17 @@ import com.itspeed.naidou.model.bean.JsonBean.Pic;
 
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.StringUtils;
 
 import java.io.File;
 
 /**
  * Created by jafir on 16/1/18.
+ * 发布菜谱的基础步骤
+ * 标题 描述 封面
+ *
  */
 public class StepBase extends BasePublishActivity {
 
@@ -61,22 +66,19 @@ public class StepBase extends BasePublishActivity {
         super.initData();
 
 
-
-
         if(!cookBook.getTitle().equals("")){
             mTitle.setText(cookBook.getTitle());
         }
         if(!cookBook.getDescription().equals("")){
             mDesc.setText(cookBook.getDescription());
         }
+        //如果没有封面的话 默认这个值是0
         if(!cookBook.getCoverPic().getLocalPath().equals("0")){
             Bitmap bm = BitmapFactory.decodeFile(cookBook.getCoverPic().getLocalPath());
             if (bm != null && mCover != null) {
                 mCover.setImageBitmap(bm);
             }
         }
-
-        //// TODO: 16/1/24 封面
     }
 
     @Override
@@ -109,24 +111,23 @@ public class StepBase extends BasePublishActivity {
     }
 
     private void done() {
-//        if (StringUtils.isEmpty(mTitle.getText())) {
-//            ViewInject.toast("请填写菜谱名称");
-//            return;
-//        }
+        if (StringUtils.isEmpty(mTitle.getText())) {
+            ViewInject.toast("请填写菜谱名称");
+            return;
+        }
 
         cookBook.setTitle(mTitle.getText().toString());
 
+        if (!hasCover) {
+            ViewInject.toast("请选择封面");
+            return;
+        }
 
-//        if (!hasCover) {
-//            ViewInject.toast("请选择封面");
-//            return;
-//        }
 
-
-//        if (StringUtils.isEmpty(mDesc.getText())) {
-//            ViewInject.toast("请填写菜谱描述");
-//            return;
-//        }
+        if (StringUtils.isEmpty(mDesc.getText())) {
+            ViewInject.toast("请填写菜谱描述");
+            return;
+        }
         cookBook.setDescription(mDesc.getText().toString());
         setCookbook(cookBook);
         if(!isModify) {
@@ -135,7 +136,7 @@ public class StepBase extends BasePublishActivity {
         }else {
             this.finish();
         }
-        KJLoger.debug(getCookbook().toString());
+//        KJLoger.debug(getCookbook().toString());
     }
 
     @Override
@@ -153,7 +154,6 @@ public class StepBase extends BasePublishActivity {
             String picPath = data.getStringExtra(SelectActivity.KEY_RETURN_PHOTO_PATH);
             Bitmap bm = BitmapFactory.decodeFile(picPath);
             if (bm != null && mCover != null) {
-
                 uploadPic(bm,picPath);
             }
         }

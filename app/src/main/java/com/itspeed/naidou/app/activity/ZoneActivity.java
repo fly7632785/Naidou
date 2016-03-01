@@ -18,12 +18,12 @@ import com.itspeed.naidou.app.util.UIHelper;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.User;
 
-import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.KJBitmap;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.SystemTool;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ import java.util.ArrayList;
  * <p/>
  * 个人空间
  */
-public class ZoneActivity extends KJActivity {
+public class ZoneActivity extends BaseActivity {
 
 
     @BindView(id = R.id.zone_list)
@@ -80,23 +80,37 @@ public class ZoneActivity extends KJActivity {
         //请求userInfo
         //设置数据
 
-        NaidouApi.getUserInfo(uid, new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("getUserInfo:" + t);
-                if (Response.getSuccess(t)) {
-                    mLoadLayout.setVisibility(View.GONE);
-                    user = Response.getUserInfo(t);
-                    mData = Response.getUserCookbook(t);
-                    setHeaderData(user);
-                    setData(user);
-                }
+        if(!SystemTool.checkNet(aty)){
+
+            String data = getFromLocal("localUsers", "localUsers"+uid+".txt");
+            if (data != null && !data.equals("")) {
+                setData(data);
             }
-        });
+        }else {
+
+            NaidouApi.getUserInfo(uid, new HttpCallBack() {
+                @Override
+                public void onSuccess(String t) {
+                    super.onSuccess(t);
+                    KJLoger.debug("getUserInfo:" + t);
+                    setData(t);
+                    writeToLocal(t,"localUsers", "localUsers"+uid+".txt");
+                }
+            });
+        }
     }
 
-    private void setData(User user) {
+    private void setData(String t) {
+        if (Response.getSuccess(t)) {
+            mLoadLayout.setVisibility(View.GONE);
+            user = Response.getUserInfo(t);
+            mData = Response.getUserCookbook(t);
+            setHeaderData(user);
+            setUserInfo(user);
+        }
+    }
+
+    private void setUserInfo(User user) {
         KJLoger.debug(user.toString());
 //        mCookbookCount.setText("他有" + user.getCookBookCount() + "个菜谱呢");
         if (user.isFollowedByMe()) {
@@ -109,6 +123,11 @@ public class ZoneActivity extends KJActivity {
     }
 
 
+    /**
+     * 设置 list header 的数据
+     * 用于展示 封面图 user name 菜谱描述 点赞 等等
+     * @param user
+     */
     private void setHeaderData(User user) {
         new KJBitmap.Builder().imageUrl(AppContext.HOST + user.getAvatar()).errorBitmapRes(R.mipmap.portrait).view(mUserAvatar).display();
         mUsername.setText(user.getNickname());
@@ -127,7 +146,7 @@ public class ZoneActivity extends KJActivity {
         if (uid == null) {
             uid = "1";
         }
-
+        mAdapter = new MyCookBookAdapter();
         initHeader();
         mListView = (ListView) findViewById(R.id.zone_list);
         mListView.setDividerHeight(0);
@@ -140,8 +159,6 @@ public class ZoneActivity extends KJActivity {
                 }
             }
         });
-        mAdapter = new MyCookBookAdapter();
-
 //        requestData();
 
     }

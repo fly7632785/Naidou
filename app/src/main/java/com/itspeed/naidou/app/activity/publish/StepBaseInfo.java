@@ -13,6 +13,9 @@ import org.kymjs.kjframe.ui.BindView;
 
 /**
  * Created by jafir on 16/1/18.
+ * 发布菜谱的 基本属性
+ * 包含 对象、工艺、时间、口味、难度等
+ *
  */
 public class StepBaseInfo extends BasePublishActivity implements PickLableView.onPickViewListener {
 
@@ -34,6 +37,11 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
     private PickLableView mDifficult;
 
 
+    /**
+     * 各类属性的index指针
+     * 指向 各个属性的数组下标
+     * 属性数组 在AppConstant里面
+     */
     private int proceIndex = 0;
     private int difficultIndex;
     private int objectIndex;
@@ -66,6 +74,7 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
         mTaste.setContent(AppConstant.taste);
         mDifficult.setContent(AppConstant.difficult);
 
+        //从本地获取 菜谱的工艺属性 然后设置对应的指针下标
         String proce = cookBook.getProce();
         if (!proce.equals("")) {
             for (int i = 0; i < AppConstant.proce.length; i++) {
@@ -159,6 +168,10 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
         }
         switch (requestCode) {
             case RQ_PROCE:
+
+                /**
+                 * 从返回的data里面获取对应的数组 下标然后设置 显示
+                 */
                 proceIndex = data.getIntExtra("proceIndex", 0);
                 mProce.setIndex(proceIndex);
                 cookBook.setProce(AppConstant.proce[proceIndex]);

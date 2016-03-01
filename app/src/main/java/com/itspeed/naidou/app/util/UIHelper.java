@@ -180,7 +180,10 @@ public class UIHelper {
      * @param context
      */
     public static void showPublish(Context context) {
-        Intent intent = new Intent(context,StepBase.class);
+//        Intent intent = new Intent(context,StepBase.class);
+//        测试隐式启动
+        Intent intent = new Intent("com.itspeed.naidou.publish");
+
         context.startActivity(intent);
     }
     /**

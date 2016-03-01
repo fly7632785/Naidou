@@ -19,6 +19,7 @@ import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.PreferenceHelper;
+import org.kymjs.kjframe.utils.SystemTool;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -30,7 +31,9 @@ public class AppStart extends KJActivity {
 
     public static String TAG = "appstart";
     private ImageView image;
+    //检测证书是否有效
     private boolean isTokenLegal = false;
+    //是不是第一次进入APP
     private boolean isFirst;
     private String token;
 
@@ -67,6 +70,11 @@ public class AppStart extends KJActivity {
         restroreUserInfo();
     }
 
+    /**
+     * 回滚本地user信息
+     * 因为 所有的用户信息都进行了本地化
+     * 一开始 会去本地获取
+     */
     private void restroreUserInfo() {
         User user = new User();
         user.setAvatarId(PreferenceHelper.readInt(aty,"userInfo","avatarId"));
@@ -92,6 +100,11 @@ public class AppStart extends KJActivity {
     }
 
 
+    /**
+     * 在有网络的情况下 回去检测证书是否有效
+     * （没有网络的情况下 直接跳转切换为离线模式）
+     *
+     */
     private void checkToken() {
         //验证证书
         token = AppContext.TOKEN;
@@ -109,7 +122,10 @@ public class AppStart extends KJActivity {
 
 
     /**
-     * 判断是不是第一次进入，如果是就到引导页
+     * 1、判断是不是第一次进入，如果是就到引导页
+     * 2、判断是否有网，没有网就切换至离线模式，进入APP后所有的数据都是从缓存提取
+     * 3、有网的时候，检测证书是否有效 无效则去登录
+     * 4、有效则进入主界面
      */
     private void jumpTo() {
         isFirst = PreferenceHelper.readBoolean(aty, TAG, "first_open",
@@ -119,12 +135,15 @@ public class AppStart extends KJActivity {
             //引导页
             UIHelper.showGuide(aty);
             PreferenceHelper.write(aty, TAG, "first_open", false);
+        } else if(!SystemTool.checkNet(aty)){//没有网的时候 不检查 直接去main
+            UIHelper.showMain(aty);
         } else if (token.equals("") || token == null || !isTokenLegal) {
             //去登录
             UIHelper.showLogin(aty);
-        } else {
+        }else {
             UIHelper.showMain(aty);
         }
+
         finish();
     }
 

@@ -22,6 +22,9 @@ import java.io.IOException;
 
 /**
  * Created by jafir on 16/1/18.
+ *
+ * 菜谱发布的基类
+ *
  */
 public abstract class BasePublishActivity extends KJActivity {
 

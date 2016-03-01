@@ -65,6 +65,7 @@ public class LoginActivity extends KJActivity {
     @Override
     public void setRootView() {
         setContentView(R.layout.aty_login);
+        //检测是否联网  提示用户
         if (!SystemTool.checkNet(aty)) {
             Toast.makeText(aty, "您的网络没有连接", Toast.LENGTH_SHORT).show();
         }
@@ -79,6 +80,11 @@ public class LoginActivity extends KJActivity {
     }
 
 
+    /**
+     * 每次显示页面都去 本地取出 账号密码
+     * 从注册界面跳转返回的时候 直接可以获取刚注册的账号密码
+     *
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -186,6 +192,11 @@ public class LoginActivity extends KJActivity {
         }
     }
 
+    /**
+     * 把用户信息 本地化 以方便调用
+     * 避免在进入界面之后再花时间去 网络请求新的用户信息 而产生时延视差
+     * @param user
+     */
     private void writeUserInfo2SP(User user) {
         /**
          * 这里做用户信息本地化
@@ -213,7 +224,7 @@ public class LoginActivity extends KJActivity {
     }
 
     /**
-     * 写入Application
+     * 写入Application 全局使用
      *
      * @param t
      */

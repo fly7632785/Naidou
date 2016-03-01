@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <View
+        style="@style/line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="100dp"
+            android:gravity="center"
+            android:text="100"
+            android:id="@+id/weight100"
+            android:layout_height="50dp" />
+        <TextView
+            android:layout_width="100dp"
+            android:text="400"
+            android:id="@+id/weight400"
+            android:gravity="center"
+            android:layout_height="50dp" />
+        <TextView
+            android:layout_width="100dp"
+            android:text="700"
+            android:id="@+id/weight700"
+            android:gravity="center"
+            android:layout_height="50dp" />
+
+    </LinearLayout>
+    <View
+        style="@style/line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.itspeed.naidou.app.view.CustomView.WheelView
+            android:id="@+id/weight1"
+            android:layout_width="100dp"
+            android:layout_height="100dp">
+
+        </com.itspeed.naidou.app.view.CustomView.WheelView>
+
+        <com.itspeed.naidou.app.view.CustomView.WheelView
+            android:id="@+id/weight2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="5dp">
+
+        </com.itspeed.naidou.app.view.CustomView.WheelView>
+
+        <com.itspeed.naidou.app.view.CustomView.WheelView
+            android:id="@+id/weight3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="5dp">
+
+        </com.itspeed.naidou.app.view.CustomView.WheelView>
+    </LinearLayout>
+</LinearLayout>
