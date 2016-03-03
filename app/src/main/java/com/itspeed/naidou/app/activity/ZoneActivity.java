@@ -14,7 +14,7 @@ import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.adapter.MyCookBookAdapter;
 import com.itspeed.naidou.app.util.RightsManager;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.User;
 

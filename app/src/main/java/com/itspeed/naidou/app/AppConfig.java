@@ -19,4 +19,11 @@ public class AppConfig {
     /**
      *
      */
+
+    public static final String RECEIVER_CHANGE_LIKE_DETAIL = "com.itspeed.naidou.like_change_detail";
+    public static final String RECEIVER_CHANGE_COLLECT_DETAIL = "com.itspeed.naidou.collect_change_detail";
+    public static final String RECEIVER_CHANGE_LIKE_MYCOOKBOOK = "com.itspeed.naidou.like_change_mycookbook";
+    public static final String RECEIVER_CHANGE_COLLECT_MYCOOKBOOK= "com.itspeed.naidou.collect_change_mycookbook";
+    public static final String RECEIVER_CHANGE_LIKE_MYCOLLECT = "com.itspeed.naidou.like_change_mycollect";
+    public static final String RECEIVER_CHANGE_COLLECT_MYCOLLECT= "com.itspeed.naidou.collect_change_mycollect";
 }

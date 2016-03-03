@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.AppContext;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.squareup.picasso.Picasso;
 

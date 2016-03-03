@@ -16,7 +16,7 @@ import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.adapter.RecommendRecyclerAdapterForCb;
 import com.itspeed.naidou.app.fragment.BaseSupportFragment;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.app.view.AdapterIndicator;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;

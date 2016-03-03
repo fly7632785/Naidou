@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.AppConstant;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.app.view.CustomView.PickLableView;
 
 import org.kymjs.kjframe.ui.BindView;
@@ -207,7 +207,6 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
         done();
         if (!isModify) {
             UIHelper.showPublishAddFoodMaterial(this);
-            this.finish();
         } else {
             this.finish();
         }

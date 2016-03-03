@@ -109,13 +109,13 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/item_list_mycookbook_islike"
+                    android:id="@+id/layout_islike"
                     android:src="@drawable/selector_common_like"
                     style="@style/mycookbook_like_collect" />
                 <TextView
                     android:text="234"
                     style="@style/mycookbook_like_collect_font"
-                    android:id="@+id/item_list_mycookbook_likes"
+                    android:id="@+id/layout_likes"
                      />
             </LinearLayout>
 
@@ -127,13 +127,13 @@
 
                     <ImageView
                         android:src="@drawable/selector_common_collect"
-                        android:id="@+id/item_list_mycookbook_iscollect"
+                        android:id="@+id/layout_iscollect"
                         style="@style/mycookbook_like_collect"
                         />
                     <TextView
                         android:text="34"
                         style="@style/mycookbook_like_collect_font"
-                        android:id="@+id/item_list_mycookbook_collects"
+                        android:id="@+id/layout_collects"
                          />
                 </LinearLayout>
 

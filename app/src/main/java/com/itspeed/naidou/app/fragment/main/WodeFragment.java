@@ -17,7 +17,7 @@ import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.app.util.RightsManager;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.model.bean.User;
 
 import org.kymjs.kjframe.KJBitmap;

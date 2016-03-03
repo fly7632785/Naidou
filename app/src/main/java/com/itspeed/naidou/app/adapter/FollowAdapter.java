@@ -6,14 +6,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
-import com.itspeed.naidou.api.NaidouApi;
-import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
+import com.itspeed.naidou.app.helper.OperateHelper;
 import com.itspeed.naidou.model.bean.User;
 
 import org.kymjs.kjframe.KJBitmap;
-import org.kymjs.kjframe.http.HttpCallBack;
-import org.kymjs.kjframe.ui.ViewInject;
 
 /**
  * Created by jafir on 15/9/29.
@@ -72,11 +69,11 @@ public class FollowAdapter extends ListBaseAdapter<User> {
            boolean isFollowed = mDatas.get(position).isFollowedByMe();
             if(v.getId() == R.id.item_list_follow_isfollow) {
                 if (isFollowed) {
-                    cancelFollow(mDatas.get(position).getUid());
+                    OperateHelper.cancelFollow(mDatas.get(position).getUid());
                     mDatas.get(position).setIsFollowedByMe(false);
                     notifyDataSetChanged();
                 } else {
-                    doFollow(mDatas.get(position).getUid());
+                    OperateHelper.doFollow(mDatas.get(position).getUid());
                     mDatas.get(position).setIsFollowedByMe(true);
                     notifyDataSetChanged();
                 }
@@ -86,26 +83,5 @@ public class FollowAdapter extends ListBaseAdapter<User> {
     }
 
 
-    private void  doFollow(String uid){
-        NaidouApi.doFollow(uid, new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                if(Response.getSuccess(t)){
-                    ViewInject.toast("关注成功");
-                }
-            }
-        });
-    }
-    private void  cancelFollow(String uid){
-        NaidouApi.cancelFollow(uid, new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                if(Response.getSuccess(t)){
-                    ViewInject.toast("取消关注");
-                }
-            }
-        });
-    }
+
 }

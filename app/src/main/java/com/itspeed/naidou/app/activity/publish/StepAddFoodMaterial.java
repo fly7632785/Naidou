@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.itspeed.naidou.R;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.app.view.CustomView.WheelView;
 import com.itspeed.naidou.model.bean.FoodMaterial;
 
@@ -282,7 +282,6 @@ public class StepAddFoodMaterial extends BasePublishActivity {
         if (!isModify) {
 
             UIHelper.showPublishAddStep(this);
-            this.finish();
         } else {
             this.finish();
         }

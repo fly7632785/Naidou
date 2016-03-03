@@ -13,7 +13,7 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.SelectActivity;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.model.bean.JsonBean.Pic;
 
 import org.kymjs.kjframe.http.HttpCallBack;
@@ -134,7 +134,6 @@ public class StepBase extends BasePublishActivity {
         setCookbook(cookBook);
         if(!isModify) {
             UIHelper.showPublishBaseInfo(this);
-            this.finish();
         }else {
             this.finish();
         }

@@ -12,7 +12,7 @@ import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.ChildrenFragment;
 import com.itspeed.naidou.app.fragment.ParentFragment;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.model.bean.CookBook;
 
 import org.kymjs.kjframe.utils.FileUtils;

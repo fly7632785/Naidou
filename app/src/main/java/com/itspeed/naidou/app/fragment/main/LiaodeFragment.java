@@ -14,7 +14,7 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.app.view.PullToRefreshBase;
 import com.itspeed.naidou.app.view.PullToRefreshList;
 import com.itspeed.naidou.model.bean.Topic;

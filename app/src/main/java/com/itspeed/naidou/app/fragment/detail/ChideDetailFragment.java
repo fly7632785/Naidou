@@ -1,5 +1,6 @@
 package com.itspeed.naidou.app.fragment.detail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +19,15 @@ import android.widget.TextView;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
+import com.itspeed.naidou.app.AppConfig;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
+import com.itspeed.naidou.app.helper.OperateHelper;
 import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.TimeUtil;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.model.bean.CookBook;
 import com.itspeed.naidou.model.bean.FoodMaterial;
 import com.itspeed.naidou.model.bean.Step;
@@ -94,6 +97,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     private boolean isCollect;
     private int likes;
     private int collects;
+    private int index;
 
 
     @Override
@@ -106,6 +110,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         aty = (SimpleBackActivity) getActivity();
+
         onChange();
         KJLoger.debug("chidedetail:onCreate");
     }
@@ -121,6 +126,10 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     protected void initData() {
         super.initData();
 
+        /**
+         * 获取 index这个是相当于这个详情在列表中的position
+         */
+        index =  aty.getBundleData().getInt("index",-1);
         //获取cid
         cid = (String) aty.getBundleData().get("cid");
         CookBook cookBook = (CookBook) aty.getBundleData().get("cookbook");
@@ -381,9 +390,19 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
                     return;
                 }
                 isLike = !isLike;
+
+
+                /**
+                 * 这里发送广播去 修改 列表界面的 数据状态
+                 *
+                 */
+                Intent  intent = new Intent(AppConfig.RECEIVER_CHANGE_LIKE_DETAIL);
+                intent.putExtra("cid",cid);
+                aty.sendBroadcast(intent);
+
                 //请求点赞或者取消点赞
                 if (isLike) {
-                    doLike(cid);
+                    OperateHelper. doLike(cid);
                     mIsLike.setSelected(true);
                     mLike.setTextColor(getResources().getColor(R.color.chide_detail_tip));
                     //点赞数改变
@@ -391,7 +410,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 //                    mLikes.setText("" + likes);
 
                 } else {
-                    cancelLike(cid);
+                    OperateHelper.cancelLike(cid);
                     mIsLike.setSelected(false);
                     mLike.setTextColor(getResources().getColor(R.color.chide_detail_tip_normal));
                     //点赞数改变
@@ -404,16 +423,25 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
                     return;
                 }
                 isCollect = !isCollect;
+
+                /**
+                 * 发送修改状态广播
+                 */
+
+                Intent  intent1 = new Intent(AppConfig.RECEIVER_CHANGE_COLLECT_DETAIL);
+                intent1.putExtra("cid",cid);
+                aty.sendBroadcast(intent1);
+
                 //请求点赞或者取消点赞
                 if (isCollect) {
-                    doCollect(cid);
+                    OperateHelper.doCollect(cid);
                     //收藏数改变
                     collects++;
                     mIsCollect.setSelected(true);
                     mCollect.setTextColor(getResources().getColor(R.color.chide_detail_tip));
 //                    mCollects.setText("" + collects);
                 } else {
-                    cancelCollect(cid);
+                    OperateHelper.cancelCollect(cid);
                     mIsCollect.setSelected(false);
                     mCollect.setTextColor(getResources().getColor(R.color.chide_detail_tip_normal));
                     collects--;
@@ -508,57 +536,6 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     }
 
 
-    private void doCollect(String cid) {
-        NaidouApi.doCollectForChide(cid, new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("收藏成功：" + t);
-                if (Response.getSuccess(t)) {
-                    ViewInject.toast("收藏成功");
-                }
-            }
-        });
-    }
 
-    private void cancelCollect(String cid) {
-        NaidouApi.cancelCollectForChide(cid, new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("取消收藏成功：" + t);
-                if (Response.getSuccess(t)) {
-                    ViewInject.toast("取消收藏成功");
-                }
-            }
-        });
-    }
-
-    private void doLike(String cid) {
-        NaidouApi.doLikeForChide(cid, new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("点赞成功：" + t);
-                if (Response.getSuccess(t)) {
-                    ViewInject.toast("点赞成功");
-                }
-            }
-        });
-
-    }
-
-    private void cancelLike(String cid) {
-        NaidouApi.cancelLikeForChide(cid, new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("取消点赞成功：" + t);
-                if (Response.getSuccess(t)) {
-                    ViewInject.toast("取消点赞成功");
-                }
-            }
-        });
-    }
 
 }

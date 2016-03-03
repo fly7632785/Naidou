@@ -14,7 +14,7 @@ import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.util.DataCleanManager;
 import com.itspeed.naidou.app.util.RightsManager;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.app.util.UpdateManager;
 
 import org.kymjs.kjframe.http.HttpCallBack;

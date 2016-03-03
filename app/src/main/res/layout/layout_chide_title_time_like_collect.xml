@@ -30,20 +30,20 @@
         android:textSize="11sp" />
 
     <ImageView
-        android:id="@+id/item_list_cookbook_islike"
+        android:id="@+id/layout_islike"
         android:layout_width="30dp"
         android:padding="6dp"
-        android:layout_toLeftOf="@+id/item_list_cookbook_likes"
+        android:layout_toLeftOf="@+id/layout_likes"
         android:layout_marginLeft="20dp"
         android:layout_height="30dp"
         android:src="@drawable/selector_chide_like"
         />
 
     <TextView
-        android:id="@+id/item_list_cookbook_likes"
+        android:id="@+id/layout_likes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/item_list_cookbook_iscollect"
+        android:layout_toLeftOf="@+id/layout_iscollect"
         android:text="123"
         android:layout_centerVertical="true"
         android:layout_marginBottom="3dp"
@@ -52,16 +52,16 @@
         />
 
     <ImageView
-        android:id="@+id/item_list_cookbook_iscollect"
+        android:id="@+id/layout_iscollect"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_toLeftOf="@+id/item_list_cookbook_collects"
+        android:layout_toLeftOf="@+id/layout_collects"
         android:padding="6dp"
         android:layout_marginRight="4dp"
         android:src="@drawable/selector_chide_collect" />
 
     <TextView
-        android:id="@+id/item_list_cookbook_collects"
+        android:id="@+id/layout_collects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="3dp"

@@ -15,7 +15,7 @@ import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.adapter.FollowAdapter;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.model.bean.User;
 
 import org.kymjs.kjframe.http.HttpCallBack;

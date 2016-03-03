@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.flyco.pageindicator.indicator.FlycoPageIndicaor;
 import com.itspeed.naidou.R;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 
 import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.ui.BindView;

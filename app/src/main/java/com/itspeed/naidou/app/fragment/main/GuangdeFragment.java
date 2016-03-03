@@ -12,12 +12,13 @@ import com.itspeed.naidou.app.activity.MainActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
 import com.itspeed.naidou.app.adapter.GuangdeGridViewAdapter;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
-import com.itspeed.naidou.app.util.UIHelper;
+import com.itspeed.naidou.app.helper.UIHelper;
 
 import org.kymjs.kjframe.ui.BindView;
 
 /**
  * Created by jafir on 15/9/1.
+ * 逛的fragment
  */
 public class GuangdeFragment extends TitleBarSupportFragment {
 
