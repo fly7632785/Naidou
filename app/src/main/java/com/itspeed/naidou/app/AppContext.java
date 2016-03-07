@@ -6,6 +6,7 @@ import com.itspeed.naidou.app.activity.LoginActivity;
 import com.itspeed.naidou.app.activity.SelectActivity;
 import com.itspeed.naidou.app.util.CryptoUtil;
 import com.itspeed.naidou.model.bean.User;
+import com.squareup.leakcanary.LeakCanary;
 
 import org.kymjs.kjframe.http.HttpConfig;
 import org.kymjs.kjframe.utils.DensityUtils;
@@ -37,6 +38,9 @@ public class AppContext extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        LeakCanary.install(this);
+
+
         user = new User();
         //设置默认 user信息
         user.setAvatar("");

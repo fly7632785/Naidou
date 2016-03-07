@@ -26,7 +26,7 @@ public class RecommenFragment extends TitleBarSupportFragment {
 
     MainActivity aty;
     private View layout;
-    private  Handler handler;
+    private static Handler handler;
     private RecommendChideFragment mChide;
 //    private RecommendLiaodeFragment mLiaode;
 

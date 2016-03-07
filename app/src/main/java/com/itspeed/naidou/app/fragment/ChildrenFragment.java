@@ -28,7 +28,7 @@ public class ChildrenFragment extends Level1Fragment {
 
         //从服务解析标题菜单
         level2Cate.setType(0);
-        titles = new String[]{"4-6月","7-8月","9-12月","1岁-2岁","3-6岁"};
+        titles = new String[]{"4-6月","7-8月","9-12月","1-2岁","3-6岁"};
         level2Cate.setNames(titles);
 
 

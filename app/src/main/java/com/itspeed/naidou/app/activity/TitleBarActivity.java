@@ -86,8 +86,10 @@ public abstract class TitleBarActivity extends KJActivity {
             mTvTitle.setOnClickListener(this);
             mTvRight.setOnClickListener(this);
 
-            //设置状态栏 包括颜色改变
-            LayoutUtils.init(aty, mRlTitleBar,R.color.topic_red);
+//            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                //设置状态栏 包括颜色改变
+                LayoutUtils.init(aty, mRlTitleBar, R.color.topic_red);
+//            }
 
             //设置segment监听
             segmentControl.setOnSegmentControlClickListener(new SegmentControl.OnSegmentControlClickListener() {

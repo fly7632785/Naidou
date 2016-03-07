@@ -153,10 +153,11 @@ public class StepAddStep extends BasePublishActivity {
             UIHelper.showPublishAll(this);
             KJLoger.debug("duos:" + KJActivityStack.create().getCount());
             // TODO: 16/3/1 这里需要把前面的三个 activity给删除掉
-            ActivityManager.getScreenManager().popAllActivityExceptOne(StepAddStep.class);
-//            ViewInject.toast(ActivityManager.getScreenManager().getCount()+"ge");
+            ActivityManager.getScreenManager().popAllActivity();
+        }else {
+            this.finish();
         }
-        this.finish();
+
     }
 
     @Override

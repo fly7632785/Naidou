@@ -63,6 +63,16 @@ public class ActivityManager {
         }
     }
 
+    public void popAllActivity(){
+        for (int i = 0, size = activityStack.size(); i < size; i++) {
+            if (null != activityStack.get(i)) {
+                (activityStack.get(i)).finish();
+            }
+        }
+        activityStack.clear();
+    }
+
+
     public int getCount(){
         return activityStack.size();
     }

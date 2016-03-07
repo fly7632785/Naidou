@@ -40,7 +40,7 @@ public class LiaodeFragment extends TitleBarSupportFragment {
     private ArrayList<Topic> data;
 
     //模拟加载数据
-    private Handler handler;
+    private static Handler handler;
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {

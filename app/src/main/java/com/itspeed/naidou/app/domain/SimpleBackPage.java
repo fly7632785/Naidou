@@ -24,6 +24,7 @@ import com.itspeed.naidou.app.fragment.detail.LiaodeDetailFragment;
 import com.itspeed.naidou.app.fragment.setting.AboutFragment;
 import com.itspeed.naidou.app.fragment.setting.EditInfoFragment;
 import com.itspeed.naidou.app.fragment.setting.FeedBackFragment;
+import com.itspeed.naidou.app.fragment.setting.FindBackPwdFragment;
 import com.itspeed.naidou.app.fragment.setting.ModifyPwdFragment;
 
 /**
@@ -44,7 +45,8 @@ public enum SimpleBackPage {
     MODIFY_PWD(7, ModifyPwdFragment.class),
     LIAODE_DETAIL(8, LiaodeDetailFragment.class),
     CHIDE_DETAIL(9,ChideDetailFragment.class),
-    GUANGDE_DETAIL(10,GuangdeDetailFragment.class);
+    GUANGDE_DETAIL(10,GuangdeDetailFragment.class),
+    FINDBACK_PWD(11,FindBackPwdFragment.class);
 
 
     private Class<?> clazz;

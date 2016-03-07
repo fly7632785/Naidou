@@ -77,6 +77,11 @@ public class ZoneActivity extends BaseActivity {
 
         mBack.setOnClickListener(this);
         mFollow.setOnClickListener(this);
+
+        if(uid.equals(AppContext.user.getUid())){
+            //如果是自己 则隐藏 关注按钮
+            mFollow.setVisibility(View.INVISIBLE);
+        }
         //请求userInfo
         //设置数据
 

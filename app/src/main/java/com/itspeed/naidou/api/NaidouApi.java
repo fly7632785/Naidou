@@ -355,6 +355,21 @@ public class NaidouApi {
         params.put("_re_password",confirm);
         kjh.post(baseHost+url, params, callBack);
     }
+    /**
+     * 设置新密码
+     * @param callBack
+     */
+    public static  void setNewPwd(String phone,String newPwd,HttpCallBack callBack){
+        String url = "";
+        HttpConfig config = new HttpConfig();
+        config.cacheTime = 0;
+        KJHttp kjh = new KJHttp(config);
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        params.put("_phone",phone);
+        params.put("_newpwd",newPwd);
+        kjh.post(baseHost+url, params, callBack);
+    }
 
     /**
      * 版本更新(文件下载)

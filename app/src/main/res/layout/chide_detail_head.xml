@@ -211,7 +211,7 @@
             android:layout_width="wrap_content"
             android:text="食材"
             android:textColor="@color/chide_detail_step"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:gravity="bottom"
@@ -221,7 +221,7 @@
             android:paddingBottom="10dp"
             android:text="FOOD MATERAIL"
             android:textColor="@color/chide_detail__small_step"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
     <!--<GridView-->

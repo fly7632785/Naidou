@@ -12,6 +12,7 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppContext;
+import com.itspeed.naidou.app.domain.SimpleBackPage;
 import com.itspeed.naidou.app.util.CryptoUtil;
 import com.itspeed.naidou.app.util.ReleaseResource;
 import com.itspeed.naidou.app.helper.UIHelper;
@@ -107,7 +108,7 @@ public class LoginActivity extends KJActivity {
 
         switch (v.getId()) {
             case R.id.login_findback:
-
+                SimpleBackActivity.postShowWith(aty, SimpleBackPage.FINDBACK_PWD);
                 break;
             case R.id.login_scan:
                 AppContext.isVisitor = true;

@@ -44,6 +44,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:id="@+id/modifypwd_oldpwd_ll"
         android:layout_marginLeft="15dp"
         android:layout_height="50dp">
         <TextView
@@ -70,6 +71,7 @@
     </LinearLayout>
 
     <View style="@style/line"
+        android:id="@+id/modifypwd_oldpwd_line"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="110dp"
         android:layout_marginRight="16dp"
