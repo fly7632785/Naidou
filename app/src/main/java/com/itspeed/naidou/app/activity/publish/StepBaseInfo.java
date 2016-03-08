@@ -63,11 +63,19 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
         if (isModify) {
             mTvRight.setText("完成");
         }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        addGuideImage(R.mipmap.hint_publish,R.id.publish_base_info_layout);
     }
 
     @Override
     public void initData() {
         super.initData();
+
         mObject.setContent(AppConstant.object_f);
         mProce.setContent(AppConstant.proce);
         mTime.setContent(AppConstant.time);
@@ -221,4 +229,6 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
         cookBook.setTaste(mTaste.getText());
         setCookbook(cookBook);
     }
+
+
 }

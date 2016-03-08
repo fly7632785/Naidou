@@ -8,10 +8,10 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.itspeed.naidou.R;
+import com.itspeed.naidou.app.activity.BaseActivity;
 import com.itspeed.naidou.app.manager.ActivityManager;
 import com.itspeed.naidou.model.bean.CookBook;
 
-import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.utils.FileUtils;
 import org.kymjs.kjframe.utils.KJLoger;
 
@@ -27,7 +27,7 @@ import java.io.IOException;
  * 菜谱发布的基类
  *
  */
-public abstract class BasePublishActivity extends KJActivity {
+public abstract class BasePublishActivity extends BaseActivity {
 
 
     public TextView mTvTitle;

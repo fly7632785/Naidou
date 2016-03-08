@@ -102,7 +102,7 @@
 
 
         <service android:name=".app.service.MyService"
-            android:process=":myremoteService">
+           >
             <intent-filter>
                 <action android:name="com.itspeed.myservice"/>
             </intent-filter>

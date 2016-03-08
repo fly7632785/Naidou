@@ -19,7 +19,6 @@ import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.KJActivityStack;
 import org.kymjs.kjframe.ui.SupportFragment;
 import org.kymjs.kjframe.utils.DensityUtils;
-import org.kymjs.kjframe.utils.PreferenceHelper;
 
 /**
  * 应用的主界面，包括5个模块  吃的、聊的、推荐、逛的、我的
@@ -72,8 +71,6 @@ public class MainActivity extends TitleBarActivity {
      * 现在的fragment
      */
     private TitleBarSupportFragment currentFragment;
-    @BindView(id = R.id.hint, click = true)
-    private ImageView hint;
 
 
     @Override
@@ -120,11 +117,8 @@ public class MainActivity extends TitleBarActivity {
         switch (v.getId()) {
             case R.id.ly_tab_menu_chide:
                 //判断是否第一次进入APP查看菜谱
-                boolean isFirst = PreferenceHelper.readBoolean(aty, TAG, "first_open",
-                        true);
-                if (isFirst) {
-                    hint.setVisibility(View.VISIBLE);
-                }
+                //添加 引导图层
+                addGuideImage(R.mipmap.hint_publish,R.id.main_layout);
 
                 //主动调用相应fragment的change方法，改变不同的titleBar
                 mChide.onChange();
@@ -170,11 +164,6 @@ public class MainActivity extends TitleBarActivity {
                 break;
 
 
-            case R.id.hint:
-                hint.setVisibility(View.GONE);
-                hint = null;
-                PreferenceHelper.write(aty, TAG, "first_open", false);
-                break;
         }
 
 }

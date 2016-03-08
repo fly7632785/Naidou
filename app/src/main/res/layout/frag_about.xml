@@ -47,7 +47,7 @@
         android:text="网站:www.naidour.com"
         android:textColor="#666666"
         android:textSize="13sp"
-        android:layout_height="160dp" />
+        android:layout_height="100dp" />
     <TextView
         android:layout_width="match_parent"
         android:text="成都计速科技有限公司 版权所有"

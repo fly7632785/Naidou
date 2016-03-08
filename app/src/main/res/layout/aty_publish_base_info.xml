@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/publish_base_info_layout"
     android:layout_height="match_parent">
 
 
@@ -130,12 +131,12 @@
         android:textColor="#333333"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="可以点击选择哦"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="#666666"
-        android:layout_height="wrap_content" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:text="可以点击选择哦"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:textColor="#666666"-->
+        <!--android:layout_height="wrap_content" />-->
 
 </LinearLayout>

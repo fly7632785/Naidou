@@ -1,6 +1,7 @@
 package com.itspeed.naidou.app.activity;
 
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -13,8 +14,6 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.util.LayoutUtils;
 import com.sevenheaven.segmentcontrol.SegmentControl;
 
-import org.kymjs.kjframe.KJActivity;
-
 /**
  *
  * 带titlebar的应用Activity基类
@@ -22,7 +21,7 @@ import org.kymjs.kjframe.KJActivity;
  * @author Jafir
  * @since 2015-9
  */
-public abstract class TitleBarActivity extends KJActivity {
+public abstract class TitleBarActivity extends BaseActivity {
 
     private static final int IMG_SIZW = 23;
     //titleBar 左边后退按钮
@@ -86,10 +85,10 @@ public abstract class TitleBarActivity extends KJActivity {
             mTvTitle.setOnClickListener(this);
             mTvRight.setOnClickListener(this);
 
-//            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 //设置状态栏 包括颜色改变
                 LayoutUtils.init(aty, mRlTitleBar, R.color.topic_red);
-//            }
+            }
 
             //设置segment监听
             segmentControl.setOnSegmentControlClickListener(new SegmentControl.OnSegmentControlClickListener() {

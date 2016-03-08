@@ -67,4 +67,37 @@ public abstract class BaseSupportFragment extends SupportFragment{
         return null;
     }
 
+//    public void addGuideImage(int resourceId,int xmlId) {
+//        Activity aty = getActivity();
+//        if(! PreferenceHelper.readBoolean(aty, aty.getClass().getSimpleName(), "first_open",true)){
+//            //如果不是第一次 就返回
+//            return;
+//        }
+//        PreferenceHelper.write(aty,aty.getClass().getSimpleName(),"first_open",true);
+//        //找到跟布局view
+//        View view = aty.getWindow().getDecorView().findViewById(xmlId);
+//        if(view==null)return;
+//        //判断是否是第一次进入APP
+//
+//
+//        //获取上一层的framelayout
+//        ViewParent viewParent = view.getParent();
+//        if(viewParent instanceof FrameLayout){
+//            final FrameLayout frameLayout = (FrameLayout)viewParent;
+//            final ImageView guideImage = new ImageView(aty);
+//            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+//            guideImage.setLayoutParams(params);
+//            guideImage.setScaleType(ImageView.ScaleType.FIT_XY);
+//            guideImage.setImageResource(resourceId);
+//            guideImage.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    frameLayout.removeView(guideImage);
+//                }
+//            });
+//            frameLayout.addView(guideImage);//添加引导图片
+//
+//        }
+//    }
+
 }
