@@ -28,6 +28,9 @@
         android:hint="步骤描述..."
         android:textColorHint="#666666"
         android:textSize="14sp"
+        android:maxLength="100"
+        android:maxLines="4"
+        android:imeOptions="actionDone"
         android:gravity="start"
         android:background="@null"
         android:layout_height="250dp" />

@@ -101,7 +101,10 @@ public abstract class BasePublishActivity extends BaseActivity {
      * @return
      */
     protected CookBook getCookbook() {
-        File file = FileUtils.getSaveFile("craft", "publish_file.txt");
+        File file = FileUtils.getSaveFile("Naidou/craft", "publish_file.txt");
+        if(!file.exists() || file.length()==0){
+            return new CookBook();
+        }
         char[] buffer = new char[1024];
         StringBuilder builder = new StringBuilder();
         FileReader fileReader = null;
@@ -141,7 +144,7 @@ public abstract class BasePublishActivity extends BaseActivity {
     protected void setCookbook(CookBook cookbook) {
 
         String s = JSON.toJSONString(cookbook);
-        File file = FileUtils.getSaveFile("craft", "publish_file.txt");
+        File file = FileUtils.getSaveFile("Naidou/craft", "publish_file.txt");
         FileWriter writer = null;
         try {
             writer = new FileWriter(file);

@@ -124,7 +124,8 @@ public class MyCollectFragment extends TitleBarSupportFragment {
     private void requestData() {
 
         if (!SystemTool.checkNet(aty)) {
-            String data = getFromLocal("local", "localMycollect.txt");
+//            String data = getFromLocal("local", "localMycollect.txt");
+            String data = NaidouApi.getMyCollectCache(1,10);
             if (data != null && !data.equals("")) {
                 setData(data);
             }
@@ -135,7 +136,7 @@ public class MyCollectFragment extends TitleBarSupportFragment {
                 public void onSuccess(String t) {
                     super.onSuccess(t);
                     setData(t);
-                    writeToLocal(t, "local", "localMycollect.txt");
+//                    writeToLocal(t, "local", "localMycollect.txt");
 
                 }
             });

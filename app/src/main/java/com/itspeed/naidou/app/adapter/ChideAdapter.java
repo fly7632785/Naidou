@@ -41,6 +41,9 @@ public class ChideAdapter extends ListBaseAdapter<CookBook> {
         holder.isCollect.setOnClickListener(new LikeAndCollecListener(position, mDatas, this));
         holder.isLike.setOnClickListener(new LikeAndCollecListener(position, mDatas, this));
 
+        if(mDatas.size()==0 || mDatas==null){
+            return convertView;
+        }
         CookBook cb = mDatas.get(position);
         Picasso.with(parent.getContext()).load(AppContext.HOST + cb.getCover()).into(holder.img);
         holder.title.setText(cb.getTitle());

@@ -83,6 +83,18 @@ public class NaidouApi {
         params.put("_uid", uid);
         kjh.get(baseHost + url, params, callBack);
     }
+    /**
+     * 获取用户信息缓存
+     * @param uid
+     */
+    public static String getUserInfoCache(String uid){
+        String url = "getUserInfo";
+        KJHttp kjh = new KJHttp();
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        params.put("_uid", uid);
+        return kjh.getStringCache(baseHost + url, params);
+    }
 
     /**
      * 获取我的信息
@@ -96,6 +108,16 @@ public class NaidouApi {
         HttpParams params = new HttpParams();
         params.putHeaders("ApiKey", AppContext.TOKEN);
         kjh.get(baseHost + url, params, callBack);
+    }
+    /**
+     * 获取我的信息缓存
+     */
+    public static String getMyInfoCache(){
+        String url = "getMyInfo";
+        KJHttp kjh = new KJHttp();
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+       return kjh.getStringCache(baseHost + url, params);
     }
 
 
@@ -111,6 +133,16 @@ public class NaidouApi {
         HttpParams params = new HttpParams();
         params.putHeaders("ApiKey", AppContext.TOKEN);
         kjh.get(baseHost + url,params, callBack);
+    }
+    /**
+     * 获取吃的推荐列表缓存
+     */
+    public  static  String getRecommendChideListCache(){
+        String url = "getRecommendRecipe";
+        KJHttp kjh = new KJHttp();
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        return kjh.getStringCache(baseHost + url,params);
     }
 
     /**
@@ -139,7 +171,6 @@ public class NaidouApi {
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
         params.putHeaders("ApiKey", AppContext.TOKEN);
-        KJLoger.debug("ApiKey:" + AppContext.TOKEN);
         params.put("_cate", cate);
         params.put("_page", page);
         kjh.get(baseHost + url, params, callBack);
@@ -148,10 +179,14 @@ public class NaidouApi {
     /**
      * 获取吃的列表缓存
      */
-    public  static  String  getChideListCache(){
+    public  static  String  getChideListCache(String cate,int page){
         String url = "listCookbook";
         KJHttp kjh = new KJHttp();
-        return kjh.getStringCache(url);
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        params.put("_cate", cate);
+        params.put("_page", page);
+        return kjh.getStringCache(baseHost + url,params);
     }
 
 
@@ -288,9 +323,21 @@ public class NaidouApi {
         params.put("_pre_page", count);
         kjh.get(baseHost + url, params, callBack);
     }
+    /**
+     * 获取我的菜谱缓存
+     */
+    public static  String getMyCookbookCache(int page,int count){
+        String url = "getMyCookbooks";
+        KJHttp kjh = new KJHttp();
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        params.put("_page", page);
+        params.put("_pre_page", count);
+        return  kjh.getStringCache(baseHost + url, params);
+    }
 
     /**
-     * 获取菜谱
+     * 获取菜谱详情
      * @param callBack
      */
     public static  void getCookbook(String cid,HttpCallBack callBack){
@@ -302,6 +349,18 @@ public class NaidouApi {
         params.putHeaders("ApiKey", AppContext.TOKEN);
         params.put("_cid", cid);
         kjh.get(baseHost + url, params, callBack);
+    }
+    /**
+     * 获取菜谱详情缓存
+     */
+    public static  String getCookbookCache(String cid){
+        String url = "getRecipeDetails";
+        HttpConfig config = new HttpConfig();
+        KJHttp kjh = new KJHttp(config);
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        params.put("_cid", cid);
+       return kjh.getStringCache(baseHost+url,params);
     }
 
     /**
@@ -318,6 +377,18 @@ public class NaidouApi {
         params.put("_page", page);
         params.put("_pre_page", count);
         kjh.get(baseHost + url, params, callBack);
+    }
+    /**
+     * 获取我的收藏缓存
+     */
+    public static  String  getMyCollectCache(int page,int count){
+        String url = "getMyCollects";
+        KJHttp kjh = new KJHttp();
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        params.put("_page", page);
+        params.put("_pre_page", count);
+        return  kjh.getStringCache(baseHost + url);
     }
 
     /**
@@ -359,15 +430,17 @@ public class NaidouApi {
      * 设置新密码
      * @param callBack
      */
-    public static  void setNewPwd(String phone,String newPwd,HttpCallBack callBack){
-        String url = "";
+    public static  void setNewPwd(String phone,String newPwd,String reNewPwd,HttpCallBack callBack){
+        String url = "forget_password";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
         KJHttp kjh = new KJHttp(config);
         HttpParams params = new HttpParams();
-        params.putHeaders("ApiKey", AppContext.TOKEN);
-        params.put("_phone",phone);
-        params.put("_newpwd",newPwd);
+//        params.putHeaders("ApiKey", AppContext.TOKEN);
+        params.put("_username",phone);
+        params.put("_password",newPwd);
+        params.put("_re_password",reNewPwd);
+
         kjh.post(baseHost+url, params, callBack);
     }
 
@@ -410,6 +483,16 @@ public class NaidouApi {
         HttpParams params = new HttpParams();
         params.putHeaders("ApiKey", AppContext.TOKEN);
         kjh.get(baseHost + url, params, callBack);
+    }
+    /**
+     * 关注者
+     */
+    public static  String getMyFollowCache(){
+        String url = "getMyFollows";
+        KJHttp kjh = new KJHttp();
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        return  kjh.getStringCache(baseHost + url, params);
     }
 
     /**
@@ -475,6 +558,19 @@ public class NaidouApi {
         params.put("_foods", material);
         params.put("_steps",steps);
         kjh.post(baseHost + url, params, callBack);
+
+    }
+
+
+    public static void doDeleteCookbook(String cid,HttpCallBack callBack) {
+        String url = "doDeleteRecipe";
+        HttpConfig config = new HttpConfig();
+        config.cacheTime = 0;
+        KJHttp kjh = new KJHttp(config);
+        HttpParams params = new HttpParams();
+        params.putHeaders("ApiKey", AppContext.TOKEN);
+        params.put("_cid",cid);
+        kjh.get(baseHost + url, params, callBack);
 
     }
 

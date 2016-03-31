@@ -28,8 +28,10 @@
             android:layout_width="match_parent"
             android:layout_marginTop="7dp"
             android:textColor="#666666"
+            android:layout_marginRight="30dp"
             android:id="@+id/item_recycler_step_desc"
             android:textSize="15sp"
+            android:maxLines="3"
             android:text="步骤描述..."
             android:layout_marginBottom="16dp"
             android:layout_height="wrap_content" />

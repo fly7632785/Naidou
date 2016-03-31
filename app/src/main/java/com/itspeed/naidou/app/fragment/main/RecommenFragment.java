@@ -49,6 +49,16 @@ public class RecommenFragment extends TitleBarSupportFragment {
         return layout;
     }
 
+    /**
+     * 给外部调用 刷新数据
+     */
+    public void updata(){
+        if(mChide == null){
+            return;
+        }
+        mChide.update();
+    }
+
     @Override
     protected void initData() {
         super.initData();

@@ -140,7 +140,8 @@ public class WodeFragment extends TitleBarSupportFragment {
      */
     public void requestData() {
         if (!SystemTool.checkNet(aty)) {
-            String data = getFromLocal("localUserInfo", "localUserInfo.txt");
+//            String data = getFromLocal("localUserInfo", "localUserInfo.txt");
+            String data = NaidouApi.getMyInfoCache();
             KJLoger.debug("localdataUser:" + data);
             if (data != null && !data.equals("")) {
                 setData(data);
@@ -152,7 +153,7 @@ public class WodeFragment extends TitleBarSupportFragment {
                     super.onSuccess(t);
                     KJLoger.debug("getmyInfo:" + t);
                     setData(t);
-                    writeToLocal(t,"localUserInfo", "localUserInfo.txt");
+//                    writeToLocal(t,"localUserInfo", "localUserInfo.txt");
                 }
             });
         }

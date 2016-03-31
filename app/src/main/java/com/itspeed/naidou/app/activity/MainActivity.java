@@ -157,6 +157,7 @@ public class MainActivity extends TitleBarActivity {
 
             case R.id.ly_tab_menu_mid:
                 mRecommend.onChange();
+                mRecommend.updata();
                 setSelected();
                 mImgRecommend.setSelected(true);
                 changeFragment(R.id.main_content, mRecommend);

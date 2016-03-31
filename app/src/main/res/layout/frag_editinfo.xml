@@ -45,7 +45,9 @@
             style="@style/editinfo_edit"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+android:text="121231231233"
+            android:imeOptions="actionNext"
             android:id="@+id/edit_nickname" />
     </RelativeLayout>
     <View
@@ -67,6 +69,7 @@
             style="@style/editinfo_edit"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
+            android:imeOptions="actionNext"
             android:layout_height="wrap_content"
             android:id="@+id/edit_email" />
     </RelativeLayout>
@@ -90,6 +93,7 @@
         <EditText
             style="@style/editinfo_edit"
             android:maxWidth="200dp"
+            android:imeOptions="actionDone"
             android:layout_alignTop="@+id/text_motto"
             android:layout_alignParentRight="true"
             android:layout_height="wrap_content"

@@ -33,7 +33,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@mipmap/proce" />
+                android:src="@drawable/selector_comment" />
 
             <TextView
                 android:layout_marginLeft="3dp"
@@ -54,7 +54,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@mipmap/proce" />
+                android:src="@drawable/selector_share" />
 
             <TextView
                 android:layout_marginLeft="3dp"
@@ -109,7 +109,17 @@
 
 
     </LinearLayout>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:text="发布食谱"
+        android:id="@+id/chide_detail_bottom_publish"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        android:visibility="gone"
+        android:background="#eb4960"
+        android:layout_alignParentBottom="true"
+        android:layout_height="48dp" />
 
 
     <RelativeLayout

@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/mycookbook_layout"
     android:layout_height="match_parent">
 
     <TextView
         android:layout_width="match_parent"
-        android:text="什么都没有呢"
+        android:text="什么都没有呢\n\n点击去发布菜谱"
         android:gravity="center"
-        android:id="@+id/mycookbook_text"
         android:visibility="gone"
+        android:id="@+id/mycookbook_text"
         android:layout_height="match_parent" />
+
+
+
     <ListView
         android:layout_width="match_parent"
         android:overScrollMode="never"
+
         android:id="@+id/mycookbook_list"
         android:dividerHeight="0dp"
         android:layout_height="match_parent">
 
     </ListView>
-
-</LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:src="@mipmap/hint_mycookbook"
+        android:scaleType="fitXY"
+        android:id="@+id/mycookbook_hint"
+        android:visibility="gone"
+        android:layout_height="match_parent" />
+</RelativeLayout>

@@ -143,12 +143,13 @@ public class FindBackPwdFragment extends TitleBarSupportFragment {
             ViewInject.toast("密码格式不正确");
             return;
         }
-        NaidouApi.setNewPwd(phone,newPwd, new HttpCallBack() {
+        NaidouApi.setNewPwd(phone,newPwd,confirm, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
+                KJLoger.debug("modifyPwd:" + t);
                 if (Response.getSuccess(t)) {
-                    KJLoger.debug("modifyPwd:" + t);
+
                     ViewInject.toast("修改成功");
                     writeToSP(newPwd);
                     aty.finish();

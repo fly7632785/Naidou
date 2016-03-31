@@ -189,15 +189,21 @@ public class Level2Fragment extends BaseSupportFragment implements PullToRefresh
          */
         if (!SystemTool.checkNet(aty)) {
 
-            //只缓存第一页 其余不再加载
-            if (page == 1) {
-                String data = getFromLocal("localCookbooks", "localCookbooks" + category[cate] + ".txt");
-                KJLoger.debug("localdatachide" + category[cate] + ":" + data);
-                if (data != null && !data.equals("")) {
-                    setData(data);
-                }
-            }
+//            //只缓存第一页 其余不再加载
+//            if (page == 1) {
+//                String data = getFromLocal("localCookbooks", "localCookbooks" + category[cate] + ".txt");
+//                KJLoger.debug("localdatachide" + category[cate] + ":" + data);
+//                if (data != null && !data.equals("")) {
+//                    setData(data);
+//                }
+//            }
 
+            //没有网络则获取缓存
+            String data = NaidouApi.getChideListCache(category[cate], page);
+            KJLoger.debug("cache:" + data);
+            if (data != null && !data.equals("")) {
+                setData(data);
+            }
             //完了之后 回复上下拉
             mPullLayout.onPullDownRefreshComplete();
             mPullLayout.onPullUpRefreshComplete();
@@ -211,7 +217,7 @@ public class Level2Fragment extends BaseSupportFragment implements PullToRefresh
                     super.onSuccess(t);
                     KJLoger.debug("chideList:" + t);
 
-                    writeToLocal(t, "localCookbooks", "localCookbooks" + category[cate] + ".txt");
+//                    writeToLocal(t, "localCookbooks", "localCookbooks" + category[cate] + ".txt");
 
                     setData(t);
                 }

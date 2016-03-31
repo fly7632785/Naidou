@@ -125,6 +125,13 @@ public class StepAll extends BasePublishActivity {
      * 一个是 本地预览而用
      */
     private void preview() {
+        if(!step1 ||!step3||!step2||!step4){
+            //如果咩有完成提醒
+            ViewInject.toast("菜谱不完整");
+            return;
+        }
+
+
         UIHelper.showLocalCbDetail(this, "-1", cookBook);
     }
 
@@ -189,7 +196,7 @@ public class StepAll extends BasePublishActivity {
         }
 
 
-        if (cookBook.getSteps() != null) {
+        if (cookBook.getSteps() != null && cookBook.getSteps().size()!=0) {
             stepDetail.setText("共" + cookBook.getSteps().size() + "步");
             stepPoint.setImageResource(R.mipmap.indicator_red_point);
             step4 = true;
@@ -275,7 +282,6 @@ public class StepAll extends BasePublishActivity {
                 if (Response.getSuccess(t)) {
                     dialog.dismiss();
                     ViewInject.toast("发布菜谱成功");
-
                     clearLocal();
                     aty.finish();
                 }
@@ -307,10 +313,23 @@ public class StepAll extends BasePublishActivity {
 
             JSONObject o = new JSONObject();
             JSONObject pic = new JSONObject();
-            pic.put("path",step.getPic().getPath());
-            pic.put("id",step.getPic().getId());
+            //如果是图片是默认的没有上传的也是Null
+            if(step.getPic().getPath().equals("0") || step.getPic().getLocalPath().equals("0")
+                    ||step.getPic().getId()==-1
+                    ){
+                pic.put("path","");
+                pic.put("id","");
+            }else {
+                pic.put("path", step.getPic().getPath());
+                pic.put("id", step.getPic().getId());
+            }
             o.put("pic", pic);
-            o.put("description", step.getDescription());
+            //如果 是默认的菜谱描述 就 设为空
+            if(step.getDescription().equals("菜谱描述...")){
+                o.put("description","");
+            }else {
+                o.put("description", step.getDescription());
+            }
             array.add(o);
         }
 

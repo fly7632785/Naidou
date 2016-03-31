@@ -14,7 +14,7 @@
         android:textSize="17sp"
         android:layout_centerVertical="true"
         android:paddingBottom="3dp"
-        android:text="小鸡炖蘑菇"
+        android:text="菜谱标题"
         android:textColor="#ffffff" />
 
     <TextView
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:text="1小时前"
+        android:text="时间"
         android:layout_alignBottom="@+id/item_list_cookbook_title"
         android:paddingBottom="4dp"
         android:textColor="#f5f5f5"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/layout_iscollect"
-        android:text="123"
+        android:text="0"
         android:layout_centerVertical="true"
         android:layout_marginBottom="3dp"
         android:textSize="13sp"
@@ -67,7 +67,7 @@
         android:layout_marginBottom="3dp"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:text="123"
+        android:text="0"
         android:layout_alignParentRight="true"
         android:textSize="13sp"
         android:textColor="#ffffff"

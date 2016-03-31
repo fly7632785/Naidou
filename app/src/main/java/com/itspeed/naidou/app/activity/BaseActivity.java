@@ -23,18 +23,15 @@ import java.io.IOException;
 public abstract class BaseActivity extends KJActivity {
 
 
-    /**
-     * 添加 根布局的一张引导图层
-     * 使用条件：需要在activity的content xml设置一个id
-     * @param resourceId 图层资源ID
-     * @param xmlId xml id
-     */
-    public void addGuideImage(int resourceId,int xmlId) {
-        if(! PreferenceHelper.readBoolean(this, aty.getClass().getSimpleName(), "first_open",true)){
+
+
+    public void addGuideImage(int resourceId,String tag,int xmlId) {
+        boolean isFirst = PreferenceHelper.readBoolean(this,tag , "first_open",true);
+        if(!isFirst ){
             //如果不是第一次 就返回
             return;
         }
-        PreferenceHelper.write(this,aty.getClass().getSimpleName(),"first_open",false);
+        PreferenceHelper.write(this,tag,"first_open",false);
         //找到跟布局view
         View view = getWindow().getDecorView().findViewById(xmlId);
         if(view==null)return;
@@ -59,6 +56,19 @@ public abstract class BaseActivity extends KJActivity {
             frameLayout.addView(guideImage);//添加引导图片
 
         }
+
+
+    }
+
+    /**
+     * 添加 根布局的一张引导图层
+     * 使用条件：需要在activity的content xml设置一个id
+     * @param resourceId 图层资源ID
+     * @param xmlId xml id
+     */
+    public void addGuideImage(int resourceId,int xmlId) {
+        String tag = aty.getClass().getSimpleName();
+       addGuideImage(resourceId,tag,xmlId);
     }
 
 

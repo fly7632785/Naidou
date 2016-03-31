@@ -69,6 +69,9 @@ public class RecommendChideFragment extends BaseSupportFragment{
                 break;
         }
     }
+
+
+
     @Override
     protected void initData() {
         super.initData();
@@ -76,11 +79,13 @@ public class RecommendChideFragment extends BaseSupportFragment{
 //        requestData();
     }
 
+    /**
+     * 给外部调用  主动刷新数据
+     */
     public void update() {
-        //清除原有数据
-        mData.clear();
-        //请求第一页 然后解析 设置数据
-        requestData();
+        if(mData==null || mData.size()==0) {
+            requestData();
+        }
     }
 
     @Override
@@ -88,10 +93,12 @@ public class RecommendChideFragment extends BaseSupportFragment{
         super.onStart();
 //        mPullLayout.doPullRefreshing(true,50);
         //清除原有数据
+        KJLoger.debug("recomendFragm onstart");
         mData.clear();
         //请求第一页 然后解析 设置数据
         requestData();
     }
+
 
     private void init() {
         mRecyclerView = (RecyclerViewPager) layout.findViewById(R.id.recommend_chide_recyler_pager);
@@ -184,7 +191,8 @@ public class RecommendChideFragment extends BaseSupportFragment{
      */
     private void requestData() {
         if(!SystemTool.checkNet(aty)){
-            String data = getFromLocal("localRecommend", "localRecommendChide.txt");
+//            String data = getFromLocal("localRecommend", "localRecommendChide.txt");
+            String data = NaidouApi.getRecommendChideListCache();
             if(data != null && !data.equals("")) {
                 setData(data);
             }
@@ -197,7 +205,7 @@ public class RecommendChideFragment extends BaseSupportFragment{
                     if (Response.getSuccess(t)) {
                         KJLoger.debug("requestData:" + t);
                         setData(t);
-                        writeToLocal(t,"localRecommend", "localRecommendChide.txt");
+//                        writeToLocal(t,"localRecommend", "localRecommendChide.txt");
                     }
                 }
             });

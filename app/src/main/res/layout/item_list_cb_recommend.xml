@@ -20,7 +20,7 @@
             android:layout_height="180dp" />
         <TextView
             android:layout_width="330dp"
-            android:text="小鸡炖蘑菇"
+            android:text="推荐菜谱标题"
             android:layout_marginTop="10dp"
             android:id="@+id/item_list_cb_recommend_title"
             android:gravity="center_horizontal"
@@ -33,7 +33,7 @@
             android:layout_width="320dp"
             android:lineSpacingExtra="5dp"
             android:id="@+id/item_list_cb_recommend_desc"
-            android:text="面对不爱吃饭的孩子时可以选择一些颜色鲜艳的石材，这道彩疏炒虾仁就是一道色彩丰富，味道鲜美的菜肴"
+            android:text="推荐菜谱描述"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:textColor="#666666"
@@ -53,7 +53,7 @@
                 android:layout_height="20dp" />
             <TextView
                 android:layout_width="wrap_content"
-                android:text="共8步"
+                android:text="共0步"
                 android:id="@+id/item_list_cb_recommend_steps"
                 android:textSize="13sp"
                 android:layout_marginLeft="5dp"
@@ -62,7 +62,7 @@
                 android:layout_height="match_parent" />
             <TextView
                 android:layout_width="wrap_content"
-                android:text="月子餐"
+                android:text="种类"
                 android:background="@color/topic_red"
                 android:layout_marginLeft="10dp"
                 android:paddingLeft="10dp"

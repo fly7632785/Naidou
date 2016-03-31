@@ -1,26 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/transforms/instantRunSlicer/debug/jars/1/5/main_sliceb.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="f4e0b94044196ced1f9f0f5d29e3fe742eb12e76">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/transforms/dex/debug/folders/1000/5/main_sliceb_c2ef2508f29d3e25b125829ebeb0098bed5d0011/classes.dex" />
-    </item>
-    <item
-        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/transforms/instantRunSlicer/debug/jars/1/5/main_slice.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="09d26b01bfb3ee13b751663a9c9c80c371525365">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/transforms/dex/debug/folders/1000/5/main_slice_2eaa5daf24ba76e8cec9de5bef660293add9210e/classes.dex" />
-    </item>
-    <item
-        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/transforms/instantRunSlicer/debug/jars/1/1a/dependencies.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="a290e6edcbe67ddab3fed78c34c6b60b5c1e89ae">
-        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/transforms/dex/debug/folders/1000/1a/dependencies_4bdf7fc94f28d0595b505673e0c9dcbaa01ab04e/classes.dex" />
-    </item>
-
-</items>
+<items version="2" />

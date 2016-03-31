@@ -18,9 +18,10 @@
             android:src="@mipmap/default_bg" />
 
         <ImageView
-            android:background="@mipmap/chide_detail_head"
+            android:background="@mipmap/chide_detail_layer"
             android:layout_alignParentBottom="true"
             android:layout_height="68dp"
+            android:scaleType="fitXY"
             android:layout_width="match_parent" />
 
 
@@ -34,8 +35,8 @@
 
             <org.kymjs.kjframe.widget.RoundImageView
                 android:id="@+id/chide_detail_head_avatar"
-                android:layout_height="31dp"
-                android:layout_width="31dp"
+                android:layout_height="37dp"
+                android:layout_width="37dp"
                 android:padding="3dp"
                 android:src="@mipmap/default_avatar" />
 
@@ -107,8 +108,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        >
 
         <LinearLayout
             android:gravity="center_horizontal"
@@ -121,7 +121,7 @@
             <ImageView
                 android:layout_height="30dp"
                 android:layout_width="30dp"
-                android:src="@mipmap/proce"></ImageView>
+                android:src="@mipmap/proce_nobg"></ImageView>
 
             <TextView
                 android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
             <ImageView
                 android:layout_height="30dp"
                 android:layout_width="30dp"
-                android:src="@mipmap/time"></ImageView>
+                android:src="@mipmap/time_nobg"></ImageView>
 
             <TextView
                 style="@style/cookbook_detail_baseinfo"
@@ -161,7 +161,7 @@
             <ImageView
                 android:layout_height="30dp"
                 android:layout_width="30dp"
-                android:src="@mipmap/taste"></ImageView>
+                android:src="@mipmap/taste_nobg"></ImageView>
 
             <TextView
                 style="@style/cookbook_detail_baseinfo"
@@ -180,7 +180,7 @@
             <ImageView
                 android:layout_height="30dp"
                 android:layout_width="30dp"
-                android:src="@mipmap/difficult"></ImageView>
+                android:src="@mipmap/difficult_nobg"></ImageView>
 
             <TextView
                 style="@style/cookbook_detail_baseinfo"

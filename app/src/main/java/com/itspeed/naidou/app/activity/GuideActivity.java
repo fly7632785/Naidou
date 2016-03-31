@@ -43,6 +43,7 @@ public class GuideActivity extends KJActivity {
     public void initData() {
         super.initData();
 
+
         viewPager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {

@@ -69,7 +69,7 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
     @Override
     protected void onStart() {
         super.onStart();
-        addGuideImage(R.mipmap.hint_publish,R.id.publish_base_info_layout);
+        addGuideImage(R.mipmap.hint_publish_baseinfo,R.id.publish_base_info_layout);
     }
 
     @Override

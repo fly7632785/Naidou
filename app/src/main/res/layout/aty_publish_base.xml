@@ -42,6 +42,7 @@
         android:singleLine="true"
         android:layout_marginRight="20dp"
         android:hint="写几句简单的描述吧..."
+        android:maxLength="15"
         android:textColorHint="#666666"
         android:textSize="14sp"
         android:gravity="start"

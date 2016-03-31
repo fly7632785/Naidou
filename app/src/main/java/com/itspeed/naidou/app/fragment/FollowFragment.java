@@ -21,13 +21,14 @@ import com.itspeed.naidou.model.bean.User;
 import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.utils.KJLoger;
+import org.kymjs.kjframe.utils.SystemTool;
 
 import java.util.ArrayList;
 
 /**
  * Created by jafir on 15/9/28.
  */
-public class FollowFragment extends TitleBarSupportFragment{
+public class FollowFragment extends TitleBarSupportFragment {
 
     private SimpleBackActivity aty;
     private View layout;
@@ -42,7 +43,7 @@ public class FollowFragment extends TitleBarSupportFragment{
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-        layout = View.inflate(aty, R.layout.frag_mycookbook,null);
+        layout = View.inflate(aty, R.layout.frag_mycookbook, null);
         return layout;
     }
 
@@ -66,7 +67,7 @@ public class FollowFragment extends TitleBarSupportFragment{
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                UIHelper.showZone(aty,mData.get(position).getUid());
+                UIHelper.showZone(aty, mData.get(position).getUid());
             }
         });
         mData = new ArrayList<>();
@@ -74,48 +75,61 @@ public class FollowFragment extends TitleBarSupportFragment{
     }
 
     private void requestData() {
-        NaidouApi.getMyFollow(new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("getMyFollow:"+t);
-                if(Response.getSuccess(t)){
-                    dialog.dismiss();
-                    mData = Response.getFollowList(t);
-                    if(mData.isEmpty() || mData==null){
-                        mEmptyText.setVisibility(View.VISIBLE);
-                    }else {
-                        mAdapter.setData(mData);
-                        mListView.setAdapter(mAdapter);
-                    }
-                }
+
+        if (!SystemTool.checkNet(aty)) {
+            String data = NaidouApi.getMyFollowCache();
+            KJLoger.debug("localdataUser:" + data);
+            if (data != null && !data.equals("")) {
+                setData(data);
             }
-        });
+        } else {
+            NaidouApi.getMyFollow(new HttpCallBack() {
+                @Override
+                public void onSuccess(String t) {
+                    super.onSuccess(t);
+                    KJLoger.debug("getMyFollow:" + t);
+                    setData(t);
+                }
+            });
+        }
 
+        }
+
+    private void setData(String t) {
+        if (Response.getSuccess(t)) {
+            dialog.dismiss();
+            mData = Response.getFollowList(t);
+            if (mData.isEmpty() || mData == null) {
+                mEmptyText.setVisibility(View.VISIBLE);
+            } else {
+                mAdapter.setData(mData);
+                mListView.setAdapter(mAdapter);
+            }
+        }
     }
 
     @Override
-    public void onChange() {
-        super.onChange();
-        setTitleType(TitleBarActivity.TitleBarType.Titlebar2);
-        setBackImage(R.drawable.selector_title_back);
-        setTitle("关注");
-        setMenuImage(null);
-    }
+        public void onChange () {
+            super.onChange();
+            setTitleType(TitleBarActivity.TitleBarType.Titlebar2);
+            setBackImage(R.drawable.selector_title_back);
+            setTitle("关注");
+            setMenuImage(null);
+        }
 
 
-    @Override
-    public void onBackClick() {
-        super.onBackClick();
-        aty.finish();
+        @Override
+        public void onBackClick () {
+            super.onBackClick();
+            aty.finish();
+        }
+        @Override
+        public void onDestroy () {
+            aty = null;
+            layout = null;
+            mData = null;
+            mListView = null;
+            mAdapter = null;
+            super.onDestroy();
+        }
     }
-    @Override
-    public void onDestroy() {
-        aty = null;
-        layout= null;
-        mData = null;
-        mListView = null;
-        mAdapter = null;
-        super.onDestroy();
-    }
-}

@@ -1,5 +1,6 @@
 package com.itspeed.naidou.app.fragment.detail;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,15 +17,20 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.api.NaidouApi;
 import com.itspeed.naidou.api.Response;
 import com.itspeed.naidou.app.AppConfig;
+import com.itspeed.naidou.app.AppConstant;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.activity.SimpleBackActivity;
 import com.itspeed.naidou.app.activity.TitleBarActivity;
+import com.itspeed.naidou.app.fragment.Level2Fragment;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.app.helper.OperateHelper;
+import com.itspeed.naidou.app.manager.ActivityManager;
 import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.TimeUtil;
 import com.itspeed.naidou.app.helper.UIHelper;
@@ -37,10 +43,14 @@ import org.kymjs.kjframe.http.HttpCallBack;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.ViewInject;
 import org.kymjs.kjframe.utils.DensityUtils;
+import org.kymjs.kjframe.utils.FileUtils;
 import org.kymjs.kjframe.utils.KJLoger;
 import org.kymjs.kjframe.utils.StringUtils;
 import org.kymjs.kjframe.utils.SystemTool;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -69,6 +79,10 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 
     private TextView mLike;
     private TextView mCollect;
+    @BindView(id = R.id.chide_detail_head_bottom)
+    private LinearLayout mBottom;
+    @BindView(id = R.id.chide_detail_bottom_publish,click = true)
+    private TextView mBottomPublish;
     private LinearLayout mIsLike;
     private LinearLayout mIsCollect;
     private LinearLayout mComment;
@@ -98,6 +112,8 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     private int likes;
     private int collects;
     private int index;
+    private ProgressDialog dialog;
+    private CookBook cookBook;
 
 
     @Override
@@ -132,7 +148,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         index =  aty.getBundleData().getInt("index",-1);
         //获取cid
         cid = (String) aty.getBundleData().get("cid");
-        CookBook cookBook = (CookBook) aty.getBundleData().get("cookbook");
+        cookBook = (CookBook) aty.getBundleData().get("cookbook");
         initHead();
         mListView = (ListView) layout.findViewById(R.id.chide_detail_list);
         mListView.setClickable(false);
@@ -166,6 +182,11 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //跳转到图片浏览去
+                if(position==0){
+                    //如果是header 则为0
+                    return;
+                }
                 if (mStepData != null) {
                     String[] urls = new String[mStepData.size()];
                     String[] descs = new String[mStepData.size()];
@@ -194,7 +215,8 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     private void requestData() {
 
         if (!SystemTool.checkNet(aty)) {
-            String data = getFromLocal("localChideDetail", "localchide" + cid + ".txt");
+//            String data = getFromLocal("localChideDetail", "localchide" + cid + ".txt");
+            String data = NaidouApi.getCookbookCache(cid);
             if (data != null && !data.equals("")) {
                 setData(data);
             }
@@ -205,7 +227,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
                 public void onSuccess(String t) {
                     super.onSuccess(t);
                     setData(t);
-                    writeToLocal(t, "localChideDetail", "localchide" + cid + ".txt");
+//                    writeToLocal(t, "localChideDetail", "localchide" + cid + ".txt");
                 }
             });
         }
@@ -293,6 +315,10 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 //        mIsCollect.setVisibility(View.GONE);
 
 
+        //关掉 bottom
+        mBottom.setVisibility(View.GONE);
+        mBottomPublish.setVisibility(View.VISIBLE);
+
         new KJBitmap.Builder().imageUrl(AppContext.userAvatarPath).view(mAvatar).display();
         new KJBitmap.Builder().imageUrl(AppContext.HOST + cookBook.getCoverPic().getPath()).view(mCover).display();
         mTime.setText(StringUtils.friendlyTime(TimeUtil.currentDate()));
@@ -366,6 +392,122 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         setMenuImage(null);
     }
 
+    /**
+     * 上传json数据
+     * 在详情预览里面 也有发布
+     * 所以需要接受传过来的数据
+     */
+    private void uploadData() {
+
+        dialog = new ProgressDialog(aty);
+        dialog.setMessage("正在上传图片...");
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+
+        //获取cate种类
+        int category =  getCategory();
+        //获取 食材json
+        String materialJson = JSON.toJSONString(cookBook.getFoods());
+
+        //获取 步骤json
+        String stepsJson = getStepJson();
+
+        KJLoger.debug("data://"  + "coverid:"+cookBook.getCoverPic().getId()+"category:"+ Level2Fragment.category[category]
+                + "materialjson:" + materialJson + "stepsjson:" + stepsJson
+        );
+
+        NaidouApi.publishCookBook(cookBook.getTitle(), cookBook.getDescription(), cookBook.getCoverPic().getId(), Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
+            @Override
+            public void onSuccess(String t) {
+                super.onSuccess(t);
+                KJLoger.debug("publishCookBook:" + t);
+                if (Response.getSuccess(t)) {
+                    dialog.dismiss();
+                    ViewInject.toast("发布菜谱成功");
+                    clearLocal();
+                    //清理掉之前发布的activity
+                    ActivityManager.getScreenManager().popAllActivity();
+                    aty.finish();
+                }
+            }
+        });
+
+    }
+    /**
+     * 清理草稿箱 相当于重建一个新的菜谱
+     */
+    private void clearLocal() {
+        cookBook = new CookBook();
+        setCookbook(cookBook);
+    }
+
+    /**
+     * 把步骤操作后的菜谱重新存到本地 整合数据
+     */
+    protected void setCookbook(CookBook cookbook) {
+
+        String s = JSON.toJSONString(cookbook);
+        File file = FileUtils.getSaveFile("Naidou/craft", "publish_file.txt");
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(file);
+            writer.write(s.trim());
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
+
+    /**
+     * 获取步骤的json数据
+     *
+     * @return
+     */
+    private String getStepJson() {
+
+
+        com.alibaba.fastjson.JSONArray array = new com.alibaba.fastjson.JSONArray();
+        for (int i = 0; i < cookBook.getSteps().size(); i++) {
+            Step  step = cookBook.getSteps().get(i);
+
+
+            JSONObject o = new JSONObject();
+            JSONObject pic = new JSONObject();
+            pic.put("path",step.getPic().getPath());
+            pic.put("id",step.getPic().getId());
+            o.put("pic", pic);
+            o.put("description", step.getDescription());
+            array.add(o);
+        }
+
+        return array.toJSONString();
+    }
+
+
+    /**
+     * 获取 对应object 的category 种类
+     * @return
+     */
+    private int getCategory() {
+
+
+        for (int i = 0; i < AppConstant.object.length; i++) {
+            if(cookBook.getObject().equals(AppConstant.object[i])){
+                return i;
+            }
+        }
+        return 0;
+    }
     @Override
     protected void widgetClick(View v) {
         super.widgetClick(v);
@@ -374,6 +516,12 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
             return;
         }
         switch (v.getId()) {
+            case R.id.chide_detail_bottom_publish:
+                //预览的发布
+                uploadData();
+
+                break;
+
             case R.id.chide_detail_head_avatar:
                 UIHelper.showZone(aty, uid);
                 break;
@@ -515,12 +663,24 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 
             if (cid.equals("-1")) {
                 //本地 提取json数据
-                new KJBitmap.Builder().view(holder.cover).imageUrl(step.getPic().getLocalPath()).display();
+                if(step.getPic().getLocalPath().equals("0")){
+                    holder.cover.setVisibility(View.GONE);
+                }else {
+                    new KJBitmap.Builder().view(holder.cover).imageUrl(step.getPic().getLocalPath()).display();
+                }
             } else {
                 //网络 请求数据 设置数据
-                new KJBitmap.Builder().view(holder.cover).imageUrl(AppContext.HOST + step.getPic().getPath()).display();
+                if(step.getPic().getId()==0 || step.getPic().getId()==-1){
+                    holder.cover.setVisibility(View.GONE);
+                }else {
+                    new KJBitmap.Builder().view(holder.cover).imageUrl(AppContext.HOST + step.getPic().getPath()).display();
+                }
             }
-            holder.desc.setText(step.getDescription());
+            if(step.getDescription().equals("")) {
+                holder.desc.setVisibility(View.GONE);
+            }else {
+                holder.desc.setText(step.getDescription());
+            }
             holder.step_chinese.setText("第" + mStepChinese[position] + "步");
             holder.step_english.setText("STEP " + mStepEnglish[position]);
             return convertView;

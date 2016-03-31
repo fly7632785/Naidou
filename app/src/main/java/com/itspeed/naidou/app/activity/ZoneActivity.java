@@ -87,7 +87,8 @@ public class ZoneActivity extends BaseActivity {
 
         if(!SystemTool.checkNet(aty)){
 
-            String data = getFromLocal("localUsers", "localUsers"+uid+".txt");
+//            String data = getFromLocal("localUsers", "localUsers"+uid+".txt");
+            String data = NaidouApi.getUserInfoCache(uid);
             if (data != null && !data.equals("")) {
                 setData(data);
             }
