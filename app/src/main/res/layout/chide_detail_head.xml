@@ -126,6 +126,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:id="@+id/chide_detail_head_proce"
                 android:layout_width="wrap_content"
                 android:text="炖" />
 
@@ -146,6 +147,7 @@
 
             <TextView
                 style="@style/cookbook_detail_baseinfo"
+                android:id="@+id/chide_detail_head_cooktime"
                 android:text="90分钟" />
 
         </LinearLayout>
@@ -165,6 +167,7 @@
 
             <TextView
                 style="@style/cookbook_detail_baseinfo"
+                android:id="@+id/chide_detail_head_taste"
                 android:text="家常味" />
 
         </LinearLayout>
@@ -184,6 +187,7 @@
 
             <TextView
                 style="@style/cookbook_detail_baseinfo"
+                android:id="@+id/chide_detail_head_difficult"
                 android:text="厨神级别" />
 
         </LinearLayout>

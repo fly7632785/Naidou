@@ -93,7 +93,9 @@ public class StepScanActivity extends KJActivity {
             View view = View.inflate(container.getContext(), R.layout.item_viewpager_step_scan, null);
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             PhotoView photoView = (PhotoView) view.findViewById(R.id.item_viewpager_step_scan_photo);
-            Picasso.with(container.getContext()).load(urls[position]).error(R.mipmap.default_bg).into(photoView);
+
+
+            Picasso.with(container.getContext()).load(urls[position]).noPlaceholder().into(photoView);
             TextView desc = (TextView) view.findViewById(R.id.item_viewpager_step_scan_desc);
             desc.setText(descs[position]);
             container.addView(view);

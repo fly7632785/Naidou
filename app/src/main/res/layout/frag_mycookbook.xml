@@ -4,13 +4,7 @@
     android:id="@+id/mycookbook_layout"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:text="什么都没有呢\n\n点击去发布菜谱"
-        android:gravity="center"
-        android:visibility="gone"
-        android:id="@+id/mycookbook_text"
-        android:layout_height="match_parent" />
+
 
 
 
@@ -23,6 +17,15 @@
         android:layout_height="match_parent">
 
     </ListView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="什么都没有呢\n\n点击去发布菜谱"
+        android:gravity="center"
+        android:visibility="gone"
+        android:id="@+id/mycookbook_text"
+        android:layout_height="match_parent" />
     <ImageView
         android:layout_width="match_parent"
         android:src="@mipmap/hint_mycookbook"
@@ -31,3 +34,6 @@
         android:visibility="gone"
         android:layout_height="match_parent" />
 </RelativeLayout>
+
+
+

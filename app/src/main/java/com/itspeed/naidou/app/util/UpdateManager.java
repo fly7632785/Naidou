@@ -2,6 +2,7 @@ package com.itspeed.naidou.app.util;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -68,7 +69,7 @@ public class UpdateManager {
     private Dialog mDownloadDialog;
 
     //提示对话框
-    private Dialog mShowDialog;
+//    private Dialog mShowDialog;
     private Handler mHandler = new Handler()
     {
         public void handleMessage(Message msg)
@@ -82,11 +83,11 @@ public class UpdateManager {
 
                 case FAIL_TO_LOAD_XML:
                     Toast.makeText(mContext,"获取数据失败",Toast.LENGTH_SHORT).show();
-                    mShowDialog.dismiss();
+                    dialog.dismiss();
                     break;
                 case FINISH_DOWNLOAD_XML:
                     checkUpdate();
-                    mShowDialog.dismiss();
+                    dialog.dismiss();
                     break;
                 // 正在下载
                 case DOWNLOAD:
@@ -103,6 +104,7 @@ public class UpdateManager {
             }
         }
     };
+    private ProgressDialog dialog;
 
     public UpdateManager(Context context)
     {
@@ -247,8 +249,14 @@ public class UpdateManager {
      * 开始从服务器获得xml
      */
     public void start(){
-        mShowDialog = new AlertDialog.Builder(mContext).setTitle("正在检查更新...").create();
-        mShowDialog.show();
+
+        dialog = new ProgressDialog(mContext);
+        dialog.setMessage("正在检查更新...");
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        
+//        mShowDialog = new AlertDialog.Builder(mContext).setTitle("正在检查更新...").create();
+//        mShowDialog.show();
         new DownloadXMLThread().start();
     }
 
@@ -310,7 +318,7 @@ public class UpdateManager {
                     {
                         file.mkdir();
                     }
-                    File apkFile = new File(mSavePath, info.getVersionName());
+                    File apkFile = new File(mSavePath, info.getVersionName()+".apk");
                     FileOutputStream fos = new FileOutputStream(apkFile);
                     int count = 0;
                     // 缓存

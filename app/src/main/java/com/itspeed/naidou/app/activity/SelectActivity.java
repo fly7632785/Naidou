@@ -23,7 +23,6 @@ import com.itspeed.naidou.app.AppConfig;
 import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.utils.KJLoger;
-import org.kymjs.kjframe.utils.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -239,16 +238,23 @@ public class SelectActivity extends KJActivity {
      * 从相册中取图片
      */
     private void pickPhoto() {
+
+        /**
+         * 由于小米手机MIUI高版本  对于4.4那个新的选择器有问题 可能是ROM删除了
+         * 所以采用原生的
+         */
+
         //看是否是API大于4.4
-        if (mIsKitKat) {
-            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            //设置选择的内容都是图片
-            intent.setType("image/*");
-            startActivityForResult(intent, SELECT_PIC_BY_PICK_PHOTO_KITKAT);
-        } else {
+//        if (mIsKitKat) {
+//            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+//            intent.addCategory(Intent.CATEGORY_OPENABLE);
+//            //设置选择的内容都是图片
+//            KJLoger.debug("4.4 选择图库");
+//            intent.setType("image/*");
+//            startActivityForResult(intent, SELECT_PIC_BY_PICK_PHOTO_KITKAT);
+//        } else {
             cropNormal();
-        }
+//        }
     }
 
     /**
@@ -358,7 +364,7 @@ public class SelectActivity extends KJActivity {
                     //裁剪图片
                     cropPhotoKitKat(uri);
                 } else {
-                    Toast.makeText(aty, "4.4版本选择图片失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(aty, "选择图片失败", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -374,19 +380,20 @@ public class SelectActivity extends KJActivity {
             case CROP_PHOTO:
                 KJLoger.debug("此时的result:" + resultCode);
                 if (resultCode == RESULT_OK) {
-                    if (data != null) {
-                        Uri u = data.getData();
-                        Bitmap bitmap = data.getParcelableExtra("data");
-                        KJLoger.debug("uri:" + u);
-                        KJLoger.debug("birmap:" + bitmap);
+//                    if (data != null) {
+//                        Uri u = data.getData();
+//                        Bitmap bitmap = data.getParcelableExtra("data");
+//                        KJLoger.debug("uri:" + u);
+//                        KJLoger.debug("birmap:" + bitmap);
+//
 
-
-                        Bitmap mPhoto = data.getExtras().getParcelable("data");
-                        KJLoger.debug("mPhoto:" + mPhoto);
-                        String filePath = data.getExtras().getString("filePath");
-                        if (!StringUtils.isEmpty(filePath))
-                            KJLoger.debug("filepath:" + filePath);
-                    }
+//
+//                        Bitmap mPhoto = data.getExtras().getParcelable("data");
+//                        KJLoger.debug("mPhoto:" + mPhoto);
+//                        String filePath = data.getExtras().getString("filePath");
+//                        if (!StringUtils.isEmpty(filePath))
+//                            KJLoger.debug("filepath:" + filePath);
+//                    }
 
 
                     Toast.makeText(aty, "裁剪成功", Toast.LENGTH_SHORT).show();

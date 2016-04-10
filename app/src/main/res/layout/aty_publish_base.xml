@@ -22,6 +22,7 @@
         android:textSize="19sp"
         android:id="@+id/publish_base_title"
         android:background="@null"
+        android:maxLength="16"
         android:layout_height="40dp" />
 
     <ImageView
@@ -42,7 +43,7 @@
         android:singleLine="true"
         android:layout_marginRight="20dp"
         android:hint="写几句简单的描述吧..."
-        android:maxLength="15"
+        android:maxLength="50"
         android:textColorHint="#666666"
         android:textSize="14sp"
         android:gravity="start"

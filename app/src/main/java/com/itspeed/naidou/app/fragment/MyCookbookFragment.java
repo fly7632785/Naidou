@@ -118,7 +118,8 @@ public class MyCookbookFragment extends TitleBarSupportFragment {
                                     KJLoger.debug("delete:" + t);
                                     ViewInject.toast("删除成功");
                                     //重新获取数据
-                                    requestData();
+//                                    requestData();
+                                    mAdapter.removeItem(mData.get(position));
                                 }
 
                             }
@@ -159,6 +160,7 @@ public class MyCookbookFragment extends TitleBarSupportFragment {
     protected void widgetClick(View v) {
         super.widgetClick(v);
         if (v.getId() == R.id.mycookbook_text) {
+            KJLoger.debug("cccccccccc");
             UIHelper.showPublish(aty);
             aty.finish();
         } else if (v.getId() == R.id.mycookbook_hint) {
@@ -177,6 +179,7 @@ public class MyCookbookFragment extends TitleBarSupportFragment {
     }
 
     private void requestData() {
+        mAdapter.notifyDataSetChanged();
         if (!SystemTool.checkNet(aty)) {
 //            String data = getFromLocal("local", "localMycookbook.txt");
             String data = NaidouApi.getMyCookbookCache(1, 10);
@@ -221,7 +224,9 @@ public class MyCookbookFragment extends TitleBarSupportFragment {
 
                 mAdapter.setData(mData);
                 mListView.setAdapter(mAdapter);
+
             }
+            mAdapter.notifyDataSetChanged();
         }
     }
 

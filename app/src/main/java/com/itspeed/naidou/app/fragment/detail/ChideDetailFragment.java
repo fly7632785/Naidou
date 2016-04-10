@@ -91,6 +91,10 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
     private TextView mTime;
     private TextView mTitle;
     private TextView mDesc;
+    private TextView mProce;
+    private TextView mDifficult;
+    private TextView mCooktime;
+    private TextView mTaste;
 //    private TextView mLikes;
 //    private TextView mCollects;
 //    private GridView mGridview;
@@ -272,6 +276,12 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 //        mCollects.setText("" + cookBook.getCollectCount());
         mTitle.setText(cookBook.getTitle());
         mDesc.setText(cookBook.getDescription());
+        mProce.setText(cookBook.getProce());
+        mTaste.setText(cookBook.getTaste());
+        mDifficult.setText(cookBook.getDifficult());
+        mCooktime.setText(cookBook.getDuration());
+
+
         mUsername.setText(cookBook.getFromWho());
 
         //食材
@@ -280,6 +290,9 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         isLike = cookBook.isLike();
         collects = cookBook.getCollectCount();
         likes = cookBook.getLikedCount();
+
+
+
 
         mIsLike.setSelected(isLike);
         mIsCollect.setSelected(isCollect);
@@ -319,6 +332,7 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         mBottom.setVisibility(View.GONE);
         mBottomPublish.setVisibility(View.VISIBLE);
 
+
         new KJBitmap.Builder().imageUrl(AppContext.userAvatarPath).view(mAvatar).display();
         new KJBitmap.Builder().imageUrl(AppContext.HOST + cookBook.getCoverPic().getPath()).view(mCover).display();
         mTime.setText(StringUtils.friendlyTime(TimeUtil.currentDate()));
@@ -326,6 +340,11 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 //        mCollects.setText("" + cookBook.getCollectCount());
         mTitle.setText(cookBook.getTitle());
         mDesc.setText(cookBook.getDescription());
+        mProce.setText(cookBook.getProce());
+        mTaste.setText(cookBook.getTaste());
+        mDifficult.setText(cookBook.getDifficult());
+        mCooktime.setText(cookBook.getDuration());
+
         mUsername.setText(AppContext.user.getNickname());
 
         //食材
@@ -374,6 +393,10 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
         mTitle = (TextView) head.findViewById(R.id.chide_detail_head_title);
         mTime = (TextView) head.findViewById(R.id.chide_detail_head_time);
         mDesc = (TextView) head.findViewById(R.id.chide_detail_head_desc);
+        mProce = (TextView) head.findViewById(R.id.chide_detail_head_proce);
+        mTaste = (TextView) head.findViewById(R.id.chide_detail_head_taste);
+        mDifficult = (TextView) head.findViewById(R.id.chide_detail_head_difficult);
+        mCooktime = (TextView) head.findViewById(R.id.chide_detail_head_cooktime);
         mGridLayout = (GridLayout) head.findViewById(R.id.chide_detail_head_gridlayout);
 //        mIsLike.setOnClickListener(this);
 //        mIsCollect.setOnClickListener(this);
@@ -412,12 +435,37 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
 
         //获取 步骤json
         String stepsJson = getStepJson();
+        String proce = null;
+        String difficult= null;
+        String duration= null;
+        String taste= null;
+        for (int i = 0; i < AppConstant.proce.length; i++) {
+            if(cookBook.getProce().equals(AppConstant.proce[i])){
+                proce = AppConstant.proce_eng[i];
+            }
+        }
+        for (int i = 0; i < AppConstant.difficult.length; i++) {
+            if(cookBook.getDifficult().equals(AppConstant.difficult[i])){
+                difficult = AppConstant.difficult_eng[i];
+            }
+        }
+        for (int i = 0; i < AppConstant.taste.length; i++) {
+            if(cookBook.getTaste().equals(AppConstant.taste[i])){
+                taste = AppConstant.taste_eng[i];
+            }
+        }
+        for (int i = 0; i < AppConstant.time.length; i++) {
+            if(cookBook.getDuration().equals(AppConstant.time[i])){
+                duration = AppConstant.time_eng[i];
+            }
+        }
+
 
         KJLoger.debug("data://"  + "coverid:"+cookBook.getCoverPic().getId()+"category:"+ Level2Fragment.category[category]
-                + "materialjson:" + materialJson + "stepsjson:" + stepsJson
+                +"proce:"+proce+"taste:"+taste+"duration:"+duration+"difficult:"+difficult+ "materialjson:" + materialJson + "stepsjson:" + stepsJson
         );
 
-        NaidouApi.publishCookBook(cookBook.getTitle(), cookBook.getDescription(), cookBook.getCoverPic().getId(), Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
+        NaidouApi.publishCookBook(cookBook.getTitle(), cookBook.getDescription(),cookBook.getCoverPic().getId(), Level2Fragment.category[category],proce,taste,difficult,duration, materialJson, stepsJson, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
@@ -526,11 +574,11 @@ public class ChideDetailFragment extends TitleBarSupportFragment {
                 UIHelper.showZone(aty, uid);
                 break;
             case R.id.chide_detail_head_bottom_share:
-                ViewInject.toast("share");
+                ViewInject.toast("功能开发中...");
                 break;
 
             case R.id.chide_detail_head_bottom_comment:
-                ViewInject.toast("comment");
+                ViewInject.toast("功能开发中...");
                 break;
 
             case R.id.chide_detail_head_bottom_like:

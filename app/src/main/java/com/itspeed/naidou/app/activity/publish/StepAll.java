@@ -166,12 +166,12 @@ public class StepAll extends BasePublishActivity {
         }
 
         if (!StringUtils.isEmpty(cookBook.getObject())
-                || !StringUtils.isEmpty(cookBook.getCookTime())
+                || !StringUtils.isEmpty(cookBook.getDuration())
                 || !StringUtils.isEmpty(cookBook.getDifficult())
                 || !StringUtils.isEmpty(cookBook.getProce())
                 || !StringUtils.isEmpty(cookBook.getTaste())
                 ) {
-            baseinfoDetail.setText(cookBook.getObject()+" "+ cookBook.getProce()+" " + cookBook.getCookTime()+" " +cookBook.getTaste()+" "+ cookBook.getDifficult());
+            baseinfoDetail.setText(cookBook.getObject()+" "+ cookBook.getProce()+" " + cookBook.getDuration()+" " +cookBook.getTaste()+" "+ cookBook.getDifficult());
             baseinfoPoint.setImageResource(R.mipmap.indicator_red_point);
             step2 = true;
         } else {
@@ -269,12 +269,37 @@ public class StepAll extends BasePublishActivity {
 
         //获取 步骤json
         String stepsJson = getStepJson();
+        String proce = null;
+        String difficult= null;
+        String duration= null;
+        String taste= null;
+        for (int i = 0; i < AppConstant.proce.length; i++) {
+            if(cookBook.getProce().equals(AppConstant.proce[i])){
+                proce = AppConstant.proce_eng[i];
+            }
+        }
+        for (int i = 0; i < AppConstant.difficult.length; i++) {
+            if(cookBook.getDifficult().equals(AppConstant.difficult[i])){
+                difficult = AppConstant.difficult_eng[i];
+            }
+        }
+        for (int i = 0; i < AppConstant.taste.length; i++) {
+            if(cookBook.getTaste().equals(AppConstant.taste[i])){
+                taste = AppConstant.taste_eng[i];
+            }
+        }
+        for (int i = 0; i < AppConstant.time.length; i++) {
+            if(cookBook.getDuration().equals(AppConstant.time[i])){
+                duration = AppConstant.time_eng[i];
+            }
+        }
+
 
         KJLoger.debug("data://"  + "coverid:"+cookBook.getCoverPic().getId()+"category:"+ Level2Fragment.category[category]
-                        + "materialjson:" + materialJson + "stepsjson:" + stepsJson
+                        +"proce:"+proce+"taste:"+taste+"duration:"+duration+"difficult:"+difficult+ "materialjson:" + materialJson + "stepsjson:" + stepsJson
         );
 
-        NaidouApi.publishCookBook(cookBook.getTitle(), cookBook.getDescription(), cookBook.getCoverPic().getId(), Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
+        NaidouApi.publishCookBook(cookBook.getTitle(), cookBook.getDescription(),cookBook.getCoverPic().getId(), Level2Fragment.category[category],proce,taste,difficult,duration, materialJson, stepsJson, new HttpCallBack() {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);

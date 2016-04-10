@@ -12,7 +12,6 @@ public class CookBook implements Serializable {
     public CookBook() {
         title = "";
         coverPic = new Pic();
-
         cover = "";
         description = "";
         taste = "";
@@ -20,7 +19,7 @@ public class CookBook implements Serializable {
         proce = "";
         difficult = "";
         time = "";
-        cookTime = "";
+        duration = "";
         foods = new ArrayList<>();
         steps = new ArrayList<>();
     }
@@ -42,7 +41,7 @@ public class CookBook implements Serializable {
     //时间
     private String time;
     //烹饪时间时间
-    private String cookTime;
+    private String duration;
     //一级属性（父母、孩子）
     private String type1;
     //二级属性  父母--（备孕、孕初、孕中、孕晚、月子）
@@ -94,7 +93,7 @@ public class CookBook implements Serializable {
                 "cid='" + cid + '\'' +
                 ", title='" + title + '\'' +
                 ", time='" + time + '\'' +
-                ", cookTime='" + cookTime + '\'' +
+                ", duration='" + duration + '\'' +
                 ", type1='" + type1 + '\'' +
                 ", type2='" + type2 + '\'' +
                 ", proce='" + proce + '\'' +
@@ -119,12 +118,21 @@ public class CookBook implements Serializable {
                 '}';
     }
 
-    public String getCookTime() {
-        return cookTime;
+
+    public String getDuration() {
+        return duration;
     }
 
-    public void setCookTime(String cookTime) {
-        this.cookTime = cookTime;
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public void setCollect(boolean collect) {
+        isCollect = collect;
+    }
+
+    public void setLike(boolean like) {
+        isLike = like;
     }
 
     public void setCover(String cover) {

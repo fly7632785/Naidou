@@ -10,6 +10,7 @@ import com.itspeed.naidou.app.helper.UIHelper;
 import com.itspeed.naidou.app.view.CustomView.PickLableView;
 
 import org.kymjs.kjframe.ui.BindView;
+import org.kymjs.kjframe.utils.KJLoger;
 
 /**
  * Created by jafir on 16/1/18.
@@ -82,6 +83,12 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
         mTaste.setContent(AppConstant.taste);
         mDifficult.setContent(AppConstant.difficult);
 
+
+        KJLoger.debug("stapbaseinfo:"+cookBook.toString());
+
+
+
+
         //从本地获取 菜谱的工艺属性 然后设置对应的指针下标
         String proce = cookBook.getProce();
         if (!proce.equals("")) {
@@ -109,7 +116,7 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
                 }
             }
         }
-        String object = cookBook.getDifficult();
+        String object = cookBook.getObject();
         if (!object.equals("")) {
             for (int i = 0; i < AppConstant.object.length; i++) {
                 if (object.equals(AppConstant.object[i])) {
@@ -117,7 +124,7 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
                 }
             }
         }
-        String time = cookBook.getCookTime();
+        String time = cookBook.getDuration();
         if (!time.equals("")) {
             for (int i = 0; i < AppConstant.time.length; i++) {
                 if (time.equals(AppConstant.time[i])) {
@@ -197,7 +204,7 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
             case RQ_TIME:
                 timeIndex = data.getIntExtra("proceIndex", 0);
                 mTime.setIndex(timeIndex);
-                cookBook.setCookTime(AppConstant.time[timeIndex]);
+                cookBook.setDuration(AppConstant.time[timeIndex]);
                 break;
             case RQ_OBJECT:
                 objectIndex = data.getIntExtra("proceIndex", 0);
@@ -225,7 +232,7 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
         cookBook.setObject(mObject.getText());
         cookBook.setProce(mProce.getText());
         cookBook.setDifficult(mDifficult.getText());
-        cookBook.setCookTime(mTime.getText());
+        cookBook.setDuration(mTime.getText());
         cookBook.setTaste(mTaste.getText());
         setCookbook(cookBook);
     }

@@ -1,2 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/smssdk/unspecified/jars/libs/MobTools.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="14126bced2c8505138b7b094b23466f1f25049c1">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/release/MobTools_b81560f3bf49715aa3745da08bbb992ec387bbb6.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/mylibrary/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="333aeee26a8ea410233c7cf73b9a4fda225533c4">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/release/Naidou-mylibrary-unspecified_ec460b2d9260153abc29384935168883a8dc070a.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/smssdk/unspecified/jars/libs/MobLogCollector.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2f6c7bbf5d9532547658fd83f70766d36ef7821b">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/release/MobLogCollector_d1cba59e9a7ba2e90036f49a73af733d45d6262e.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/smssdk/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="27a2b6c54b0ef3015c4e7f4a5439be86e983115a">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/release/Naidou-smssdk-unspecified_bf6fb4e2da0eee484f75e8b00b61e0f2d5cbd87a.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/smssdk/unspecified/jars/libs/SMSSDK-1.3.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="99483cb9ebb71981c35c1e329215ba5db76a53ef">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/release/SMSSDK-1.3.1_3b52f7b478181507f2806efb2f4cc5c29b348885.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/SegmentControl/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7bf8e83e7a31ce372831332fcf1ac961c4718134">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/release/Naidou-SegmentControl-unspecified_103dcbfb8ce5bac4edb14a2a0305f83fc7a10757.jar" />
+    </item>
+    <item
+        jar="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/exploded-aar/Naidou/mylibrary/unspecified/jars/libs/fastjson-1.2.5.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="fe6ca39c45bbe03aef7059b68b938bb336c768f6">
+        <dex dex="/Users/jafir/Documents/ASworkspace/Naidou/app/build/intermediates/pre-dexed/release/fastjson-1.2.5_6755b275e33950bad71cf81ad15b8bdf5bc3958b.jar" />
+    </item>
+
+</items>

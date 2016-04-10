@@ -619,18 +619,18 @@ public class PublishCookbookFragment extends SupportFragment {
                         + "materialjson:" + materialJson + "stepsjson:" + stepsJson
         );
 
-        NaidouApi.publishCookBook(title, desc, picIds[step4linear.getChildCount()-1], Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
-            @Override
-            public void onSuccess(String t) {
-                super.onSuccess(t);
-                KJLoger.debug("publishCookBook:" + t);
-                if (Response.getSuccess(t)) {
-                    dialog.dismiss();
-                    ViewInject.toast("发布菜谱成功");
-                    aty.finish();
-                }
-            }
-        });
+//        NaidouApi.publishCookBook(title, desc, picIds[step4linear.getChildCount()-1], Level2Fragment.category[category], materialJson, stepsJson, new HttpCallBack() {
+//            @Override
+//            public void onSuccess(String t) {
+//                super.onSuccess(t);
+//                KJLoger.debug("publishCookBook:" + t);
+//                if (Response.getSuccess(t)) {
+//                    dialog.dismiss();
+//                    ViewInject.toast("发布菜谱成功");
+//                    aty.finish();
+//                }
+//            }
+//        });
 
     }
 

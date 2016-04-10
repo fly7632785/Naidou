@@ -544,7 +544,7 @@ public class NaidouApi {
     /**
      * 发布菜谱
      */
-    public static void publishCookBook(String  tilte,String desc,int coverId,String cate,String material,String steps,HttpCallBack callBack) {
+    public static void publishCookBook(String  tilte,String desc,int coverId,String cate,String proce,String taste, String difficult,String duration,String material,String steps,HttpCallBack callBack) {
         String url = "publishCookbook";
         HttpConfig config = new HttpConfig();
         config.cacheTime = 0;
@@ -553,6 +553,10 @@ public class NaidouApi {
         params.putHeaders("ApiKey", AppContext.TOKEN);
         params.put("_title", tilte);
         params.put("_description", desc);
+        params.put("_proce", proce);
+        params.put("_taste", taste);
+        params.put("_difficult", difficult);
+        params.put("_duration", duration);
         params.put("_coverId", coverId);
         params.put("_category_name", cate);
         params.put("_foods", material);

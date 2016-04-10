@@ -29,7 +29,6 @@
         android:textColorHint="#666666"
         android:textSize="14sp"
         android:maxLength="100"
-        android:maxLines="4"
         android:imeOptions="actionDone"
         android:gravity="start"
         android:background="@null"
