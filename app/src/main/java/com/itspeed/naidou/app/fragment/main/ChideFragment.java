@@ -13,6 +13,7 @@ import com.itspeed.naidou.app.fragment.ChildrenFragment;
 import com.itspeed.naidou.app.fragment.ParentFragment;
 import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.app.helper.UIHelper;
+import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.model.bean.CookBook;
 
 import org.kymjs.kjframe.utils.FileUtils;
@@ -78,9 +79,9 @@ public class ChideFragment extends TitleBarSupportFragment {
     public void onMenuClick() {
         super.onMenuClick();
 
-//        if (RightsManager.isVisitor(aty)) {
-//            return;
-//        }
+        if (RightsManager.isVisitor(aty)) {
+            return;
+        }
 
         //生成一个json对象 保存到本地
         //然后每一个步骤完成 就修改数据

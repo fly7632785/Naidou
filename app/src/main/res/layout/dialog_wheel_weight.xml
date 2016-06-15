@@ -3,9 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <View
-        style="@style/line"/>
 
+
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:text="点击下面按钮可以选择用量哦"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_marginTop="10dp"
+        style="@style/line"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"

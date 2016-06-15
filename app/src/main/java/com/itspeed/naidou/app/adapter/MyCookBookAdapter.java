@@ -10,6 +10,7 @@ import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.AppConfig;
 import com.itspeed.naidou.app.AppContext;
 import com.itspeed.naidou.app.helper.OperateHelper;
+import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.app.util.TimeUtil;
 import com.itspeed.naidou.model.bean.CookBook;
 
@@ -177,6 +178,9 @@ public class MyCookBookAdapter extends ListBaseAdapter<CookBook> {
 
         @Override
         public void onClick(View v) {
+            if (RightsManager.isVisitor(v.getContext())) {
+                return;
+            }
             ImageView img = (ImageView) v;
             CookBook cb = mDatas.get(position);
             String cid = cb.getCid();

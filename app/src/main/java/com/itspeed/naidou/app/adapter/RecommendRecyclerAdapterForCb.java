@@ -37,6 +37,8 @@ public class RecommendRecyclerAdapterForCb extends RecyclerView.Adapter<Recommen
     }
 
 
+
+
     class ImageViewHolder extends RecyclerView.ViewHolder {
 
         ImageView cover;

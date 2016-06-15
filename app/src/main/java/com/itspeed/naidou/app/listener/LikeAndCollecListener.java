@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.itspeed.naidou.R;
 import com.itspeed.naidou.app.helper.OperateHelper;
+import com.itspeed.naidou.app.util.RightsManager;
 import com.itspeed.naidou.model.bean.CookBook;
 
 import java.util.List;
@@ -29,6 +30,9 @@ public class LikeAndCollecListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        if (RightsManager.isVisitor(v.getContext())) {
+            return;
+        }
         ImageView img = (ImageView) v;
         CookBook cb = (CookBook) mDatas.get(position);
         String cid = cb.getCid();

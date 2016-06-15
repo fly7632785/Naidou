@@ -33,6 +33,7 @@ public class MyJpushReceiver extends BroadcastReceiver {
             nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         }
 
+        
         Bundle bundle = intent.getExtras();
         KJLoger.debug( "onReceive - " + intent.getAction() );
 

@@ -77,7 +77,7 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
     public void initData() {
         super.initData();
 
-        mObject.setContent(AppConstant.object_f);
+        mObject.setContent(AppConstant.object);
         mProce.setContent(AppConstant.proce);
         mTime.setContent(AppConstant.time);
         mTaste.setContent(AppConstant.taste);
@@ -132,6 +132,7 @@ public class StepBaseInfo extends BasePublishActivity implements PickLableView.o
                 }
             }
         }
+
 
         mObject.setViewClickListener(this);
         mProce.setViewClickListener(this);

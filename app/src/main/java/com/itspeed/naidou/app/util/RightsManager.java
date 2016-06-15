@@ -16,6 +16,7 @@ import org.kymjs.kjframe.ui.KJActivityStack;
 public class RightsManager {
 
 
+
     public static boolean isVisitor(final Context context) {
         if (AppContext.isVisitor) {
             alertToLogin(context);

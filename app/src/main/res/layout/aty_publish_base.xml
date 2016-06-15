@@ -40,7 +40,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:id="@+id/publish_base_desc"
-        android:singleLine="true"
         android:layout_marginRight="20dp"
         android:hint="写几句简单的描述吧..."
         android:maxLength="50"

@@ -77,12 +77,14 @@ public class Level2Fragment extends BaseSupportFragment implements PullToRefresh
 
     @Override
     protected View inflaterView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
+        KJLoger.debug(this.getClass().getSimpleName() + category[cate] + "inFlaterView");
         return layout;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        KJLoger.debug(this.getClass().getSimpleName() + category[cate] + "onCreate");
         aty = getActivity();
         layout = View.inflate(aty, R.layout.frag_level2, null);
 
@@ -126,6 +128,7 @@ public class Level2Fragment extends BaseSupportFragment implements PullToRefresh
         requestData(1);
     }
 
+
     /**
      * 动态注册广播
      */
@@ -163,6 +166,7 @@ public class Level2Fragment extends BaseSupportFragment implements PullToRefresh
     public void onResume() {
         super.onResume();
         mAdapter.notifyDataSetChanged();
+        KJLoger.debug(this.getClass().getSimpleName() + category[cate] + "onResume");
     }
 
     /**

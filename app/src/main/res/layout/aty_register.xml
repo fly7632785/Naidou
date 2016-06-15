@@ -147,8 +147,16 @@
             android:id="@+id/sign_confirm_password" />
     </LinearLayout>
 
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="同意注册协议"
+        android:layout_height="wrap_content" />
     <ImageView
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
         android:id="@+id/sign_up"
         android:background="@drawable/selector_sign_up"

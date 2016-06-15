@@ -67,6 +67,8 @@ public class UpdateManager {
     /* 更新进度条 */
     private DownloadProgressBar mProgress;
     private Dialog mDownloadDialog;
+    /* 根据是否是 后台操作 和 人为操作  提示用户网络请求界面 */
+    private boolean isShowDialog = false;
 
     //提示对话框
 //    private Dialog mShowDialog;
@@ -83,11 +85,15 @@ public class UpdateManager {
 
                 case FAIL_TO_LOAD_XML:
                     Toast.makeText(mContext,"获取数据失败",Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
+                    if(isShowDialog) {
+                        dialog.dismiss();
+                    }
                     break;
                 case FINISH_DOWNLOAD_XML:
                     checkUpdate();
-                    dialog.dismiss();
+                    if(isShowDialog) {
+                        dialog.dismiss();
+                    }
                     break;
                 // 正在下载
                 case DOWNLOAD:
@@ -120,7 +126,7 @@ public class UpdateManager {
         {
             // 显示提示对话框
             showNoticeDialog();
-        } else
+        } else if(isShowDialog)
         {
             Toast.makeText(mContext, R.string.soft_update_no, Toast.LENGTH_LONG).show();
         }
@@ -250,10 +256,12 @@ public class UpdateManager {
      */
     public void start(){
 
-        dialog = new ProgressDialog(mContext);
-        dialog.setMessage("正在检查更新...");
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
+        if(isShowDialog) {
+            dialog = new ProgressDialog(mContext);
+            dialog.setMessage("正在检查更新...");
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        }
         
 //        mShowDialog = new AlertDialog.Builder(mContext).setTitle("正在检查更新...").create();
 //        mShowDialog.show();
@@ -354,6 +362,11 @@ public class UpdateManager {
                 mProgress.setErrorResultState();
             }
         }
+    }
+
+
+    public void setShowDialog(boolean showDialog) {
+        isShowDialog = showDialog;
     }
 
     /**

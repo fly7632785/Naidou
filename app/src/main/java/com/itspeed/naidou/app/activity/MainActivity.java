@@ -14,6 +14,7 @@ import com.itspeed.naidou.app.fragment.TitleBarSupportFragment;
 import com.itspeed.naidou.app.fragment.main.ChideFragment;
 import com.itspeed.naidou.app.fragment.main.RecommenFragment;
 import com.itspeed.naidou.app.fragment.main.WodeFragment;
+import com.itspeed.naidou.app.util.UpdateManager;
 
 import org.kymjs.kjframe.ui.BindView;
 import org.kymjs.kjframe.ui.KJActivityStack;
@@ -95,6 +96,9 @@ public class MainActivity extends TitleBarActivity {
         super.initData();
 
 
+        //检测版本更新
+        UpdateManager updateManager = new UpdateManager(this);
+        updateManager.start();
 
 
         //设置tab中图片的大小
